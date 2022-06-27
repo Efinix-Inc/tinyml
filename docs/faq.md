@@ -35,7 +35,7 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   └── yolo_pico_person
 ├── quick_start
 ├── tinyml_hello_world
-│   └── Ti60F225_tinyml_hello_world
+│   └── Ti60F225_tinyml_hello_world_lite
 │       ├── embedded_sw
 │       │   └── SapphireSoc
 │       │       └── software
@@ -66,7 +66,7 @@ The directory structure of Efinix TinyML repo is depicted below:
 │           ├── hw_accel
 │           └── tinyml
 └── tinyml_vision
-    └── Ti60F225_person_detect_demo
+    └── Ti60F225_person_detect_demo_lite
         ├── embedded_sw
         │   └── SapphireSoc
         │       └── software
@@ -104,7 +104,7 @@ The directory structure of Efinix TinyML repo is depicted below:
 ## How much resources are consumed by Efinix TinyML designs?
 Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2021.2 are as follows.
     
- **Resource utilization for TinyML Hello World design:**  
+ **Resource utilization for TinyML Hello World (lite) design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
  | TinyML Hello World (Total)    | 28450 | 15794 | 4637 | 17376 | 135        | 41  |
@@ -116,7 +116,7 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
 
 <br />
 
- **Resource utilization for Edge Vision TinyML person detection demo design:**  
+ **Resource utilization for Edge Vision TinyML person detection demo (lite) design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
  | Person Detection Demo (Total) | 39813 | 19932 | 5481 | 26195 | 218        | 41  |
