@@ -1,0 +1,71 @@
+{
+    "args": [
+        "-o",
+        "cam_pixel_remap_fifo",
+        "--base_path",
+        "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.0"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "9",
+        "DATA_WIDTH": "32",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "510",
+        "PROGRAMMABLE_FULL": "0",
+        "PROG_FULL_NEGATE": "509",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "3",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "DEVICE_FAMILY": "1",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo_tmpl.vhd",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo_tmpl.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\cam_pixel_remap_fifo_define.vh"
+        ],
+        "external_example": [
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\fifo_demo_top.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\fifo_demo.peri.xml",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\fifo_demo.xml",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\fifo_demo_T20.sdc",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\efx_symmetric_width_fifo_top.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\cam_pixel_remap_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\T20F256_devkit\\cam_pixel_remap_fifo_define.vh"
+        ],
+        "external_example_2": [
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\fifo_demo_top.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\fifo_demo.peri.xml",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\fifo_demo.xml",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\fifo_demo_Ti60.sdc",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\efx_symmetric_width_fifo_top.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\cam_pixel_remap_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Ti60F225_devkit\\cam_pixel_remap_fifo_define.vh"
+        ],
+        "external_testbench": [
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\fifo_tb.sv",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\xrun.sh",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\msim.sh",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\flist",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\modelsim.do",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\cam_pixel_remap_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\cam_pixel_remap_fifo\\Testbench\\cam_pixel_remap_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2021.2.323",
+    "generated_date": "2022-05-10T08:49:48.224968"
+}

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<efx:project name="edge_vision_soc" description="" last_change_date="Wed June 1 2022 11:33:15" location="C:/Users/yhlee/Desktop/evsoc_tinyml_cleanup/Ti60F225_v3_1" sw_version="2021.2.323.4.6" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+    <efx:device_info>
+        <efx:family name="Titanium"/>
+        <efx:device name="Ti60F225"/>
+        <efx:timing_model name="C4"/>
+    </efx:device_info>
+    <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008">
+        <efx:top_module name="edge_vision_soc"/>
+        <efx:design_file name="edge_vision_soc.v" version="default" library="default"/>
+        <efx:design_file name="source/simple_dual_port_ram.v" version="default" library="default"/>
+        <efx:design_file name="source/true_dual_port_ram.v" version="default" library="default"/>
+        <efx:design_file name="source/reset.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/apb3_cam.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_picam_v2.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/line_buffer.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/raw_to_rgb.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/rgb_gain.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/rgb2gray.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/crop.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/scale_down_2x_nn.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/scale_up_2x_nn.v" version="default" library="default"/>
+        <efx:design_file name="source/display/vga_gen.v" version="default" library="default"/>
+        <efx:design_file name="source/display/display_dsi.v" version="default" library="default"/>
+        <efx:design_file name="source/display/panel_config.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/priority_encoder.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/axi4_hw_accel.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_tinyml.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_wrapper_tinyml.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/nearest_neighbor_downscale.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/pack_rgb_gray.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/custom_instruction_top.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
+        <efx:top_vhdl_arch name=""/>
+    </efx:design_info>
+    <efx:constraint_info>
+        <efx:sdc_file name="edge_vision_soc.sdc"/>
+        <efx:inter_file name=""/>
+    </efx:constraint_info>
+    <efx:sim_info/>
+    <efx:misc_info/>
+    <efx:ip_info>
+        <efx:ip instance_name="csi2_rx_cam" path="ip/csi2_rx_cam/settings.json">
+            <efx:ip_src_file name="csi2_rx_cam.sv"/>
+        </efx:ip>
+        <efx:ip instance_name="hbram" path="ip/hbram/settings.json">
+            <efx:ip_src_file name="hbram.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cam_dma_fifo" path="ip/cam_dma_fifo/settings.json">
+            <efx:ip_src_file name="cam_dma_fifo.v"/>
+        </efx:ip>
+        <efx:ip instance_name="display_dma_fifo" path="ip/display_dma_fifo/settings.json">
+            <efx:ip_src_file name="display_dma_fifo.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cam_pixel_remap_fifo" path="ip/cam_pixel_remap_fifo/settings.json">
+            <efx:ip_src_file name="cam_pixel_remap_fifo.v"/>
+        </efx:ip>
+        <efx:ip instance_name="hw_accel_dma_in_fifo" path="ip/hw_accel_dma_in_fifo/settings.json">
+            <efx:ip_src_file name="hw_accel_dma_in_fifo.v"/>
+        </efx:ip>
+        <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
+            <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
+        </efx:ip>
+        <efx:ip instance_name="dma" path="ip/dma/settings.json">
+            <efx:ip_src_file name="dma.v"/>
+        </efx:ip>
+        <efx:ip instance_name="dsi_tx_display" path="ip/dsi_tx_display/settings.json">
+            <efx:ip_src_file name="dsi_tx_display.sv"/>
+        </efx:ip>
+        <efx:ip instance_name="SapphireSoc" path="ip/SapphireSoc/settings.json">
+            <efx:ip_src_file name="SapphireSoc.v"/>
+        </efx:ip>
+    </efx:ip_info>
+    <efx:synthesis tool_name="efx_map">
+        <efx:param name="work_dir" value="work_syn" value_type="e_string"/>
+        <efx:param name="write_efx_verilog" value="on" value_type="e_bool"/>
+        <efx:param name="mode" value="speed" value_type="e_option"/>
+        <efx:param name="max_ram" value="-1" value_type="e_integer"/>
+        <efx:param name="max_mult" value="-1" value_type="e_integer"/>
+        <efx:param name="infer-clk-enable" value="3" value_type="e_option"/>
+        <efx:param name="infer-sync-set-reset" value="1" value_type="e_option"/>
+        <efx:param name="fanout-limit" value="0" value_type="e_integer"/>
+        <efx:param name="seq_opt" value="0" value_type="e_option"/>
+        <efx:param name="retiming" value="0" value_type="e_option"/>
+        <efx:param name="dsp-mac-packing" value="1" value_type="e_option"/>
+        <efx:param name="dsp-input-regs-packing" value="1" value_type="e_option"/>
+        <efx:param name="dsp-output-regs-packing" value="1" value_type="e_option"/>
+        <efx:param name="bram_output_regs_packing" value="1" value_type="e_option"/>
+        <efx:param name="blast_const_operand_adders" value="1" value_type="e_option"/>
+        <efx:param name="operator-sharing" value="0" value_type="e_option"/>
+        <efx:param name="optimize-adder-tree" value="0" value_type="e_option"/>
+        <efx:param name="pack-luts-to-comb4" value="0" value_type="e_option"/>
+        <efx:param name="include" value="ip/cam_dma_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/cam_pixel_remap_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/csi2_rx_cam" value_type="e_string"/>
+        <efx:param name="include" value="ip/display_dma_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/dma" value_type="e_string"/>
+        <efx:param name="include" value="ip/dsi_tx_display" value_type="e_string"/>
+        <efx:param name="include" value="ip/hw_accel_dma_in_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/SapphireSoc" value_type="e_string"/>
+        <efx:param name="include" value="ip/hbram" value_type="e_string"/>
+    </efx:synthesis>
+    <efx:place_and_route tool_name="efx_pnr">
+        <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
+        <efx:param name="verbose" value="off" value_type="e_bool"/>
+        <efx:param name="load_delaym" value="on" value_type="e_bool"/>
+        <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
+        <efx:param name="seed" value="0" value_type="e_integer"/>
+    </efx:place_and_route>
+    <efx:bitstream_generation tool_name="efx_pgm">
+        <efx:param name="mode" value="active" value_type="e_option"/>
+        <efx:param name="width" value="1" value_type="e_option"/>
+        <efx:param name="cold_boot" value="off" value_type="e_bool"/>
+        <efx:param name="cascade" value="off" value_type="e_option"/>
+        <efx:param name="enable_roms" value="on" value_type="e_option"/>
+        <efx:param name="spi_low_power_mode" value="on" value_type="e_bool"/>
+        <efx:param name="io_weak_pullup" value="on" value_type="e_bool"/>
+        <efx:param name="oscillator_clock_divider" value="DIV8" value_type="e_option"/>
+        <efx:param name="enable_crc_check" value="on" value_type="e_bool"/>
+        <efx:param name="bitstream_compression" value="on" value_type="e_bool"/>
+        <efx:param name="active_capture_clk_edge" value="posedge" value_type="e_option"/>
+        <efx:param name="release_tri_then_reset" value="on" value_type="e_bool"/>
+        <efx:param name="enable_external_master_clock" value="off" value_type="e_bool"/>
+        <efx:param name="jtag_usercode" value="0xFFFFFFFF" value_type="e_string"/>
+        <efx:param name="generate_bit" value="on" value_type="e_bool"/>
+        <efx:param name="generate_bitbin" value="off" value_type="e_bool"/>
+        <efx:param name="generate_hex" value="on" value_type="e_bool"/>
+        <efx:param name="generate_hexbin" value="off" value_type="e_bool"/>
+    </efx:bitstream_generation>
+    <efx:debugger>
+        <efx:param name="work_dir" value="work_dbg" value_type="e_string"/>
+        <efx:param name="auto_instantiation" value="off" value_type="e_bool"/>
+        <efx:param name="profile" value="debug_profile.wizard.json" value_type="e_string"/>
+    </efx:debugger>
+    <efx:security>
+        <efx:param name="enable_bitstream_encrypt" value="off" value_type="e_bool"/>
+        <efx:param name="enable_bitstream_auth" value="off" value_type="e_bool"/>
+        <efx:param name="encryption_key_file" value="NONE" value_type="e_string"/>
+        <efx:param name="auth_key_file" value="NONE" value_type="e_string"/>
+        <efx:param name="randomize_iv_value" value="off" value_type="e_bool"/>
+        <efx:param name="iv_value" value="" value_type="e_string"/>
+    </efx:security>
+</efx:project>

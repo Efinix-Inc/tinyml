@@ -1,0 +1,44 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_in_fifo",
+        "--base_path",
+        "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.0"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "5",
+        "DATA_WIDTH": "32",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "20",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "20",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "3",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "DEVICE_FAMILY": "1",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.vhd",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo.v",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_define.vh",
+            "C:\\Users\\yhlee\\Desktop\\evsoc_tinyml_cleanup\\Ti60F225_v1\\ip\\hw_accel_dma_in_fifo\\hw_accel_dma_in_fifo_tmpl.v"
+        ]
+    },
+    "sw_version": "2021.2.323",
+    "generated_date": "2022-05-10T08:49:04.450884"
+}
