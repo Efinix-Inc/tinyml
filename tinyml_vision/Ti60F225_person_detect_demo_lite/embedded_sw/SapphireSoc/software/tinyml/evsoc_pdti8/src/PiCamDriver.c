@@ -188,7 +188,8 @@ void PiCam_init(void)
    PiCam_WriteRegData(LINE_LENGTH_A_1, 0x0D);
    PiCam_WriteRegData(LINE_LENGTH_A_0, 0x78);
 
-   PiCam_Output_activePixel(0, 3279, 0, 2463);
+   //PiCam_Output_activePixel(0, 3279, 0, 2463);
+   PiCam_Output_activePixel(680, 3279, 0, 2463); //Use offset to have central view for 1920 frame width
 
    PiCam_Output_Size(1920, 1080);
    //PiCam_Output_Size(1280, 720);
