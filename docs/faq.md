@@ -167,15 +167,15 @@ The model data header is included in the *main.cc* in corresponding *\*/\*/embed
 <br />
 
 ## How to run inference with or without Efinix TinyML accelerator?
-By default, the provided example/demo designs are with Efinix TinyML accelerator enabled, where it is set in *accel.h* in corresponding *\*/\*/embedded_sw/SapphireSoc/software/tinyml/\*/src* directory.
+By default, the provided example/demo designs are with Efinix TinyML accelerator enabled, where it is set in *main.cc* in corresponding *\*/\*/embedded_sw/SapphireSoc/software/tinyml/\*/src* directory.
 
 ```
-   #define HWACCEL 1
+   int enable_hwaccel=1;
 ```
 
-To run AI inference using pure software approach with the original TFLite Micro library, assign the *HWACCEL* macro in *accel.h* to *0*.
+To run AI inference using pure software approach with the original TFLite Micro library, set the *enable_hwaccel* variable in *main.cc* to *0*.
 ```
-   #define HWACCEL 0
+   int enable_hwaccel=0;
 ```
 
 <br />
@@ -227,7 +227,7 @@ Efinix Sapphire RISC-V SoC IP provides demo/example for RISC-V custom instructio
 
 ## How to adjust RTL parameter of Efinix TinyML accelerator for different resource-performance trade-offs?
 
-By default, the *MAC_BUF_CNT* RTL parameter that determines the parallelism of MAC operations in Efinix TinyML accelerator is set to 4. To explore different resource/performance trade-offs for the TinyML accelerator, user may modify the *MAC_BUF_CNT* RTL parameter in *\*/\*/source/custom_instruction_top.v* tinyml_acceleration module instantiation. In addition, the same value set for *MAC_BUF_CNT* should be assigned to the *PARALLEL_CORE* macro defined in *accel.h* in *\*/\*/embedded_sw/SapphireSoc/software/tinyml/\*/src* for correct inference operation.
+By default, the *MAC_BUF_CNT* RTL parameter that determines the parallelism of MAC operations in Efinix TinyML accelerator is set to 4. To explore different resource/performance trade-offs for the TinyML accelerator, user may modify the *MAC_BUF_CNT* RTL parameter in *\*/\*/source/custom_instruction_top.v* tinyml_acceleration module instantiation. In addition, the same value set for *MAC_BUF_CNT* should be assigned to the *parallel_core* variable defined in *main.cc* in *\*/\*/embedded_sw/SapphireSoc/software/tinyml/\*/src* for correct inference operation.
 
 Note that, the max parallelism could be achieved is limited by the number of output channels of a convolution/depthwise-convolution layer.
 

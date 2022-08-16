@@ -49,6 +49,13 @@ limitations under the License.
 #include "model/quant_ship.h"
 #include "model/quant_truck.h"
 
+//TinyML accelerator flags
+#include "accel.h"
+int enable_hwaccel=1; //0: Run on full software , 1: Run on Hardware
+int parallel_core=4; // Adjust number of cores matching with hardware
+int const_log2_parallel = pow_of_2(parallel_core); //Parallel core power computation
+
+
 namespace {
    tflite::ErrorReporter* error_reporter = nullptr;
    const tflite::Model* model = nullptr;

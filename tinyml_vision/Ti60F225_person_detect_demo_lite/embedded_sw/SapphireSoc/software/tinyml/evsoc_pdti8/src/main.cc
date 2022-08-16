@@ -34,6 +34,13 @@ extern "C" {
 #include "model/mobilenetv1_person_detect_model_data.h"
 #include "model/model_settings.h"
 
+//TinyML accelerator flags
+#include "accel.h"
+int enable_hwaccel=1; //0: Run on full software , 1: Run on Hardware
+int parallel_core=4; // Adjust number of cores matching with hardware
+int const_log2_parallel = pow_of_2(parallel_core); //Parallel core power computation
+
+
 #define PERSON_DETECT_INPUT_BYTES 96*96
 
 #define FRAME_WIDTH     540
