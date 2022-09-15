@@ -89,7 +89,7 @@ no person
 
  ## Image Classification
  ### Training
- - The model is developed by referring to TFLite example of image classification (Reference : https://github.com/mlcommons/tiny/tree/master/benchmark/training/image_classificsation)
+ - The model is developed by referring to TFLite example of image classification (Reference : https://github.com/mlcommons/tiny/tree/master/benchmark/training/image_classification)
  - The model uses ResNet architecture, developed under Keras API and tensorflow framework (Reference: https://github.com/mlcommons/tiny/blob/master/benchmark/training/image_classification/keras_model.py)
  - The model is trained with 50000 training images and 10000 test images, consisting of 10 different classes, which are:
 
