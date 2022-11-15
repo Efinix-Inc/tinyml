@@ -1,0 +1,71 @@
+{
+    "args": [
+        "-o",
+        "cam_dma_fifo",
+        "--base_path",
+        "/tmp/tmplej4ogt7/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.2"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "10",
+        "DATA_WIDTH": "48",
+        "MODE": "1",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "512",
+        "PROGRAMMABLE_FULL": "0",
+        "PROG_FULL_NEGATE": "512",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "3",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "DEVICE_FAMILY": "1",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/cam_dma_fifo.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/cam_dma_fifo_define.vh"
+        ],
+        "external_example": [
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.xml",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo_define.vh"
+        ],
+        "external_example_2": [
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo_define.vh"
+        ],
+        "external_testbench": [
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/fifo_tb.sv",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/xrun.sh",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/msim.sh",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/flist",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/modelsim.do",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/cam_dma_fifo.v",
+            "/tmp/tmplej4ogt7/ip/cam_dma_fifo/Testbench/cam_dma_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2022.1.226",
+    "generated_date": "2022-10-26T06:52:05.123187"
+}

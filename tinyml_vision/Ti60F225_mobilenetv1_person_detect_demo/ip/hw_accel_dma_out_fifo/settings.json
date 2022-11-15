@@ -1,0 +1,44 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_out_fifo",
+        "--base_path",
+        "/tmp/tmpdsj9sfrl/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.2"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "6",
+        "DATA_WIDTH": "32",
+        "MODE": "1",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "40",
+        "PROGRAMMABLE_FULL": "1",
+        "PROG_FULL_NEGATE": "40",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "8",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "1",
+        "DEVICE_FAMILY": "1",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "/tmp/tmpdsj9sfrl/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
+            "/tmp/tmpdsj9sfrl/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v",
+            "/tmp/tmpdsj9sfrl/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
+            "/tmp/tmpdsj9sfrl/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2022.1.226",
+    "generated_date": "2022-10-26T06:52:15.360321"
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="holder for library settings">
+
+</language>
+<language name="Assembly">
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\riscv-none-embed\include</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\riscv-none-embed\include\sys</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\lib\gcc\riscv-none-embed\8.3.0\include</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\include</includepath>
+<includepath>${workspace_loc}\bsp\efinix\EfxSapphireSoc\include</includepath>
+<includepath>${workspace_loc}\bsp\efinix\EfxSapphireSoc\app</includepath>
+<includepath>${workspace_loc}\software\standalone\driver</includepath>
+
+</language>
+<language name="GNU C++">
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\riscv-none-embed\include</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\riscv-none-embed\include\sys</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\lib\gcc\riscv-none-embed\8.3.0\include</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\include</includepath>
+<includepath>${workspace_loc}\bsp\efinix\EfxSapphireSoc\include</includepath>
+<includepath>${workspace_loc}\bsp\efinix\EfxSapphireSoc\app</includepath>
+<includepath>${workspace_loc}\software\standalone\driver</includepath>
+
+</language>
+<language name="GNU C">
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\riscv-none-embed\include</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\riscv-none-embed\include\sys</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\lib\gcc\riscv-none-embed\8.3.0\include</includepath>
+<includepath>${RISCV_TOOLS_HOME}\riscv-xpack-toolchain_8.3.0-2.3_windows\include</includepath>
+<includepath>${workspace_loc}\bsp\efinix\EfxSapphireSoc\include</includepath>
+<includepath>${workspace_loc}\bsp\efinix\EfxSapphireSoc\app</includepath>
+<includepath>${workspace_loc}\software\standalone\driver</includepath>
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="holder for library settings">
+
+</language>
+<language name="Assembly">
+
+</language>
+<language name="GNU C++">
+
+</language>
+<language name="GNU C">
+<macro>
+<name>SYSTEM_UART_A_APB</name><value>SYSTEM_UART_0_IO_CTRL</value>
+</macro>
+<macro>
+<name>SYSTEM_GPIO_A_APB</name><value>SYSTEM_GPIO_0_IO_CTRL</value>
+</macro>
+<macro>
+<name>SYSTEM_I2C_A_APB</name><value>SYSTEM_UART_0_IO_CTRL</value>
+</macro>
+
+</language>
+</section>
+</cdtprojectproperties>

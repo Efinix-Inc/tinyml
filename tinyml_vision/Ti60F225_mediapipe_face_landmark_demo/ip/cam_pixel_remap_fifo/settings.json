@@ -1,0 +1,71 @@
+{
+    "args": [
+        "-o",
+        "cam_pixel_remap_fifo",
+        "--base_path",
+        "/tmp/tmpv7dhcqaq/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "1.2"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH": "9",
+        "DATA_WIDTH": "32",
+        "MODE": "0",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "510",
+        "PROGRAMMABLE_FULL": "0",
+        "PROG_FULL_NEGATE": "509",
+        "PROG_EMPTY_ASSERT": "2",
+        "PROG_EMPTY_NEGATE": "3",
+        "PROGRAMMABLE_EMPTY": "0",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "DEVICE_FAMILY": "1",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0"
+    },
+    "output": {
+        "external_source": [
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.vh"
+        ],
+        "external_example": [
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/fifo_demo.xml",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/cam_pixel_remap_fifo.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/T20F256_devkit/cam_pixel_remap_fifo_define.vh"
+        ],
+        "external_example_2": [
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/cam_pixel_remap_fifo.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Ti60F225_devkit/cam_pixel_remap_fifo_define.vh"
+        ],
+        "external_testbench": [
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/fifo_tb.sv",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/xrun.sh",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/msim.sh",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/flist",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/modelsim.do",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/cam_pixel_remap_fifo.v",
+            "/tmp/tmpv7dhcqaq/ip/cam_pixel_remap_fifo/Testbench/cam_pixel_remap_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2022.1.226",
+    "generated_date": "2022-10-26T06:49:02.930240"
+}

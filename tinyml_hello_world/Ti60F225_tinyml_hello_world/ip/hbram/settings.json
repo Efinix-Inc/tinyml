@@ -1,0 +1,142 @@
+{
+    "args": [
+        "-o",
+        "hbram",
+        "--base_path",
+        "C:\\Users\\yhlee\\Desktop\\hello_world_yh\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory_controller",
+            "name": "efx_hyper_ram",
+            "version": "2.2"
+        }
+    ],
+    "conf": {
+        "RAM_DBW": "16",
+        "RAM_ABW": "25",
+        "CR0_DPD": "1",
+        "CR0_ILC": "2",
+        "CR0_ODS": "0",
+        "CR0_HBE": "1",
+        "CR0_WBL": "3",
+        "CR1_MCT": "1",
+        "CR1_PAR": "0",
+        "CR1_HSE": "0",
+        "AXI_DBW": "128",
+        "DDIN_MODE": "0",
+        "AXI_AWR_DEPTH": "16",
+        "AXI_R_DEPTH": "256",
+        "AXI_W_DEPTH": "256",
+        "RDO_DELAY": "3",
+        "CAL_CLK_CH": "4",
+        "CAL_MODE": "2",
+        "MHZ": "200",
+        "USER_IF": "1",
+        "NATIVE_DBW": "32",
+        "NATIVE_R_DEPTH": "256",
+        "NATIVE_W_DEPTH": "256"
+    },
+    "output": {
+        "external_source": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\hbram_tmpl.vhd",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\hbram_tmpl.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\hbram.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\hbram_define.vh"
+        ],
+        "external_testbench_synopsys": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\synopsys\\hbram.sv"
+        ],
+        "external_testbench_modelsim": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\modelsim\\hbram.sv"
+        ],
+        "external_testbench_ncsim": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\ncsim\\hbram.sv"
+        ],
+        "external_testbench": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\tb.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\clock_gen.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\efx_crc32.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\efx_lut4.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\EFX_GPIO_model.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\flist",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\modelsim.do",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\modelsim.sh",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\xrun.sh",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\W958D6NKY.nc.vp",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\W958D6NKY.modelsim.vp",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\Config-AC.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\hbram.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Testbench\\hbram_define.vh"
+        ],
+        "external_example_1": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_axi_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_2": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F225_devkit_native_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_3": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_axi_pll_auto\\hbram_define.vh"
+        ],
+        "external_example_4": [
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_ed_hyper_ram_native_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_ed_hyper_ram_axi_tc.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_crc32.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\efx_clk_monitor.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\debug_top.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\debug_profile.json",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_ti60.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_ti60.peri.xml",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\ed_define.vh",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\constraints.sdc",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\ed_encrypt.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram.v",
+            "C:\\Users\\yhlee\\AppData\\Local\\Temp\\tmpwqglwn6d\\hbram\\Ti60F100_SiP_native_pll_auto\\hbram_define.vh"
+        ]
+    },
+    "sw_version": "2022.1.226",
+    "generated_date": "2022-09-30T08:28:23.340811"
+}
