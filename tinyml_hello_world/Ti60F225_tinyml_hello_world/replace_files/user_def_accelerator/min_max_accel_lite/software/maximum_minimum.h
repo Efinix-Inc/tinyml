@@ -21,14 +21,14 @@ limitations under the License.
 
 
 //For user-defined accelerator =  10'b1x_xxxx_xxxx
-//Custom instruction in software is defined as func3 [0:2] , func7 [9:3]
+//Custom instruction in software is defined as func3 [2:0] , func7 [9:3]
 //Thus, the instruction implemented should be :
-//  Func3 : {3'dxxx} 
+//  Func3 : {3'bxxx} 
 // 0x0 = To select between signed integer or unsigned integer. Sending input0[0] as 0 will result in unsigned operation , whereas sending input0[0] as 1 will result in signed operation
 // 0x1 = To perform maximum operation. input0 and input1 will be sent in 32-bit format , and will perform 8-bit maximum operation (split on hardware)
 // 0x2 = To perform minimum operation. input0 and input1 will be sent in 32-bit format , and will perform 8-bit maximum operation (split on hardware)
-// Func7 : {7'dxxx_xxxx}
-// {7'd100_1000} : (For user-defined accelerator selection)
+// Func7 : {7'bxxx_xxxx}
+// {7'b100_1000} : (For user-defined accelerator selection)
 #define CUSTOM_MAX(el1, el2)              opcode_R(CUSTOM0, 0x01, 0x48, el1, el2)
 #define CUSTOM_MIN(el1, el2)              opcode_R(CUSTOM0, 0x02, 0x48, el1, el2)
 #define SET_SIGNED_INT()                  opcode_R(CUSTOM0, 0x00, 0x48, 1, 0)
