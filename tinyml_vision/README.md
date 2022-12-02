@@ -69,5 +69,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.1.226.2.11
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.1.226.3.17
 - [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.4

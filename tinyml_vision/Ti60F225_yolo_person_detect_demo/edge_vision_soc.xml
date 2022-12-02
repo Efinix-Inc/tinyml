@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change_date="Wed October 19 2022 15:22:49" location="C:/my_projects/8_github_ws/2_efx_sol/efx_SOLUTION/tinyML/efx_tinyml/tinyml_vision/Ti60F225_yolo_pico_demo" sw_version="2021.2.323.6.17" last_run_state="crash" last_run_tool="efx_pnr" last_run_flow="place" config_result_in_sync="true" design_ood="sync" place_ood="" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change_date="Wed October 19 2022 15:22:49" location="C:/my_projects/8_github_ws/2_efx_sol/efx_SOLUTION/tinyML/efx_tinyml/tinyml_vision/Ti60F225_yolo_pico_demo" sw_version="2021.2.323.6.17" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti60F225"/>

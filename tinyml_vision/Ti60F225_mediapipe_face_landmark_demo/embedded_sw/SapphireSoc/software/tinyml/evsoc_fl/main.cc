@@ -444,64 +444,50 @@ void main() {
       
       draw_buffer = next_display_buffer;
    }
-   
-   /***********************************************Check AXI4 Slave Status (HW Accelerator)********************************************/
-/*   
-      MicroPrintf("\nHW accelerator AXI4 status..\n\r");
-   
-   //Verify slave read operation. Expecting 32'hABCD_1234   
-   rdata = axi_slave_read32(EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG3_OFFSET);
-   MicroPrintf("test_value : %x\n\r", rdata);
-   
-   //LSB: {debug_dma_in_fifo_underflow, debug_dma_in_fifo_overflow, debug_dma_out_fifo_underflow, debug_dma_out_fifo_overflow}
-   rdata = axi_slave_read32(EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG4_OFFSET);
-   MicroPrintf("debug_hw_accel_fifo_status : %x\n\r", rdata);
-   
-   //debug_dma_in_fifo_wcount
-   rdata = axi_slave_read32(EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG5_OFFSET);
-   MicroPrintf("debug_dma_in_fifo_wcount : %x\n\r", rdata);
-   
-   //debug_dma_out_fifo_rcount 
-   rdata = axi_slave_read32(EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG6_OFFSET);
-   MicroPrintf("debug_dma_out_fifo_rcount : %x\n\r", rdata);
-*/
 
-   /**********************************************Check APB3 Slave Status (Camera & Display)******************************************/
+   /**********************************************Check APB3 Slave Status (Camera, Display & HW Accelerator)******************************************/
 /*
    MicroPrintf("\nCamera and display APB3 status..\n\r");
-   
-   //Verify slave read operation. Expecting 32'hABCD_5678
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG13_OFFSET);
-   MicroPrintf("test_value : %x\n\r", rdata);
-   
-   //{28'd0, debug_cam_dma_fifo_underflow, debug_cam_dma_fifo_overflow, debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow}
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG6_OFFSET);
-   MicroPrintf("debug_fifo_status : %x\n\r", rdata);
-   
-   //debug_cam_dma_fifo_rcount
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG7_OFFSET);
-   MicroPrintf("debug_cam_dma_fifo_rcount : %x\n\r", rdata);
-   
-   //debug_cam_dma_fifo_wcount
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG8_OFFSET);
-   MicroPrintf("debug_cam_dma_fifo_wcount : %x\n\r", rdata);
-   
-   //debug_display_dma_fifo_rcount
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG9_OFFSET);
-   MicroPrintf("debug_display_dma_fifo_rcount : %x\n\r", rdata);
-   
-   //debug_display_dma_fifo_wcount
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG10_OFFSET);
-   MicroPrintf("debug_display_dma_fifo_wcount : %x\n\r", rdata);
-   
-   //debug_cam_dma_status
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG11_OFFSET);
-   MicroPrintf("debug_cam_dma_status : %x\n\r", rdata);
-   
-   //frames_per_second
-   rdata = example_register_read(EXAMPLE_APB3_SLV_REG12_OFFSET);
-   MicroPrintf("frames_per_second : %x\n\r", rdata);
-*/
 
+   //Verify slave read operation. Expecting 32'hABCD_5678
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG16_OFFSET);
+   MicroPrintf("test_value : %x\n\r", rdata);
+
+   //{28'd0, debug_cam_dma_fifo_underflow, debug_cam_dma_fifo_overflow, debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow}
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG7_OFFSET);
+   MicroPrintf("debug_fifo_status : %x\n\r", rdata);
+
+   //debug_cam_dma_fifo_rcount
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG8_OFFSET);
+   MicroPrintf("debug_cam_dma_fifo_rcount : %x\n\r", rdata);
+
+   //debug_cam_dma_fifo_wcount
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG9_OFFSET);
+   MicroPrintf("debug_cam_dma_fifo_wcount : %x\n\r", rdata);
+
+   //debug_display_dma_fifo_rcount
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG10_OFFSET);
+   MicroPrintf("debug_display_dma_fifo_rcount : %x\n\r", rdata);
+
+   //debug_display_dma_fifo_wcount
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG11_OFFSET);
+   MicroPrintf("debug_display_dma_fifo_wcount : %x\n\r", rdata);
+
+   //debug_cam_dma_status
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG12_OFFSET);
+   MicroPrintf("debug_cam_dma_status : %x\n\r", rdata);
+
+   //frames_per_second
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG13_OFFSET);
+   MicroPrintf("frames_per_second : %x\n\r", rdata);
+   
+   //debug_dma_hw_accel_in_fifo_wcount
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG14_OFFSET);
+   MicroPrintf("debug_dma_hw_accel_in_fifo_wcount : %x\n\r", rdata);
+   
+   //debug_dma_hw_accel_out_fifo_rcount
+   rdata = example_register_read(EXAMPLE_APB3_SLV_REG15_OFFSET);
+   MicroPrintf("debug_dma_hw_accel_out_fifo_rcount : %x\n\r", rdata);
+*/
 }
 

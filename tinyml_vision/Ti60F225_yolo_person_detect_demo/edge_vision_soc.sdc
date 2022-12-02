@@ -21,7 +21,7 @@ create_clock -period 8.00 {i_cam_ck_CLKOUT_0}
 #set_clock_groups -exclusive -group {i_sysclk_div_2} -group {jtag_inst1_TCK}
 #set_clock_groups -exclusive -group {i_sysclk_div_4} -group {jtag_inst1_TCK}
 
-set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK}
+set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK} -group {i_mipi_clk} -group {i_mipi_tx_pclk} 
 
 # GPIO Constraints
 ####################
