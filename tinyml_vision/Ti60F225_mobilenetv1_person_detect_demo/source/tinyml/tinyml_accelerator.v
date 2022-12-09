@@ -20,7 +20,7 @@
 `include "defines.v"
 
 module tinyml_accelerator #(
-    parameter                       AXI_DW                          = 128,
+    parameter                       AXI_DW                          = `AXI_DW,
     parameter                       OP_CNT                          = 5,
     parameter                       ADD_MODE                        = `ADD_MODE,          //Only supported "STANDARD" / "LITE".
     parameter                       MIN_MAX_MODE                    = `MIN_MAX_MODE,      //Only supported "STANDARD" / "LITE".

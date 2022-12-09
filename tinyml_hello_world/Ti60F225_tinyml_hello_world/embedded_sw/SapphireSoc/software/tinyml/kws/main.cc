@@ -144,10 +144,9 @@ void main() {
 
    /*********************************************************STATIC IMAGE INFERENCE 1*****************************************************/
    
-   //Person image data from tflite micro example
-   MicroPrintf("\n\Keyword Spotting Inference 1=(On) ...");
+   MicroPrintf("\n\rKeyword Spotting Inference 1=(On) ...");
    
-   //Copy test image to tflite model input. Input size to person detection model 96*96=9216
+
    for (unsigned int i = 0; i < kKwsInputSize; ++i)
       model_input->data.int8[i] = g_kws_inputs[i]; //Input image data (from tflite micro example) is pre-normalized
 

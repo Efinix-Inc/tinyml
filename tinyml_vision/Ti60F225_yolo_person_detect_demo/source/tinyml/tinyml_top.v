@@ -19,10 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 ///////////////////////////////////////////////////////////////////////////////////
-
-module tinyml_top (
-   input          clk,
-   input          reset,
+`include "defines.v"
+module tinyml_top #(
+   parameter AXI_DW = `AXI_DW
+) (
+   input                            clk,
+   input                            reset,
    //Command Interface
    input          cmd_valid,
    input  [9:0]   cmd_function_id,
@@ -46,8 +48,8 @@ module tinyml_top (
    output [1:0]   m_axi_awlock,
    output [3:0]   m_axi_awcache,
    input          m_axi_awready,
-   output [127:0] m_axi_wdata,
-   output [15:0]  m_axi_wstrb,
+   output [AXI_DW-1:0] m_axi_wdata,
+   output [AXI_DW/8-1:0]  m_axi_wstrb,
    output         m_axi_wlast,
    output         m_axi_wvalid,
    input          m_axi_wready,
@@ -64,7 +66,7 @@ module tinyml_top (
    output [3:0]   m_axi_arcache,
    input          m_axi_arready,
    input          m_axi_rvalid,
-   input  [127:0] m_axi_rdata,
+   input  [AXI_DW-1:0] m_axi_rdata,
    input          m_axi_rlast,
    input  [1:0]   m_axi_rresp,
    output         m_axi_rready
@@ -79,7 +81,7 @@ wire [31:0] tinyml_accel_rsp_outputs_0;
 assign tinyml_accel_cmd_valid = cmd_valid & (cmd_function_id[9] == 1'b0);
 
 tinyml_accelerator #(
-
+    .AXI_DW         (AXI_DW)
 ) u_tinyml_accelerator (
    .clk              (clk                       ),
    .rstn             (!reset                    ),

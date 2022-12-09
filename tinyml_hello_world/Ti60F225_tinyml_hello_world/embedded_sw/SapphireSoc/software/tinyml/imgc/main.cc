@@ -248,7 +248,7 @@ extern "C" void main() {
 
    /*********************************************************STATIC IMAGE INFERENCE 4*****************************************************/
 
-    //Bird image data
+    //Truck image data
     MicroPrintf("\n\rImage Classification Inference 4 (Truck)...");
 
     //Copy test image to tflite model input.
@@ -280,7 +280,7 @@ extern "C" void main() {
 
     /*********************************************************STATIC IMAGE INFERENCE 5*****************************************************/
 
-     //Bird image data
+     //Deer image data
      MicroPrintf("\n\rImage Classification Inference 5 (Deer)...");
 
      //Copy test image to tflite model input.
