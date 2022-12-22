@@ -11,6 +11,7 @@ List of models in Model Zoo:
 3. [ResNet Image Classification](#resnet-image-classification) - Trained with Tensorflow framework using ResNet architecture to perform object classification.
 4. [DS-CNN Keyword Spotting](#ds-cnn-keyword-spotting) - Trained with Tensorflow framework using DS-CNN architecture to perform keyword spotting on speech command.
 5. [MediaPipe Face Landmark Detection](#mediapipe-face-landmark-detection) - A pre-trained Tensorflow framework obtained using MediaPipe architecture to perform face landmark detection
+6. [Deep AutoEncoder Anomaly Detection](#deep-autoencoder-anomaly-detection) - Trained with Tensorflow framework using Deep AutoEncoder architecture in detecting anomalies in machine operating sounds
 
 <br />
 
@@ -23,6 +24,7 @@ The summary of each model is shown below:
 | Image Classification | Tensorflow | .h5                  | ResNet      | 32x32x3    | CIFAR10           | 85.0               |
 | Keyword Spotting     | Tensorflow | .pb                  | DS-CNN      | 49x10x1    | Speech Commands   | 90.0               |
 | Face Landmark        | Tensorflow | .pb                  | MediaPipe   | 192x192x3  | Charade           | 468(3D Landmark)   |
+| Anomaly Detection    | Tensorflow | .h5                  | Deep AutoEncoder   | 1x640  | ToyADMOS            | 0.85 (AUC)   |
 
 <br />
 
@@ -54,6 +56,9 @@ The training flows are developed on Jupyter Notebook.
      │        └── resnet_image_classification.ipynb
      │   └── yolo_person_detection
      │        └── yolo_person_detection.ipynb
+     │   └── deep_autoencoder_anomaly_detection
+     │        └── deep_autoencoder_anomaly_detection.ipynb
+
      ```
 4. Run the training flow.
 
@@ -209,5 +214,28 @@ box_y_max = y_max * height
 - The pre-trained Tensroflow .pb model obtained is converted to quantized tflite format using TFLite converter and post-training quantization as defined in Tensorflow API:
   - Convert to TFLite : https://www.tensorflow.org/lite/convert
   - Quantized TFLite  : https://www.tensorflow.org/lite/performance/post_training_quantization
+
+## Deep AutoEncoder Anomaly Detection
+### Training
+
+- The model is developed by referring to example of anomaly detection (Reference : https://github.com/mlcommons/tiny/tree/master/benchmark/training/anomaly_detection)
+- The model uses Deep AutoEncoder architecture, developed under Keras API and tensorflow framework (Reference: https://github.com/mlcommons/tiny/blob/master/benchmark/training/anomaly_detection/keras_model.py)
+- The model is trained with ToyADMOS dataset, whereby ToyCar Machine Type is selected for training. 
+- The output is derived based on average score of slices from each audio. The sample is shown below:
+```
+normal_id_01_00000000.wav	6.95342025
+normal_id_01_00000001.wav	6.363580014
+normal_id_01_00000002.wav	7.048401741
+normal_id_01_00000003.wav	6.151557502
+normal_id_01_00000004.wav	6.450118248
+normal_id_01_00000005.wav	6.368985477
+```
+ - A pre-trained Keras .h5 model is included, which is trained until the final 100 epochs. 
+
+### Post-Training
+- Upon training the model, the H5 model obtained is converted to quantized tflite format using TFLite converter and post-training quantization as defined in Tensorflow API:
+  - Convert to TFLite : https://www.tensorflow.org/lite/convert
+  - Quantized TFLite  : https://www.tensorflow.org/lite/performance/post_training_quantization
+
 
 **NOTE:** _The provided full training flow for Yolo Person Detection might take up to ~40GB during execution. Google Colab free version with GPU enabled only supports up to ~38GB, thus subscription to Google Colab Pro may be required._

@@ -1,0 +1,13 @@
+Keyword Spotting Inference 1
+down score: -128
+go score: -128
+left score: -128
+no score: -128
+off score: -128
+on score: 127
+right score: -128
+stop score: -128
+up score: -128
+yes score: -128
+silence score: -128
+unknown score: -128

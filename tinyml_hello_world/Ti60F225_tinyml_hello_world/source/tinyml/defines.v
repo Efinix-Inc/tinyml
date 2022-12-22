@@ -9,7 +9,7 @@
 `define CONV_DEPTH_LITE_AW	7
 `define ADD_MODE	"STANDARD"
 `define FC_MODE	"LITE"
-`define FC_MAX_IN_NODE	64
-`define FC_MAX_OUT_NODE	12
+`define FC_MAX_IN_NODE	640
+`define FC_MAX_OUT_NODE	640
 `define MULT_MODE	"LITE"
 `define MIN_MAX_MODE	"LITE"

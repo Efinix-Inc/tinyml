@@ -15,6 +15,7 @@ List of static inference examples:
 3. ResNet Image Classification (*imgc*) - Trained with Tensorflow using ResNet architecture to perform classification (CIFAR10 - 10 classes).
 4. DS-CNN Keyword Spotting (*kws*) - Trained with Tensorflow framework using DS-CNN architecture to perform keyword spotting on speech command.
 5. MediaPipe Face Landmark Detection (*face_landmark*) - A pre-trained Tensorflow model obtained using MediaPipe architecture to perform face landmark detection.
+6. Deep AutoEncoder Anomaly Detection (*anomaly_detection*) - Trained with Tensorflow framework using Deep AutoEncoder architecture in detecting anomalies in machine operating sounds
 
 
 Refer to the *model_zoo* directory for more details on the related model training and quantization.
