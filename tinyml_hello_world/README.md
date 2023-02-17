@@ -10,12 +10,12 @@ TinyML Hello World design is composed of Efinix Sapphire RISC-V SoC, DMA control
 <br />
 
 List of static inference examples:
-1. MobilenetV1 Person Detection (*pdti8*) - Trained with Tensorflow using MobilenetV1 architecture to perform human presence detection.
-2. Yolo Person Detection (*yolo_pd*) - Trained with Tensorflow using Yolo architecture to perform person detection.
-3. ResNet Image Classification (*imgc*) - Trained with Tensorflow using ResNet architecture to perform classification (CIFAR10 - 10 classes).
-4. DS-CNN Keyword Spotting (*kws*) - Trained with Tensorflow framework using DS-CNN architecture to perform keyword spotting on speech command.
-5. MediaPipe Face Landmark Detection (*face_landmark*) - A pre-trained Tensorflow model obtained using MediaPipe architecture to perform face landmark detection.
-6. Deep AutoEncoder Anomaly Detection (*anomaly_detection*) - Trained with Tensorflow framework using Deep AutoEncoder architecture in detecting anomalies in machine operating sounds
+1. MobilenetV1 Person Detection (*tinyml_pdti8*) - Trained with Tensorflow using MobilenetV1 architecture to perform human presence detection.
+2. Yolo Person Detection (*tinyml_ypd*) - Trained with Tensorflow using Yolo architecture to perform person detection.
+3. ResNet Image Classification (*tinyml_imgc*) - Trained with Tensorflow using ResNet architecture to perform classification (CIFAR10 - 10 classes).
+4. DS-CNN Keyword Spotting (*tinyml_kws*) - Trained with Tensorflow framework using DS-CNN architecture to perform keyword spotting on speech command.
+5. MediaPipe Face Landmark Detection (*tinyml_fl*) - A pre-trained Tensorflow model obtained using MediaPipe architecture to perform face landmark detection.
+6. Deep AutoEncoder Anomaly Detection (*tinyml_ad*) - Trained with Tensorflow framework using Deep AutoEncoder architecture in detecting anomalies in machine operating sounds
 
 
 Refer to the *model_zoo* directory for more details on the related model training and quantization.
@@ -25,8 +25,10 @@ Refer to the *model_zoo* directory for more details on the related model trainin
 ## Get Started
 The example designs are implemented on:
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
+- [Titanium® Ti180 M484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180m484.html)
 
-Efinity® IDE is required for project compilation and bitstream generation, whereas RISC-V SDK (includes Eclipse, OpenOCD Debugger, etc) is used to manage RISC-V software projects and for debugging purposes.
+
+Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
 
 <br />
 
@@ -41,14 +43,14 @@ Bring up TinyML Hello World design on Efinix development kit by following listed
       - Generate all included IPs in the IP list.
       - Compile
    - Program FPGA bitstream to targeted development kit using Efinity Programmer.
-   - Note that, user is required to generate SapphireSoc in IP list (if not done), prior to proceed with using RISC-V SDK for building software applications.
-3. Using RISC-V SDK
+   - Note that, user is required to generate SapphireSoc in IP list (if not done), prior to proceed with using Efinity RISC-V Embedded Software IDE for building software applications.
+3. Using Efinity RISC-V Embedded Software IDE
    - Setup Eclipse workspace at *tinyml_hello_world/<proj_directory>/embedded_sw/SapphireSoc* directory.
    - Window -> Preferences -> C/C++ -> Build -> Environment (for C/C++ compilation with O3 flag, optimize for speed performance)
       - *BENCH* set to *yes*
       - *DEBUG* set to *no*
       - *DEBUG_OG* set to *no*
-   - TinyML Hello World software apps are in *tinyml_hello_world/<proj_directory>/embedded_sw/SapphireSoc/software/tinyml* directory.
+   - TinyML Hello World software apps are in *tinyml_hello_world/<proj_directory>/embedded_sw/SapphireSoc/software/standalone* directory.
    - Refer to *Using Eclipse and OpenOCD* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for other general setting and steps for running the static inference example software applications.
 
 <br />
@@ -58,5 +60,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.1.226.3.17
-- [RISC-V SDK](https://www.efinixinc.com/support/ip/riscv-sdk.php) v1.4
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.2.14
+- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.3

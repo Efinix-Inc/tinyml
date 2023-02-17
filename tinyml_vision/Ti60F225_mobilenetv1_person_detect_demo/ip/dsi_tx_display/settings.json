@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "2.0"
+            "version": "2.1"
         }
     ],
     "conf": {
@@ -109,6 +109,6 @@
             "/tmp/tmpivb24pr9/ip/dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
         ]
     },
-    "sw_version": "2022.1.226",
+    "sw_version": "2022.2.322",
     "generated_date": "2022-10-26T06:52:13.531180"
 }

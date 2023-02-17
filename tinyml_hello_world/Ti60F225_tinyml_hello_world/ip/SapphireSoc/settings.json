@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "2.2.1"
+            "version": "2.2.3"
         }
     ],
     "conf": {
@@ -151,6 +151,6 @@
         "external_script": [],
         "external_embedded_sw": []
     },
-    "sw_version": "2022.1.226",
+    "sw_version": "2022.2.322",
     "generated_date": "2022-10-01T03:20:24.028170"
 }

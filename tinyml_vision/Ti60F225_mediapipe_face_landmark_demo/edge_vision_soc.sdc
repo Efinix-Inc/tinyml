@@ -11,7 +11,7 @@ create_clock -period 8.00 i_mipi_tx_pclk
 create_clock -period 40.00 i_fb_clk
 create_clock -period 16.00 i_sysclk_div_2
 create_clock -period 10.00 i_mipi_rx_pclk
-create_clock -period 4.0000 i_systemClk
+create_clock -period 3.33 i_systemClk
 create_clock -period 100 jtag_inst1_TCK
 
 create_clock -period 8.00 {i_cam_ck_CLKOUT_0}

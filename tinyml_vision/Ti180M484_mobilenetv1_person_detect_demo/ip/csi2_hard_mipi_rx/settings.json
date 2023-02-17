@@ -1,0 +1,56 @@
+{
+    "args": [
+        "-o",
+        "csi2_hard_mipi_rx",
+        "--base_path",
+        "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "mipi",
+            "name": "efx_csi2_rx_top",
+            "version": "1.1"
+        }
+    ],
+    "conf": {
+        "tINIT_NS": "100000",
+        "NUM_DATA_LANE": "2",
+        "ASYNC_STAGE": "2",
+        "CLOCK_FREQ_MHZ": "100",
+        "PIXEL_FIFO_DEPTH": "2048",
+        "AREGISTER": "8",
+        "Pack_40": "1",
+        "Pack_48": "1",
+        "Pack_56": "1",
+        "Pack_64": "1",
+        "FRAME_MODE": "0",
+        "ENABLE_VCX": "0"
+    },
+    "output": {
+        "external_source_source": [
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx.sv",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.vhd",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_define.vh"
+        ],
+        "external_example_example": [
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\data_unpack.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\datatype_gen.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\dual_clock_fifo.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\pattern_gen.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\shift_reg.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\simple_dual_port_ram.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\vga_gen.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\reset.v",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\top_2_5g.sv",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\efx_csi2_tx_top.sv",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.sdc",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.xml",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.peri.xml",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\csi2_hard_mipi_rx.sv",
+            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp4slpc9j8\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\csi2_hard_mipi_rx_define.vh"
+        ]
+    },
+    "sw_version": "2022.2.322",
+    "generated_date": "2023-02-15T01:03:03.824420"
+}

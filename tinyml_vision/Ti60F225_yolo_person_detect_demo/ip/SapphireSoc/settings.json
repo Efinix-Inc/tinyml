@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "2.2.1"
+            "version": "2.2.3"
         }
     ],
     "conf": {
@@ -183,6 +183,6 @@
             "/tmp/tmp9ywoy6us/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
         ]
     },
-    "sw_version": "2022.1.226",
+    "sw_version": "2022.2.322",
     "generated_date": "2022-10-26T06:42:46.587347"
 }

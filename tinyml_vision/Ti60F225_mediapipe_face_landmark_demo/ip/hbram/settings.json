@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_hyper_ram",
-            "version": "2.2"
+            "version": "2.5"
         }
     ],
     "conf": {
@@ -23,16 +23,16 @@
         "CR1_MCT": "1",
         "CR1_PAR": "0",
         "CR1_HSE": "0",
-        "AXI_DBW": "128",
+        "AXI_DBW_2": "128",
         "DDIN_MODE": "0",
-        "AXI_AWR_DEPTH": "16",
-        "AXI_R_DEPTH": "256",
-        "AXI_W_DEPTH": "256",
+        "AXI_AWR_DEPTH_2": "16",
+        "AXI_R_DEPTH_2": "256",
+        "AXI_W_DEPTH_2": "256",
         "RDO_DELAY": "3",
         "CAL_CLK_CH": "4",
         "CAL_MODE": "2",
         "MHZ": "200",
-        "USER_IF": "1",
+        "AXI_IF": "1",
         "NATIVE_DBW": "32",
         "NATIVE_R_DEPTH": "256",
         "NATIVE_W_DEPTH": "256"
@@ -137,6 +137,6 @@
             "/tmp/tmpamevj2m_/ip/hbram/Ti60F100_SiP_native_pll_auto/hbram_define.vh"
         ]
     },
-    "sw_version": "2022.1.226",
+    "sw_version": "2022.2.322",
     "generated_date": "2022-10-26T06:49:12.485152"
 }

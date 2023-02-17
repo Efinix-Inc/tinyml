@@ -37,7 +37,7 @@ Generated define files from Efinix TinyML Generator are used to facilitate custo
 
 ## Parameters
 
-`AXI_DW` - AXI data width which is based on memory interface connected. Default is 128-bit (targeted for Ti60 design).
+`AXI_DW` - AXI data width which is based on memory interface connected. Default is 128-bit (targeted for Ti60 design. Use 512-bit for Ti180 design).
 
 `CONV_DEPTH_MODE` - Option to accelerate convolution and depthwise convolution layer on hardware. Supports Standard and Lite mode.
 
@@ -81,6 +81,6 @@ Generated define files from Efinix TinyML Generator are used to facilitate custo
   
   - `defines.v` - Hardware setting files which need to be included under `<path_to_project>/source/tinyml`
   
-  - `define.cc` and `define.h` - Software setting files which need to be included under `<path_to_project>/embedded_sw/SapphireSoC/<application_name>/model`
+  - `define.cc` and `define.h` - Software setting files which need to be included under `<path_to_project>/embedded_sw/SapphireSoC/software/standalone/<application_name>/src/model`
   
-  - `<model_name>.cc` and `<model_name>.h` - Model files which need to be included under `<path_to_project>/embedded_sw/SapphireSoC/<application_name>/model`
+  - `<model_name>.cc` and `<model_name>.h` - Model files which need to be included under `<path_to_project>/embedded_sw/SapphireSoC/software/standalone/<application_name>/src/model`

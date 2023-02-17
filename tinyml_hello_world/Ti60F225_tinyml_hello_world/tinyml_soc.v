@@ -418,12 +418,12 @@ wire  [3:0]             dma_interrupts;
 // Reset related
 
 `ifndef SIM
-   tinyml_source_common_reset_ctrl #(
+   common_reset_ctrl #(
       .NUM_RST          (8),
       .CYCLE            (1),
       .IN_RST_ACTIVE    (8'b000000),
       .OUT_RST_ACTIVE   (8'b101010)
-   ) u_tinyml_source_common_reset_ctrl (
+   ) u_common_reset_ctrl (
       .i_arst ({{2{i_pll_locked}}}),
       .i_clk  ({{2{i_fb_clk}}}),
       .o_srst ({w_fb_clk_arst,w_fb_clk_arstn})
@@ -691,10 +691,10 @@ SapphireSoc u_risc_v
 ////////////////////////////////////////////////////////////////
 // Hardware Accelerator
 
-tinyml_hw_accel_axi4 #(
+hw_accel_axi4 #(
    .ADDR_WIDTH (32),
    .DATA_WIDTH (32)
-) u_tinyml_hw_accel_axi4 (
+) u_hw_accel_axi4 (
    .axi_interrupt (axi4Interrupt),
    .axi_aclk      (i_peripheralClk),
    .axi_resetn    (~peripheralReset),
@@ -747,11 +747,11 @@ tinyml_hw_accel_axi4 #(
 );
 
 //Example pre-processing prior to inference: Scale image from 540x540 to 96x96 resolution, and perform rgb2grayscale conversion
-tinyml_hw_accel_wrapper #(
+hw_accel_wrapper #(
    .FRAME_WIDTH         (540),
    .FRAME_HEIGHT        (540),
    .DMA_TRANSFER_LENGTH ((96*96)/4) //S2MM DMA transfer
-) u_tinyml_hw_accel_wrapper (
+) u_hw_accel_wrapper (
    .clk                   (i_systemClk),
    .rst                   (io_systemReset),
    .axi_slave_clk         (i_peripheralClk),
@@ -894,13 +894,13 @@ assign soc_io_arw_ready = (soc_io_arw_payload_write) ? axi_inter_s0_awready : ax
 assign axi_inter_s1_awid  = 8'hE0; //Don't care for DMA controller
 assign axi_inter_s1_arid  = 8'hE1; //Don't care for DMA controller
 
-tinyml_axi_interconnect #(
+axi_interconnect #(
    .S_COUNT    (3),
    .M_COUNT    (1),
    .DATA_WIDTH (128),
    .ADDR_WIDTH (32),
    .ID_WIDTH   (8)
-) u_tinyml_axi_interconnect (
+) u_axi_interconnect (
    .clk              (io_memoryClk),
    .rst              (io_systemReset),
    //AXI slave interfaces - S0: Connected to RISC-V SoC; S1: Connected to DMA controller; S2: Connected to TinyML accelerator
@@ -984,11 +984,11 @@ tinyml_axi_interconnect #(
 );
 
 //Convert from half duplex to full duplex of memory controller interface (Connect to HyperRAM controller)
-tinyml_axi_full_to_half_duplex #(
+axi_full_to_half_duplex #(
    .DATA_WIDTH (128),
    .ADDR_WIDTH (32),
    .ID_WIDTH   (8)
-) u_tinyml_axi_full_to_half_duplex (
+) u_axi_full_to_half_duplex (
    .clk                       (io_memoryClk),
    .rst                       (io_systemReset),
    .io_ddr_arw_valid          (io_arw_valid),

@@ -8,34 +8,34 @@
     <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008">
         <efx:top_module name="edge_vision_soc"/>
         <efx:design_file name="edge_vision_soc.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/tinyml_axi_full_to_half_duplex.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/tinyml_axi_interconnect.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/tinyml_axi_priority_encoder.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/tinyml_axi_arbiter.v" version="default" library="default"/>
-        <efx:design_file name="source/common/tinyml_source_common_simple_dual_port_ram.v" version="default" library="default"/>
-        <efx:design_file name="source/common/tinyml_source_common_reset_ctrl.v" version="default" library="default"/>
-        <efx:design_file name="source/common/tinyml_source_common_true_dual_port_ram.v" version="default" library="default"/>
-        <efx:design_file name="source/hw_accel/tinyml_hw_accel_nearest_neighbor_downscale.v" version="default" library="default"/>
-        <efx:design_file name="source/hw_accel/tinyml_hw_accel.v" version="default" library="default"/>
-        <efx:design_file name="source/hw_accel/tinyml_hw_accel_wrapper.v" version="default" library="default"/>
-        <efx:design_file name="source/hw_accel/tinyml_hw_accel_axi4.v" version="default" library="default"/>
-        <efx:design_file name="source/hw_accel/tinyml_hw_accel_pack_rgb_gray.v" version="default" library="default"/>
-        <efx:design_file name="source/hw_accel/tinyml_hw_accel_rgb2gray.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_priority_encoder.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/common/common_simple_dual_port_ram.v" version="default" library="default"/>
+        <efx:design_file name="source/common/common_reset_ctrl.v" version="default" library="default"/>
+        <efx:design_file name="source/common/common_true_dual_port_ram.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_nearest_neighbor_downscale.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_wrapper.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_axi4.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_pack_rgb_gray.v" version="default" library="default"/>
+        <efx:design_file name="source/hw_accel/hw_accel_rgb2gray.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_rgb2gray.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_rgb_gain.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_line_buffer.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_picam_v2.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_scale_down_2x_nn.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_crop.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_raw_to_rgb.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/tinyml_cam_scale_up_2x_nn.v" version="default" library="default"/>
-        <efx:design_file name="source/display/tinyml_display_vga_gen.v" version="default" library="default"/>
-        <efx:design_file name="source/display/tinyml_display_dsi.v" version="default" library="default"/>
-        <efx:design_file name="source/display/tinyml_display_panel_config.v" version="default" library="default"/>
-        <efx:design_file name="source/common/tinyml_source_common_apb3.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_rgb2gray.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_rgb_gain.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_line_buffer.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_picam_v2.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_scale_down_2x_nn.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_crop.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_raw_to_rgb.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_scale_up_2x_nn.v" version="default" library="default"/>
+        <efx:design_file name="source/display/display_vga_gen.v" version="default" library="default"/>
+        <efx:design_file name="source/display/display_dsi.v" version="default" library="default"/>
+        <efx:design_file name="source/display/display_panel_config.v" version="default" library="default"/>
+        <efx:design_file name="source/common/common_apb3.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>

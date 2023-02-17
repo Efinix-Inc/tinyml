@@ -676,12 +676,12 @@ wire  [3:0]             dma_interrupts;
 // Reset related
 
 `ifndef SIM
-   tinyml_source_common_reset_ctrl #(
+   common_reset_ctrl #(
       .NUM_RST          (8),
       .CYCLE            (1),
       .IN_RST_ACTIVE    (8'b000000),
       .OUT_RST_ACTIVE   (8'b101010)
-   ) tinyml_source_common_reset_ctrl (
+   ) common_reset_ctrl (
       .i_arst ({{2{w_cam_confdone}}, {2{i_pll_locked}}, {4{r_rst_cnt[19]}}}),
       .i_clk  ({{2{i_mipi_rx_pclk}}, {2{i_fb_clk}}, {2{i_fb_clk}}, {2{i_sysclk_div_2}}}),
       .o_srst ({  w_mipi_rx_pclk_arst, w_mipi_rx_pclk_arstn,
@@ -862,7 +862,7 @@ begin
    end
 end
 
-tinyml_cam_picam_v2 # (
+cam_picam_v2 # (
    .MIPI_FRAME_WIDTH     (MIPI_FRAME_WIDTH),             //Input frame resolution from MIPI
    .MIPI_FRAME_HEIGHT    (MIPI_FRAME_HEIGHT),            //Input frame resolution from MIPI
    .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to external memory
@@ -932,8 +932,8 @@ begin
 end
 
 // Panel driver initialization
-tinyml_display_panel_config #(
-   .INITIAL_CODE  ("source/display/tinyml_display_dsi_panel_1080p_reg.mem"),
+display_panel_config #(
+   .INITIAL_CODE  ("source/display/display_dsi_panel_1080p_reg.mem"),
    .REG_DEPTH     (9'd15)
 ) u_panel_config (
    .i_axi_clk        (i_fb_clk),
@@ -967,11 +967,11 @@ tinyml_display_panel_config #(
 );
 
 
-tinyml_display_annotator #(
+display_annotator #(
    .FRAME_WIDTH  (FRAME_WIDTH),
    .FRAME_HEIGHT (FRAME_HEIGHT),
    .MAX_BBOX     (16)
-) u_tinyml_display_annotator (
+) u_display_annotator (
    .clk        (i_sysclk_div_2),
    .rst        (~w_sys_dp_arstn),
    .in_valid   (bbox_dma_tvalid),
@@ -984,7 +984,7 @@ tinyml_display_annotator #(
 );
 
 
-tinyml_display_dsi #(
+display_dsi #(
    .FRAME_WIDTH  (FRAME_WIDTH),
    .FRAME_HEIGHT (FRAME_HEIGHT)
 ) u_display (
@@ -1089,7 +1089,7 @@ assign debug_cam_display_fifo_status = {22'd0,debug_dma_hw_accel_out_fifo_overfl
                                         debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow};
 
 //Shared for both camera and display
-tinyml_source_common_apb3 #(
+common_apb3 #(
    .ADDR_WIDTH (16),
    .DATA_WIDTH (32),
    .NUM_REG    (7)
@@ -1381,10 +1381,10 @@ SapphireSoc u_risc_v
 ////////////////////////////////////////////////////////////////
 // Hardware Accelerator
 
-// REMOVE AXI CTRL //tinyml_hw_accel_axi4 #(
+// REMOVE AXI CTRL //hw_accel_axi4 #(
 // REMOVE AXI CTRL //   .ADDR_WIDTH (32),
 // REMOVE AXI CTRL //   .DATA_WIDTH (32)
-// REMOVE AXI CTRL //) u_tinyml_hw_accel_axi4 (
+// REMOVE AXI CTRL //) u_hw_accel_axi4 (
 // REMOVE AXI CTRL //   .axi_interrupt (axi4Interrupt),
 // REMOVE AXI CTRL //   .axi_aclk      (peripheralClk),
 // REMOVE AXI CTRL //   .axi_resetn    (~peripheralReset),
@@ -1438,13 +1438,13 @@ SapphireSoc u_risc_v
 
 //For person detection model
 //Scale from 540x540 to 96x96 resolution, and perform rgb2grayscale conversion
-tinyml_hw_accel_wrapper #(
+hw_accel_wrapper #(
    .FRAME_WIDTH         (FRAME_WIDTH),
    .FRAME_HEIGHT        (FRAME_HEIGHT),
 //   .DMA_TRANSFER_LENGTH ((96*96)/4) //S2MM DMA transfer for person detection demo
 //   .DMA_TRANSFER_LENGTH ((192*192*3)/4) //S2MM DMA transfer for face landmark demo
    .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo pico
-) u_tinyml_hw_accel_wrapper (
+) u_hw_accel_wrapper (
    .clk                                         (i_systemClk),
    .rst                                         (io_systemReset),
    .hw_accel_dma_init_done                      (hw_accel_dma_init_done),
@@ -1596,13 +1596,13 @@ assign soc_io_arw_ready = (soc_io_arw_payload_write) ? axi_inter_s0_awready : ax
 assign axi_inter_s1_awid  = 8'hE0; //Don't care for DMA controller
 assign axi_inter_s1_arid  = 8'hE1; //Don't care for DMA controller
 
-tinyml_axi_interconnect #(
+axi_interconnect #(
    .S_COUNT    (3),
    .M_COUNT    (1),
    .DATA_WIDTH (128),
    .ADDR_WIDTH (32),
    .ID_WIDTH   (8)
-) u_tinyml_axi_interconnect (
+) u_axi_interconnect (
    .clk              (io_memoryClk),
    .rst              (io_systemReset),
    //AXI slave interfaces - S0: Connected to RISC-V SoC; S1: Connected to DMA controller; S2: Connected to TinyML accelerator
@@ -1686,11 +1686,11 @@ tinyml_axi_interconnect #(
 );
 
 //Convert from half duplex to full duplex of memory controller interface (Connect to HyperRAM controller)
-tinyml_axi_full_to_half_duplex #(
+axi_full_to_half_duplex #(
    .DATA_WIDTH (128),
    .ADDR_WIDTH (32),
    .ID_WIDTH   (8)
-) u_tinyml_axi_full_to_half_duplex (
+) u_axi_full_to_half_duplex (
    .clk                       (io_memoryClk),
    .rst                       (io_systemReset),
    .io_ddr_arw_valid          (io_arw_valid),
