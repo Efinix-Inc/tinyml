@@ -100,10 +100,20 @@ List of quick start demo designs:
   - Yolo Person Detection
   - MediaPipe Face Landmark Detection
 
+List of supported cameras for quick start demo:
+1. Raspberry PI Camera Module v2
+   - Sony IMX219 image sensor
+2. Google Coral Camera Module
+   - Omnivision OV5645 SoC with build-in image signal processor
+   - Auto focus, auto exposure control, auto white balance, and more.
+
 Bring up quick start demo design on Efinix development kit by following listed steps below:
 
 1. Set up hardware
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
+   - For quick start demo design that uses Google Coral Camera (*\<device\>\_coral\_\<architecture\>\_\<application\>\_demo.hex*),
+      - Google Coral Camera and Google Coral Camera connector daughter card are required.
+      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Board, or P1 header on Titanium Ti180 M484 Development Board.
 2. Program hex file using Efinity Programmer
    - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (Ti60F225) or SPI Active using JTAG bridge mode (Ti180M484).
 3. Press CRESET button & Demo design is up and running

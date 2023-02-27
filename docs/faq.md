@@ -10,6 +10,7 @@
 - [How to run inference with or without Efinix TinyML accelerator?](#how-to-run-inference-with-or-without-efinix-tinyml-accelerator)
 - [How to perform profiling of an AI model running on RISC-V?](#how-to-perform-profiling-of-an-ai-model-running-on-risc-v)
 - [How to boot a complete TinyML design from flash?](#how-to-boot-a-complete-tinyml-design-from-flash)
+- [How to modify Efinix Vision TinyML demo designs to use Google Coral Camera instead of Raspberry PI Camera v2?](#how-to-modify-efinix-vision-tinyml-demo-designs-to-use-google-coral-camera-instead-of-raspberry-pi-camera-v2)
 
 <br />
 
@@ -23,7 +24,7 @@
 
 <br />
 
-## How are design files and related scripts organized??
+## How are design files and related scripts organized?
 The directory structure of Efinix TinyML repo is depicted below:
 
 ```
@@ -252,6 +253,74 @@ A complete TinyML design consists of hardware/RTL (FPGA bitstream) and software/
 As AI-related application binary is typically larger than 124KB, the bootloader is to be updated to copy larger software binary size. Bootloader for moving up to 4MB software binary is provided in *<proj_directory>/replace_files/bootloader_4MB* folder. User is to copy and replace the corresponding files i.e., *EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol\*.bin* in *ip/SapphireSoc* directory. Then, compile the Efinity project using Efinity® IDE for generating the FPGA bitstream.
 
 Refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) *Copy a User Binary to Flash (Efinity Programmer)* section for steps to combine FPGA bitstream and user application binary using Efinity Programmer, as well as boot the design from flash.
+
+<br />
+
+## How to modify Efinix Vision TinyML demo designs to use Google Coral Camera instead of Raspberry PI Camera v2?
+
+To get started, user may refer to the Google Coral designs (*\<device\>\_coral\_\<display\>*) in [EVSoC GitHub repo](https://github.com/Efinix-Inc/evsoc).
+
+In summary, the required changes to use Google Coral Camera on Efinix Vision TinyML demo designs are as follows:
+1. To connect a Google Coral Camera to Efinix development kit, a Google Coral Camera connector daughter card is required.   
+   - For Titanium Ti60 F225 Development Board, connect the Google Coral Camera connector daughter card to P2 header.   
+   - For Titanium Ti180 M484 Development Board, connect the Google Coral Camera connector daughter card to P1 header.
+2. Using Efinity Interface Designer,
+   - Update the GPIO setting for *io_cam_scl*, *io_cam_sda*, and *o_cam_rstn* accordingly. For Ti180 design, to create a new GPIO output block for *o_cam_rstn*.
+   - Update the MIPI DPHY RX setting accordingly.
+3. Replace RTL source file for camera module *cam_picam_v2.v* with *cam_coral.v* from EVSoC Google Coral design. To update Efinity design file list accordingly.
+4. Update top-level RTL source file *edge_vision_soc.v* accordingly.
+   
+   - Replace the line:
+     ```
+     cam_picam_v2 # (
+     ```
+      with:
+      ```
+      cam_coral # (
+      ```
+   
+   - For Ti180 design,
+      - Add an output port in I/O declaration:
+         ```
+         output  o_cam_rstn,
+         ```
+         
+      - Add the signal assignment:
+         ```
+         assign o_cam_rstn = i_arstn;
+         ```
+
+5. Update embedded_sw folder to use the software driver and settings for Google Coral Camera.
+   - Copy Google Coral Camera driver *CoralCam.c* and *CoralCam.h* from EVSoC Google Coral design to *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/platform/vision*.
+   - Refer to *common.h* in EVSoC Google Coral design for adding *CORALCAM_I2C_ADDRESS* and *i2c_reg_config_t variable* to *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/platform/vision/common.h*.
+   - Update *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/main.cc* accordingly.
+
+      - Replace the line:
+         ```
+         #include "PiCamDriver.h"
+         ```
+         with:
+         ```
+         #include "CoralCam.h"
+         ```
+   
+      - Replace the line:
+         ```
+         PiCam_init();
+         ```
+         with:
+         ```
+         CoralCam_init();
+         ```
+
+      - Replace the line:
+         ```
+         Set_RGBGain(1,5,3,4);
+         ```
+         with:      
+         ```
+         Set_RGBGain(1,3,3,3);
+         ```
 
 <br />
 
