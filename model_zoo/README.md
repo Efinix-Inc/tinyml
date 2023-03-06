@@ -19,7 +19,7 @@ The summary of each model is shown below:
 
 | Application          | Framework  | Trained Model format | Model       | Input Size | Dataset           | Quality Target (%) |
 | -------------------- | ---------- | -------------------- | ----------- | ---------- | ----------------- | ------------------ |
-| Person Detection     | Darknet    | .cfg, .weights       | Yolo        | 96x96x3    | COCO(person)      | 51.49 (mAP@0.5)    |
+| Person Detection     | Darknet    | .cfg, .weights       | Yolo        | 96x96x3    | COCO(person)      | 20.30 (mAP@0.5)    |
 | Person Detection     | Tensorflow | .pb                  | MobilenetV1 | 96x96x1    | Visual Wake Words | 84.0               |
 | Image Classification | Tensorflow | .h5                  | ResNet      | 32x32x3    | CIFAR10           | 85.0               |
 | Keyword Spotting     | Tensorflow | .pb                  | DS-CNN      | 49x10x1    | Speech Commands   | 90.0               |
