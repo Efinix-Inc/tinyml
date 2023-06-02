@@ -18,10 +18,7 @@ create_clock -period 8.00 {i_cam_ck_CLKOUT_0}
 #create_clock -period 8.00 {i_cam_ck_CLKOUT_1}
 #create_clock -period 8.00 {i_mipi_rx_clk_CLKOUT}
 
-#set_clock_groups -exclusive -group {i_sysclk_div_2} -group {jtag_inst1_TCK}
-#set_clock_groups -exclusive -group {i_sysclk_div_4} -group {jtag_inst1_TCK}
-
-set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK} -group {i_mipi_clk} -group {i_mipi_tx_pclk} 
+set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK} -group {i_mipi_clk} -group {i_mipi_tx_pclk} -group {i_fb_clk}
 
 # GPIO Constraints
 ####################
@@ -55,38 +52,6 @@ set_input_delay -clock i_cam_ck_CLKOUT_0 -reference_pin [get_ports {i_cam_ck_CLK
 set_input_delay -clock i_cam_ck_CLKOUT_0 -reference_pin [get_ports {i_cam_ck_CLKOUT_0~CLKOUT~218~34}] -min 0.420 [get_ports {i_cam_d1_FIFO_EMPTY}]
 set_input_delay -clock i_cam_ck_CLKOUT_0 -reference_pin [get_ports {i_cam_ck_CLKOUT_0~CLKOUT~218~34}] -max 0.464 [get_ports {i_cam_d1_HS_IN_0[*]}]
 set_input_delay -clock i_cam_ck_CLKOUT_0 -reference_pin [get_ports {i_cam_ck_CLKOUT_0~CLKOUT~218~34}] -min 0.325 [get_ports {i_cam_d1_HS_IN_0[*]}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -max 0.500 [get_ports {o_mipi_rx_data0_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -min -0.070 [get_ports {o_mipi_rx_data0_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -max 0.300 [get_ports {o_mipi_rx_data0_RST}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -min 0.140 [get_ports {o_mipi_rx_data0_RST}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -max 0.600 [get_ports {i_mipi_rx_data0_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -min 0.420 [get_ports {i_mipi_rx_data0_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -max 0.464 [get_ports {i_mipi_rx_data0_HS_IN[*]}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~130~1}] -min 0.325 [get_ports {i_mipi_rx_data0_HS_IN[*]}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -max 0.500 [get_ports {o_mipi_rx_data1_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -min -0.070 [get_ports {o_mipi_rx_data1_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -max 0.300 [get_ports {o_mipi_rx_data1_RST}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -min 0.140 [get_ports {o_mipi_rx_data1_RST}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -max 0.600 [get_ports {i_mipi_rx_data1_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -min 0.420 [get_ports {i_mipi_rx_data1_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -max 0.464 [get_ports {i_mipi_rx_data1_HS_IN[*]}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~93~1}] -min 0.325 [get_ports {i_mipi_rx_data1_HS_IN[*]}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -max 0.500 [get_ports {o_mipi_rx_data2_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -min -0.070 [get_ports {o_mipi_rx_data2_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -max 0.300 [get_ports {o_mipi_rx_data2_RST}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -min 0.140 [get_ports {o_mipi_rx_data2_RST}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -max 0.600 [get_ports {i_mipi_rx_data2_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -min 0.420 [get_ports {i_mipi_rx_data2_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -max 0.464 [get_ports {i_mipi_rx_data2_HS_IN[*]}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~82~1}] -min 0.325 [get_ports {i_mipi_rx_data2_HS_IN[*]}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -max 0.500 [get_ports {o_mipi_rx_data3_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -min -0.070 [get_ports {o_mipi_rx_data3_FIFO_RD}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -max 0.300 [get_ports {o_mipi_rx_data3_RST}]
-#set_output_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -min 0.140 [get_ports {o_mipi_rx_data3_RST}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -max 0.600 [get_ports {i_mipi_rx_data3_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -min 0.420 [get_ports {i_mipi_rx_data3_FIFO_EMPTY}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -max 0.464 [get_ports {i_mipi_rx_data3_HS_IN[*]}]
-#set_input_delay -clock i_mipi_rx_clk_CLKOUT -reference_pin [get_ports {i_mipi_rx_clk_CLKOUT~CLKOUT~72~1}] -min 0.325 [get_ports {i_mipi_rx_data3_HS_IN[*]}]
 
 # MIPI TX Lane Constraints
 ############################
@@ -110,28 +75,8 @@ set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk
 set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~218~251}] -min 0.140 [get_ports {mipi_dp_data3_HS_OUT[*]}]
 set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~218~251}] -max 0.300 [get_ports {mipi_dp_data3_RST}]
 set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~218~251}] -min 0.140 [get_ports {mipi_dp_data3_RST}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~45~1}] -max 0.360 [get_ports {mipi_tx_clk_HS_OUT[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~45~1}] -min 0.140 [get_ports {mipi_tx_clk_HS_OUT[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~45~1}] -max 0.300 [get_ports {mipi_tx_clk_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~45~1}] -min 0.140 [get_ports {mipi_tx_clk_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~21~1}] -max 0.360 [get_ports {mipi_tx_data0_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~21~1}] -min 0.140 [get_ports {mipi_tx_data0_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~21~1}] -max 0.300 [get_ports {mipi_tx_data0_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~21~1}] -min 0.140 [get_ports {mipi_tx_data0_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~29~1}] -max 0.360 [get_ports {mipi_tx_data1_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~29~1}] -min 0.140 [get_ports {mipi_tx_data1_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~29~1}] -max 0.300 [get_ports {mipi_tx_data1_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~29~1}] -min 0.140 [get_ports {mipi_tx_data1_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~37~1}] -max 0.360 [get_ports {mipi_tx_data2_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~37~1}] -min 0.140 [get_ports {mipi_tx_data2_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~37~1}] -max 0.300 [get_ports {mipi_tx_data2_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~37~1}] -min 0.140 [get_ports {mipi_tx_data2_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~54~1}] -max 0.360 [get_ports {mipi_tx_data3_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~54~1}] -min 0.140 [get_ports {mipi_tx_data3_HS_OUT_0[*]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~54~1}] -max 0.300 [get_ports {mipi_tx_data3_RST[0]}]
-#set_output_delay -clock i_mipi_tx_pclk -reference_pin [get_ports {i_mipi_tx_pclk~CLKOUT~54~1}] -min 0.140 [get_ports {mipi_tx_data3_RST[0]}]
 
-# DDR Constraints
+# HyperRAM Constraints
 #####################
 set_output_delay -clock_fall -clock i_hbramClk90 -reference_pin [get_ports {i_hbramClk90~CLKOUT~75~322}] -max 0.263 [get_ports {hbc_ck_n_LO hbc_ck_n_HI}]
 set_output_delay -clock_fall -clock i_hbramClk90 -reference_pin [get_ports {i_hbramClk90~CLKOUT~75~322}] -min 0.140 [get_ports {hbc_ck_n_LO hbc_ck_n_HI}]
@@ -143,10 +88,10 @@ set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~
 set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~27~322}] -min 0.140 [get_ports {hbc_rst_n}]
 # set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led}]
 # set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~31}] -max 0.263 [get_ports {system_spi_0_io_sclk_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~31}] -min 0.140 [get_ports {system_spi_0_io_sclk_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~30}] -max 0.263 [get_ports {system_spi_0_io_ss}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~30}] -min 0.140 [get_ports {system_spi_0_io_ss}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~31}] -max 0.263 [get_ports {system_spi_0_io_sclk_write}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~31}] -min -0.140 [get_ports {system_spi_0_io_sclk_write}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~30}] -max 0.263 [get_ports {system_spi_0_io_ss}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~30}] -min -0.140 [get_ports {system_spi_0_io_ss}]
 set_input_delay -clock i_hbramClk_cal -reference_pin [get_ports {i_hbramClk_cal~CLKOUT~32~322}] -max 0.414 [get_ports {hbc_dq_IN_LO[0] hbc_dq_IN_HI[0]}]
 set_input_delay -clock i_hbramClk_cal -reference_pin [get_ports {i_hbramClk_cal~CLKOUT~32~322}] -min 0.276 [get_ports {hbc_dq_IN_LO[0] hbc_dq_IN_HI[0]}]
 set_output_delay -clock_fall -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~34~322}] -max 0.263 [get_ports {hbc_dq_OUT_LO[0] hbc_dq_OUT_HI[0]}]
@@ -256,18 +201,18 @@ set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~
 set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~131~322}] -max 0.263 [get_ports {hbc_rwds_OE[1]}]
 set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~131~322}] -min 0.140 [get_ports {hbc_rwds_OE[1]}]
 
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~59}] -max 0.414 [get_ports {system_spi_0_io_data_0_read}]
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~59}] -min 0.276 [get_ports {system_spi_0_io_data_0_read}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -min 0.140 [get_ports {system_spi_0_io_data_0_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_writeEnable}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -min 0.140 [get_ports {system_spi_0_io_data_0_writeEnable}]
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~60}] -max 0.414 [get_ports {system_spi_0_io_data_1_read}]
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~60}] -min 0.276 [get_ports {system_spi_0_io_data_1_read}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -min 0.140 [get_ports {system_spi_0_io_data_1_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_writeEnable}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -min 0.140 [get_ports {system_spi_0_io_data_1_writeEnable}]
+set_input_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~59}] -max 0.414 [get_ports {system_spi_0_io_data_0_read}]
+set_input_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~59}] -min 0.276 [get_ports {system_spi_0_io_data_0_read}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_write}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~61}] -min -0.140 [get_ports {system_spi_0_io_data_0_write}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_writeEnable}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~61}] -min -0.140 [get_ports {system_spi_0_io_data_0_writeEnable}]
+set_input_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~60}] -max 0.414 [get_ports {system_spi_0_io_data_1_read}]
+set_input_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~60}] -min 0.276 [get_ports {system_spi_0_io_data_1_read}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_write}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~62}] -min -0.140 [get_ports {system_spi_0_io_data_1_write}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_writeEnable}]
+set_output_delay -clock i_mipi_rx_pclk -reference_pin [get_ports {i_mipi_rx_pclk~CLKOUT~1~62}] -min -0.140 [get_ports {system_spi_0_io_data_1_writeEnable}]
 
 
 # JTAG Constraints
@@ -276,18 +221,14 @@ set_output_delay -clock jtag_inst1_TCK -max 0.117 [get_ports {jtag_inst1_TDO}]
 set_output_delay -clock jtag_inst1_TCK -min 0.075 [get_ports {jtag_inst1_TDO}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_CAPTURE}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_CAPTURE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RUNTEST}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RUNTEST}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RESET}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RESET}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RUNTEST}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RUNTEST}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.243 [get_ports {jtag_inst1_SEL}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.162 [get_ports {jtag_inst1_SEL}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_UPDATE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_UPDATE}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_UPDATE}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_UPDATE}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.337 [get_ports {jtag_inst1_SHIFT}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.225 [get_ports {jtag_inst1_SHIFT}]
 
-# False Path
-#################
-#set_false_path -setup -hold -from u_risc_v/io_systemReset* 
-#set_false_path -setup -hold -from u_risc_v/io_memoryReset*

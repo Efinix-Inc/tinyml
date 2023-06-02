@@ -1,5 +1,5 @@
 1. Efinix TinyML platform supports .tflite model with full integer quantization.
-2. The AXI_DW value can be adjusted based on memory interface connected.
-3. Resource usage of TinyML accelerator may vary based on targeted model, layer acceleration mode and parallelism selection.
-4. LITE accelerator is a lightweight accelerator with less resource usage. 
-5. STANDARD accelerator is a high performance accelerator with more resource usage.
+2. LITE accelerator is a lightweight accelerator with less resource usage. 
+3. STANDARD accelerator is a high performance accelerator with more resource usage.
+4. TinyML cache is an optional feature to speed-up data access of STANDARD mode accelerator.
+5. Resource Estimator estimates resource usage of TinyML accelerator based on configured parameter setting for Efinix Titanium FPGAs. Open .tflite model file to get started.

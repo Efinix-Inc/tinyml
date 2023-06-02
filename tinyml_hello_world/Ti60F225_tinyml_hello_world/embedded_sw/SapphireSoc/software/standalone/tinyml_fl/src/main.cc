@@ -57,7 +57,6 @@ void tinyml_init() {
 
 	//Map the model into a usable data structure
 	model = tflite::GetModel(mediapipe_face_landmark_model_data);
-//	model = tflite::GetModel(resnet_image_classify_model_data);
 
 	if (model->version() != TFLITE_SCHEMA_VERSION) {
 		MicroPrintf("Model version does not match Schema\n\r");
@@ -80,14 +79,12 @@ void tinyml_init() {
 	interpreter = &static_interpreter;
 	prof.setInterpreter(interpreter);
 	prof.setDump(false);
-	//prof.setTagFilter("ADD");
-	//prof.setLayerFilter(13);
+
 	//Allocate memory from the tensor_arena for the model's tensors
 	TfLiteStatus allocate_status = interpreter->AllocateTensors();
 	if (allocate_status != kTfLiteOk) {
 		MicroPrintf("AllocateTensors() failed\n\r");
-		while (1)
-			;
+		while (1);
 	}
 
 	//Assign model input buffer (tensor) to pointer
@@ -125,7 +122,7 @@ extern "C" void main() {
 
 	//Interrupt Initialization
 	IntcInitialize();
-	//Tinyml_Initial();
+	
 	/*************************************************************RUN INFERENCE*************************************************************/
 
 	//Test image data

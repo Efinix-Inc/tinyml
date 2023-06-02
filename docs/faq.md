@@ -4,6 +4,7 @@
 - [How are design files and related scripts organized?](#how-are-design-files-and-related-scripts-organized)
 - [How much resources are consumed by Efinix TinyML designs?](#how-much-resources-are-consumed-by-efinix-tinyml-designs)
 - [Why compile provided example designs using Efinity RISC-V Embedded Software IDE failed?](#why-compile-provided-example-designs-using-efinity-risc-v-embedded-software-ide-failed)
+- [Why compile Efinix TinyML Accelerator with a freshly created Efinity project gives error?](#why-compile-efinix-tinyml-accelerator-with-a-freshly-created-efinity-project-gives-error)
 - [How to compile AI inference software app for optimized speed performance?](#how-to-compile-ai-inference-software-app-for-optimized-speed-performance)
 - [Where are AI training and quantization scripts located?](#where-are-ai-training-and-quantization-scripts-located)
 - [How to make use of outputs generated from model zoo training and quantization flow for inference purposes?](#how-to-make-use-of-outputs-generated-from-model-zoo-training-and-quantization-flow-for-inference-purposes)
@@ -143,28 +144,28 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | TinyML Hello World (Total)    | 53888 | 27838 | 8869 | 33359 | 186        | 74  |
- | RISC-V SoC                    |   -   | 6712  | 690  | 5565  | 48         | 4   |
- | DMA Controller                |   -   | 4431  | 772  | 5591  | 45         | 0   |
- | HyperRAM Controller Core      |   -   | 1153  | 305  | 2096  | 22         | 0   |
- | Hardware Accelerator* (Dummy) |   -   | 369   | 273  | 162   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 14485 | 6817 | 18760 | 67         | 68  |
+ | TinyML Hello World (Total)    | 55036 | 29041 | 7854 | 35164 | 188        | 61  |
+ | RISC-V SoC                    |   -   | 6715  | 690  | 5472  | 48         | 4   |
+ | DMA Controller                |   -   | 4431  | 772  | 5592  | 45         | 0   |
+ | HyperRAM Controller Core      |   -   | 1186  | 305  | 2094  | 22         | 0   |
+ | Hardware Accelerator* (Dummy) |   -   | 369   | 273  | 160   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -   | 15652 | 5802 | 20495 | 69         | 55  |
 
 <br />
 
  **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 56387 | 27341 | 8993 | 35971 | 207        | 54  |
- | RISC-V SoC                    |   -   | 6481  | 697  | 5307  | 43         | 4   |
- | DMA Controller                |   -   | 4339  | 520  | 5967  | 36         | 0   |
- | HyperRAM Controller Core      |   -   | 1153  | 305  | 2099  | 22         | 0   |
- | CSI-2 RX Controller Core      |   -   | 844   | 194  | 2053  | 15         | 0   |
- | DSI TX Controller Core        |   -   | 1736  | 409  | 3491  | 19         | 0   |
- | Camera                        |   -   | 778   | 919  | 663   | 11         | 0   |
- | Display                       |   -   | 341   | 174  | 363   | 8          | 0   |
- | Hardware Accelerator*         |   -   | 334   | 273  | 123   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 10483 | 5483 | 14652 | 45         | 48  |
+ | Person Detection Demo (Total) | 56252 | 26486 | 9174 | 36395 | 221        | 54  |
+ | RISC-V SoC                    |   -   | 6481  | 697  | 5331  | 43         | 4   |
+ | DMA Controller                |   -   | 4339  | 520  | 5937  | 36         | 0   |
+ | HyperRAM Controller Core      |   -   | 1186  | 305  | 2090  | 22         | 0   |
+ | CSI-2 RX Controller Core      |   -   | 844   | 194  | 2045  | 15         | 0   |
+ | DSI TX Controller Core        |   -   | 1745  | 415  | 3590  | 19         | 0   |
+ | Camera                        |   -   | 778   | 919  | 661   | 11         | 0   |
+ | Display                       |   -   | 341   | 174  | 367   | 8          | 0   |
+ | Hardware Accelerator*         |   -   | 334   | 273  | 116   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -   | 9946  | 5658 | 14737 | 59         | 48  |
  
  
  Resource utilization tables compiled for Efinix Titanium® Ti180M484 device using Efinity® IDE v2022.2 are as follows.
@@ -172,25 +173,25 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR    | FF    | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:-----:|:-----:|:-----:|:----------:|:---:|
- | TinyML Hello World (Total)    | 130214 | 64441 | 21350 | 79716 | 492        | 186 |
- | RISC-V SoC                    |   -    | 11463 | 699   | 7239  | 87         | 4   |
- | DMA Controller                |   -    | 9422  | 832   | 14637 | 223        | 0   |
- | Hardware Accelerator* (Dummy) |   -    | 352   | 294   | 125   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 40895 | 19516 | 54163 | 178        | 180 |
+ | TinyML Hello World (Total)    | 140462 | 71953 | 20505 | 89403 | 687        | 213 |
+ | RISC-V SoC                    |   -    | 11469 | 699   | 7048  | 87         | 4   |
+ | DMA Controller                |   -    | 9430  | 832   | 14644 | 223        | 0   |
+ | Hardware Accelerator* (Dummy) |   -    | 352   | 294   | 133   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -    | 48358 | 18671 | 62244 | 373        | 207 |
 
 <br />
 
  **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
  | Building Block                | XLR    | FF     | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:------:|:-----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 123412 | 60303  | 21529 | 74382 | 545        | 166 |
- | RISC-V SoC                    |   -    | 11788  | 769   | 7464  | 87         | 4   |
- | DMA Controller                |   -    | 10358  | 921   | 15602 | 240        | 0   |
- | CSI-2 RX Controller Core      |   -    | 611    | 204   | 1602  | 17         | 0   |
- | Camera                        |   -    | 744    | 946   | 662   | 11         | 0   |
- | Display                       |   -    | 762    | 226   | 603   | 46         | 0   |
- | Hardware Accelerator*         |   -    | 352    | 294   | 136   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 33333  | 18160 | 45143 | 140        | 160 |
+ | Person Detection Demo (Total) | 120387 | 57536  | 21607 | 74082 | 762        | 166 |
+ | RISC-V SoC                    |   -    | 11787  | 769   | 7493  | 87         | 4   |
+ | DMA Controller                |   -    | 10358  | 921   | 15644 | 240        | 0   |
+ | CSI-2 RX Controller Core      |   -    | 618    | 204   | 1606  | 17         | 0   |
+ | Camera                        |   -    | 744    | 946   | 654   | 11         | 0   |
+ | Display                       |   -    | 762    | 226   | 577   | 46         | 0   |
+ | Hardware Accelerator*         |   -    | 352    | 294   | 129   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -    | 30566  | 18238 | 42800 | 357        | 160 |
 
 \* Hardware accelerator consists of pre-processing blocks for inference. For the MobileNetv1 Person Detection Demo design, the pre-processing blocks are image downscaling, RGB to grayscale conversion, and grayscale pixel packing. Refer to the defines.v for respective design TinyML accelerator configuration
 
@@ -200,6 +201,11 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
 
 ## Why compile provided example designs using Efinity RISC-V Embedded Software IDE failed?
 User is required to generate Sapphire RISC-V SoC IP using IP Manager in Efinity® IDE. RISC-V SoC IP related contents for software are generated in *embedded_sw* folder.
+
+<br />
+
+## Why compile Efinix TinyML Accelerator with a freshly created Efinity project gives error?
+This is due to the Verilog version of a freshly created Efinity project is default to *verilog_2k*, however the syntax used in Efinix TinyML accelerator is based on *SystemVerilog2009*. User may update the Efinity Project setting accordingly, *Project Editor -> Design tab -> Default Version -> Verilog -> SystemVerilog2009*.
 
 <br />
 

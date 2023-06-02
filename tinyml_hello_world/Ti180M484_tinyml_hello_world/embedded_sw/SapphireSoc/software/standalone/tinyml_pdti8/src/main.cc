@@ -148,7 +148,6 @@ extern "C" void main() {
    
 	//Interrupt Initialization
 	IntcInitialize();
-	//Tinyml_Initial();
 
    /*********************************************************STATIC IMAGE INFERENCE 1*****************************************************/
    

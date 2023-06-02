@@ -8,6 +8,10 @@
     <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008">
         <efx:top_module name="edge_vision_soc"/>
         <efx:design_file name="edge_vision_soc.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
+        <efx:design_file name="source/common/common_efx_fifo_wrapper.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_priority_encoder.v" version="default" library="default"/>
@@ -21,9 +25,6 @@
         <efx:design_file name="source/hw_accel/hw_accel_axi4.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_pack_rgb_gray.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_rgb2gray.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_rgb2gray.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_rgb_gain.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_line_buffer.v" version="default" library="default"/>

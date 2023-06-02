@@ -375,55 +375,6 @@ wire                    peripheralReset;
 (* keep , syn_keep *) wire [3:0] io_arw_payload_region /* synthesis syn_keep = 1 */;
 
 ////////////////////////////////////////////////////////////////
-// Hardware accelerator related
-wire  [7:0]             axi_awid;
-wire  [31:0]            axi_awaddr;
-wire  [7:0]             axi_awlen;
-wire  [2:0]             axi_awsize;
-wire  [1:0]             axi_awburst;
-wire                    axi_awlock;
-wire  [3:0]             axi_awcache;
-wire  [2:0]             axi_awprot;
-wire  [3:0]             axi_awqos;
-wire  [3:0]             axi_awregion;
-wire                    axi_awvalid;
-wire                    axi_awready;
-wire  [31:0]            axi_wdata;
-wire  [3:0]             axi_wstrb;
-wire                    axi_wvalid;
-wire                    axi_wlast;
-wire                    axi_wready;
-wire  [7:0]             axi_bid;
-wire  [1:0]             axi_bresp;
-wire                    axi_bvalid;
-wire                    axi_bready;
-wire  [7:0]             axi_arid;
-wire  [31:0]            axi_araddr;
-wire  [7:0]             axi_arlen;
-wire  [2:0]             axi_arsize;
-wire  [1:0]             axi_arburst;
-wire                    axi_arlock;
-wire  [3:0]             axi_arcache;
-wire  [2:0]             axi_arprot;
-wire  [3:0]             axi_arqos;
-wire  [3:0]             axi_arregion;
-wire                    axi_arvalid;
-wire                    axi_arready;
-wire  [7:0]             axi_rid;
-wire  [31:0]            axi_rdata;
-wire  [1:0]             axi_rresp;
-wire                    axi_rlast;
-wire                    axi_rvalid;
-wire                    axi_rready;
-
-wire                    hw_accel_axi_we;
-wire  [31:0]            hw_accel_axi_waddr;
-wire  [31:0]            hw_accel_axi_wdata;
-wire                    hw_accel_axi_re;
-wire  [31:0]            hw_accel_axi_raddr;
-wire  [31:0]            hw_accel_axi_rdata;
-wire                    hw_accel_axi_rvalid;
-
 //Custom instruction
 wire                    cpu_customInstruction_cmd_valid;
 wire                    cpu_customInstruction_cmd_ready;
@@ -624,16 +575,14 @@ wire                    axi_inter_m_rready;
 
 ////////////////////////////////////////////////////////////////
 // DMA controller
-
 wire                    bbox_dma_tvalid;
 wire                    bbox_dma_tready;
 wire                    bbox_dma_tlast;
 wire [63:0]             bbox_dma_tdata;
 
-
 wire [63:0]             display_dma_rdata;
 wire                    display_dma_rvalid;
-// REMOVE for Yolo Pico// wire [7:0]              display_dma_rkeep;
+//wire [7:0]              display_dma_rkeep;
 wire                    display_dma_rready;
 wire                    debug_display_dma_fifo_overflow;
 wire                    debug_display_dma_fifo_underflow;
@@ -966,7 +915,6 @@ display_panel_config #(
    .i_dbg_reconfig   (0)
 );
 
-
 display_annotator #(
    .FRAME_WIDTH  (FRAME_WIDTH),
    .FRAME_HEIGHT (FRAME_HEIGHT),
@@ -982,7 +930,6 @@ display_annotator #(
    .out_data   (display_dma_rdata),
    .out_ready  (display_dma_rready)
 );
-
 
 display_dsi #(
    .FRAME_WIDTH  (FRAME_WIDTH),
@@ -1313,46 +1260,6 @@ SapphireSoc u_risc_v
    .system_spi_0_io_data_1_read        (system_spi_0_io_data_1_read),
    .system_spi_0_io_data_1_write       (system_spi_0_io_data_1_write),
    .system_spi_0_io_ss                 (system_spi_0_io_ss),
-// REMOVE AXI CTRL //   .axiA_awvalid                       (axi_awvalid),
-// REMOVE AXI CTRL //   .axiA_awready                       (axi_awready),
-// REMOVE AXI CTRL //   .axiA_awaddr                        (axi_awaddr),
-// REMOVE AXI CTRL //   .axiA_awid                          (axi_awid),
-// REMOVE AXI CTRL //   .axiA_awregion                      (axi_awregion),
-// REMOVE AXI CTRL //   .axiA_awlen                         (axi_awlen),
-// REMOVE AXI CTRL //   .axiA_awsize                        (axi_awsize),
-// REMOVE AXI CTRL //   .axiA_awburst                       (axi_awburst),
-// REMOVE AXI CTRL //   .axiA_awlock                        (axi_awlock),
-// REMOVE AXI CTRL //   .axiA_awcache                       (axi_awcache),
-// REMOVE AXI CTRL //   .axiA_awqos                         (axi_awqos),
-// REMOVE AXI CTRL //   .axiA_awprot                        (axi_awprot),
-// REMOVE AXI CTRL //   .axiA_wvalid                        (axi_wvalid),
-// REMOVE AXI CTRL //   .axiA_wready                        (axi_wready),
-// REMOVE AXI CTRL //   .axiA_wdata                         (axi_wdata),
-// REMOVE AXI CTRL //   .axiA_wstrb                         (axi_wstrb),
-// REMOVE AXI CTRL //   .axiA_wlast                         (axi_wlast),
-// REMOVE AXI CTRL //   .axiA_bvalid                        (axi_bvalid),
-// REMOVE AXI CTRL //   .axiA_bready                        (axi_bready),
-// REMOVE AXI CTRL //   .axiA_bid                           (axi_bid),
-// REMOVE AXI CTRL //   .axiA_bresp                         (axi_bresp),
-// REMOVE AXI CTRL //   .axiA_arvalid                       (axi_arvalid),
-// REMOVE AXI CTRL //   .axiA_arready                       (axi_arready),
-// REMOVE AXI CTRL //   .axiA_araddr                        (axi_araddr),
-// REMOVE AXI CTRL //   .axiA_arid                          (axi_arid),
-// REMOVE AXI CTRL //   .axiA_arregion                      (axi_arregion),
-// REMOVE AXI CTRL //   .axiA_arlen                         (axi_arlen),
-// REMOVE AXI CTRL //   .axiA_arsize                        (axi_arsize),
-// REMOVE AXI CTRL //   .axiA_arburst                       (axi_arburst),
-// REMOVE AXI CTRL //   .axiA_arlock                        (axi_arlock),
-// REMOVE AXI CTRL //   .axiA_arcache                       (axi_arcache),
-// REMOVE AXI CTRL //   .axiA_arqos                         (axi_arqos),
-// REMOVE AXI CTRL //   .axiA_arprot                        (axi_arprot),
-// REMOVE AXI CTRL //   .axiA_rvalid                        (axi_rvalid),
-// REMOVE AXI CTRL //   .axiA_rready                        (axi_rready),
-// REMOVE AXI CTRL //   .axiA_rdata                         (axi_rdata),
-// REMOVE AXI CTRL //   .axiA_rid                           (axi_rid),
-// REMOVE AXI CTRL //   .axiA_rresp                         (axi_rresp),
-// REMOVE AXI CTRL //   .axiA_rlast                         (axi_rlast),
-// REMOVE AXI CTRL //   .axiAInterrupt                      (axi4Interrupt),
    .cpu0_customInstruction_cmd_valid   (cpu_customInstruction_cmd_valid),
    .cpu0_customInstruction_cmd_ready   (cpu_customInstruction_cmd_ready),
    .cpu0_customInstruction_function_id (cpu_customInstruction_function_id),
@@ -1381,82 +1288,16 @@ SapphireSoc u_risc_v
 ////////////////////////////////////////////////////////////////
 // Hardware Accelerator
 
-// REMOVE AXI CTRL //hw_accel_axi4 #(
-// REMOVE AXI CTRL //   .ADDR_WIDTH (32),
-// REMOVE AXI CTRL //   .DATA_WIDTH (32)
-// REMOVE AXI CTRL //) u_hw_accel_axi4 (
-// REMOVE AXI CTRL //   .axi_interrupt (axi4Interrupt),
-// REMOVE AXI CTRL //   .axi_aclk      (peripheralClk),
-// REMOVE AXI CTRL //   .axi_resetn    (~peripheralReset),
-// REMOVE AXI CTRL //   .axi_awid      (axi_awid),
-// REMOVE AXI CTRL //   .axi_awaddr    (axi_awaddr),
-// REMOVE AXI CTRL //   .axi_awlen     (axi_awlen),
-// REMOVE AXI CTRL //   .axi_awsize    (axi_awsize),
-// REMOVE AXI CTRL //   .axi_awburst   (axi_awburst),
-// REMOVE AXI CTRL //   .axi_awlock    (axi_awlock),
-// REMOVE AXI CTRL //   .axi_awcache   (axi_awcache),
-// REMOVE AXI CTRL //   .axi_awprot    (axi_awprot),
-// REMOVE AXI CTRL //   .axi_awqos     (axi_awqos),
-// REMOVE AXI CTRL //   .axi_awregion  (axi_awregion),
-// REMOVE AXI CTRL //   .axi_awvalid   (axi_awvalid),
-// REMOVE AXI CTRL //   .axi_awready   (axi_awready),
-// REMOVE AXI CTRL //   .axi_wdata     (axi_wdata),
-// REMOVE AXI CTRL //   .axi_wstrb     (axi_wstrb),
-// REMOVE AXI CTRL //   .axi_wlast     (axi_wlast),
-// REMOVE AXI CTRL //   .axi_wvalid    (axi_wvalid),
-// REMOVE AXI CTRL //   .axi_wready    (axi_wready),
-// REMOVE AXI CTRL //   .axi_bid       (axi_bid),
-// REMOVE AXI CTRL //   .axi_bresp     (axi_bresp),
-// REMOVE AXI CTRL //   .axi_bvalid    (axi_bvalid),
-// REMOVE AXI CTRL //   .axi_bready    (axi_bready),
-// REMOVE AXI CTRL //   .axi_arid      (axi_arid),
-// REMOVE AXI CTRL //   .axi_araddr    (axi_araddr),
-// REMOVE AXI CTRL //   .axi_arlen     (axi_arlen),
-// REMOVE AXI CTRL //   .axi_arsize    (axi_arsize),
-// REMOVE AXI CTRL //   .axi_arburst   (axi_arburst),
-// REMOVE AXI CTRL //   .axi_arlock    (axi_arlock),
-// REMOVE AXI CTRL //   .axi_arcache   (axi_arcache),
-// REMOVE AXI CTRL //   .axi_arprot    (axi_arprot),
-// REMOVE AXI CTRL //   .axi_arqos     (axi_arqos),
-// REMOVE AXI CTRL //   .axi_arregion  (axi_arregion),
-// REMOVE AXI CTRL //   .axi_arvalid   (axi_arvalid),
-// REMOVE AXI CTRL //   .axi_arready   (axi_arready),
-// REMOVE AXI CTRL //   .axi_rid       (axi_rid),
-// REMOVE AXI CTRL //   .axi_rdata     (axi_rdata),
-// REMOVE AXI CTRL //   .axi_rresp     (axi_rresp),
-// REMOVE AXI CTRL //   .axi_rlast     (axi_rlast),
-// REMOVE AXI CTRL //   .axi_rvalid    (axi_rvalid),
-// REMOVE AXI CTRL //   .axi_rready    (axi_rready),
-// REMOVE AXI CTRL //   .usr_we        (hw_accel_axi_we),
-// REMOVE AXI CTRL //   .usr_waddr     (hw_accel_axi_waddr),
-// REMOVE AXI CTRL //   .usr_wdata     (hw_accel_axi_wdata),
-// REMOVE AXI CTRL //   .usr_re        (hw_accel_axi_re),
-// REMOVE AXI CTRL //   .usr_raddr     (hw_accel_axi_raddr),
-// REMOVE AXI CTRL //   .usr_rdata     (hw_accel_axi_rdata),
-// REMOVE AXI CTRL //   .usr_rvalid    (hw_accel_axi_rvalid)
-// REMOVE AXI CTRL //);
-
-//For person detection model
-//Scale from 540x540 to 96x96 resolution, and perform rgb2grayscale conversion
+//For yolo person detection model
+//Scale from FRAME_WIDTHxFRAME_HEIGHT to 96x96 resolution
 hw_accel_wrapper #(
    .FRAME_WIDTH         (FRAME_WIDTH),
    .FRAME_HEIGHT        (FRAME_HEIGHT),
-//   .DMA_TRANSFER_LENGTH ((96*96)/4) //S2MM DMA transfer for person detection demo
-//   .DMA_TRANSFER_LENGTH ((192*192*3)/4) //S2MM DMA transfer for face landmark demo
-   .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo pico
+   .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo person detection demo
 ) u_hw_accel_wrapper (
    .clk                                         (i_systemClk),
    .rst                                         (io_systemReset),
    .hw_accel_dma_init_done                      (hw_accel_dma_init_done),
-// REMOVE AXI CTRL //   .axi_slave_clk         (peripheralClk),
-// REMOVE AXI CTRL //   .axi_slave_rst         (peripheralReset),
-// REMOVE AXI CTRL //   .axi_slave_we          (hw_accel_axi_we),
-// REMOVE AXI CTRL //   .axi_slave_waddr       (hw_accel_axi_waddr),
-// REMOVE AXI CTRL //   .axi_slave_wdata       (hw_accel_axi_wdata),
-// REMOVE AXI CTRL //   .axi_slave_re          (hw_accel_axi_re),
-// REMOVE AXI CTRL //   .axi_slave_raddr       (hw_accel_axi_raddr),
-// REMOVE AXI CTRL //   .axi_slave_rdata       (hw_accel_axi_rdata),
-// REMOVE AXI CTRL //   .axi_slave_rvalid      (hw_accel_axi_rvalid),
    .dma_rready                                  (hw_accel_dma_rready),
    .dma_rvalid                                  (hw_accel_dma_rvalid),
    .dma_rdata                                   (hw_accel_dma_rdata),

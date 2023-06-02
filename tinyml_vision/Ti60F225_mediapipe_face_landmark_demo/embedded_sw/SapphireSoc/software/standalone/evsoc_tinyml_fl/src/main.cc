@@ -321,7 +321,6 @@ void main() {
 
    MicroPrintf("TinyML Setup...");
    tinyml_init();
-  // Tinyml_Initial();
    MicroPrintf("Done\n\r");
 
    TfLiteStatus invoke_status;
@@ -345,8 +344,6 @@ void main() {
       
       
       //Indicate start of S2MM DMA to HW accel building block via APB3 slave
-      //write_u32(0x00000001, EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG2_OFFSET);
-      //write_u32(0x00000000, EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG2_OFFSET);
       EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG6_OFFSET, 0x00000001);
       EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG6_OFFSET, 0x00000000);
        
@@ -384,11 +381,6 @@ void main() {
          );
       
          TfLiteAffineQuantization params = *(static_cast<TfLiteAffineQuantization *>(interpreter->output(i)->quantization.params));
-         //MicroPrintf("\n\rOutput %d Scale: ", i);
-         //print_float(params.scale->data[0]);
-         //MicroPrintf("\n\rOutput %d Zero point: ", i);
-         //print_float(params.zero_point->data[0]);
-         //MicroPrintf("\n\r");
          
          if (i == 0) {
             float* face_landmarks = (float*)calloc(total, sizeof(float));

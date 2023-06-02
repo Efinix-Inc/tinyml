@@ -4,8 +4,11 @@
 #include "tensorflow/lite/micro/debug_log.h"
 #include "tensorflow/lite/micro/kernels//kernel_util.h"
 #include "tensorflow/lite/micro/micro_error_reporter.h"
+#include "model/define.h"
 
 #include "bsp.h"
+
+
 class FullProfiler : public tflite::MicroProfiler {
 public:
     FullProfiler() :
@@ -21,7 +24,7 @@ public:
     }
     virtual u64 BeginEvent(const char *ltag) {
         op_tag = ltag;
-        //MicroPrintf("%s ===> ", ltag);
+        layer_mode="SOFTWARE";
         st = clint_getTime(BSP_CLINT);
         return 0;
     }
@@ -29,7 +32,7 @@ public:
         auto ed = clint_getTime(BSP_CLINT);
         u64 cost = (ed - st)/(SYSTEM_CLINT_HZ/1000UL);
         u32 dcost = (u32)cost;
-        MicroPrintf("%s,%u,%u\n\r", op_tag, lid, dcost);
+        MicroPrintf("%u; %s; %s; %ums\n\r", lid, op_tag,layer_mode, dcost);
 
 
 

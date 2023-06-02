@@ -121,7 +121,7 @@ extern "C" void main() {
    
 	//Interrupt Initialization
 	IntcInitialize();
-	//Tinyml_Initial();
+   
    /*************************************************************RUN INFERENCE*************************************************************/
 
    //Test image data
@@ -182,15 +182,6 @@ extern "C" void main() {
    timerCmp3 = clint_getTime(BSP_CLINT);
    MicroPrintf("Done\n\n\r");
    
-   //for (int i = 0; i < total_output_layers; ++i) {
-   //   MicroPrintf("\n\r000000018380_output_%d:\n\r", i);
-   //   for (int j = 0; j < (
-   //      interpreter->output(i)->dims->data[0] * interpreter->output(i)->dims->data[1] * interpreter->output(i)->dims->data[2] * interpreter->output(i)->dims->data[3]
-   //   ); ++j) {
-   //      print_float(yolo_layers[i].outputs[j]);
-   //      MicroPrintf("\n\r");
-   //   }
-   //}
 
    MicroPrintf("\n\rBoxes:\n\r");
    

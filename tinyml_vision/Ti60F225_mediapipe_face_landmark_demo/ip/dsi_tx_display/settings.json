@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "2.1"
+            "version": "2.3"
         }
     ],
     "conf": {

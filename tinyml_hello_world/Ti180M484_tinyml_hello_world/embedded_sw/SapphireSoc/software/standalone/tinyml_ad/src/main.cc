@@ -145,7 +145,6 @@ void main() {
    TfLiteAffineQuantization params = *(static_cast<TfLiteAffineQuantization *>(interpreter->output(0)->quantization.params));
 	//Interrupt Initialization
 	IntcInitialize();
-	//Tinyml_Initial();
 
    /*********************************************************STATIC IMAGE INFERENCE 1*****************************************************/
    

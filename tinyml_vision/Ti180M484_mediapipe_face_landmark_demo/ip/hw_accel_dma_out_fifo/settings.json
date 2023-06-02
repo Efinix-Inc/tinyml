@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "1.3"
+            "version": "2.0"
         }
     ],
     "conf": {
@@ -29,7 +29,8 @@
         "PIPELINE_REG": "1",
         "FAMILY": "1",
         "ASYM_WIDTH_RATIO": "4",
-        "BYPASS_RESET_SYNC": "0"
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0"
     },
     "output": {
         "external_source_source": [

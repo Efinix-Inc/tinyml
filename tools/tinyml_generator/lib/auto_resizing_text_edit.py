@@ -1,3 +1,28 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+MIT License
+
+Copyright (c) 2013 Kamil Śliwak
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 """ A text editor that automatically adjusts its height to the height of the text
     in its document when managed by a layout. """
 
@@ -23,7 +48,7 @@ class AutoResizingTextEdit(QTextEdit):
         """ Sets minimum widget height to a value corresponding to specified number of lines
             in the default font. """
 
-        self.setMinimumSize(self.minimumSize().width(), self.lineCountToWidgetHeight(num_lines))
+        self.setMinimumSize(int(self.minimumSize().width()), int(self.lineCountToWidgetHeight(num_lines)))
 
     def hasHeightForWidth(self):
         return True
@@ -49,11 +74,11 @@ class AutoResizingTextEdit(QTextEdit):
         document = self.document().clone()
         document.setTextWidth(document_width)
 
-        return margins.top() + document.size().height() + margins.bottom()
+        return int(margins.top() + document.size().height() + margins.bottom())
 
     def sizeHint(self):
         original_hint = super(AutoResizingTextEdit, self).sizeHint()
-        return QSize(original_hint.width(), self.heightForWidth(original_hint.width()))
+        return QSize(int(original_hint.width()), int(self.heightForWidth(original_hint.width())))
 
     def lineCountToWidgetHeight(self, num_lines):
         """ Returns the number of pixels corresponding to the height of specified number of lines

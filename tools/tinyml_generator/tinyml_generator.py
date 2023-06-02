@@ -5,13 +5,14 @@ https://www.efinixinc.com/software-license.html
 """
 
 from genericpath import exists
-import sys,re,os,subprocess,platform,shutil
+import sys,math,re,os,subprocess,platform,shutil
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from functools import partial
 from lib.auto_resizing_text_edit import AutoResizingTextEdit
 import warnings
+from lib.resource_lib import ResourceUtil
 
 
 
@@ -31,14 +32,15 @@ params = {
             }
         }
     },
-    "CONV_DEPTH_MODE": {
+    "CONV_DEPTHW_MODE": {
         'type': 'l',
         'combo':["STANDARD", "LITE", "DISABLE"],
         'val': "STANDARD",
         'visible': True,
         'SW': True,
+        'res': True,        
         'children': {
-            "CONV_DEPTH_STD_IN_PARALLEL": {
+            "CONV_DEPTHW_STD_IN_PARALLEL": {
                 'type': 'n',
                 'val': 8,
                 'min' : 1,
@@ -47,7 +49,7 @@ params = {
                 'require': "STANDARD",
                 'regen': True
             },
-            "CONV_DEPTH_STD_OUT_PARALLEL": {
+            "CONV_DEPTHW_STD_OUT_PARALLEL": {
                 'type': 'n',
                 'val': 4,
                 'min' : 1,
@@ -56,25 +58,25 @@ params = {
                 'require': "STANDARD",
                 'regen': True
             },
-            "CONV_DEPTH_STD_OUT_CH_FIFO_A": {
+            "CONV_DEPTHW_STD_OUT_CH_FIFO_A": {
                 'type': 'n',
                 'val': 512,
                 'visible': False,
                 'require': "STANDARD"
             },
-            "CONV_DEPTH_STD_FILTER_FIFO_A": {
+            "CONV_DEPTHW_STD_FILTER_FIFO_A": {
                 'type': 'n',
                 'val': 512,
                 'visible': False,
                 'require': "STANDARD"
             },
-            "CONV_DEPTH_STD_CNT_DTH": {
+            "CONV_DEPTHW_STD_CNT_DTH": {
                 'type': 'n',
                 'val': 256,
                 'visible': False,
                 'require': "STANDARD"
             },
-            "CONV_DEPTH_LITE_PARALLEL": {
+            "CONV_DEPTHW_LITE_PARALLEL": {
                 'type': 'n',
                 'val': 4,
                 'min' : 1,
@@ -83,7 +85,7 @@ params = {
                 'visible': True,
                 'require': "LITE"
             },
-            "CONV_DEPTH_LITE_AW": {
+            "CONV_DEPTHW_LITE_AW": {
                 'type': 'n',
                 'val': 7,
                 'visible': False,
@@ -95,15 +97,17 @@ params = {
         'type': 'l',
         'SW': True,
         'combo':["STANDARD", "LITE", "DISABLE"],
+        'res': True,
         'val': "STANDARD",
         'visible': True
     },
     "FC_MODE": {
         'type': 'l',
-        'combo':["LITE", "DISABLE"],
-        'val': "LITE",
+        'combo':["STANDARD","LITE", "DISABLE"],
+        'val': "STANDARD",
         'visible': True,
         'SW': True,
+        'res': True,
         'children': {
             "FC_MAX_IN_NODE": {
                 'type': 'n',
@@ -119,20 +123,39 @@ params = {
             }
         }
     },
-    "MULT_MODE": {
+    "MUL_MODE": {
         'SW': True,
         'type': 'l',
-        'combo':["LITE", "DISABLE"],
-        'val': "LITE",
+        'combo':["STANDARD","LITE", "DISABLE"],
+        'val': "STANDARD",
+        'res': True,        
         'visible': True
     },
     "MIN_MAX_MODE": {
         'SW': True,
         'type': 'l',
-        'combo':["LITE", "DISABLE"],
-        'val': "LITE",
+        'combo':["STANDARD","LITE", "DISABLE"],
+        'val': "STANDARD",
+        'res': True,
         'visible': True
-    }
+    },
+    "TINYML_CACHE" : {
+        'type': 'l',
+        'visible' : True,
+        'combo' : ["ENABLE","DISABLE"],
+        'SW'    : True,
+        'val': "DISABLE",
+        'res': True,
+        'children' : {   
+                "CACHE_DEPTH": {
+                    'type': 'l',
+                    'val': "512",
+                    'combo':["512", "1024", "2048", "4096", "8192"],
+                    'visible': True,
+                    'require': "ENABLE"
+                }
+            }
+        }
 }
 
 p2 = {}
@@ -140,7 +163,8 @@ p2 = {}
 mode_selection = {
     "DISABLE" : 0,
     "LITE" : 1,
-    "STANDARD" : 2
+    "STANDARD" : 2,
+    "ENABLE" : 1
 }
 
 class Widget(QWidget):
@@ -164,10 +188,33 @@ class Widget(QWidget):
         container.setLayout(V)
         scroll.setWidget(container)
         scroll.setWidgetResizable(True)
+        self.res_util_lib=ResourceUtil()
+        self.curr_cache_text="ENABLE"
+        self.update_cache_text=False
         
-        # H.addLayout(V)
+        #H.addLayout(V)
         H.addWidget(scroll)
-        H.addWidget(E)
+
+        Rvbox = QVBoxLayout()
+        label = QLabel('Resource Estimator')
+        font = QFont()
+        font.setBold(True)
+        label.setFont(font)
+        Rvbox.addWidget(label)
+        self.datasheet = QTableView()
+        # self.datasheet.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        sm = QStandardItemModel()
+        sm.setHorizontalHeaderLabels(["Layer/Module","LUTs", "FFs", "ADDs", "RAM Blocks", "DSP Blocks"])
+        self.datasheet.setModel(sm)
+        self.datasheet.setColumnWidth(0,180)
+        self.res_model = sm
+        self.datasheet.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.model_loaded = False
+        Rvbox.addWidget(self.datasheet)
+        Rvbox.addWidget(E)
+        H.addLayout(Rvbox)
+
+        #H.addWidget(E)
         gen = QPushButton("Generate")
         open = QPushButton("Open")
         flabel = QLabel("Model File: ")
@@ -200,13 +247,16 @@ class Widget(QWidget):
 
         def openfile():
             path = QFileDialog.getOpenFileName(filter = "*.tflite")
-            self.file.setText(path[0])
-            self.model_file = path[0]
-            self.parse_model()
-            self.tflite_gen = True
+            if(path[0]):
+                self.file.setText(path[0])
+                self.model_file = path[0]
+                self.parse_model()
+                self.tflite_gen = True                
             
         open.clicked.connect(openfile)
         gen.clicked.connect(self.generate)
+
+        self.resize(1420, 800)
 
 
     def map_params(self, params, root):
@@ -252,6 +302,8 @@ class Widget(QWidget):
                     val['val'] = text
                     if(p=="AXI_DW"):
                         self.modify_in_out_parallel_param(p2)
+                    self.check_cache_enable(p2)
+                    self.res_utilization()
                     if not 'children' in val:
                         return
                     children = val['children']
@@ -279,8 +331,90 @@ class Widget(QWidget):
                    if text == "":
                        return
                    mval['val'] = int(text)
+                   self.res_utilization()
                 line.textChanged.connect(partial(slot, val))
             self.modify_in_out_parallel_param(p2,activate=1)
+
+
+    def res_utilization(self):
+        if not self.model_loaded:
+            return
+        self.res_model.clear()
+        # self.datasheet.clearSpans()
+        res = [0, 0, 0, 0, 0]
+        total_res = res.copy()
+        layer_mode = []
+        self.res_util_lib.initialize_param(p2)
+        self.res_model.setHorizontalHeaderLabels(["Layer/Module","LUTs", "FFs", "ADDs", "RAM Blocks", "DSP Blocks"])
+        for i in p2:
+            val = p2[i]
+            if 'res' not in val:
+                continue
+            value = val['val']
+            if value == "DISABLE":
+                continue
+            layer_mode.append(value)
+            r=self.res_util_lib.evaluate_res(i,value)
+            for e in range(5):
+                total_res[e] = total_res[e] + r[e]
+            self.append_row(i.replace("_MODE",""),r)
+        self.datasheet.setColumnWidth(0,180)
+        
+        common_res=self.res_util_lib.evaluate_common_module(layer_mode)
+        if(common_res):
+            for e in range(5):
+                total_res[e] = total_res[e] + common_res[e]
+            self.append_row("COMMON",common_res)
+        self.append_row("TINYML_ACCELERATOR",total_res,bold_font=True)
+        
+    def check_cache_enable(self,params_list):
+        count_standard=0
+        for p in params_list:
+            if("_MODE" in p):
+                if ("STANDARD" in params_list[p]['val']):
+                    count_standard+=1
+        if('TINYML_CACHE' in params_list):
+            if(params_list['TINYML_CACHE'].get('qval')):
+                cache_box=params_list['TINYML_CACHE']['qval']
+                if(count_standard<1):
+                    if(not self.update_cache_text):
+                        self.update_cache_text=True
+                    cache_box.setCurrentIndex(cache_box.findText('DISABLE'))
+                    params_list['TINYML_CACHE']['val'] = 'DISABLE'
+                    cache_box.setEnabled(False)
+                else:
+                    if(self.update_cache_text):
+                        cache_box.setCurrentIndex(cache_box.findText(self.curr_cache_text))
+                        self.update_cache_text=False
+                        params_list['TINYML_CACHE']['val'] = self.curr_cache_text
+                    cache_box.setEnabled(True)
+                
+
+    def append_row(self,module,data,bold_font=False):
+        data_row=[]
+        font = QFont()
+        background=QColor(255,255,255)
+        if(bold_font):
+            font.setBold(True)
+            background=QColor(200,200,200)
+
+        module=QStandardItem(module)
+        module.setFont(font)
+        module.setBackground(background)
+
+        for i in data:
+            col=QStandardItem(str(i))
+            col.setFont(font)
+            col.setBackground(background)
+            data_row.append(col)
+
+        self.res_model.appendRow([module,
+            data_row[0], 
+            data_row[1], 
+            data_row[2], 
+            data_row[3], 
+            data_row[4]])
+
 
 
             
@@ -322,8 +456,11 @@ class Widget(QWidget):
 
         vout, cout, dout = iter(mparams)
 
-        dout = '#ifndef _TINYML_PARAMS_H\n#define _TINYML_PARAMS_H\n' + dout + '#endif\n'
-        cout = '#include "define.h"\n' + cout
+        #For profiling
+        prof_dout = 'extern const char* layer_mode;\n'
+        prof_cout = 'const char* layer_mode="";\n'
+        dout = '#ifndef _TINYML_PARAMS_H\n#define _TINYML_PARAMS_H\n' + dout + prof_dout + '#endif\n'
+        cout = '#include "define.h"\n' + cout +prof_cout
         vh = os.path.join(self.op_path,"defines.v")
         ch = os.path.join(self.op_path,"define.cc")
         dh = os.path.join(self.op_path,"define.h")
@@ -403,8 +540,8 @@ class Widget(QWidget):
         oh.close()
 
     def parse_model(self):
-        ic = self.findChild(QObject, 'CONV_DEPTH_STD_IN_PARALLEL')
-        oc = self.findChild(QObject, 'CONV_DEPTH_STD_OUT_PARALLEL')
+        ic = self.findChild(QObject, 'CONV_DEPTHW_STD_IN_PARALLEL')
+        oc = self.findChild(QObject, 'CONV_DEPTHW_STD_OUT_PARALLEL')
         dir = os.path.join(os.path.dirname(__file__), "bin")
         if dir == "":
             dir = "./bin"
@@ -416,6 +553,7 @@ class Widget(QWidget):
             bufsize=1, universal_newlines=True) as p:
             begin = False
             for line in p.stderr:
+                self.model_loaded = True
                 l = str(line)
                 l = l.replace("\n", "").replace("\r", "")
                 if l.startswith("===="):
@@ -453,8 +591,7 @@ class Widget(QWidget):
                                 val['qval'].setValue(int(v[1]))
                         else:
                             continue
-
-
+        self.res_utilization()
         print("done...")
                         
     def generate(self):
@@ -501,22 +638,22 @@ class Widget(QWidget):
     def modify_in_out_parallel_param(self,params_list,depth_multiplier_val=1,activate=0):
         if(self.activate_in_parallel_modify):
             curr_axi_dw = int(params_list.get("AXI_DW")["val"])
-            curr_conv_depth_par_in = params_list.get("CONV_DEPTH_STD_IN_PARALLEL")
-            conv_depth_std_parallel_in_max = int(curr_axi_dw/8)
-            conv_depth_std_parallel_in_min = depth_multiplier_val
-            if(curr_conv_depth_par_in['val']>conv_depth_std_parallel_in_max):
-                curr_conv_depth_par_in['val'] = int(conv_depth_std_parallel_in_max)
+            curr_conv_depthw_par_in = params_list.get("CONV_DEPTHW_STD_IN_PARALLEL")
+            conv_depthw_std_parallel_in_max = int(curr_axi_dw/8)
+            conv_depthw_std_parallel_in_min = depth_multiplier_val
+            if(curr_conv_depthw_par_in['val']>conv_depthw_std_parallel_in_max):
+                curr_conv_depthw_par_in['val'] = int(conv_depthw_std_parallel_in_max)
             #For IN_PARALLEL
-            curr_conv_depth_par_in['qval'].setMinimum(int(conv_depth_std_parallel_in_min))
-            curr_conv_depth_par_in['qval'].setMaximum(int(conv_depth_std_parallel_in_max))
-            curr_conv_depth_par_in['qval'].setValue(int(curr_conv_depth_par_in['val']))
+            curr_conv_depthw_par_in['qval'].setMinimum(int(conv_depthw_std_parallel_in_min))
+            curr_conv_depthw_par_in['qval'].setMaximum(int(conv_depthw_std_parallel_in_max))
+            curr_conv_depthw_par_in['qval'].setValue(int(curr_conv_depthw_par_in['val']))
         if(activate==1):
             self.activate_in_parallel_modify=True
 
     
     #Require to check if the desired parameter with regen is enabled or disabled  
     def check_regen_stat(self):
-        regen_list=["CONV_DEPTH_STD_IN_PARALLEL","CONV_DEPTH_STD_OUT_PARALLEL"]
+        regen_list=["CONV_DEPTHW_STD_IN_PARALLEL","CONV_DEPTHW_STD_OUT_PARALLEL"]
         for item in regen_list:
             item_dict=p2.get(item)
             if(not item_dict['qval'].isEnabled()):

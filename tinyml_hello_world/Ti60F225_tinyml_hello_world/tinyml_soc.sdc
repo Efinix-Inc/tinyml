@@ -9,7 +9,7 @@ create_clock -period 3.33 i_systemClk
 create_clock -period 10.00 i_peripheralClk
 create_clock -period 100 jtag_inst1_TCK
 
-set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_peripheralClk} -group {jtag_inst1_TCK}
+set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_peripheralClk} -group {jtag_inst1_TCK} -group {i_fb_clk}
 
 # GPIO Constraints
 ####################
@@ -41,10 +41,10 @@ set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~
 set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~27~322}] -min 0.140 [get_ports {hbc_rst_n}]
 # set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led}]
 # set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~31}] -max 0.263 [get_ports {system_spi_0_io_sclk_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~31}] -min 0.140 [get_ports {system_spi_0_io_sclk_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~30}] -max 0.263 [get_ports {system_spi_0_io_ss}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~30}] -min 0.140 [get_ports {system_spi_0_io_ss}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~31}] -max 0.263 [get_ports {system_spi_0_io_sclk_write}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~31}] -min -0.140 [get_ports {system_spi_0_io_sclk_write}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~30}] -max 0.263 [get_ports {system_spi_0_io_ss}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~30}] -min -0.140 [get_ports {system_spi_0_io_ss}]
 set_input_delay -clock i_hbramClk_cal -reference_pin [get_ports {i_hbramClk_cal~CLKOUT~32~322}] -max 0.414 [get_ports {hbc_dq_IN_LO[0] hbc_dq_IN_HI[0]}]
 set_input_delay -clock i_hbramClk_cal -reference_pin [get_ports {i_hbramClk_cal~CLKOUT~32~322}] -min 0.276 [get_ports {hbc_dq_IN_LO[0] hbc_dq_IN_HI[0]}]
 set_output_delay -clock_fall -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~34~322}] -max 0.263 [get_ports {hbc_dq_OUT_LO[0] hbc_dq_OUT_HI[0]}]
@@ -154,18 +154,18 @@ set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~
 set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~131~322}] -max 0.263 [get_ports {hbc_rwds_OE[1]}]
 set_output_delay -clock i_hbramClk -reference_pin [get_ports {i_hbramClk~CLKOUT~131~322}] -min 0.140 [get_ports {hbc_rwds_OE[1]}]
 
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~59}] -max 0.414 [get_ports {system_spi_0_io_data_0_read}]
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~59}] -min 0.276 [get_ports {system_spi_0_io_data_0_read}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -min 0.140 [get_ports {system_spi_0_io_data_0_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_writeEnable}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~61}] -min 0.140 [get_ports {system_spi_0_io_data_0_writeEnable}]
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~60}] -max 0.414 [get_ports {system_spi_0_io_data_1_read}]
-set_input_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~60}] -min 0.276 [get_ports {system_spi_0_io_data_1_read}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -min 0.140 [get_ports {system_spi_0_io_data_1_write}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_writeEnable}]
-set_output_delay -clock i_systemClk -reference_pin [get_ports {i_systemClk~CLKOUT~1~62}] -min 0.140 [get_ports {system_spi_0_io_data_1_writeEnable}]
+set_input_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~59}] -max 0.414 [get_ports {system_spi_0_io_data_0_read}]
+set_input_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~59}] -min 0.276 [get_ports {system_spi_0_io_data_0_read}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_write}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~61}] -min -0.140 [get_ports {system_spi_0_io_data_0_write}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~61}] -max 0.263 [get_ports {system_spi_0_io_data_0_writeEnable}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~61}] -min -0.140 [get_ports {system_spi_0_io_data_0_writeEnable}]
+set_input_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~60}] -max 0.414 [get_ports {system_spi_0_io_data_1_read}]
+set_input_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~60}] -min 0.276 [get_ports {system_spi_0_io_data_1_read}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_write}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~62}] -min -0.140 [get_ports {system_spi_0_io_data_1_write}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~62}] -max 0.263 [get_ports {system_spi_0_io_data_1_writeEnable}]
+set_output_delay -clock i_peripheralClk -reference_pin [get_ports {i_peripheralClk~CLKOUT~1~62}] -min -0.140 [get_ports {system_spi_0_io_data_1_writeEnable}]
 
 
 # JTAG Constraints
@@ -174,14 +174,14 @@ set_output_delay -clock jtag_inst1_TCK -max 0.117 [get_ports {jtag_inst1_TDO}]
 set_output_delay -clock jtag_inst1_TCK -min 0.075 [get_ports {jtag_inst1_TDO}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_CAPTURE}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_CAPTURE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RUNTEST}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RUNTEST}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RESET}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RESET}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RUNTEST}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RUNTEST}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.243 [get_ports {jtag_inst1_SEL}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.162 [get_ports {jtag_inst1_SEL}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_UPDATE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_UPDATE}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_UPDATE}]
+#set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_UPDATE}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.337 [get_ports {jtag_inst1_SHIFT}]
 set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.225 [get_ports {jtag_inst1_SHIFT}]
 

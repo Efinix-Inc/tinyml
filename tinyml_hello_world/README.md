@@ -27,6 +27,7 @@ The example designs are implemented on:
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
 - [Titanium® Ti180 M484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180m484.html)
 
+**Note:** Efinity projects of the hello world designs are in [tinyml_hello_world](./) directory.
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
 
@@ -60,5 +61,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.2.14
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.5.7
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.3

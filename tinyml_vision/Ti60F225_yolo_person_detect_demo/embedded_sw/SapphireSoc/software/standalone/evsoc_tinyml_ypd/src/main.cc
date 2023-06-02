@@ -36,7 +36,6 @@ extern "C" {
 //Tinyml Header File
 #include "intc.h"
 #include "tinyml.h"
-// REMOVE LOGO // #include "platform/misc/logo_540x100.h"
 #include "ops/ops_api.h"
 
 //Import TensorFlow lite libraries
@@ -86,12 +85,6 @@ extern "C" {
 //Each transfer initiated from DMA controller will be 128-bit word, thus we need to ensure an even number of transfer
 #define TOTAL_BOX_BUFFER   8 + (BBOX_MAX*8) + 8
 #define bbox_array ((volatile uint64_t*)BBOX_CMD_ADDRESS)
-
-#define LOGO_WIDTH   540
-#define LOGO_HEIGHT  100
-#define LOGO_CMD_ADDRESS   0x01800000
-#define TOTAL_LOGO_BUFFER  8 + (LOGO_WIDTH*LOGO_HEIGHT*4) + 8
-#define logo_array ((volatile uint32_t*)LOGO_CMD_ADDRESS)
 
 #define IMAGE_SIZE (FRAME_WIDTH*FRAME_HEIGHT)*4
 #define IMAGE_CMD_OFFSET (0)
@@ -252,7 +245,6 @@ void recv_dma(u32 channel, u32 port, u32 addr, u32 size, int interrupt, int wait
 
 void trigger_next_display_dma() {
    display_buffer = next_display_buffer;
-// REMOVE LOGO //   send_dma(DMASG_DISPLAY_MM2S_CHANNEL, DMASG_DISPLAY_MM2S_PORT, LOGO_CMD_ADDRESS, TOTAL_LOGO_BUFFER, 0, 1, 0);
    send_dma(DMASG_DISPLAY_MM2S_CHANNEL, DMASG_DISPLAY_MM2S_PORT, buf(display_buffer), TOTAL_BUFFER_SIZE, 1, 0, 0);
 }
 
@@ -286,15 +278,6 @@ void trigger_next_cam_dma() {
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG2_OFFSET, 0x00000000);
 }
 
-// REMOVE LOGO // void init_logo(void)
-// REMOVE LOGO // {
-// REMOVE LOGO //    logo_array[0] = 3; //Command lower word
-// REMOVE LOGO //    logo_array[1] = 0; //Command uppper word
-// REMOVE LOGO //    
-// REMOVE LOGO //    for (int i=0; i<(LOGO_WIDTH*LOGO_HEIGHT); i++) {
-// REMOVE LOGO //       logo_array[i+2] = LOGO_DATA[i];
-// REMOVE LOGO //    }
-// REMOVE LOGO // }
 
 void color_pattern(volatile u32* buf){
    for (int y=0; y<FRAME_HEIGHT; y++) {
@@ -383,13 +366,8 @@ void init() {
    MicroPrintf("Initialize Bbox to invalid ...");
    init_bbox();
    MicroPrintf("Done\n\r");
-   //Initialize logo_buffer
-   MicroPrintf("Initialize logo...");
-// REMOVE LOGO //    init_logo();
-   MicroPrintf("Done\n\r");
    //Trigger display DMA once then the rest handled by interrupt sub-rountine
    MicroPrintf("Trigger display DMA...");
-// REMOVE LOGO //   send_dma(DMASG_DISPLAY_MM2S_CHANNEL, DMASG_DISPLAY_MM2S_PORT, LOGO_CMD_ADDRESS, TOTAL_LOGO_BUFFER, 0, 1, 0); //For logo
    send_dma(DMASG_DISPLAY_MM2S_CHANNEL, DMASG_DISPLAY_MM2S_PORT, buf(display_buffer), TOTAL_BUFFER_SIZE, 1, 0, 0);
    display_mm2s_active = 1;
    MicroPrintf("Done\n\r");
@@ -490,8 +468,6 @@ void main() {
       recv_dma(DMASG_HW_ACCEL_S2MM_CHANNEL, DMASG_HW_ACCEL_S2MM_PORT, TINYML_INPUT_START_ADDR, YOLO_PICO_INPUT_BYTES, 0, 0, 0);
    
       //Indicate start of S2MM DMA to HW accel building block via APB3 slave
- //     write_u32(0x00000001, EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG2_OFFSET);
- //     write_u32(0x00000000, EXAMPLE_AXI4_SLV+EXAMPLE_AXI4_SLV_REG2_OFFSET);
       EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG6_OFFSET, 0x00000001);
       EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG6_OFFSET, 0x00000000);
 
@@ -580,6 +556,7 @@ void main() {
         free(yolo_layers[i].outputs);
       }
       free(yolo_layers);
+      free(boxes);
       
       //Switch draw buffer to latest complete frame
       draw_buffer = next_display_buffer;

@@ -1,4 +1,3 @@
-////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 // Copyright (c) 2022 github-efx
 // 
@@ -29,251 +28,244 @@ module edge_vision_soc #(
     parameter MIPI_FRAME_WIDTH  = 1920, // camera input Width
     parameter MIPI_FRAME_HEIGHT = 1080, // camera input Height
 
-    parameter AXI_0_DATA_WIDTH  = 512, // AXI Width 0 connected to SOC and TinyML Accelerator
-    parameter AXI_1_DATA_WIDTH  = 512 // AXI Width 0 connected to DMA
+    parameter AXI_0_DATA_WIDTH  = 512,  // AXI Width 0 connected to SOC and TinyML Accelerator
+    parameter AXI_1_DATA_WIDTH  = 512   // AXI Width 0 connected to DMA
 
 ) (
     //Clock Control
-    input       i_soc_clk,
-    input       i_axi0_mem_clk,
-    input       i_hdmi_clk_148p5MHz,
-    input       i_hdmi_clk_74p25MHz,
-    input       i_hdmi_clk_25p25MHz,
-    input       i_pixel_clk,
-    input       i_pixel_clk_tx,
+    input                               i_soc_clk,
+    input                               i_axi0_mem_clk,
+    input                               i_hdmi_clk_148p5MHz,
+    input                               i_pixel_clk,
     
-    input       rx_cfgclk,
-    input       tx_escclk,
+    input                               rx_cfgclk,
     
-    input       pll_ddr_LOCKED,
-    output      pll_ddr_RSTN,
-    input       pll_osc2_LOCKED,
-    output      pll_osc2_RSTN,
-    input       pll_osc3_LOCKED,
-    output      pll_osc3_RSTN,
+    input                               pll_ddr_LOCKED,
+    output                              pll_ddr_RSTN,
+    input                               pll_osc2_LOCKED,
+    output                              pll_osc2_RSTN,
+    input                               pll_osc3_LOCKED,
+    output                              pll_osc3_RSTN,
     
-    input       i_sys_clk,
-    output      pll_sys_RSTN,
-    input       pll_sys_LOCKED,
+    input                               i_sys_clk,
+    output                              pll_sys_RSTN,
+    input                               pll_sys_LOCKED,
     
-    input       mipi_clk,
-    input       i_sys_clk_25mhz,
-    
-//    input       sd_base_clk,
+    input                               mipi_clk,
+    input                               i_sys_clk_25mhz,
     
     //Startup Sequencer Signals
-    output  ddr_inst_CFG_RST,   //Active-high DDR configuration controller reset.
-    output  ddr_inst_CFG_START, //Start the DDR configuration controller.
-    input   ddr_inst_CFG_DONE,  //Indicates the controller configuration is done
-    output  ddr_inst_CFG_SEL,   //To select whether to use internal DDR configuration controller or user register ports for configuration:
-                                //0: Use internal configuration controller.
-                                //1: Use register configuration ports (cfg_rst, cfg_start, cfg_done will be disabled).
+    output                              ddr_inst_CFG_RST,       //Active-high DDR configuration controller reset.
+    output                              ddr_inst_CFG_START,     //Start the DDR configuration controller.
+    input                               ddr_inst_CFG_DONE,      //Indicates the controller configuration is done
+    output                              ddr_inst_CFG_SEL,       //To select whether to use internal DDR configuration controller or user register ports for configuration:
+                                                                //0: Use internal configuration controller.
+                                                                //1: Use register configuration ports (cfg_rst, cfg_start, cfg_done will be disabled).
 
     //DDR AXI 0
-    output ddr_inst_ARST_0,
+    output                              ddr_inst_ARST_0,
     //DDR AXI 0 Read Address Channel
-    output  [32:0] ddr_inst_ARADDR_0,   //Read address. It gives the address of the first transfer in a burst transaction.
-    output  [1:0] ddr_inst_ARBURST_0,   //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
-    output  [5:0] ddr_inst_ARID_0,      //Address ID. This signal identifies the group of address signals.
-    output  [7:0] ddr_inst_ARLEN_0,     //Burst length. This signal indicates the number of transfers in a burst.
-    input   ddr_inst_ARREADY_0,         //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
-    output  [2:0]ddr_inst_ARSIZE_0,     //Burst size. This signal indicates the size of each transfer in the burst.
-    output  ddr_inst_ARVALID_0,         //Address valid. This signal indicates that the channel is signaling valid address and control information.
-    output  ddr_inst_ARLOCK_0,          //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
-    output  ddr_inst_ARAPCMD_0,         //Read auto-precharge.
-    output  ddr_inst_ARQOS_0,           //QoS indentifier for read transaction.
+    output  [32:0]                      ddr_inst_ARADDR_0,      //Read address. It gives the address of the first transfer in a burst transaction.
+    output  [1:0]                       ddr_inst_ARBURST_0,     //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
+    output  [5:0]                       ddr_inst_ARID_0,        //Address ID. This signal identifies the group of address signals.
+    output  [7:0]                       ddr_inst_ARLEN_0,       //Burst length. This signal indicates the number of transfers in a burst.
+    input                               ddr_inst_ARREADY_0,     //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
+    output  [2:0]                       ddr_inst_ARSIZE_0,      //Burst size. This signal indicates the size of each transfer in the burst.
+    output                              ddr_inst_ARVALID_0,     //Address valid. This signal indicates that the channel is signaling valid address and control information.
+    output                              ddr_inst_ARLOCK_0,      //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
+    output                              ddr_inst_ARAPCMD_0,     //Read auto-precharge.
+    output                              ddr_inst_ARQOS_0,       //QoS indentifier for read transaction.
 
     //DDR AXI 0 Wrtie Address Channel
-    output  [32:0] ddr_inst_AWADDR_0,   //Write address. It gives the address of the first transfer in a burst transaction.
-    output  [1:0] ddr_inst_AWBURST_0,   //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
-    output  [5:0] ddr_inst_AWID_0,      //Address ID. This signal identifies the group of address signals.
-    output  [7:0] ddr_inst_AWLEN_0,     //Burst length. This signal indicates the number of transfers in a burst.
-    input   ddr_inst_AWREADY_0,         //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
-    output  [2:0] ddr_inst_AWSIZE_0,    //Burst size. This signal indicates the size of each transfer in the burst.
-    output  ddr_inst_AWVALID_0,         //Address valid. This signal indicates that the channel is signaling valid address and control information.
-    output  ddr_inst_AWLOCK_0,          //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
-    output  ddr_inst_AWAPCMD_0,         //Write auto-precharge.
-    output  ddr_inst_AWQOS_0,           //QoS indentifier for write transaction.
-    output  [3:0] ddr_inst_AWCACHE_0,   //Memory type. This signal indicates how transactions are required to progress through a system.
-    output  ddr_inst_AWALLSTRB_0,       //Write all strobes asserted.
-    output  ddr_inst_AWCOBUF_0,         //Write coherent bufferable selection.
+    output  [32:0]                      ddr_inst_AWADDR_0,      //Write address. It gives the address of the first transfer in a burst transaction.
+    output  [1:0]                       ddr_inst_AWBURST_0,     //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
+    output  [5:0]                       ddr_inst_AWID_0,        //Address ID. This signal identifies the group of address signals.
+    output  [7:0]                       ddr_inst_AWLEN_0,       //Burst length. This signal indicates the number of transfers in a burst.
+    input                               ddr_inst_AWREADY_0,     //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
+    output  [2:0]                       ddr_inst_AWSIZE_0,      //Burst size. This signal indicates the size of each transfer in the burst.
+    output                              ddr_inst_AWVALID_0,     //Address valid. This signal indicates that the channel is signaling valid address and control information.
+    output                              ddr_inst_AWLOCK_0,      //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
+    output                              ddr_inst_AWAPCMD_0,     //Write auto-precharge.
+    output                              ddr_inst_AWQOS_0,       //QoS indentifier for write transaction.
+    output  [3:0]                       ddr_inst_AWCACHE_0,     //Memory type. This signal indicates how transactions are required to progress through a system.
+    output                              ddr_inst_AWALLSTRB_0,   //Write all strobes asserted.
+    output                              ddr_inst_AWCOBUF_0,     //Write coherent bufferable selection.
     
     //DDR AXI 0 Wrtie Response Channel
-    input   [5:0]ddr_inst_BID_0,        //Response ID tag. This signal is the ID tag of the write response.
-    output  ddr_inst_BREADY_0,          //Response ready. This signal indicates that the master can accept a write response.
-    input   [1:0]ddr_inst_BRESP_0,      //Read response. This signal indicates the status of the read transfer.
-    input   ddr_inst_BVALID_0,          //Write response valid. This signal indicates that the channel is signaling a valid write response.
+    input   [5:0]                       ddr_inst_BID_0,         //Response ID tag. This signal is the ID tag of the write response.
+    output                              ddr_inst_BREADY_0,      //Response ready. This signal indicates that the master can accept a write response.
+    input   [1:0]                       ddr_inst_BRESP_0,       //Read response. This signal indicates the status of the read transfer.
+    input                               ddr_inst_BVALID_0,      //Write response valid. This signal indicates that the channel is signaling a valid write response.
     
     //DDR AXI 0 Read Data Channel
-    input   [AXI_0_DATA_WIDTH-1:0] ddr_inst_RDATA_0,    //Read data.
-    input   [5:0] ddr_inst_RID_0,                       //Read ID tag. This signal is the identification tag for the read data group of signals generated by the slave.
-    input   ddr_inst_RLAST_0,                           //Read last. This signal indicates the last transfer in a read burst.
-    output  ddr_inst_RREADY_0,                          //Read ready. This signal indicates that the master can accept the read data and response information.
-    input   [1:0] ddr_inst_RRESP_0,                     //Read response. This signal indicates the status of the read transfer.
-    input   ddr_inst_RVALID_0,                          //Read valid. This signal indicates that the channel is signaling the required read data.
+    input   [AXI_0_DATA_WIDTH-1:0]      ddr_inst_RDATA_0,       //Read data.
+    input   [5:0]                       ddr_inst_RID_0,         //Read ID tag. This signal is the identification tag for the read data group of signals generated by the slave.
+    input                               ddr_inst_RLAST_0,       //Read last. This signal indicates the last transfer in a read burst.
+    output                              ddr_inst_RREADY_0,      //Read ready. This signal indicates that the master can accept the read data and response information.
+    input   [1:0]                       ddr_inst_RRESP_0,       //Read response. This signal indicates the status of the read transfer.
+    input                               ddr_inst_RVALID_0,      //Read valid. This signal indicates that the channel is signaling the required read data.
     
     //DDR AXI 0 Write Data Channel Signals
     
-    output  [AXI_0_DATA_WIDTH-1:0]  ddr_inst_WDATA_0,   //Write data. AXI4 port 0 is 256, port 1 is 128.
-    output  ddr_inst_WLAST_0,                           //Write last. This signal indicates the last transfer in a write burst.
-    input   ddr_inst_WREADY_0,                          //Write ready. This signal indicates that the slave can accept the write data.
-    output  [AXI_0_DATA_WIDTH/8-1:0] ddr_inst_WSTRB_0,  //Write strobes. This signal indicates which byte lanes hold valid data. There is one write strobe bit for each eight bits of the write data bus.
-    output  ddr_inst_WVALID_0,                          //Write valid. This signal indicates that valid write data and strobes are available.
-    
+    output  [AXI_0_DATA_WIDTH-1:0]      ddr_inst_WDATA_0,       //Write data. AXI4 port 0 is 256, port 1 is 128.
+    output                              ddr_inst_WLAST_0,       //Write last. This signal indicates the last transfer in a write burst.
+    input                               ddr_inst_WREADY_0,      //Write ready. This signal indicates that the slave can accept the write data.
+    output  [AXI_0_DATA_WIDTH/8-1:0]    ddr_inst_WSTRB_0,       //Write strobes. This signal indicates which byte lanes hold valid data. There is one write strobe bit for each eight bits of the write data bus.
+    output                              ddr_inst_WVALID_0,      //Write valid. This signal indicates that valid write data and strobes are available.
     
     //DDR AXI 1 Read Address Channel
-    output  ddr_inst_ARST_1,
-    output	[32:0] ddr_inst_ARADDR_1,   //Read address. It gives the address of the first transfer in a burst transaction.
-    output	[1:0] ddr_inst_ARBURST_1,   //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
-    output	[5:0] ddr_inst_ARID_1,      //Address ID. This signal identifies the group of address signals.
-    output	[7:0] ddr_inst_ARLEN_1,     //Burst length. This signal indicates the number of transfers in a burst.
-    input	ddr_inst_ARREADY_1,         //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
-    output	[2:0]ddr_inst_ARSIZE_1,     //Burst size. This signal indicates the size of each transfer in the burst.
-    output	ddr_inst_ARVALID_1,         //Address valid. This signal indicates that the channel is signaling valid address and control information.
-    output	ddr_inst_ARLOCK_1,          //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
-    output	ddr_inst_ARAPCMD_1,         //Read auto-precharge.
-    output	ddr_inst_ARQOS_1,           //QoS indentifier for read transaction.
+    output                              ddr_inst_ARST_1,
+    output	[32:0]                      ddr_inst_ARADDR_1,      //Read address. It gives the address of the first transfer in a burst transaction.
+    output	[1:0]                       ddr_inst_ARBURST_1,     //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
+    output	[5:0]                       ddr_inst_ARID_1,        //Address ID. This signal identifies the group of address signals.
+    output	[7:0]                       ddr_inst_ARLEN_1,       //Burst length. This signal indicates the number of transfers in a burst.
+    input	                            ddr_inst_ARREADY_1,     //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
+    output	[2:0]                       ddr_inst_ARSIZE_1,      //Burst size. This signal indicates the size of each transfer in the burst.
+    output	                            ddr_inst_ARVALID_1,     //Address valid. This signal indicates that the channel is signaling valid address and control information.
+    output	                            ddr_inst_ARLOCK_1,      //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
+    output	                            ddr_inst_ARAPCMD_1,     //Read auto-precharge.
+    output	                            ddr_inst_ARQOS_1,       //QoS indentifier for read transaction.
     
     //DDR AXI 1 Wrtie Address Channel
-    output	[32:0] ddr_inst_AWADDR_1,       //Write address. It gives the address of the first transfer in a burst transaction.
-    output	[1:0] ddr_inst_AWBURST_1,       //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
-    output	[5:0] ddr_inst_AWID_1,          //Address ID. This signal identifies the group of address signals.
-    output	[7:0] ddr_inst_AWLEN_1,         //Burst length. This signal indicates the number of transfers in a burst.
-    input	ddr_inst_AWREADY_1,             //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
-    output	[2:0] ddr_inst_AWSIZE_1,        //Burst size. This signal indicates the size of each transfer in the burst.
-    output	ddr_inst_AWVALID_1,             //Address valid. This signal indicates that the channel is signaling valid address and control information.
-    output	ddr_inst_AWLOCK_1,              //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
-    output	ddr_inst_AWAPCMD_1,             //Write auto-precharge.
-    output	ddr_inst_AWQOS_1,               //QoS indentifier for write transaction.
-    output	[3:0] ddr_inst_AWCACHE_1,       //Memory type. This signal indicates how transactions are required to progress through a system.
-    output	ddr_inst_AWALLSTRB_1,           //Write all strobes asserted.
-    output	ddr_inst_AWCOBUF_1,             //Write coherent bufferable selection.
+    output	[32:0]                      ddr_inst_AWADDR_1,      //Write address. It gives the address of the first transfer in a burst transaction.
+    output	[1:0]                       ddr_inst_AWBURST_1,     //Burst type. The burst type and the size determine how the address for each transfer within the burst is calculated.
+    output	[5:0]                       ddr_inst_AWID_1,        //Address ID. This signal identifies the group of address signals.
+    output	[7:0]                       ddr_inst_AWLEN_1,       //Burst length. This signal indicates the number of transfers in a burst.
+    input	                            ddr_inst_AWREADY_1,     //Address ready. This signal indicates that the slave is ready to accept an address and associated control signals.
+    output	[2:0]                       ddr_inst_AWSIZE_1,      //Burst size. This signal indicates the size of each transfer in the burst.
+    output	                            ddr_inst_AWVALID_1,     //Address valid. This signal indicates that the channel is signaling valid address and control information.
+    output	                            ddr_inst_AWLOCK_1,      //Lock type. This signal provides additional information about the atomic characteristics of the transfer.
+    output	                            ddr_inst_AWAPCMD_1,     //Write auto-precharge.
+    output	                            ddr_inst_AWQOS_1,       //QoS indentifier for write transaction.
+    output	[3:0]                       ddr_inst_AWCACHE_1,     //Memory type. This signal indicates how transactions are required to progress through a system.
+    output	                            ddr_inst_AWALLSTRB_1,   //Write all strobes asserted.
+    output	                            ddr_inst_AWCOBUF_1,     //Write coherent bufferable selection.
     
     //DDR AXI 1 Wrtie Response Channel
-    input	[5:0]ddr_inst_BID_1,            //Response ID tag. This signal is the ID tag of the write response.
-    output	ddr_inst_BREADY_1,              //Response ready. This signal indicates that the master can accept a write response.
-    input	[1:0]ddr_inst_BRESP_1,          //Read response. This signal indicates the status of the read transfer.
-    input	ddr_inst_BVALID_1,              //Write response valid. This signal indicates that the channel is signaling a valid write response.
+    input	[5:0]                       ddr_inst_BID_1,         //Response ID tag. This signal is the ID tag of the write response.
+    output	                            ddr_inst_BREADY_1,      //Response ready. This signal indicates that the master can accept a write response.
+    input	[1:0]                       ddr_inst_BRESP_1,       //Read response. This signal indicates the status of the read transfer.
+    input	                            ddr_inst_BVALID_1,      //Write response valid. This signal indicates that the channel is signaling a valid write response.
     
     //DDR AXI 1 Read Data Channel
-    input	[AXI_1_DATA_WIDTH-1:0] ddr_inst_RDATA_1,    //Read data.
-    input	[5:0] ddr_inst_RID_1,                       //Read ID tag. This signal is the identification tag for the read data group of signals generated by the slave.
-    input	ddr_inst_RLAST_1,                           //Read last. This signal indicates the last transfer in a read burst.
-    output	ddr_inst_RREADY_1,                          //Read ready. This signal indicates that the master can accept the read data and response information.
-    input	[1:0] ddr_inst_RRESP_1,                     //Read response. This signal indicates the status of the read transfer.
-    input	ddr_inst_RVALID_1,                          //Read valid. This signal indicates that the channel is signaling the required read data.
+    input	[AXI_1_DATA_WIDTH-1:0]      ddr_inst_RDATA_1,       //Read data.
+    input	[5:0]                       ddr_inst_RID_1,         //Read ID tag. This signal is the identification tag for the read data group of signals generated by the slave.
+    input	                            ddr_inst_RLAST_1,       //Read last. This signal indicates the last transfer in a read burst.
+    output	                            ddr_inst_RREADY_1,      //Read ready. This signal indicates that the master can accept the read data and response information.
+    input	[1:0]                       ddr_inst_RRESP_1,       //Read response. This signal indicates the status of the read transfer.
+    input	                            ddr_inst_RVALID_1,      //Read valid. This signal indicates that the channel is signaling the required read data.
     
     //DDR AXI 1 Write Data Channel Signals
-    output	[AXI_1_DATA_WIDTH-1:0]  ddr_inst_WDATA_1,   //Write data. AXI4 port 0 is 256, port 1 is 128.
-    output	ddr_inst_WLAST_1,                           //Write last. This signal indicates the last transfer in a write burst.
-    input	ddr_inst_WREADY_1,                          //Write ready. This signal indicates that the slave can accept the write data.
-    output	[AXI_1_DATA_WIDTH/8-1:0] ddr_inst_WSTRB_1,  //Write strobes. This signal indicates which byte lanes hold valid data. There is one write strobe bit for each eight bits of the write data bus.
-    output	ddr_inst_WVALID_1,                          //Write valid. This signal indicates that valid write data and strobes are available.
+    output	[AXI_1_DATA_WIDTH-1:0]      ddr_inst_WDATA_1,       //Write data. AXI4 port 0 is 256, port 1 is 128.
+    output	                            ddr_inst_WLAST_1,       //Write last. This signal indicates the last transfer in a write burst.
+    input	                            ddr_inst_WREADY_1,      //Write ready. This signal indicates that the slave can accept the write data.
+    output	[AXI_1_DATA_WIDTH/8-1:0]    ddr_inst_WSTRB_1,       //Write strobes. This signal indicates which byte lanes hold valid data. There is one write strobe bit for each eight bits of the write data bus.
+    output	                            ddr_inst_WVALID_1,      //Write valid. This signal indicates that valid write data and strobes are available.
     
     //SOC port
-    output  system_spi_0_io_sclk_write,
-    output  system_spi_0_io_data_0_writeEnable,
-    input   system_spi_0_io_data_0_read,
-    output  system_spi_0_io_data_0_write,
-    output  system_spi_0_io_data_1_writeEnable,
-    input   system_spi_0_io_data_1_read,
-    output  system_spi_0_io_data_1_write,
-    output  system_spi_0_io_ss,
+    output                              system_spi_0_io_sclk_write,
+    output                              system_spi_0_io_data_0_writeEnable,
+    input                               system_spi_0_io_data_0_read,
+    output                              system_spi_0_io_data_0_write,
+    output                              system_spi_0_io_data_1_writeEnable,
+    input                               system_spi_0_io_data_1_read,
+    output                              system_spi_0_io_data_1_write,
+    output                              system_spi_0_io_ss,
     
-    output  system_spi_1_io_sclk_write,
-    output  system_spi_1_io_data_0_writeEnable,
-    input   system_spi_1_io_data_0_read,
-    output  system_spi_1_io_data_0_write,
-    output  system_spi_1_io_data_1_writeEnable,
-    input   system_spi_1_io_data_1_read,
-    output  system_spi_1_io_data_1_write,
-    output  system_spi_1_io_ss,
+    output                              system_spi_1_io_sclk_write,
+    output                              system_spi_1_io_data_0_writeEnable,
+    input                               system_spi_1_io_data_0_read,
+    output                              system_spi_1_io_data_0_write,
+    output                              system_spi_1_io_data_1_writeEnable,
+    input                               system_spi_1_io_data_1_read,
+    output                              system_spi_1_io_data_1_write,
+    output                              system_spi_1_io_ss,
     
-    output  system_uart_0_io_txd,
-    input   system_uart_0_io_rxd,
+    output                              system_uart_0_io_txd,
+    input                               system_uart_0_io_rxd,
     
     //CSI Camera interface
-    input   i_cam_sda,
-    output  o_cam_sda_oe,
-    input   i_cam_scl,
-    output  o_cam_scl_oe,
+    input                               i_cam_sda,
+    output                              o_cam_sda_oe,
+    input                               i_cam_scl,
+    output                              o_cam_scl_oe,
 
     //CSI RX Interface
     //MIPI DPHY RX0
-    input  mipi_dphy_rx_inst1_WORD_CLKOUT_HS,
-    output mipi_dphy_rx_inst1_FORCE_RX_MODE,
-    output mipi_dphy_rx_inst1_RESET_N,
-    output mipi_dphy_rx_inst1_RST0_N,
-    input mipi_dphy_rx_inst1_ERR_CONTENTION_LP0,
-    input mipi_dphy_rx_inst1_ERR_CONTENTION_LP1,
-    input mipi_dphy_rx_inst1_ERR_CONTROL_LAN0,
-    input mipi_dphy_rx_inst1_ERR_CONTROL_LAN1,
-    input mipi_dphy_rx_inst1_ERR_ESC_LAN0,
-    input mipi_dphy_rx_inst1_ERR_ESC_LAN1,
-    input mipi_dphy_rx_inst1_ERR_SOT_HS_LAN0,
-    input mipi_dphy_rx_inst1_ERR_SOT_HS_LAN1,
-    input mipi_dphy_rx_inst1_ERR_SOT_SYNC_HS_LAN0,
-    input mipi_dphy_rx_inst1_ERR_SOT_SYNC_HS_LAN1,
-    input mipi_dphy_rx_inst1_LP_CLK,
-    input mipi_dphy_rx_inst1_RX_ACTIVE_HS_LAN0,
-    input mipi_dphy_rx_inst1_RX_ACTIVE_HS_LAN1,
-    input mipi_dphy_rx_inst1_RX_CLK_ACTIVE_HS,
-    input mipi_dphy_rx_inst1_ESC_LAN0_CLK,
-    input mipi_dphy_rx_inst1_ESC_LAN1_CLK,
-    input [7:0] mipi_dphy_rx_inst1_RX_DATA_ESC,
-    input [CSI_RX_DATA_WIDTH_LANE-1:0] mipi_dphy_rx_inst1_RX_DATA_HS_LAN0,
-    input [CSI_RX_DATA_WIDTH_LANE-1:0] mipi_dphy_rx_inst1_RX_DATA_HS_LAN1,
-    input mipi_dphy_rx_inst1_RX_LPDT_ESC,
-    input mipi_dphy_rx_inst1_RX_SKEW_CAL_HS_LAN0,
-    input mipi_dphy_rx_inst1_RX_SKEW_CAL_HS_LAN1,
-    input mipi_dphy_rx_inst1_RX_SYNC_HS_LAN0,
-    input mipi_dphy_rx_inst1_RX_SYNC_HS_LAN1,
-    input [3:0] mipi_dphy_rx_inst1_RX_TRIGGER_ESC,
-    input mipi_dphy_rx_inst1_RX_ULPS_ACTIVE_CLK_NOT,
-    input mipi_dphy_rx_inst1_RX_ULPS_ACTIVE_NOT_LAN0,
-    input mipi_dphy_rx_inst1_RX_ULPS_ACTIVE_NOT_LAN1,
-    input mipi_dphy_rx_inst1_RX_ULPS_CLK_NOT,
-    input mipi_dphy_rx_inst1_RX_ULPS_ESC_LAN0,
-    input mipi_dphy_rx_inst1_RX_ULPS_ESC_LAN1,
-    input mipi_dphy_rx_inst1_RX_VALID_ESC,
-    input mipi_dphy_rx_inst1_RX_VALID_HS_LAN0,
-    input mipi_dphy_rx_inst1_RX_VALID_HS_LAN1,
-    input mipi_dphy_rx_inst1_STOPSTATE_CLK,
-    input mipi_dphy_rx_inst1_STOPSTATE_LAN0,
-    input mipi_dphy_rx_inst1_STOPSTATE_LAN1,
+    input                               mipi_dphy_rx_inst1_WORD_CLKOUT_HS,
+    output                              mipi_dphy_rx_inst1_FORCE_RX_MODE,
+    output                              mipi_dphy_rx_inst1_RESET_N,
+    output                              mipi_dphy_rx_inst1_RST0_N,
+    input                               mipi_dphy_rx_inst1_ERR_CONTENTION_LP0,
+    input                               mipi_dphy_rx_inst1_ERR_CONTENTION_LP1,
+    input                               mipi_dphy_rx_inst1_ERR_CONTROL_LAN0,
+    input                               mipi_dphy_rx_inst1_ERR_CONTROL_LAN1,
+    input                               mipi_dphy_rx_inst1_ERR_ESC_LAN0,
+    input                               mipi_dphy_rx_inst1_ERR_ESC_LAN1,
+    input                               mipi_dphy_rx_inst1_ERR_SOT_HS_LAN0,
+    input                               mipi_dphy_rx_inst1_ERR_SOT_HS_LAN1,
+    input                               mipi_dphy_rx_inst1_ERR_SOT_SYNC_HS_LAN0,
+    input                               mipi_dphy_rx_inst1_ERR_SOT_SYNC_HS_LAN1,
+    input                               mipi_dphy_rx_inst1_LP_CLK,
+    input                               mipi_dphy_rx_inst1_RX_ACTIVE_HS_LAN0,
+    input                               mipi_dphy_rx_inst1_RX_ACTIVE_HS_LAN1,
+    input                               mipi_dphy_rx_inst1_RX_CLK_ACTIVE_HS,
+    input                               mipi_dphy_rx_inst1_ESC_LAN0_CLK,
+    input                               mipi_dphy_rx_inst1_ESC_LAN1_CLK,
+    input [7:0]                         mipi_dphy_rx_inst1_RX_DATA_ESC,
+    input [CSI_RX_DATA_WIDTH_LANE-1:0]  mipi_dphy_rx_inst1_RX_DATA_HS_LAN0,
+    input [CSI_RX_DATA_WIDTH_LANE-1:0]  mipi_dphy_rx_inst1_RX_DATA_HS_LAN1,
+    input                               mipi_dphy_rx_inst1_RX_LPDT_ESC,
+    input                               mipi_dphy_rx_inst1_RX_SKEW_CAL_HS_LAN0,
+    input                               mipi_dphy_rx_inst1_RX_SKEW_CAL_HS_LAN1,
+    input                               mipi_dphy_rx_inst1_RX_SYNC_HS_LAN0,
+    input                               mipi_dphy_rx_inst1_RX_SYNC_HS_LAN1,
+    input [3:0]                         mipi_dphy_rx_inst1_RX_TRIGGER_ESC,
+    input                               mipi_dphy_rx_inst1_RX_ULPS_ACTIVE_CLK_NOT,
+    input                               mipi_dphy_rx_inst1_RX_ULPS_ACTIVE_NOT_LAN0,
+    input                               mipi_dphy_rx_inst1_RX_ULPS_ACTIVE_NOT_LAN1,
+    input                               mipi_dphy_rx_inst1_RX_ULPS_CLK_NOT,
+    input                               mipi_dphy_rx_inst1_RX_ULPS_ESC_LAN0,
+    input                               mipi_dphy_rx_inst1_RX_ULPS_ESC_LAN1,
+    input                               mipi_dphy_rx_inst1_RX_VALID_ESC,
+    input                               mipi_dphy_rx_inst1_RX_VALID_HS_LAN0,
+    input                               mipi_dphy_rx_inst1_RX_VALID_HS_LAN1,
+    input                               mipi_dphy_rx_inst1_STOPSTATE_CLK,
+    input                               mipi_dphy_rx_inst1_STOPSTATE_LAN0,
+    input                               mipi_dphy_rx_inst1_STOPSTATE_LAN1,
 
     // I2C Configuration for HDMI
-    input i_hdmi_sda,
-    output o_hdmi_sda_oe,
-    input i_hdmi_scl,
-    output o_hdmi_scl_oe,
+    input                               i_hdmi_sda,
+    output                              o_hdmi_sda_oe,
+    input                               i_hdmi_scl,
+    output                              o_hdmi_scl_oe,
     
     // HDMI YUV Output
-    output  hdmi_yuv_vs,
-    output  hdmi_yuv_hs,
-    output  hdmi_yuv_de,
-    output  [15:0]  hdmi_yuv_data,
+    output                              hdmi_yuv_vs,
+    output                              hdmi_yuv_hs,
+    output                              hdmi_yuv_de,
+    output  [15:0]                      hdmi_yuv_data,
     
     //LED, SW
-    output [5:0] o_led,
-    input  [1:0] i_sw,
+    output [5:0]                        o_led,
+    input  [1:0]                        i_sw,
     
-    //Debug Interface
+    // Debug Interface
     // Soft Tap
-    input  io_jtag_tms,
-    input  io_jtag_tdi,
-    output io_jtag_tdo,
-    input  io_jtag_tck,
+    input                               io_jtag_tms,
+    input                               io_jtag_tdi,
+    output                              io_jtag_tdo,
+    input                               io_jtag_tck,
     
     // Jtag
-    input  jtag_inst1_TCK,
-    input  jtag_inst1_TDI,
-    output jtag_inst1_TDO,
-    input  jtag_inst1_SEL,
-    input  jtag_inst1_CAPTURE,
-    input  jtag_inst1_SHIFT,
-    input  jtag_inst1_UPDATE,
-    input  jtag_inst1_RESET
+    input                               jtag_inst1_TCK,
+    input                               jtag_inst1_TDI,
+    output                              jtag_inst1_TDO,
+    input                               jtag_inst1_SEL,
+    input                               jtag_inst1_CAPTURE,
+    input                               jtag_inst1_SHIFT,
+    input                               jtag_inst1_UPDATE,
+    input                               jtag_inst1_RESET
 );
 
 
@@ -309,269 +301,269 @@ wire i_arstn;
 wire mipi_rstn;
 
 // CSI Controller
-localparam CSI_RX_PIXEL_DATAWIDTH = CAM_PIXEL_RX_MEM_DATAWIDTH;
-localparam CSI_RX_PIXEL_PER_CLK = 4;
-localparam CSI_RX_TOTAL_DATAWIDTH = CSI_RX_PIXEL_DATAWIDTH * CSI_RX_PIXEL_PER_CLK;
-localparam  CSI_RX_NUM_DATA_LANE =2;
-localparam  CSI_RX_DATA_WIDTH_LANE = 16;
-localparam  CAM_PIXEL_RX_DATAWIDTH = 10;   //RAW10, RAW12
-localparam  CAM_PIXEL_RX_MEM_DATAWIDTH = 8;
+localparam CSI_RX_PIXEL_DATAWIDTH     = CAM_PIXEL_RX_MEM_DATAWIDTH;
+localparam CSI_RX_PIXEL_PER_CLK       = 4;
+localparam CSI_RX_TOTAL_DATAWIDTH     = CSI_RX_PIXEL_DATAWIDTH * CSI_RX_PIXEL_PER_CLK;
+localparam CSI_RX_NUM_DATA_LANE       = 2;
+localparam CSI_RX_DATA_WIDTH_LANE     = 16;
+localparam CAM_PIXEL_RX_DATAWIDTH     = 10;   //RAW10, RAW12
+localparam CAM_PIXEL_RX_MEM_DATAWIDTH = 8;
 
-wire w_rx_out_de;
-wire w_rx_out_vs;
-wire w_rx_out_hs;
+wire                                  w_rx_out_de;
+wire                                  w_rx_out_vs;
+wire                                  w_rx_out_hs;
 wire [CAM_PIXEL_RX_MEM_DATAWIDTH-1:0] w_rx_out_data_00;
 wire [CAM_PIXEL_RX_MEM_DATAWIDTH-1:0] w_rx_out_data_01;
 wire [CAM_PIXEL_RX_MEM_DATAWIDTH-1:0] w_rx_out_data_10;
 wire [CAM_PIXEL_RX_MEM_DATAWIDTH-1:0] w_rx_out_data_11;
-wire [5:0] rx_out_dt;
+wire [5:0]                            rx_out_dt;
 
 //ddr4 config
-wire [31:0] io_ddrA_ar_payload_addr_i;
-wire [31:0] io_ddrA_aw_payload_addr_i;
-wire [7:0]  io_ddrA_ar_payload_id_i;
-wire [7:0]  io_ddrA_aw_payload_id_i;
-wire [7:0]  io_ddrA_b_payload_id_i;
-wire [7:0]  io_ddrA_r_payload_id_i;
-wire ddr_cfg_ok;
+wire [31:0]                           io_ddrA_ar_payload_addr_i;
+wire [31:0]                           io_ddrA_aw_payload_addr_i;
+wire [7:0]                            io_ddrA_ar_payload_id_i;
+wire [7:0]                            io_ddrA_aw_payload_id_i;
+wire [7:0]                            io_ddrA_b_payload_id_i;
+wire [7:0]                            io_ddrA_r_payload_id_i;
+wire                                  ddr_cfg_ok;
 
 // Camera Input Preprocessing
-wire            cam_dma_wready;
-wire            cam_dma_wvalid;
-wire            cam_dma_wlast;
-wire [63:0]     cam_dma_wdata;
-wire [63:0]     w_mapped_raw_data;
+wire                                  cam_dma_wready;
+wire                                  cam_dma_wvalid;
+wire                                  cam_dma_wlast;
+wire [63:0]                           cam_dma_wdata;
+wire [63:0]                           w_mapped_raw_data;
 
 // Display Hdmi
-wire [63:0] display_dma_rdata;
-wire        display_dma_rvalid;
-wire [7:0]  display_dma_rkeep;
-wire        display_dma_rready;
-wire [31:0] debug_cam_display_fifo_status;
-wire debug_display_dma_fifo_underflow;
-wire debug_display_dma_fifo_overflow;
-wire wRstDebugReg;
-wire debug_cam_pixel_remap_fifo_underflow;
-wire debug_cam_pixel_remap_fifo_overflow;
-wire debug_cam_dma_fifo_underflow;
-wire debug_cam_dma_fifo_overflow;
-wire  [31:0]    debug_display_dma_fifo_rcount; 
-wire  [31:0]    debug_display_dma_fifo_wcount;
+wire [63:0]                           display_dma_rdata;
+wire                                  display_dma_rvalid;
+wire [7:0]                            display_dma_rkeep;
+wire                                  display_dma_rready;
+wire [31:0]                           debug_cam_display_fifo_status;
+wire                                  debug_display_dma_fifo_underflow;
+wire                                  debug_display_dma_fifo_overflow;
+wire                                  wRstDebugReg;
+wire                                  debug_cam_pixel_remap_fifo_underflow;
+wire                                  debug_cam_pixel_remap_fifo_overflow;
+wire                                  debug_cam_dma_fifo_underflow;
+wire                                  debug_cam_dma_fifo_overflow;
+wire  [31:0]                          debug_display_dma_fifo_rcount; 
+wire  [31:0]                          debug_display_dma_fifo_wcount;
 
 // Picam Debug register to APB status registers.
-wire            debug_cam_dma_fifo_overflow;
-wire            debug_cam_dma_fifo_underflow;
-wire [31:0]     debug_cam_dma_fifo_rcount;
-wire [31:0]     debug_cam_dma_fifo_wcount;
-wire [31:0]     debug_cam_dma_status;
+wire                                  debug_cam_dma_fifo_overflow;
+wire                                  debug_cam_dma_fifo_underflow;
+wire [31:0]                           debug_cam_dma_fifo_rcount;
+wire [31:0]                           debug_cam_dma_fifo_wcount;
+wire [31:0]                           debug_cam_dma_status;
 
-wire [15:0]     rgb_control;
-wire            trigger_capture_frame;
-wire            continuous_capture_frame;
-wire            rgb_gray;
-wire            cam_dma_init_done;
-wire [31:0]     frames_per_second;
-wire [31:0]     set_offset_display_rgb;
-wire hw_accel_dma_init_done;
+wire [15:0]                           rgb_control;
+wire                                  trigger_capture_frame;
+wire                                  continuous_capture_frame;
+wire                                  rgb_gray;
+wire                                  cam_dma_init_done;
+wire [31:0]                           frames_per_second;
+wire [31:0]                           set_offset_display_rgb;
+wire                                  hw_accel_dma_init_done;
 
 
 // Sapphire Soc
 
 //APB Slave 0  (DMA)
-wire    [15:0]  w_dma_apbSlave_PADDR;
-wire    [0:0]   w_dma_apbSlave_PSEL;
-wire            w_dma_apbSlave_PENABLE;
-wire            w_dma_apbSlave_PREADY;
-wire            w_dma_apbSlave_PWRITE;
-wire    [31:0]  w_dma_apbSlave_PWDATA;
-wire    [31:0]  w_dma_apbSlave_PRDATA;
-wire            w_dma_apbSlave_PSLVERROR;
-wire            w_dma_ctrl_interrupt;
+wire    [15:0]                        w_dma_apbSlave_PADDR;
+wire    [0:0]                         w_dma_apbSlave_PSEL;
+wire                                  w_dma_apbSlave_PENABLE;
+wire                                  w_dma_apbSlave_PREADY;
+wire                                  w_dma_apbSlave_PWRITE;
+wire    [31:0]                        w_dma_apbSlave_PWDATA;
+wire    [31:0]                        w_dma_apbSlave_PRDATA;
+wire                                  w_dma_apbSlave_PSLVERROR;
+wire                                  w_dma_ctrl_interrupt;
 
 //APB Slave 1  (Regsisters Test)
-wire    [15:0]   w_apbSlave_1_PADDR;
-wire    [0:0]    w_apbSlave_1_PSEL;
-wire             w_apbSlave_1_PENABLE;
-wire             w_apbSlave_1_PREADY;
-wire             w_apbSlave_1_PWRITE;
-wire    [31:0]   w_apbSlave_1_PWDATA;
-wire    [31:0]   w_apbSlave_1_PRDATA;
-wire             w_apbSlave_1_PSLVERROR;
+wire    [15:0]                        w_apbSlave_1_PADDR;
+wire    [0:0]                         w_apbSlave_1_PSEL;
+wire                                  w_apbSlave_1_PENABLE;
+wire                                  w_apbSlave_1_PREADY;
+wire                                  w_apbSlave_1_PWRITE;
+wire    [31:0]                        w_apbSlave_1_PWDATA;
+wire    [31:0]                        w_apbSlave_1_PRDATA;
+wire                                  w_apbSlave_1_PSLVERROR;
 
 //AXI Slave 0
-wire [7:0]      axi_awid;
-wire [31:0]     axi_awaddr;
-wire [7:0]      axi_awlen;
-wire [2:0]      axi_awsize;
-wire [1:0]      axi_awburst;
-wire            axi_awlock;
-wire [3:0]      axi_awcache;
-wire [2:0]      axi_awprot;
-wire [3:0]      axi_awqos;
-wire [3:0]      axi_awregion;
-wire            axi_awvalid;
-wire            axi_awready;
-wire [31:0]     axi_wdata;
-wire [3:0]      axi_wstrb;
-wire            axi_wvalid;
-wire            axi_wlast;
-wire            axi_wready;
-wire [7:0]      axi_bid;
-wire [1:0]      axi_bresp;
-wire            axi_bvalid;
-wire            axi_bready;
-wire [7:0]      axi_arid;
-wire [31:0]     axi_araddr;
-wire [7:0]      axi_arlen;
-wire [2:0]      axi_arsize;
-wire [1:0]      axi_arburst;
-wire            axi_arlock;
-wire [3:0]      axi_arcache;
-wire [2:0]      axi_arprot;
-wire [3:0]      axi_arqos;
-wire [3:0]      axi_arregion;
-wire            axi_arvalid;
-wire            axi_arready;
-wire [7:0]      axi_rid;
-wire [31:0]     axi_rdata;
-wire [1:0]      axi_rresp;
-wire            axi_rlast;
-wire            axi_rvalid;
-wire            axi_rready;
-wire            axi4Interrupt;
+wire [7:0]                            axi_awid;
+wire [31:0]                           axi_awaddr;
+wire [7:0]                            axi_awlen;
+wire [2:0]                            axi_awsize;
+wire [1:0]                            axi_awburst;
+wire                                  axi_awlock;
+wire [3:0]                            axi_awcache;
+wire [2:0]                            axi_awprot;
+wire [3:0]                            axi_awqos;
+wire [3:0]                            axi_awregion;
+wire                                  axi_awvalid;
+wire                                  axi_awready;
+wire [31:0]                           axi_wdata;
+wire [3:0]                            axi_wstrb;
+wire                                  axi_wvalid;
+wire                                  axi_wlast;
+wire                                  axi_wready;
+wire [7:0]                            axi_bid;
+wire [1:0]                            axi_bresp;
+wire                                  axi_bvalid;
+wire                                  axi_bready;
+wire [7:0]                            axi_arid;
+wire [31:0]                           axi_araddr;
+wire [7:0]                            axi_arlen;
+wire [2:0]                            axi_arsize;
+wire [1:0]                            axi_arburst;
+wire                                  axi_arlock;
+wire [3:0]                            axi_arcache;
+wire [2:0]                            axi_arprot;
+wire [3:0]                            axi_arqos;
+wire [3:0]                            axi_arregion;
+wire                                  axi_arvalid;
+wire                                  axi_arready;
+wire [7:0]                            axi_rid;
+wire [31:0]                           axi_rdata;
+wire [1:0]                            axi_rresp;
+wire                                  axi_rlast;
+wire                                  axi_rvalid;
+wire                                  axi_rready;
+wire                                  axi4Interrupt;
 
 //Hardware accelerator
-wire            hw_accel_dma_rready;
-wire            hw_accel_dma_rvalid;
-wire [3:0]      hw_accel_dma_rkeep;
-wire [31:0]     hw_accel_dma_rdata;
-wire            hw_accel_dma_wready;
-wire            hw_accel_dma_wvalid;
-wire            hw_accel_dma_wlast;
-wire [31:0]     hw_accel_dma_wdata;
-wire            hw_accel_axi_we;
-wire [31:0]     hw_accel_axi_waddr;
-wire [31:0]     hw_accel_axi_wdata;
-wire            hw_accel_axi_re;
-wire [31:0]     hw_accel_axi_raddr;
-wire [31:0]     hw_accel_axi_rdata;
-wire            hw_accel_axi_rvalid;
+wire                                  hw_accel_dma_rready;
+wire                                  hw_accel_dma_rvalid;
+wire [3:0]                            hw_accel_dma_rkeep;
+wire [31:0]                           hw_accel_dma_rdata;
+wire                                  hw_accel_dma_wready;
+wire                                  hw_accel_dma_wvalid;
+wire                                  hw_accel_dma_wlast;
+wire [31:0]                           hw_accel_dma_wdata;
+wire                                  hw_accel_axi_we;
+wire [31:0]                           hw_accel_axi_waddr;
+wire [31:0]                           hw_accel_axi_wdata;
+wire                                  hw_accel_axi_re;
+wire [31:0]                           hw_accel_axi_raddr;
+wire [31:0]                           hw_accel_axi_rdata;
+wire                                  hw_accel_axi_rvalid;
 
-wire            debug_dma_hw_accel_in_fifo_underflow;
-wire            debug_dma_hw_accel_in_fifo_overflow;
-wire            debug_dma_hw_accel_out_fifo_underflow;
-wire            debug_dma_hw_accel_out_fifo_overflow;
-wire  [31:0]    debug_dma_hw_accel_in_fifo_wcount;
-wire  [31:0]    debug_dma_hw_accel_out_fifo_rcount;
+wire                                  debug_dma_hw_accel_in_fifo_underflow;
+wire                                  debug_dma_hw_accel_in_fifo_overflow;
+wire                                  debug_dma_hw_accel_out_fifo_underflow;
+wire                                  debug_dma_hw_accel_out_fifo_overflow;
+wire  [31:0]                          debug_dma_hw_accel_in_fifo_wcount;
+wire  [31:0]                          debug_dma_hw_accel_out_fifo_rcount;
 
-wire            peripheralClk;
-wire            peripheralReset; 
+wire                                  peripheralClk;
+wire                                  peripheralReset; 
 
 //Custom instruction
-wire            cpu_customInstruction_cmd_valid;
-wire            cpu_customInstruction_cmd_ready;
-wire  [9:0]     cpu_customInstruction_function_id;
-wire  [31:0]    cpu_customInstruction_inputs_0;
-wire  [31:0]    cpu_customInstruction_inputs_1;
-wire            cpu_customInstruction_rsp_valid;
-wire            cpu_customInstruction_rsp_ready;
-wire  [31:0]    cpu_customInstruction_outputs_0;
-wire            cpu_customInstruction_cmd_int;
+wire                                  cpu_customInstruction_cmd_valid;
+wire                                  cpu_customInstruction_cmd_ready;
+wire  [9:0]                           cpu_customInstruction_function_id;
+wire  [31:0]                          cpu_customInstruction_inputs_0;
+wire  [31:0]                          cpu_customInstruction_inputs_1;
+wire                                  cpu_customInstruction_rsp_valid;
+wire                                  cpu_customInstruction_rsp_ready;
+wire  [31:0]                          cpu_customInstruction_outputs_0;
+wire                                  cpu_customInstruction_cmd_int;
 
 // AXI for TinyML Accelerator
 localparam AXI_TINYML_DATA_WIDTH =  AXI_0_DATA_WIDTH;
 
-wire [7:0]                          axi_tinyml_awid;
-wire [31:0]                         axi_tinyml_awaddr;
-wire [7:0]                          axi_tinyml_awlen;
-wire [2:0]                          axi_tinyml_awsize;
-wire [1:0]                          axi_tinyml_awburst;
-wire                                axi_tinyml_awlock;
-wire [3:0]                          axi_tinyml_awcache;
-wire [2:0]                          axi_tinyml_awprot;
-wire [3:0]                          axi_tinyml_awqos;
-wire                                axi_tinyml_awvalid;
-wire                                axi_tinyml_awready;
-wire [AXI_TINYML_DATA_WIDTH-1:0]    axi_tinyml_wdata;
-wire [AXI_TINYML_DATA_WIDTH/8-1:0]  axi_tinyml_wstrb;
-wire                                axi_tinyml_wlast;
-wire                                axi_tinyml_wvalid;
-wire                                axi_tinyml_wready;
+wire [7:0]                            axi_tinyml_awid;
+wire [31:0]                           axi_tinyml_awaddr;
+wire [7:0]                            axi_tinyml_awlen;
+wire [2:0]                            axi_tinyml_awsize;
+wire [1:0]                            axi_tinyml_awburst;
+wire                                  axi_tinyml_awlock;
+wire [3:0]                            axi_tinyml_awcache;
+wire [2:0]                            axi_tinyml_awprot;
+wire [3:0]                            axi_tinyml_awqos;
+wire                                  axi_tinyml_awvalid;
+wire                                  axi_tinyml_awready;
+wire [AXI_TINYML_DATA_WIDTH-1:0]      axi_tinyml_wdata;
+wire [AXI_TINYML_DATA_WIDTH/8-1:0]    axi_tinyml_wstrb;
+wire                                  axi_tinyml_wlast;
+wire                                  axi_tinyml_wvalid;
+wire                                  axi_tinyml_wready;
 
-wire [7:0]                          axi_tinyml_bid;
-wire [1:0]                          axi_tinyml_bresp;
-wire                                axi_tinyml_bvalid;
-wire                                axi_tinyml_bready;
-wire [7:0]                          axi_tinyml_arid;
-wire [31:0]                         axi_tinyml_araddr;
-wire [7:0]                          axi_tinyml_arlen;
-wire [2:0]                          axi_tinyml_arsize;
-wire [1:0]                          axi_tinyml_arburst;
-wire                                axi_tinyml_arlock;
-wire [3:0]                          axi_tinyml_arcache;
-wire [2:0]                          axi_tinyml_arprot;
-wire [3:0]                          axi_tinyml_arqos;
-wire                                axi_tinyml_arvalid;
-wire                                axi_tinyml_arready;
-wire [7:0]                          axi_tinyml_rid;
-wire [AXI_TINYML_DATA_WIDTH-1:0]    axi_tinyml_rdata;
-wire [1:0]                          axi_tinyml_rresp;
-wire                                axi_tinyml_rlast;
-wire                                axi_tinyml_rvalid;
-wire                                axi_tinyml_rready;
+wire [7:0]                            axi_tinyml_bid;
+wire [1:0]                            axi_tinyml_bresp;
+wire                                  axi_tinyml_bvalid;
+wire                                  axi_tinyml_bready;
+wire [7:0]                            axi_tinyml_arid;
+wire [31:0]                           axi_tinyml_araddr;
+wire [7:0]                            axi_tinyml_arlen;
+wire [2:0]                            axi_tinyml_arsize;
+wire [1:0]                            axi_tinyml_arburst;
+wire                                  axi_tinyml_arlock;
+wire [3:0]                            axi_tinyml_arcache;
+wire [2:0]                            axi_tinyml_arprot;
+wire [3:0]                            axi_tinyml_arqos;
+wire                                  axi_tinyml_arvalid;
+wire                                  axi_tinyml_arready;
+wire [7:0]                            axi_tinyml_rid;
+wire [AXI_TINYML_DATA_WIDTH-1:0]      axi_tinyml_rdata;
+wire [1:0]                            axi_tinyml_rresp;
+wire                                  axi_tinyml_rlast;
+wire                                  axi_tinyml_rvalid;
+wire                                  axi_tinyml_rready;
 
 // AXI for Soc
 localparam AXI_SOC_DATA_WIDTH =  AXI_0_DATA_WIDTH;
 
-wire [7:0]                          axi_soc_awid;
-wire [31:0]                         axi_soc_awaddr;
-wire [7:0]                          axi_soc_awlen;
-wire [2:0]                          axi_soc_awsize;
-wire [1:0]                          axi_soc_awburst;
-wire                                axi_soc_awlock;
-wire [3:0]                          axi_soc_awcache;
-wire [2:0]                          axi_soc_awprot;
-wire [3:0]                          axi_soc_awqos;
-wire                                axi_soc_awvalid;
-wire                                axi_soc_awready;
-wire [AXI_SOC_DATA_WIDTH-1:0]       axi_soc_wdata;
-wire [AXI_SOC_DATA_WIDTH/8-1:0]     axi_soc_wstrb;
-wire                                axi_soc_wlast;
-wire                                axi_soc_wvalid;
-wire                                axi_soc_wready;
+wire [7:0]                            axi_soc_awid;
+wire [31:0]                           axi_soc_awaddr;
+wire [7:0]                            axi_soc_awlen;
+wire [2:0]                            axi_soc_awsize;
+wire [1:0]                            axi_soc_awburst;
+wire                                  axi_soc_awlock;
+wire [3:0]                            axi_soc_awcache;
+wire [2:0]                            axi_soc_awprot;
+wire [3:0]                            axi_soc_awqos;
+wire                                  axi_soc_awvalid;
+wire                                  axi_soc_awready;
+wire [AXI_SOC_DATA_WIDTH-1:0]         axi_soc_wdata;
+wire [AXI_SOC_DATA_WIDTH/8-1:0]       axi_soc_wstrb;
+wire                                  axi_soc_wlast;
+wire                                  axi_soc_wvalid;
+wire                                  axi_soc_wready;
 
-wire [7:0]                          axi_soc_bid;
-wire [1:0]                          axi_soc_bresp;
-wire                                axi_soc_bvalid;
-wire                                axi_soc_bready;
-wire [7:0]                          axi_soc_arid;
-wire [31:0]                         axi_soc_araddr;
-wire [7:0]                          axi_soc_arlen;
-wire [2:0]                          axi_soc_arsize;
-wire [1:0]                          axi_soc_arburst;
-wire                                axi_soc_arlock;
-wire [3:0]                          axi_soc_arcache;
-wire [2:0]                          axi_soc_arprot;
-wire [3:0]                          axi_soc_arqos;
-wire                                axi_soc_arvalid;
-wire                                axi_soc_arready;
-wire [7:0]                          axi_soc_rid;
-wire [AXI_SOC_DATA_WIDTH-1:0]       axi_soc_rdata;
-wire [1:0]                          axi_soc_rresp;
-wire                                axi_soc_rlast;
-wire                                axi_soc_rvalid;
-wire                                axi_soc_rready;
+wire [7:0]                            axi_soc_bid;
+wire [1:0]                            axi_soc_bresp;
+wire                                  axi_soc_bvalid;
+wire                                  axi_soc_bready;
+wire [7:0]                            axi_soc_arid;
+wire [31:0]                           axi_soc_araddr;
+wire [7:0]                            axi_soc_arlen;
+wire [2:0]                            axi_soc_arsize;
+wire [1:0]                            axi_soc_arburst;
+wire                                  axi_soc_arlock;
+wire [3:0]                            axi_soc_arcache;
+wire [2:0]                            axi_soc_arprot;
+wire [3:0]                            axi_soc_arqos;
+wire                                  axi_soc_arvalid;
+wire                                  axi_soc_arready;
+wire [7:0]                            axi_soc_rid;
+wire [AXI_SOC_DATA_WIDTH-1:0]         axi_soc_rdata;
+wire [1:0]                            axi_soc_rresp;
+wire                                  axi_soc_rlast;
+wire                                  axi_soc_rvalid;
+wire                                  axi_soc_rready;
 
 // Camera I2C
-wire    mipi_i2c_0_io_sda_writeEnable;
-wire    mipi_i2c_0_io_sda_read;
-wire    mipi_i2c_0_io_scl_writeEnable;
-wire    mipi_i2c_0_io_scl_read;
+wire                                  mipi_i2c_0_io_sda_writeEnable;
+wire                                  mipi_i2c_0_io_sda_read;
+wire                                  mipi_i2c_0_io_scl_writeEnable;
+wire                                  mipi_i2c_0_io_scl_read;
 
 // Dma
-wire  [3:0] dma_interrupts;
-wire        userInterruptA;
-wire        userInterruptB;
+wire  [3:0]                           dma_interrupts;
+wire                                  userInterruptA;
+wire                                  userInterruptB;
 
 ////////////////
 //Reset Related
@@ -612,10 +604,10 @@ common_ti180_ddr_config (
     .ddr_inst_AWCOBUF_0         (ddr_inst_AWCOBUF_0),
     
     //DDR AXI 1 Read Address Channel
-    .ddr_inst_ARST_1             (ddr_inst_ARST_1),
-    .ddr_inst_ARADDR_1           (ddr_inst_ARADDR_1),
-    .ddr_inst_ARID_1             (ddr_inst_ARID_1),
-    .ddr_inst_ARAPCMD_1          (ddr_inst_ARAPCMD_1),
+    .ddr_inst_ARST_1            (ddr_inst_ARST_1),
+    .ddr_inst_ARADDR_1          (ddr_inst_ARADDR_1),
+    .ddr_inst_ARID_1            (ddr_inst_ARID_1),
+    .ddr_inst_ARAPCMD_1         (ddr_inst_ARAPCMD_1),
     
     //DDR AXI 1 Wrtie Address Channel
     .ddr_inst_AWADDR_1          (ddr_inst_AWADDR_1),
@@ -656,11 +648,11 @@ cam_csi_rx_controllers #(
     .NUM_CHANNEL            (1),
     .NUM_RX_PER_CHANNEL     (CSI_RX_NUM_DATA_LANE),
     .DATAWIDTH_PER_CHANNEL  (CSI_RX_DATA_WIDTH_LANE),
-    .PIXEL_RX_DATAWIDTH     (CAM_PIXEL_RX_DATAWIDTH),   //RAW10, RAW12
+    .PIXEL_RX_DATAWIDTH     (CAM_PIXEL_RX_DATAWIDTH),       //RAW10, RAW12
     .PIXEL_OUT_DATAWIDTH    (CAM_PIXEL_RX_MEM_DATAWIDTH)    //DATAWIDTH will be store to Memory
 ) inst_csi_rx_controllersn(
 
-    .rstn               (i_arstn), //(i_arstn),
+    .rstn               (i_arstn),
     .clk                (i_pixel_clk),
     .clk_pixel          (i_pixel_clk),
 
@@ -807,10 +799,10 @@ display_hdmi_yuv #(
 /////////////
 
 // Mapped
-assign o_cam_sda_oe = mipi_i2c_0_io_sda_writeEnable;
-assign mipi_i2c_0_io_sda_read = i_cam_sda;
-assign mipi_i2c_0_io_scl_read = i_cam_scl;
-assign o_cam_scl_oe = mipi_i2c_0_io_scl_writeEnable;
+assign o_cam_sda_oe                  = mipi_i2c_0_io_sda_writeEnable;
+assign mipi_i2c_0_io_sda_read        = i_cam_sda;
+assign mipi_i2c_0_io_scl_read        = i_cam_scl;
+assign o_cam_scl_oe                  = mipi_i2c_0_io_scl_writeEnable;
 
 assign mipi_i2c_0_io_sda_writeEnable = !mipi_i2c_0_io_sda_write;
 assign mipi_i2c_0_io_scl_writeEnable = !mipi_i2c_0_io_scl_write;
@@ -862,7 +854,6 @@ SapphireSoc SapphireSoc_inst (
     .system_spi_1_io_data_1_write       (system_spi_1_io_data_1_write),
     .system_spi_1_io_ss                 (system_spi_1_io_ss),
     
-
     .userInterruptA                     (userInterruptA),
     .userInterruptB                     (userInterruptB),
 
@@ -909,7 +900,7 @@ SapphireSoc SapphireSoc_inst (
     .io_ddrA_r_payload_id               (axi_soc_rid),
     .io_ddrA_r_payload_resp             (axi_soc_rresp),
     .io_ddrA_r_payload_last             (axi_soc_rlast),
-//    .io_ddrA_w_payload_id             (),
+     //.io_ddrA_w_payload_id             (),
 
     // APB 3 Slave 0
     .io_apbSlave_0_PADDR                (w_dma_apbSlave_PADDR),
@@ -932,14 +923,14 @@ SapphireSoc SapphireSoc_inst (
     .io_apbSlave_1_PSLVERROR            (w_apbSlave_1_PSLVERROR),
     
     // Custom Instruction (To TinyML HW Accelerator)
-   .cpu0_customInstruction_cmd_valid   (cpu_customInstruction_cmd_valid),
-   .cpu0_customInstruction_cmd_ready   (cpu_customInstruction_cmd_ready),
-   .cpu0_customInstruction_function_id (cpu_customInstruction_function_id),
-   .cpu0_customInstruction_inputs_0    (cpu_customInstruction_inputs_0),
-   .cpu0_customInstruction_inputs_1    (cpu_customInstruction_inputs_1),
-   .cpu0_customInstruction_rsp_valid   (cpu_customInstruction_rsp_valid),
-   .cpu0_customInstruction_rsp_ready   (cpu_customInstruction_rsp_ready),
-   .cpu0_customInstruction_outputs_0   (cpu_customInstruction_outputs_0),
+   .cpu0_customInstruction_cmd_valid    (cpu_customInstruction_cmd_valid),
+   .cpu0_customInstruction_cmd_ready    (cpu_customInstruction_cmd_ready),
+   .cpu0_customInstruction_function_id  (cpu_customInstruction_function_id),
+   .cpu0_customInstruction_inputs_0     (cpu_customInstruction_inputs_0),
+   .cpu0_customInstruction_inputs_1     (cpu_customInstruction_inputs_1),
+   .cpu0_customInstruction_rsp_valid    (cpu_customInstruction_rsp_valid),
+   .cpu0_customInstruction_rsp_ready    (cpu_customInstruction_rsp_ready),
+   .cpu0_customInstruction_outputs_0    (cpu_customInstruction_outputs_0),
     
     `ifdef SOFT_TAP
         .io_jtag_tck                    (io_jtag_tck),
@@ -955,9 +946,7 @@ SapphireSoc SapphireSoc_inst (
         .jtagCtrl_shift                 (jtag_inst1_SHIFT),
         .jtagCtrl_update                (jtag_inst1_UPDATE),
         .jtagCtrl_reset                 (jtag_inst1_RESET) 
-    
     `endif
-
 );
 
 ////////////////
@@ -1123,16 +1112,13 @@ dma u_dma(
 //////////////////
 //HW ACCELERATOR 
 /////////////////
-//For person detection model
+//For mobilenetv1 person detection model
 //Scale from FRAME_WIDTH x FRAME_HEIGHT to 96x96 resolution, and perform rgb2grayscale conversion
 
 hw_accel_wrapper #(
     .FRAME_WIDTH         (FRAME_WIDTH),
     .FRAME_HEIGHT        (FRAME_HEIGHT),
-//    .DMA_TRANSFER_LENGTH (FRAME_WIDTH*FRAME_HEIGHT) //S2MM DMA transfer for evsoc demo
-    .DMA_TRANSFER_LENGTH ((96*96)/4) //S2MM DMA transfer for person detection demo
-//   .DMA_TRANSFER_LENGTH ((192*192*3)/4) //S2MM DMA transfer for face landmark demo
-//   .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo pico
+    .DMA_TRANSFER_LENGTH ((96*96)/4) //S2MM DMA transfer for mobilenetv1 person detection demo
 ) u_hw_accel_wrapper (
     .clk                                         (i_soc_clk),
     .rst                                         (io_systemReset),
@@ -1159,7 +1145,7 @@ hw_accel_wrapper #(
 );
 
 ///////////////////////////////////////
-// TinyML Acclerator Custom instruction
+// TinyML Accelerator Custom instruction
 ///////////////////////////////////////
 tinyml_top  #(
     .AXI_DW          (AXI_0_DATA_WIDTH)
@@ -1214,21 +1200,21 @@ tinyml_top  #(
 );
 
 /////////////////////////////////////////////////////
-// AXI Interccnnect/ Arbiter TinyML / SOC <-> DDR IO
+// AXI Interconnect/ Arbiter TinyML / SOC <-> DDR IO
 /////////////////////////////////////////////////////
 axi_interconnect #(
-    .S_COUNT    (2),//(3),
+    .S_COUNT    (2),
     .M_COUNT    (1),
-    .DATA_WIDTH (AXI_0_DATA_WIDTH),//(128),
+    .DATA_WIDTH (AXI_0_DATA_WIDTH),
     .ADDR_WIDTH (32),
     .ID_WIDTH   (8)
     
 ) u_axi_interconnect (
 
-   .clk              (i_axi0_mem_clk),//(io_memoryClk),
+   .clk              (i_axi0_mem_clk),
    .rst              (io_systemReset),
    
-   //AXI slave interfaces - S0: Connected to RubySoC; S1: Connected to DMA controller
+   //AXI slave interfaces - S0: Connected to SapphireSoC; S1: Connected to TinyML accelerator
    .s_axi_awid       ({axi_tinyml_awid      ,axi_soc_awid}),
    .s_axi_awaddr     ({axi_tinyml_awaddr    ,axi_soc_awaddr}),
    .s_axi_awlen      ({axi_tinyml_awlen     ,axi_soc_awlen}),

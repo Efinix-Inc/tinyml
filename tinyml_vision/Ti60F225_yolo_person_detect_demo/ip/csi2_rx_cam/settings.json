@@ -9,7 +9,7 @@
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx",
-            "version": "2.2"
+            "version": "2.4"
         }
     ],
     "conf": {

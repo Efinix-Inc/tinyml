@@ -87,7 +87,7 @@ A GUI-based [Efinix TinyML Generator](tools/tinyml_generator/README.md) is provi
 
 ## Quick Start
 
-For a quick start on Efinix TinyML Platform, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in *quick_start* directory.
+For a quick start on Efinix TinyML Platform, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in [quick_start](./quick_start) directory.
 
 List of quick start demo designs:
 

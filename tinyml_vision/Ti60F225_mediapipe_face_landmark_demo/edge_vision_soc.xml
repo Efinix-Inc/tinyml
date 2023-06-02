@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change_date="Wed October 19 2022 11:23:42" location="C:/my_projects/8_github_ws/2_efx_sol/efx_SOLUTION/tinyML/efx_tinyml/tinyml_vision/Ti60F225_face_landmark_demo" sw_version="2021.2.323.6.17" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change_date="Tue January 24 2023 12:14:06" location="C:/my_projects/8_github_ws/2_efx_sol/efx_SOLUTION/tinyML/efx_tinyml/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo" sw_version="2022.1.226.4.3" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti60F225"/>
@@ -8,6 +8,10 @@
     <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008">
         <efx:top_module name="edge_vision_soc"/>
         <efx:design_file name="edge_vision_soc.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
+        <efx:design_file name="source/common/common_efx_fifo_wrapper.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_priority_encoder.v" version="default" library="default"/>
@@ -21,9 +25,6 @@
         <efx:design_file name="source/hw_accel/hw_accel_axi4.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_pack_rgb_gray.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_rgb2gray.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_rgb2gray.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_rgb_gain.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_line_buffer.v" version="default" library="default"/>
@@ -105,6 +106,13 @@
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/SapphireSoc" value_type="e_string"/>
         <efx:param name="include" value="ip/hbram" value_type="e_string"/>
+        <efx:param name="min-sr-fanout" value="0" value_type="e_integer"/>
+        <efx:param name="min-ce-fanout" value="0" value_type="e_integer"/>
+        <efx:param name="seq-opt-sync-only" value="0" value_type="e_option"/>
+        <efx:param name="blackbox-error" value="1" value_type="e_option"/>
+        <efx:param name="allow-const-ram-index" value="0" value_type="e_option"/>
+        <efx:param name="hdl-compile-unit" value="1" value_type="e_option"/>
+        <efx:param name="create-onehot-fsms" value="0" value_type="e_option"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
@@ -112,6 +120,8 @@
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
         <efx:param name="seed" value="0" value_type="e_integer"/>
+        <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
+        <efx:param name="max_threads" value="-1" value_type="e_integer"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
         <efx:param name="mode" value="active" value_type="e_option"/>

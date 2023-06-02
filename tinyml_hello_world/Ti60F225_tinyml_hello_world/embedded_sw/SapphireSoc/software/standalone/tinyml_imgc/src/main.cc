@@ -151,7 +151,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 1*****************************************************/
 	//Interrupt Initialization
 	IntcInitialize();
-	//Tinyml_Initial();   
+
    //Airplane image data
    MicroPrintf("\n\rImage Classification Inference 1 (Airplane)...");
 
@@ -186,14 +186,12 @@ extern "C" void main() {
    
    //Car image data
    MicroPrintf("\n\rImage Classification Inference 2 (Car)...");
-   timerCmp0 = clint_getTime(BSP_CLINT);
    //Copy test image to tflite model input.
    for (unsigned int i = 0; i < quant_car_dat_len; ++i)
       model_input->data.int8[i] = quant_car_dat[i];
-//   timerCmp1 = clint_getTime(BSP_CLINT);
 
    //Perform inference
-//   timerCmp0 = clint_getTime(BSP_CLINT);
+  timerCmp0 = clint_getTime(BSP_CLINT);
    invoke_status = interpreter->Invoke();
    timerCmp1 = clint_getTime(BSP_CLINT);
 
