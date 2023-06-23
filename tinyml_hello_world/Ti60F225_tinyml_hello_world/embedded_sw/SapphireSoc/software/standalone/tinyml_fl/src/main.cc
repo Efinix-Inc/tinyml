@@ -107,6 +107,63 @@ void tinyml_init() {
 				interpreter->output(i)->dims->data[3],
 				interpreter->output(i)->type);
 }
+
+void landmark_output(int enable_printing) {
+	for (int i = 0; i < total_output_layers; ++i) {
+		int total = (interpreter->output(i)->dims->data[0]
+				* interpreter->output(i)->dims->data[1]
+				* interpreter->output(i)->dims->data[2]
+				* interpreter->output(i)->dims->data[3]);
+
+		TfLiteAffineQuantization params =
+				*(static_cast<TfLiteAffineQuantization*>(interpreter->output(i)->quantization.params));
+
+
+		if (i == 0) {
+			float *face_landmarks = (float*) calloc(total, sizeof(float));
+			for (int j = 0; j < total; ++j)
+				face_landmarks[j] =
+						((float) interpreter->output(i)->data.int8[j]
+								- params.zero_point->data[0])
+								* params.scale->data[0]
+								/ model_input->dims->data[(
+										j % COORDINATES != 1 ? 1 : 2)];
+			if(enable_printing == 1){
+				MicroPrintf("geoffrey_hinton_tflite_quant_face_landmarks:\n\r");
+				for (int j = 0; j < total; ++j) {
+					print_float(face_landmarks[j]);
+
+					if (j < total - 1) {
+						if (j % COORDINATES != 2) {
+							MicroPrintf(", ");
+						} else {
+							MicroPrintf(", \n\r");
+						}
+					} else {
+						MicroPrintf("\n\r");
+					}
+			}
+			}
+		} else if (i == 1) {
+			float *face_flags = (float*) calloc(total, sizeof(float));
+			for (int j = 0; j < total; ++j)
+				face_flags[j] = ((float) interpreter->output(i)->data.int8[j]
+						- params.zero_point->data[0]) * params.scale->data[0];
+			activate_logistic(face_flags, total);
+
+			if(enable_printing == 1) {
+				MicroPrintf("geoffrey_hinton_tflite_quant_face_flag:\n\r");
+				for (int j = 0; j < total; ++j) {
+					print_float(face_flags[j]);
+					MicroPrintf("\n\r");
+				}
+			}
+		}
+
+	}
+
+}
+
 extern "C" void main() {
 
 	MicroPrintf("\t--Hello Efinix TinyML--\n\r");
@@ -143,58 +200,11 @@ extern "C" void main() {
 	MicroPrintf("Done\n\r");
 
 	//Output layer
-	MicroPrintf("Pass data to output layer...");
+	MicroPrintf("Pass data to output layer...\n\r");
 	timerCmp2 = clint_getTime(BSP_CLINT);
-	for (int i = 0; i < total_output_layers; ++i) {
-		int total = (interpreter->output(i)->dims->data[0]
-				* interpreter->output(i)->dims->data[1]
-				* interpreter->output(i)->dims->data[2]
-				* interpreter->output(i)->dims->data[3]);
-
-		TfLiteAffineQuantization params =
-				*(static_cast<TfLiteAffineQuantization*>(interpreter->output(i)->quantization.params));
-
-
-		if (i == 0) {
-			float *face_landmarks = (float*) calloc(total, sizeof(float));
-			for (int j = 0; j < total; ++j)
-				face_landmarks[j] =
-						((float) interpreter->output(i)->data.int8[j]
-								- params.zero_point->data[0])
-								* params.scale->data[0]
-								/ model_input->dims->data[(
-										j % COORDINATES != 1 ? 1 : 2)];
-
-			MicroPrintf("geoffrey_hinton_tflite_quant_face_landmarks:\n\r");
-			for (int j = 0; j < total; ++j) {
-				print_float(face_landmarks[j]);
-
-				if (j < total - 1) {
-					if (j % COORDINATES != 2) {
-						MicroPrintf(", ");
-					} else {
-						MicroPrintf(", \n\r");
-					}
-				} else {
-					MicroPrintf("\n\r");
-				}
-			}
-		} else if (i == 1) {
-			float *face_flags = (float*) calloc(total, sizeof(float));
-			for (int j = 0; j < total; ++j)
-				face_flags[j] = ((float) interpreter->output(i)->data.int8[j]
-						- params.zero_point->data[0]) * params.scale->data[0];
-			activate_logistic(face_flags, total);
-
-			MicroPrintf("geoffrey_hinton_tflite_quant_face_flag:\n\r");
-			for (int j = 0; j < total; ++j) {
-				print_float(face_flags[j]);
-				MicroPrintf("\n\r");
-			}
-		}
-	}
-
+	landmark_output(0);
 	timerCmp3 = clint_getTime(BSP_CLINT);
+	landmark_output(1);
 	MicroPrintf("Done\n\r");
 
 	timerDiff_0_1 = timerCmp1 - timerCmp0;
