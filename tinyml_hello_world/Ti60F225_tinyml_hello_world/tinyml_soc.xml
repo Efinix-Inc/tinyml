@@ -80,6 +80,10 @@
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/dma" value_type="e_string"/>
         <efx:param name="include" value="ip/SapphireSoc" value_type="e_string"/>
+        <efx:param name="min-ce-fanout" value="0" value_type="e_integer"/>
+        <efx:param name="mult-decomp-retime" value="0" value_type="e_option"/>
+        <efx:param name="optimize-zero-init-rom" value="1" value_type="e_option"/>
+        <efx:param name="insert-carry-skip" value="0" value_type="e_option"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
@@ -89,6 +93,7 @@
         <efx:param name="seed" value="0" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
+        <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
         <efx:param name="mode" value="active" value_type="e_option"/>

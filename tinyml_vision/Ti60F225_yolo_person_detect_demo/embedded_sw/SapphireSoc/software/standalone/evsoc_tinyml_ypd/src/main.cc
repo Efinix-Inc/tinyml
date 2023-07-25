@@ -555,6 +555,9 @@ void main() {
       for (int i = 0; i < total_output_layers; ++i) {
         free(yolo_layers[i].outputs);
       }
+	   for (int i = 0; i < total_boxes; ++i) {
+		 free(boxes[i].class_probabilities);
+	   }
       free(yolo_layers);
       free(boxes);
       

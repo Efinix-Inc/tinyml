@@ -8,6 +8,8 @@ Efinix TinyML Accelerator supports two modes, which is customizable by layer typ
 
 Generated define files from Efinix TinyML Generator are used to facilitate customization of Efinix TinyML Accelerator for RTL compilation using Efinity® IDE and software compilation using Efinity® RISC-V Embedded Software IDE. In addition, the model data files, that are used to run the inference application, are generated based on the selected tflite model.
 
+To ensure efficient resource usage, only either Lite mode or Standard mode of a layer accelerator can be enabled and synthesized to FPGA hardware due to the mutual exclusiveness of the two acceleration modes
+
 <img src="../../docs/efinix_tinyml_generator.png " width="960"/>
 
 

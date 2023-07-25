@@ -1,0 +1,58 @@
+{
+    "args": [
+        "-o",
+        "csi2_hard_mipi_rx",
+        "--base_path",
+        "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "mipi",
+            "name": "efx_csi2_rx_top",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "tINIT_NS": "100000",
+        "NUM_DATA_LANE": "2",
+        "ASYNC_STAGE": "2",
+        "CLOCK_FREQ_MHZ": "100",
+        "PIXEL_FIFO_DEPTH": "2048",
+        "AREGISTER": "8",
+        "Pack_40": "1",
+        "Pack_48": "1",
+        "Pack_56": "1",
+        "Pack_64": "1",
+        "FRAME_MODE": "\"GENERIC\"",
+        "ENABLE_VCX": "0"
+    },
+    "output": {
+        "external_source_source": [
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.vh",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd"
+        ],
+        "external_example_example": [
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/data_unpack.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/datatype_gen.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/dual_clock_fifo.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/shift_reg.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/simple_dual_port_ram.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/vga_gen.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/reset.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/top_2_5g.sv",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/efx_csi2_tx_top.sv",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.sdc",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.xml",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.peri.xml",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen2.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/lfsr.v",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx.sv",
+            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_mobilenetv1_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx_define.vh"
+        ]
+    },
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-07-19T01:57:40.885312"
+}

@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_out_fifo",
         "--base_path",
-        "/tmp/tmpq5blu488/ip",
+        "/tmp/tmpv6dr0ves/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "2.0"
+            "version": "5.0"
         }
     ],
     "conf": {
@@ -17,29 +17,29 @@
         "SYNC_STAGE": "2",
         "DEPTH_2": "6",
         "DATA_WIDTH": "32",
-        "MODE": "1",
+        "MODE": "\"FWFT\"",
         "OUTPUT_REG": "0",
         "PROG_FULL_ASSERT": "40",
-        "PROGRAMMABLE_FULL": "1",
+        "PROGRAMMABLE_FULL": "\"STATIC_SINGLE\"",
         "PFN_INTERNAL": "40",
         "PEA_INTERNAL": "2",
         "PEN_INTERNAL": "8",
-        "PROGRAMMABLE_EMPTY": "0",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "1",
-        "FAMILY": "1",
+        "FAMILY": "\"TITANIUM\"",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0",
         "ENDIANESS": "0"
     },
     "output": {
-        "external_source": [
-            "/tmp/tmpq5blu488/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
-            "/tmp/tmpq5blu488/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v",
-            "/tmp/tmpq5blu488/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
-            "/tmp/tmpq5blu488/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh"
+        "external_source_source": [
+            "/tmp/tmpv6dr0ves/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v",
+            "/tmp/tmpv6dr0ves/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
+            "/tmp/tmpv6dr0ves/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh",
+            "/tmp/tmpv6dr0ves/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd"
         ]
     },
-    "sw_version": "2022.2.322",
-    "generated_date": "2022-10-26T06:42:59.313750"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-07-21T08:57:04.673548"
 }

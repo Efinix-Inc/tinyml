@@ -26,6 +26,7 @@ Refer to the *model_zoo* directory for more details on the related model trainin
 The example designs are implemented on:
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
 - [Titanium® Ti180 M484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180m484.html)
+- [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
 
 **Note:** Efinity projects of the hello world designs are in [tinyml_hello_world](./) directory.
 
@@ -61,5 +62,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.322.5.7
-- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2022.2.3
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.150.2.4
+- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.3

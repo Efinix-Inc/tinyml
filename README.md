@@ -81,7 +81,9 @@ Efinix TinyML Accelerator supports two modes, which is customizable by layer typ
 1. Lite mode - Lightweight accelerator that consumes less resources.
 2. Standard mode - High performance accelerator that consumes more resources.
 
-A GUI-based [Efinix TinyML Generator](tools/tinyml_generator/README.md) is provided to facilitate the customization of the TinyML Accelerator.
+A GUI-based [Efinix TinyML Generator](tools/tinyml_generator/README.md) is provided to facilitate the customization of the TinyML Accelerator. Note that the Lite mode and Standard mode of a layer accelerator cannot be used simultaneously and are mutually exclusive. In order to utilize resources efficiently, only one of these modes can be enabled and synthesized for FPGA hardware.
+
+
 
 <br />
 
@@ -99,6 +101,10 @@ List of quick start demo designs:
   - MobilenetV1 Person Detection
   - Yolo Person Detection
   - MediaPipe Face Landmark Detection
+- [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
+  - MobilenetV1 Person Detection
+  - Yolo Person Detection
+  - MediaPipe Face Landmark Detection
 
 List of supported cameras for quick start demo:
 1. Raspberry PI Camera Module v2
@@ -113,13 +119,13 @@ Bring up quick start demo design on Efinix development kit by following listed s
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
    - For quick start demo design that uses Google Coral Camera (*\<device\>\_coral\_\<architecture\>\_\<application\>\_demo.hex*),
       - Google Coral Camera and Google Coral Camera connector daughter card are required.
-      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Board, or P1 header on Titanium Ti180 M484 Development Board.
+      - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Board, or P1 header on Titanium Ti180 M484/J484 Development Board.
 2. Program hex file using Efinity Programmer
-   - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (Ti60F225) or SPI Active using JTAG bridge mode (Ti180M484).
+   - Refer to [Efinity Programmer User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EFN-PGM) to program quick start demo hex file to targeted development kit using Efinity Programmer in SPI active mode (Ti60F225) or SPI Active using JTAG bridge mode (Ti180M484/Ti180J484).
 3. Press CRESET button & Demo design is up and running
    - Note that, the demo design may take about a minute for initial loading of the application binary.
 
-As the quick start demo design is programmed through SPI active mode (Ti60F225) or SPI Active using JTAG bridge mode (Ti180M484), the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (run with Eclipse OpenOCD Debugger), user should erase the flash memory (recommend to erase 8192000 bytes for Ti60F225 or 33554432 bytes for Ti180M484) using Efinity Programmer.
+As the quick start demo design is programmed through SPI active mode (Ti60F225) or SPI Active using JTAG bridge mode (Ti180M484/Ti180J484), the design is stored in flash memory. Since flash is non-volatile memory, the design is retained even after power off. Hence, before loading other design, which is with separate FPGA bitstream and RISC-V application binary (run with Eclipse OpenOCD Debugger), user should erase the flash memory (recommend to erase 8192000 bytes for Ti60F225 or 33554432 bytes for Ti180M484/Ti180J484) using Efinity Programmer.
 
 <br />
 
@@ -155,3 +161,4 @@ Refer to [Frequently Asked Questions](docs/faq.md) for general questions and gui
 - [Sapphire RISC-V SoC Hardware and Software User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREUG)
 - [Titanium Ti60 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti60F225-DK-UG)
 - [Titanium Ti180 M484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180M484-DK-UG)
+- [Titanium Ti180 J484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180J484-DK-UG)

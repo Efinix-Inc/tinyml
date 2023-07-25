@@ -3,13 +3,13 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "/tmp/tmpq1z3ialj/ip",
+        "/tmp/tmpi0lpw4sp/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "2.3"
+            "version": "5.0"
         }
     ],
     "conf": {
@@ -18,7 +18,7 @@
         "NUM_DATA_LANE": "4",
         "HS_BYTECLK_MHZ": "125",
         "CLOCK_FREQ_MHZ": "100",
-        "DPHY_CLOCK_MODE": "0",
+        "DPHY_CLOCK_MODE": "\"Continuous\"",
         "PIXEL_FIFO_DEPTH": "2048",
         "tLP_EXIT_NS": "100",
         "tCLK_ZERO_NS": "280",
@@ -30,85 +30,70 @@
         "tHS_ZERO_NS": "200",
         "tHS_TRAIL_NS": "65",
         "tHS_EXIT_NS": "120",
-        "Pack_48": "1",
-        "Pack_64": "0",
+        "Pack_48": "1'b1",
+        "Pack_64": "1'b0",
         "tHS_PREPARE_NS": "50",
         "BTA_TIMEOUT_NS": "100000",
         "tD_TERM_EN_NS": "35",
         "tHS_PREPARE_ZERO_NS": "145",
-        "ENABLE_V_LPM_BTA": "0",
+        "ENABLE_V_LPM_BTA": "1'b0",
         "PACKET_SEQUENCES": "1",
         "HS_CMD_WDATAFIFO_DEPTH": "512",
         "LP_CMD_WDATAFIFO_DEPTH": "512",
         "LP_CMD_RDATAFIFO_DEPTH": "2048",
         "MAX_HRES": "1080",
-        "ENABLE_BIDIR": "1",
-        "ENABLE_EOTP": "0"
+        "ENABLE_BIDIR": "1'b1",
+        "ENABLE_EOTP": "1'b0"
     },
     "output": {
-        "external_source": [
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/dsi_tx_display_tmpl.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/dsi_tx_display.sv",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/dsi_tx_display_define.vh"
+        "external_source_source": [
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/dsi_tx_display_define.vh",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/dsi_tx_display_tmpl.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/dsi_tx_display.sv"
         ],
         "external_testbench_modelsim": [
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
         ],
-        "external_testbench": [
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/data_pack.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/data_unpack.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/dual_clock_fifo.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/fifo.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/i2c_phy.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/led_blink.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/memory.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/panel_config.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/pattern_gen.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/piv2_config.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/shift_reg.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/simple_dual_port_ram.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/true_dual_port_ram.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/vga_buffer.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/vga_gen.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/dsi_hs_cmd_tb.mem",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/dsi_tb.mem",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/TI60F225_MIPI_dsi_tb.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/modelsim.do",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/dsi_tx_display.sv",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/dsi_tx_display_define.vh"
+        "external_testbench_testbench": [
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/data_pack.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/dual_clock_fifo.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/panel_config.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/shift_reg.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/simple_dual_port_ram.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/true_dual_port_ram.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/vga_gen.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/dsi_hs_cmd_tb.mem",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/dsi_tb.mem",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/TI60F225_MIPI_dsi_tb.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/modelsim.do",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/dsi_tx_display.sv",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/dsi_tx_display_define.vh"
         ],
-        "external_example": [
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/data_pack.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/data_unpack.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/dual_clock_fifo.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/fifo.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/i2c_phy.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/led_blink.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/memory.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/panel_config.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/pattern_gen.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/piv2_config.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/shift_reg.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/simple_dual_port_ram.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/true_dual_port_ram.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/vga_buffer.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/vga_gen.v",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.peri.xml",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_init.mem",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.xml",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.pt.sdc",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display.sv",
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display_define.vh"
+        "external_example_example": [
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/data_pack.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/dual_clock_fifo.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/panel_config.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/reset.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/shift_reg.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/simple_dual_port_ram.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/true_dual_port_ram.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/vga_gen.v",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.peri.xml",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/Panel_1080p_reg.mem",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.xml",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.sdc",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display.sv",
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display_define.vh"
         ],
         "external_testbench_ncsim": [
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/ncsim/dsi_tx_display.sv"
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/ncsim/dsi_tx_display.sv"
         ],
         "external_testbench_synopsys": [
-            "/tmp/tmpq1z3ialj/ip/dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
+            "/tmp/tmpi0lpw4sp/ip/dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
         ]
     },
-    "sw_version": "2022.2.322",
-    "generated_date": "2022-10-26T06:49:11.176354"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-07-21T08:42:02.823319"
 }

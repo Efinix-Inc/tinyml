@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_in_fifo",
         "--base_path",
-        "/tmp/tmp7gtfe94x/ip",
+        "/tmp/tmpb7urqe1z/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "2.0"
+            "version": "5.0"
         }
     ],
     "conf": {
@@ -17,29 +17,29 @@
         "SYNC_STAGE": "2",
         "DEPTH_2": "5",
         "DATA_WIDTH": "32",
-        "MODE": "0",
+        "MODE": "\"STANDARD\"",
         "OUTPUT_REG": "1",
         "PROG_FULL_ASSERT": "20",
-        "PROGRAMMABLE_FULL": "1",
+        "PROGRAMMABLE_FULL": "\"STATIC_SINGLE\"",
         "PFN_INTERNAL": "20",
         "PEA_INTERNAL": "2",
         "PEN_INTERNAL": "3",
-        "PROGRAMMABLE_EMPTY": "0",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "0",
-        "FAMILY": "1",
+        "FAMILY": "\"TITANIUM\"",
         "ASYM_WIDTH_RATIO": "4",
         "BYPASS_RESET_SYNC": "0",
         "ENDIANESS": "0"
     },
     "output": {
-        "external_source": [
-            "/tmp/tmp7gtfe94x/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
-            "/tmp/tmp7gtfe94x/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
-            "/tmp/tmp7gtfe94x/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
-            "/tmp/tmp7gtfe94x/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh"
+        "external_source_source": [
+            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
+            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
+            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd"
         ]
     },
-    "sw_version": "2022.2.322",
-    "generated_date": "2022-10-26T06:42:59.101606"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-07-21T08:56:55.015571"
 }

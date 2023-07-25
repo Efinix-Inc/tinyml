@@ -47,7 +47,6 @@
         <efx:design_file name="source/display/box_annotator/display_bbox_drawing.v" version="default" library="default"/>
         <efx:design_file name="source/display/box_annotator/display_annotator.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_ti180_ddr_config.sv" version="default" library="default"/>
-        <efx:design_file name="ip/dma/dma.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
@@ -77,6 +76,9 @@
         </efx:ip>
         <efx:ip instance_name="SapphireSoc" path="ip/SapphireSoc/settings.json">
             <efx:ip_src_file name="SapphireSoc.v"/>
+        </efx:ip>
+        <efx:ip instance_name="dma" path="ip/dma/settings.json">
+            <efx:ip_src_file name="dma.v"/>
         </efx:ip>
     </efx:ip_info>
     <efx:synthesis tool_name="efx_map">
@@ -109,18 +111,23 @@
         <efx:param name="include" value="ip/cam_pixel_remap_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/csi2_hard_mipi_rx" value_type="e_string"/>
         <efx:param name="include" value="ip/display_dma_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/dma" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_in_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/SapphireSoc" value_type="e_string"/>
+        <efx:param name="mult-decomp-retime" value="0" value_type="e_option"/>
+        <efx:param name="optimize-zero-init-rom" value="1" value_type="e_option"/>
+        <efx:param name="insert-carry-skip" value="0" value_type="e_option"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
-        <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
+        <efx:param name="optimization_level" value="NULL" value_type="e_option"/>
         <efx:param name="seed" value="0" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
+        <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
         <efx:param name="mode" value="active" value_type="e_option"/>

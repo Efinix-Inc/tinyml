@@ -40,10 +40,15 @@ The directory structure of Efinix TinyML repo is depicted below:
 ├── quick_start
 ├── tinyml_hello_world
 │   ├── Ti60F225_tinyml_hello_world
-│   |    ├── embedded_sw
-│   |    ├── ip
-│   |    ├── replace_files
-│   |    └── source
+│   │    ├── embedded_sw
+│   │    ├── ip
+│   │    ├── replace_files
+│   │    └── source
+│   ├── Ti180J484_tinyml_hello_world
+│   │   ├── embedded_sw
+│   │   ├── ip
+│   │   ├── replace_files
+│   │   └── source
 │   └── Ti180M484_tinyml_hello_world
 │       ├── embedded_sw
 │       ├── ip
@@ -61,6 +66,21 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   │   ├── replace_files
 │   │   └── source
 │   ├── Ti60F225_yolo_person_detect_demo
+│   │   ├── embedded_sw
+│   │   ├── ip
+│   │   ├── replace_files
+│   │   └── source
+│   ├── Ti180J484_mediapipe_face_landmark_demo
+│   │   ├── embedded_sw
+│   │   ├── ip
+│   │   ├── replace_files
+│   │   └── source
+│   ├── Ti180J484_mobilenetv1_person_detect_demo
+│   │   ├── embedded_sw
+│   │   ├── ip
+│   │   ├── replace_files
+│   │   └── source
+│   ├── Ti180J484_yolo_person_detect_demo
 │   │   ├── embedded_sw
 │   │   ├── ip
 │   │   ├── replace_files
@@ -88,26 +108,26 @@ For [TinyML Hello World](../tinyml_hello_world/README.md) design, the project st
 ```
 ├── tinyml_hello_world
 │   ├── <device>_tinyml_hello_world
-│   |    ├── embedded_sw
-│   |    │   └── SapphireSoc
-│   |    │       └── software
-│   |    │           └── standalone
-│   |    │               ├── common
-│   |    │               ├── tinyml_fl
-│   |    │               ├── tinyml_imgc
-│   |    │               ├── tinyml_kws
-│   |    │               ├── tinyml_pdti8
-│   |    │               ├── tinyml_ypd
-│   |    │               └── tinyml_ad
-│   |    ├── ip
-│   |    ├── replace_files
-│   |    │   ├── bootloader_4MB
-│   |    │   └── user_def_accelerator
-│   |    └── source
-│   |        ├── axi
-│   |        ├── common
-│   |        ├── hw_accel
-│   |        └── tinyml
+│   │    ├── embedded_sw
+│   │    │   └── SapphireSoc
+│   │    │       └── software
+│   │    │           └── standalone
+│   │    │               ├── common
+│   │    │               ├── tinyml_fl
+│   │    │               ├── tinyml_imgc
+│   │    │               ├── tinyml_kws
+│   │    │               ├── tinyml_pdti8
+│   │    │               ├── tinyml_ypd
+│   │    │               └── tinyml_ad
+│   │    ├── ip
+│   │    ├── replace_files
+│   │    │   ├── bootloader_4MB
+│   │    │   └── user_def_accelerator
+│   │    └── source
+│   │        ├── axi
+│   │        ├── common
+│   │        ├── hw_accel
+│   │        └── tinyml
 ```
 
 For [TinyML Vision](../tinyml_vision/README.md) design, the project structure is depicted below: 
@@ -139,59 +159,59 @@ For [TinyML Vision](../tinyml_vision/README.md) design, the project structure is
 <br />
 
 ## How much resources are consumed by Efinix TinyML designs?
-Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2022.2 are as follows.
+Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2023.1 are as follows.
     
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | TinyML Hello World (Total)    | 55036 | 29041 | 7854 | 35164 | 188        | 61  |
- | RISC-V SoC                    |   -   | 6715  | 690  | 5472  | 48         | 4   |
- | DMA Controller                |   -   | 4431  | 772  | 5592  | 45         | 0   |
- | HyperRAM Controller Core      |   -   | 1186  | 305  | 2094  | 22         | 0   |
+ | TinyML Hello World (Total)    | 56163 | 29626 | 7848 | 36084 | 187        | 61  |
+ | RISC-V SoC                    |   -   | 7248  | 684  | 6132  | 48         | 4   |
+ | DMA Controller                |   -   | 4457  | 772  | 5644  | 44         | 0   |
+ | HyperRAM Controller Core      |   -   | 1186  | 305  | 2091  | 22         | 0   |
  | Hardware Accelerator* (Dummy) |   -   | 369   | 273  | 160   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 15652 | 5802 | 20495 | 69         | 55  |
+ | Efinix TinyML Accelerator     |   -   | 15651 | 5802 | 20444 | 69         | 55  |
 
 <br />
 
  **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 56252 | 26486 | 9174 | 36395 | 221        | 54  |
- | RISC-V SoC                    |   -   | 6481  | 697  | 5331  | 43         | 4   |
- | DMA Controller                |   -   | 4339  | 520  | 5937  | 36         | 0   |
- | HyperRAM Controller Core      |   -   | 1186  | 305  | 2090  | 22         | 0   |
- | CSI-2 RX Controller Core      |   -   | 844   | 194  | 2045  | 15         | 0   |
- | DSI TX Controller Core        |   -   | 1745  | 415  | 3590  | 19         | 0   |
+ | Person Detection Demo (Total) | 56800 | 27492 | 9168 | 36717 | 219        | 54  |
+ | RISC-V SoC                    |   -   | 7016  | 691  | 5926  | 43         | 4   |
+ | DMA Controller                |   -   | 4383  | 520  | 5895  | 34         | 0   |
+ | HyperRAM Controller Core      |   -   | 1186  | 305  | 2089  | 22         | 0   |
+ | CSI-2 RX Controller Core      |   -   | 871   | 194  | 1944  | 15         | 0   |
+ | DSI TX Controller Core        |   -   | 1757  | 415  | 3495  | 19         | 0   |
  | Camera                        |   -   | 778   | 919  | 661   | 11         | 0   |
- | Display                       |   -   | 341   | 174  | 367   | 8          | 0   |
- | Hardware Accelerator*         |   -   | 334   | 273  | 116   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 9946  | 5658 | 14737 | 59         | 48  |
+ | Display                       |   -   | 341   | 174  | 370   | 8          | 0   |
+ | Hardware Accelerator*         |   -   | 334   | 273  | 128   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -   | 9946  | 5658 | 14582 | 59         | 48  |
  
  
- Resource utilization tables compiled for Efinix Titanium® Ti180M484 device using Efinity® IDE v2022.2 are as follows.
+ Resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2023.1 are as follows.
     
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR    | FF    | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:-----:|:-----:|:-----:|:----------:|:---:|
- | TinyML Hello World (Total)    | 140462 | 71953 | 20505 | 89403 | 687        | 213 |
- | RISC-V SoC                    |   -    | 11469 | 699   | 7048  | 87         | 4   |
- | DMA Controller                |   -    | 9430  | 832   | 14644 | 223        | 0   |
- | Hardware Accelerator* (Dummy) |   -    | 352   | 294   | 133   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 48358 | 18671 | 62244 | 373        | 207 |
+ | TinyML Hello World (Total)    | 138697 | 70325 | 20037 | 89338 | 505        | 213 |
+ | RISC-V SoC                    |   -    | 11911 | 707   | 7520  | 87         | 4   |
+ | DMA Controller                |   -    | 7695  | 1022  | 14123 | 49         | 0   |
+ | Hardware Accelerator* (Dummy) |   -    | 352   | 294   | 130   | 49         | 2   |
+ | Efinix TinyML Accelerator     |   -    | 48058 | 18005 | 62292 | 365        | 207 |
 
 <br />
 
  **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
  | Building Block                | XLR    | FF     | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:------:|:-----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 120387 | 57536  | 21607 | 74082 | 762        | 166 |
- | RISC-V SoC                    |   -    | 11787  | 769   | 7493  | 87         | 4   |
- | DMA Controller                |   -    | 10358  | 921   | 15644 | 240        | 0   |
- | CSI-2 RX Controller Core      |   -    | 618    | 204   | 1606  | 17         | 0   |
- | Camera                        |   -    | 744    | 946   | 654   | 11         | 0   |
- | Display                       |   -    | 762    | 226   | 577   | 46         | 0   |
- | Hardware Accelerator*         |   -    | 352    | 294   | 129   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 30566  | 18238 | 42800 | 357        | 160 |
+ | Person Detection Demo (Total) | 119282 | 56271  | 21700 | 74069 | 579        | 166 |
+ | RISC-V SoC                    |   -    | 12223  | 769   | 7918  | 87         | 4   |
+ | DMA Controller                |   -    | 8694.  | 1105  | 15233 | 65.        | 0   |
+ | CSI-2 RX Controller Core      |   -    | 647    | 204   | 1428  | 17         | 0   |
+ | Camera                        |   -    | 744    | 946   | 666   | 11         | 0   |
+ | Display                       |   -    | 666    | 226   | 368   | 45         | 0   |
+ | Hardware Accelerator*         |   -    | 352    | 294   | 125   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -    | 30454  | 18154 | 42906 | 349        | 160 |
 
 \* Hardware accelerator consists of pre-processing blocks for inference. For the MobileNetv1 Person Detection Demo design, the pre-processing blocks are image downscaling, RGB to grayscale conversion, and grayscale pixel packing. Refer to the defines.v for respective design TinyML accelerator configuration
 
@@ -250,6 +270,21 @@ To perform profiling i.e., to determine execution time of a quantized AI model r
 
 Build and run the particular software app of interest, the profiling result will be printed on the UART terminal.
 
+The profiling convention is as follows:
+```
+<layer_number>; <layer_name>; <layer_mode>; <execution_time_in_ms>
+```
+
+ The sample of profiling printed is shown below:
+```
+0; CONV_2D; STANDARD; 30ms
+1; MUL; STANDARD; 6ms
+2; MAXIMUM; STANDARD; 5ms
+3; DEPTHWISE_CONV_2D; STANDARD; 41ms
+4; CONV_2D; STANDARD; 9ms
+5; ADD; STANDARD; 5ms
+```
+
 <br />
 
 ## How to boot a complete TinyML design from flash?
@@ -269,7 +304,7 @@ To get started, user may refer to the Google Coral designs (*\<device\>\_coral\_
 In summary, the required changes to use Google Coral Camera on Efinix Vision TinyML demo designs are as follows:
 1. To connect a Google Coral Camera to Efinix development kit, a Google Coral Camera connector daughter card is required.   
    - For Titanium Ti60 F225 Development Board, connect the Google Coral Camera connector daughter card to P2 header.   
-   - For Titanium Ti180 M484 Development Board, connect the Google Coral Camera connector daughter card to P1 header.
+   - For Titanium Ti180 M484/J484 Development Board, connect the Google Coral Camera connector daughter card to P1 header.
 2. Using Efinity Interface Designer,
    - Update the GPIO setting for *io_cam_scl*, *io_cam_sda*, and *o_cam_rstn* accordingly. For Ti180 design, to create a new GPIO output block for *o_cam_rstn*.
    - Update the MIPI DPHY RX setting accordingly.

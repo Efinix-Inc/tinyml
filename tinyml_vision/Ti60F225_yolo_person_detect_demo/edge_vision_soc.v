@@ -27,7 +27,8 @@ module edge_vision_soc #(
    parameter MIPI_FRAME_HEIGHT     = 1080,
    //Actual frame resolution used for subsequent processing (after cropping/scaling).
    parameter FRAME_WIDTH           = 540, //Multiple of 2 - To match with 2PPC pixel data.
-   parameter FRAME_HEIGHT          = 540  //Multiple of 2 - To preserve bayer format prior to raw2rgb conversion.
+   parameter FRAME_HEIGHT          = 540,  //Multiple of 2 - To preserve bayer format prior to raw2rgb conversion.
+   parameter AXI_DATA_WIDTH  	   = 128 // AXI Width  connected to SOC, TinyML Accelerator, and DMA
 )(
    input    wire           i_arstn,
    input    wire           i_fb_clk,
@@ -1143,7 +1144,9 @@ assign userInterruptA = cpu_customInstruction_cmd_int;
 assign userInterruptB = |dma_interrupts;
 
 //Custom instruction
-tinyml_top u_tinyml_top (
+tinyml_top #(
+    .AXI_DW          (AXI_DATA_WIDTH)
+) u_tinyml_top (
    .clk              (i_systemClk),
    .reset            (io_systemReset),
    .cmd_valid        (cpu_customInstruction_cmd_valid),
@@ -1440,7 +1443,7 @@ assign axi_inter_s1_arid  = 8'hE1; //Don't care for DMA controller
 axi_interconnect #(
    .S_COUNT    (3),
    .M_COUNT    (1),
-   .DATA_WIDTH (128),
+   .DATA_WIDTH (AXI_DATA_WIDTH),
    .ADDR_WIDTH (32),
    .ID_WIDTH   (8)
 ) u_axi_interconnect (
@@ -1528,7 +1531,7 @@ axi_interconnect #(
 
 //Convert from half duplex to full duplex of memory controller interface (Connect to HyperRAM controller)
 axi_full_to_half_duplex #(
-   .DATA_WIDTH (128),
+   .DATA_WIDTH (AXI_DATA_WIDTH),
    .ADDR_WIDTH (32),
    .ID_WIDTH   (8)
 ) u_axi_full_to_half_duplex (

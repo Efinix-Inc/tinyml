@@ -202,6 +202,9 @@
         <efxpt:comp_gpio name="io_jtag_tms" gpio_def="GPIOR_70" mode="input" bus_name="" io_standard="3.3 V LVCMOS">
             <efxpt:input_config name="io_jtag_tms" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="none" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="io_jtag_tms_PULL_UP_ENA" dyn_delay_en_name="io_jtag_tms_DLY_ENA" dyn_delay_reset_name="io_jtag_tms_DLY_RST" dyn_delay_ctrl_name="io_jtag_tms_DLY_CTRL" clkmux_buf_name=""/>
         </efxpt:comp_gpio>
+        <efxpt:comp_gpio name="o_cam_rstn" gpio_def="GPIOT_N_14" mode="output" bus_name="" io_standard="1.8 V LVCMOS">
+            <efxpt:output_config name="o_cam_rstn" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="4" fastclk_name=""/>
+        </efxpt:comp_gpio>
         <efxpt:comp_gpio name="o_led[0]" gpio_def="GPIOB_N_02" mode="output" bus_name="o_led" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="o_led[0]" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="4" fastclk_name=""/>
         </efxpt:comp_gpio>

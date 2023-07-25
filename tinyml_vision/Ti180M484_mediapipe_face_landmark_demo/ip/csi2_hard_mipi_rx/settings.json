@@ -3,13 +3,13 @@
         "-o",
         "csi2_hard_mipi_rx",
         "--base_path",
-        "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip",
+        "/tmp/tmpniasc0zl/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx_top",
-            "version": "1.3"
+            "version": "5.1"
         }
     ],
     "conf": {
@@ -23,34 +23,36 @@
         "Pack_48": "1",
         "Pack_56": "1",
         "Pack_64": "1",
-        "FRAME_MODE": "0",
+        "FRAME_MODE": "\"GENERIC\"",
         "ENABLE_VCX": "0"
     },
     "output": {
         "external_source_source": [
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx.sv",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.vhd",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\csi2_hard_mipi_rx_define.vh"
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.vh",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv"
         ],
         "external_example_example": [
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\data_unpack.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\datatype_gen.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\dual_clock_fifo.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\pattern_gen.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\shift_reg.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\simple_dual_port_ram.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\vga_gen.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\reset.v",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\top_2_5g.sv",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\efx_csi2_tx_top.sv",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.sdc",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.xml",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\Ti180_mipi.peri.xml",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\csi2_hard_mipi_rx.sv",
-            "C:\\Users\\aminh\\AppData\\Local\\Temp\\tmp7xugzgxp\\ip\\csi2_hard_mipi_rx\\Ti180M484_devkit\\csi2_hard_mipi_rx_define.vh"
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/data_unpack.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/datatype_gen.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/dual_clock_fifo.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/shift_reg.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/simple_dual_port_ram.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/vga_gen.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/reset.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/top_2_5g.sv",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/efx_csi2_tx_top.sv",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.sdc",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.xml",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.peri.xml",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen2.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/lfsr.v",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx.sv",
+            "/tmp/tmpniasc0zl/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx_define.vh"
         ]
     },
-    "sw_version": "2022.2.322",
-    "generated_date": "2023-02-15T01:00:11.349583"
+    "sw_version": "2023.1.150",
+    "generated_date": "2023-07-22T08:53:21.096454"
 }
