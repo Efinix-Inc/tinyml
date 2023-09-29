@@ -1,4 +1,0 @@
-Anamoly Detection Slice 1 Score : 12.7776
-Anamoly Detection Slice 2 Score : 12.2427
-Normal Detection Slice 1 Score : 9.2414
-Normal Detection Slice 2 Score : 9.7161
