@@ -44,12 +44,7 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   │    ├── ip
 │   │    ├── replace_files
 │   │    └── source
-│   ├── Ti180J484_tinyml_hello_world
-│   │   ├── embedded_sw
-│   │   ├── ip
-│   │   ├── replace_files
-│   │   └── source
-│   └── Ti180M484_tinyml_hello_world
+│   └── Ti180J484_tinyml_hello_world
 │       ├── embedded_sw
 │       ├── ip
 │       ├── replace_files
@@ -80,26 +75,11 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   │   ├── ip
 │   │   ├── replace_files
 │   │   └── source
-│   ├── Ti180J484_yolo_person_detect_demo
-│   │   ├── embedded_sw
-│   │   ├── ip
-│   │   ├── replace_files
-│   │   └── source
-│   ├── Ti180M484_mediapipe_face_landmark_demo
-│   │   ├── embedded_sw
-│   │   ├── ip
-│   │   ├── replace_files
-│   │   └── source
-│   ├── Ti180M484_mobilenetv1_person_detect_demo
-│   │   ├── embedded_sw
-│   │   ├── ip
-│   │   ├── replace_files
-│   │   └── source
-│   └── Ti180M484_yolo_person_detect_demo
-│      ├── embedded_sw
-│      ├── ip
-│      ├── replace_files
-│      └── source
+│   └── Ti180J484_yolo_person_detect_demo
+│       ├── embedded_sw
+│       ├── ip
+│       ├── replace_files
+│       └── source
 └── tools
     └── tinyml_generator
 ```
@@ -304,7 +284,7 @@ To get started, user may refer to the Google Coral designs (*\<device\>\_coral\_
 In summary, the required changes to use Google Coral Camera on Efinix Vision TinyML demo designs are as follows:
 1. To connect a Google Coral Camera to Efinix development kit, a Google Coral Camera connector daughter card is required.   
    - For Titanium Ti60 F225 Development Board, connect the Google Coral Camera connector daughter card to P2 header.   
-   - For Titanium Ti180 M484/J484 Development Board, connect the Google Coral Camera connector daughter card to P1 header.
+   - For Titanium Ti180 J484 Development Board, connect the Google Coral Camera connector daughter card to P1 header.
 2. Using Efinity Interface Designer,
    - Update the GPIO setting for *io_cam_scl*, *io_cam_sda*, and *o_cam_rstn* accordingly. For Ti180 design, to create a new GPIO output block for *o_cam_rstn*.
    - Update the MIPI DPHY RX setting accordingly.
@@ -319,17 +299,6 @@ In summary, the required changes to use Google Coral Camera on Efinix Vision Tin
       ```
       cam_coral # (
       ```
-   
-   - For Ti180 design,
-      - Add an output port in I/O declaration:
-         ```
-         output  o_cam_rstn,
-         ```
-         
-      - Add the signal assignment:
-         ```
-         assign o_cam_rstn = i_arstn;
-         ```
 
 5. Update embedded_sw folder to use the software driver and settings for Google Coral Camera.
    - Copy Google Coral Camera driver *CoralCam.c* and *CoralCam.h* from EVSoC Google Coral design to *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/platform/vision*.
