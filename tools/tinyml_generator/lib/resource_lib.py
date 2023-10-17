@@ -46,6 +46,16 @@ lookup_table = {
             512:"[3617,5796,738,0,8]",
         }
     },
+    'LR_MODE' : {
+        "STANDARD": {
+            32:"[1546,500,1200,0,4]",
+            64:"[1699,631,1747,0,4]",
+            128:"[2075,540,2123,0,4]",
+            256:"[3107,550,3030,0,4]",
+            512:"[4416,568,4088,0,4]",
+        }
+    },
+
     'MIN_MAX_MODE' : {
         "LITE": "[86,34,0,0,0]",
         "STANDARD": {
@@ -109,8 +119,12 @@ class ResourceUtil():
         OUTPUT_CNT = int(self.p_tinyml_gen['CONV_DEPTHW_STD_OUT_PARALLEL']['val'])
         FILTER_FIFO_A = int(self.p_tinyml_gen['CONV_DEPTHW_STD_FILTER_FIFO_A']['val'])
         OUTPUT_CH_FIFO_A = int(self.p_tinyml_gen['CONV_DEPTHW_STD_OUT_CH_FIFO_A']['val'])
-        OUTPUT_CH_AW = roundup(log(OUTPUT_CH_FIFO_A,2)) if (roundup(log(OUTPUT_CH_FIFO_A,2)) > 9) else 9
-        FILTER_AW = roundup(log(FILTER_FIFO_A,2)) if (roundup(log(FILTER_FIFO_A,2)) > 9) else 9
+        try:
+            OUTPUT_CH_AW = roundup(log(OUTPUT_CH_FIFO_A,2)) if (roundup(log(OUTPUT_CH_FIFO_A,2)) > 9) else 9
+            FILTER_AW = roundup(log(FILTER_FIFO_A,2)) if (roundup(log(FILTER_FIFO_A,2)) > 9) else 9
+        except:
+            OUTPUT_CH_AW = 0
+            FILTER_AW = 0
         om_ram = self.calc_bram_size(OUTPUT_CH_AW,32)
         os_ram = self.calc_bram_size(OUTPUT_CH_AW,32)
         b_ram = self.calc_bram_size(OUTPUT_CH_AW,32)

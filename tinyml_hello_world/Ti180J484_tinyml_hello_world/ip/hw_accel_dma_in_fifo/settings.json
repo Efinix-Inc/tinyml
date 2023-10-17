@@ -3,7 +3,7 @@
         "-o",
         "hw_accel_dma_in_fifo",
         "--base_path",
-        "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip",
+        "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
@@ -34,39 +34,39 @@
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd"
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd"
         ],
         "external_example_example": [
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_top.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.peri.xml",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.xml",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_T20.sdc",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo_define.vh"
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.xml",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo_define.vh"
         ],
         "external_example_2": [
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_top.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.xml",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo_define.vh"
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo_define.vh"
         ],
         "external_testbench_testbench": [
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/fifo_tb.sv",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/xrun.sh",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/msim.sh",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/flist",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/modelsim.do",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/52_j484_power_test/Ti180J484_tinyml_hello_world_ddr_x32/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo_define.vh"
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/fifo_tb.sv",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/xrun.sh",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/msim.sh",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/flist",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/modelsim.do",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo.v",
+            "/home/mfaiz/go/validation/2023.1.150.4.10/leaky_relu_enablement/hw/Ti180J484_tinyml_hello_world/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo_define.vh"
         ]
     },
     "sw_version": "2023.1.150",
-    "generated_date": "2023-07-17T06:05:02.243656"
+    "generated_date": "2023-10-03T04:05:20.617111"
 }

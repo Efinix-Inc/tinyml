@@ -126,6 +126,7 @@ module common_efx_fifo_wrapper # (
    .full_o                 ( full_o ),
    .overflow_o             ( overflow_o ),
    .wr_ack_o               ( wr_ack_o ),
+   .datacount_o            ( datacount_o ),
    .empty_o                ( empty_o ),
    .almost_empty_o         ( almost_empty_o ),
    .underflow_o            ( underflow_o ),

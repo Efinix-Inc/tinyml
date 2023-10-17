@@ -54,6 +54,8 @@ To ensure efficient resource usage, only either Lite mode or Standard mode of a 
 
 `ADD_MODE` - Option to accelerate add layer on hardware. Supports Standard and Lite mode.
 
+`LR_MODE` - Option to accelerate leaky relu layer on hardware. Supports Standard mode.
+
 `FC_MODE` - Option to accelerate fully connected layer on hardware. Supports Standard and Lite mode.
 
 `MUL_MODE` - Option to accelerate multiply layer on hardware. Supports Standard and Lite mode.
@@ -77,6 +79,8 @@ To ensure efficient resource usage, only either Lite mode or Standard mode of a 
 - Multiply Layer
 
 - Minimum and Maximum Layer
+
+- Leaky Relu Layer
 
 <br />
 

@@ -123,7 +123,7 @@
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
-        <efx:param name="optimization_level" value="NULL" value_type="e_option"/>
+        <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
         <efx:param name="seed" value="0" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>

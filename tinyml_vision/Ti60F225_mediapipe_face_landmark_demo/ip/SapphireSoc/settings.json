@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip",
+        "/tmp/tmpe32xp41_/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "2.2.6"
+            "version": "2.2.9"
         }
     ],
     "conf": {
@@ -148,46 +148,46 @@
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc_tmpl.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc_define.vh",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc_tmpl.vhd"
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/SapphireSoc_define.vh",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/SapphireSoc_tmpl.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/SapphireSoc.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/SapphireSoc_tmpl.vhd"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
         "external_example_design": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/soc.xml",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/design_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/ddr_reset_sequencer.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/soc.hex",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc_define.vh"
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/T120F324_devkit/soc.xml",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/T120F324_devkit/design_modules.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/T120F324_devkit/ddr_reset_sequencer.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/T120F324_devkit/soc.hex",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/T120F324_devkit/SapphireSoc.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/T120F324_devkit/SapphireSoc_define.vh"
         ],
         "external_example_design_ti": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/soc.xml",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/design_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.encrypted.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.vh",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/soc.hex",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc_define.vh"
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/soc.xml",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/design_modules.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/hbram_top.encrypted.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/hbram_top.vh",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/soc.hex",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc_define.vh"
         ],
         "external_testbench_testbench": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/MEM_IM.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SECSI.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SFDP.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SREG.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/README",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/tb_soc.do",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/modelsim.do",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/wave.do",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/design_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/sim_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/MEM_IM.TXT",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/SECSI.TXT",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/SFDP.TXT",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/SREG.TXT",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/README",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/tb_soc.do",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/modelsim.do",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/wave.do",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/design_modules.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/sim_modules.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/SapphireSoc.v",
+            "/tmp/tmpe32xp41_/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
         ]
     },
     "sw_version": "2023.1.150",
-    "generated_date": "2023-07-22T08:33:31.662562"
+    "generated_date": "2023-10-10T02:12:32.333201"
 }

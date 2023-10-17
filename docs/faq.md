@@ -144,28 +144,28 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | TinyML Hello World (Total)    | 56163 | 29626 | 7848 | 36084 | 187        | 61  |
- | RISC-V SoC                    |   -   | 7248  | 684  | 6132  | 48         | 4   |
- | DMA Controller                |   -   | 4457  | 772  | 5644  | 44         | 0   |
- | HyperRAM Controller Core      |   -   | 1186  | 305  | 2091  | 22         | 0   |
- | Hardware Accelerator* (Dummy) |   -   | 369   | 273  | 160   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 15651 | 5802 | 20444 | 69         | 55  |
+ | TinyML Hello World (Total)    | 56128 | 30225 | 7206 | 36299 | 186        | 53  |
+ | RISC-V SoC                    |   -   | 7248  | 684  | 6136  | 48         | 4   |
+ | DMA Controller                |   -   | 4457  | 772  | 5606  | 44         | 0   |
+ | HyperRAM Controller Core      |   -   | 1229  | 327  | 2142  | 25         | 0   |
+ | Hardware Accelerator* (Dummy) |   -   | 369   | 273  | 162   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -   | 16207 | 5138 | 20793 | 65         | 53  |
 
 <br />
 
  **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 56800 | 27492 | 9168 | 36717 | 219        | 54  |
- | RISC-V SoC                    |   -   | 7016  | 691  | 5926  | 43         | 4   |
- | DMA Controller                |   -   | 4383  | 520  | 5895  | 34         | 0   |
- | HyperRAM Controller Core      |   -   | 1186  | 305  | 2089  | 22         | 0   |
- | CSI-2 RX Controller Core      |   -   | 871   | 194  | 1944  | 15         | 0   |
- | DSI TX Controller Core        |   -   | 1757  | 415  | 3495  | 19         | 0   |
- | Camera                        |   -   | 778   | 919  | 661   | 11         | 0   |
- | Display                       |   -   | 341   | 174  | 370   | 8          | 0   |
- | Hardware Accelerator*         |   -   | 334   | 273  | 128   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 9946  | 5658 | 14582 | 59         | 48  |
+ | Person Detection Demo (Total) | 56800 | 27554 | 9200 | 37065 | 222        | 54  |
+ | RISC-V SoC                    |   -   | 7016  | 691  | 6018  | 43         | 4   |
+ | DMA Controller                |   -   | 4383  | 520  | 5950  | 34         | 0   |
+ | HyperRAM Controller Core      |   -   | 1229  | 327  | 2136  | 25         | 0   |
+ | CSI-2 RX Controller Core      |   -   | 871   | 194  | 1884  | 15         | 0   |
+ | DSI TX Controller Core        |   -   | 1776  | 415  | 3691  | 19         | 0   |
+ | Camera                        |   -   | 778   | 919  | 548   | 11         | 0   |
+ | Display                       |   -   | 341   | 174  | 360   | 8          | 0   |
+ | Hardware Accelerator*         |   -   | 334   | 273  | 129   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -   | 9946  | 5668 | 14603 | 59         | 48  |
  
  
  Resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2023.1 are as follows.
@@ -173,25 +173,25 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR    | FF    | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:-----:|:-----:|:-----:|:----------:|:---:|
- | TinyML Hello World (Total)    | 138697 | 70325 | 20037 | 89338 | 505        | 213 |
- | RISC-V SoC                    |   -    | 11911 | 707   | 7520  | 87         | 4   |
- | DMA Controller                |   -    | 7695  | 1022  | 14123 | 49         | 0   |
- | Hardware Accelerator* (Dummy) |   -    | 352   | 294   | 130   | 49         | 2   |
- | Efinix TinyML Accelerator     |   -    | 48058 | 18005 | 62292 | 365        | 207 |
+ | TinyML Hello World (Total)    | 146540 | 74843 | 20581 | 95437 | 505        | 217 |
+ | RISC-V SoC                    |   -    | 11913 | 707   | 7525  | 87         | 4   |
+ | DMA Controller                |   -    | 7695  | 1022  | 14163 | 49         | 0   |
+ | Hardware Accelerator* (Dummy) |   -    | 352   | 294   | 129   | 49         | 2   |
+ | Efinix TinyML Accelerator     |   -    | 52531 | 18549 | 68220 | 365        | 211 |
 
 <br />
 
  **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
  | Building Block                | XLR    | FF     | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:------:|:-----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 119282 | 56271  | 21700 | 74069 | 579        | 166 |
- | RISC-V SoC                    |   -    | 12223  | 769   | 7918  | 87         | 4   |
- | DMA Controller                |   -    | 8694.  | 1105  | 15233 | 65.        | 0   |
- | CSI-2 RX Controller Core      |   -    | 647    | 204   | 1428  | 17         | 0   |
- | Camera                        |   -    | 744    | 946   | 666   | 11         | 0   |
- | Display                       |   -    | 666    | 226   | 368   | 45         | 0   |
- | Hardware Accelerator*         |   -    | 352    | 294   | 125   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 30454  | 18154 | 42906 | 349        | 160 |
+ | Person Detection Demo (Total) | 119282 | 56340  | 21890 | 74085 | 579        | 166 |
+ | RISC-V SoC                    |   -    | 12223  | 762   | 7911  | 87         | 4   |
+ | DMA Controller                |   -    | 8649.  | 1105  | 15285 | 65.        | 0   |
+ | CSI-2 RX Controller Core      |   -    | 643    | 204   | 1406  | 17         | 0   |
+ | Camera                        |   -    | 744    | 946   | 654   | 11         | 0   |
+ | Display                       |   -    | 666    | 226   | 391   | 45         | 0   |
+ | Hardware Accelerator*         |   -    | 352    | 294   | 138   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -    | 30618  | 18344 | 42898 | 349        | 160 |
 
 \* Hardware accelerator consists of pre-processing blocks for inference. For the MobileNetv1 Person Detection Demo design, the pre-processing blocks are image downscaling, RGB to grayscale conversion, and grayscale pixel packing. Refer to the defines.v for respective design TinyML accelerator configuration
 

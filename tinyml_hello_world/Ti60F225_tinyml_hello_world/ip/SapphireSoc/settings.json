@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip",
+        "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "2.2.6"
+            "version": "2.2.9"
         }
     ],
     "conf": {
@@ -148,14 +148,14 @@
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_tmpl.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_define.vh",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_tmpl.vhd"
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_tmpl.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_tmpl.vhd",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_define.vh"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": []
     },
     "sw_version": "2023.1.150",
-    "generated_date": "2023-07-21T08:14:52.317776"
+    "generated_date": "2023-10-10T02:00:53.047469"
 }

@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
+        "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "2.2.6"
+            "version": "2.2.9"
         }
     ],
     "conf": {
@@ -148,46 +148,46 @@
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_define.vh",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.vhd"
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_define.vh",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.vhd"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
         "external_example_design": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/soc.xml",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/design_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/ddr_reset_sequencer.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/soc.hex",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc_define.vh"
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/soc.xml",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/design_modules.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/ddr_reset_sequencer.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/soc.hex",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc_define.vh"
         ],
         "external_example_design_ti": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/soc.xml",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/design_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.encrypted.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.vh",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/soc.hex",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc_define.vh"
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/soc.xml",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/design_modules.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.encrypted.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.vh",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/soc.hex",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc_define.vh"
         ],
         "external_testbench_testbench": [
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/MEM_IM.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SECSI.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SFDP.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SREG.TXT",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/README",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/tb_soc.do",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/modelsim.do",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/wave.do",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/design_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/sim_modules.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc.v",
-            "/home/mfaiz/go/validation/2023.1.150.2.4/efx_tinyml_enc/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/MEM_IM.TXT",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SECSI.TXT",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SFDP.TXT",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SREG.TXT",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/README",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/tb_soc.do",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/modelsim.do",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/wave.do",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/design_modules.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/sim_modules.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc.v",
+            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
         ]
     },
     "sw_version": "2023.1.150",
-    "generated_date": "2023-07-22T08:38:01.463901"
+    "generated_date": "2023-10-10T02:15:34.630756"
 }

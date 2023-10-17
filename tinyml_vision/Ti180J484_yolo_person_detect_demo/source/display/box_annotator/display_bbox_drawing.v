@@ -109,8 +109,8 @@ begin
       count_y_frame          <= (pixel_data_in_valid & (count_x_frame == (FRAME_WIDTH-2)) & (count_y_frame == (FRAME_HEIGHT-1))) ? 16'd0 :
                                 (pixel_data_in_valid & (count_x_frame == (FRAME_WIDTH-2)))                                       ? count_y_frame + 1'b1 : count_y_frame;
       
-      pixel_data_out [31:0]  <= (bbox_even_comb[0]) ? BBOX_PIXEL : pixel_data_in [31:0];
-      pixel_data_out [63:32] <= (bbox_odd_comb[0])  ? BBOX_PIXEL : pixel_data_in [63:32];
+      pixel_data_out [31:0]  <= (bbox_even_comb[0] | bbox_odd_comb[0]) ? BBOX_PIXEL : pixel_data_in [31:0];
+      pixel_data_out [63:32] <= (bbox_even_comb[0] | bbox_odd_comb[0]) ? BBOX_PIXEL : pixel_data_in [63:32];
       pixel_data_out_valid   <= pixel_data_in_valid;
    end
 end

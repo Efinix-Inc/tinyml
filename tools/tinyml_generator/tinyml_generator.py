@@ -101,6 +101,15 @@ params = {
         'val': "STANDARD",
         'visible': True
     },
+    "LR_MODE": {
+        'type': 'l',
+        'SW': True,
+        'combo':["STANDARD", "DISABLE"],
+        'res': True,
+        'val': "STANDARD",
+        'visible': True
+    },
+
     "FC_MODE": {
         'type': 'l',
         'combo':["STANDARD","LITE", "DISABLE"],

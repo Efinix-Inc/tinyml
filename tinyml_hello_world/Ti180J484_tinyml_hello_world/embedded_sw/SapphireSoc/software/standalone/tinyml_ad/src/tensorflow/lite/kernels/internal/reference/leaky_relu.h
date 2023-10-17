@@ -19,6 +19,9 @@ limitations under the License.
 #include <limits>
 
 #include "tensorflow/lite/kernels/internal/common.h"
+#include "../../../../../platform/tinyml/ops/lr.h"
+
+
 
 namespace tflite {
 namespace reference_ops {
@@ -43,6 +46,14 @@ inline void QuantizeLeakyRelu(const LeakyReluParams& params,
   const int flat_size = MatchingFlatSize(input_shape, output_shape);
   static const int32_t quantized_min = std::numeric_limits<T>::min();
   static const int32_t quantized_max = std::numeric_limits<T>::max();
+  if(std::is_same<T, int8_t>::value) {
+		if(OP_OK == lr_drv(flat_size,params.input_offset, params.output_shift_identity, params.output_multiplier_identity,
+										params.output_shift_alpha, params.output_multiplier_alpha,params.output_offset,quantized_max, quantized_min,
+										input_data, output_data)) {
+			return;
+		}
+	}
+
   for (int i = 0; i < flat_size; ++i) {
     const int32_t input_value = input_data[i] - params.input_offset;
     int32_t unclamped_output;

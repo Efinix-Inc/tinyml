@@ -12,6 +12,7 @@
 `define FC_MAX_IN_NODE	0
 `define FC_MAX_OUT_NODE	0
 `define MUL_MODE	"DISABLE"
+`define LR_MODE	"DISABLE"
 `define MIN_MAX_MODE	"DISABLE"
 `define TINYML_CACHE	"ENABLE"
 `define CACHE_DEPTH	4096

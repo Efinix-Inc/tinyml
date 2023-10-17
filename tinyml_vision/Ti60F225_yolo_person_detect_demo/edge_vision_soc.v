@@ -1017,8 +1017,8 @@ dsi_tx_display u_dsi_tx_display (
    .axi_rvalid       (w_axi_rvalid  ),//Read valid.
    .axi_rready       (w_axi_rready  ),//Read ready.
    
-   .hsync            (dp_hs),
-   .vsync            (dp_vs),
+   .hsync            (~dp_hs),
+   .vsync            (~dp_vs),
    .vc               (2'b0),
    .datatype         (6'h3E),
    .pixel_data       ({16'b0, dp_b_data[15:8], dp_g_data[15:8], dp_r_data[15:8], dp_b_data[7:0], dp_g_data[7:0], dp_r_data[7:0]}),

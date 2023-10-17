@@ -61,5 +61,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.150.2.4
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.150.5.11
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.3
