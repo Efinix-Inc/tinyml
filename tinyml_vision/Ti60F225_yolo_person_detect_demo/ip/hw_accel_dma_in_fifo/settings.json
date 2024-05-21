@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_in_fifo",
         "--base_path",
-        "/tmp/tmpb7urqe1z/ip",
+        "/tmp/tmpzhc_ovv0/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "5.1"
         }
     ],
     "conf": {
@@ -34,12 +34,12 @@
     },
     "output": {
         "external_source_source": [
-            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
-            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
-            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
-            "/tmp/tmpb7urqe1z/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd"
+            "/tmp/tmpzhc_ovv0/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
+            "/tmp/tmpzhc_ovv0/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/tmp/tmpzhc_ovv0/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v",
+            "/tmp/tmpzhc_ovv0/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-07-21T08:56:55.015571"
+    "sw_version": "2023.2.307",
+    "generated_date": "2024-05-16T03:26:38.051053"
 }

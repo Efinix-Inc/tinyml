@@ -3,13 +3,13 @@
         "-o",
         "cam_dma_fifo",
         "--base_path",
-        "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip",
+        "/tmp/tmp_bc9nffj/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "5.1"
         }
     ],
     "conf": {
@@ -34,39 +34,39 @@
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/cam_dma_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd"
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/cam_dma_fifo.v"
         ],
         "external_example_example": [
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_top.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.peri.xml",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.xml",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_T20.sdc",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo_define.vh"
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.xml",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo_define.vh"
         ],
         "external_example_2": [
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_top.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.xml",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo_define.vh"
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo_define.vh"
         ],
         "external_testbench_testbench": [
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/fifo_tb.sv",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/xrun.sh",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/msim.sh",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/flist",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/modelsim.do",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/cam_dma_fifo.v",
-            "/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo/ip/cam_dma_fifo/Testbench/cam_dma_fifo_define.vh"
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/fifo_tb.sv",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/xrun.sh",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/msim.sh",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/flist",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/modelsim.do",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/cam_dma_fifo.v",
+            "/tmp/tmp_bc9nffj/ip/cam_dma_fifo/Testbench/cam_dma_fifo_define.vh"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-07-19T01:57:44.745137"
+    "sw_version": "2023.2.307",
+    "generated_date": "2024-05-16T03:33:53.271873"
 }

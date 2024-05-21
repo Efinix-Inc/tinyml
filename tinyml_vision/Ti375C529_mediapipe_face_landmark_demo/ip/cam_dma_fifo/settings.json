@@ -1,0 +1,45 @@
+{
+    "args": [
+        "-o",
+        "cam_dma_fifo",
+        "--base_path",
+        "/tmp/tmp8t4vf31n/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH_2": "10",
+        "DATA_WIDTH": "48",
+        "MODE": "\"FWFT\"",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "512",
+        "PROGRAMMABLE_FULL": "\"NONE\"",
+        "PFN_INTERNAL": "512",
+        "PEA_INTERNAL": "2",
+        "PEN_INTERNAL": "3",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "FAMILY": "\"TITANIUM\"",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0"
+    },
+    "output": {
+        "external_source_source": [
+            "/tmp/tmp8t4vf31n/ip/cam_dma_fifo/cam_dma_fifo.v",
+            "/tmp/tmp8t4vf31n/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "/tmp/tmp8t4vf31n/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
+            "/tmp/tmp8t4vf31n/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v"
+        ]
+    },
+    "sw_version": "2023.2.307",
+    "generated_date": "2024-05-09T03:06:20.775383"
+}

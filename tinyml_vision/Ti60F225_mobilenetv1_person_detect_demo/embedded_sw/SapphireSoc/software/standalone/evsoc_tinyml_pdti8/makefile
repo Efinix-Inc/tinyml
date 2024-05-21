@@ -1,5 +1,8 @@
 PROJ_NAME=evsoc_tinyml_pdti8
 STANDALONE = ..
+DEBUG=no
+DEBUG_OG=no
+BENCH=yes
 
 SRCS = $(wildcard src/*.c) \
        $(wildcard src/*.cc) \
@@ -49,35 +52,9 @@ CFLAGS += -DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/platf
 		-DTF_LITE_USE_GLOBAL_MAX \
 		-DTF_LITE_DISABLE_X86_NEON\
 		-g \
-		-O3 \
 		-fno-builtin
 		 
-CXXFLAGS +=-DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/platform/interrupt  -Isrc/platform/vision -Isrc/platform/misc -Isrc/platform/tinyml \
-		-Isrc/tensorflow/third_party/flatbuffers/include \
-		-Isrc/tensorflow/third_party/gemmlowp \
-		-Isrc/tensorflow/third_party/ruy \
-		-ffunction-sections \
-		-fdata-sections \
-		-fno-common \
-		-fomit-frame-pointer \
-		-ffreestanding \
-		-Wsign-compare\
-		-Wdouble-promotion\
-		-Wshadow\
-		-Wmissing-field-initializers\
-		-Wunused-function\
-		-Wswitch\
-		-Wvla\
-	    	-DTF_LITE_STATIC_MEMORY \
-	    	-DTF_LITE_STATIC_MEMORY \
-		-DTF_LITE_USE_GLOBAL_CMATH_FUNCTIONS \
-		-DTF_LITE_USE_GLOBAL_MIN \
-		-DTF_LITE_USE_GLOBAL_MAX  \
-		-DTF_LITE_DISABLE_X86_NEON \
-		-g \
-		-O3 \
-		-fno-builtin \
-		-std=c++11 \
+CXXFLAGS +=-std=c++11 \
 		-fstrict-aliasing \
 		-fno-rtti \
 		-fno-exceptions \
@@ -85,7 +62,7 @@ CXXFLAGS +=-DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/plat
 		-fmessage-length=0 
 				 
 include ${STANDALONE}/common/bsp.mk
-include ${STANDALONE}/common/tinyml_riscv64-unknown-elf.mk
+include ${STANDALONE}/common/riscv64-unknown-elf.mk
 include ${STANDALONE}/common/tinyml_standalone.mk
 
 LIBS+=${STANDALONE}/common/tinyml_lib.a

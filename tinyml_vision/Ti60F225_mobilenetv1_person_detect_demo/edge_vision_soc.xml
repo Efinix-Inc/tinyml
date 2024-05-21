@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change_date="Wed October 19 2022 10:50:27" location="C:/my_projects/8_github_ws/2_efx_sol/efx_SOLUTION/tinyML/efx_tinyml/tinyml_vision/Ti60F225_person_detection_demo" sw_version="2021.2.323.6.17" last_run_state="pass" last_run_tool="efx_pgm" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change="1715836599" sw_version="2023.2.307.5.6" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti60F225"/>
@@ -37,6 +37,8 @@
         <efx:design_file name="source/display/display_dsi.v" version="default" library="default"/>
         <efx:design_file name="source/display/display_panel_config.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_apb3.v" version="default" library="default"/>
+        <efx:design_file name="ip/hbram/hbram.v" version="default" library="default"/>
+        <efx:design_file name="ip/hbram/hbram_define.vh" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
@@ -48,9 +50,6 @@
     <efx:ip_info>
         <efx:ip instance_name="csi2_rx_cam" path="ip/csi2_rx_cam/settings.json">
             <efx:ip_src_file name="csi2_rx_cam.sv"/>
-        </efx:ip>
-        <efx:ip instance_name="hbram" path="ip/hbram/settings.json">
-            <efx:ip_src_file name="hbram.v"/>
         </efx:ip>
         <efx:ip instance_name="cam_dma_fifo" path="ip/cam_dma_fifo/settings.json">
             <efx:ip_src_file name="cam_dma_fifo.v"/>
@@ -105,7 +104,6 @@
         <efx:param name="include" value="ip/hw_accel_dma_in_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/SapphireSoc" value_type="e_string"/>
-        <efx:param name="include" value="ip/hbram" value_type="e_string"/>
         <efx:param name="allow-const-ram-index" value="0" value_type="e_option"/>
         <efx:param name="blackbox-error" value="1" value_type="e_option"/>
         <efx:param name="create-onehot-fsms" value="0" value_type="e_option"/>
@@ -116,16 +114,20 @@
         <efx:param name="optimize-zero-init-rom" value="1" value_type="e_option"/>
         <efx:param name="seq-opt-sync-only" value="0" value_type="e_option"/>
         <efx:param name="insert-carry-skip" value="0" value_type="e_option"/>
+        <efx:param name="mult-auto-pipeline" value="0" value_type="e_option"/>
+        <efx:param name="use-logic-for-small-mem" value="64" value_type="e_integer"/>
+        <efx:param name="use-logic-for-small-rom" value="64" value_type="e_integer"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
-        <efx:param name="seed" value="0" value_type="e_integer"/>
+        <efx:param name="seed" value="1" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
+        <efx:param name="print_critical_path" value="10" value_type="e_integer"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
         <efx:param name="mode" value="active" value_type="e_option"/>

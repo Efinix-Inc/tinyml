@@ -38,6 +38,7 @@ Refer to the *model_zoo* directory for more details on the related model trainin
 The TinyML demo design is implemented on:
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
+- [Titanium® Ti375 C529 Development Kit]
 
 **Note:** Efinity projects of the demo designs are in [tinyml_vision](./) directory.
 
@@ -58,10 +59,6 @@ Bring up Edge Vision TinyML demo design on Efinix development kit by following l
    - Note that, user is required to generate SapphireSoc in IP list (if not done), prior to proceed with using Efinity RISC-V Embedded Software IDE for building software applications.
 3. Using Efinity RISC-V Embedded Software IDE
    - Setup Eclipse workspace at *tinyml_vision/<proj_directory>/embedded_sw/SapphireSoc* directory.
-   - Window -> Preferences -> C/C++ -> Build -> Environment (for C/C++ compilation with O3 flag, optimize for speed performance)
-      - *BENCH* set to *yes*
-      - *DEBUG* set to *no*
-      - *DEBUG_OG* set to *no*
    - Edge Vision TinyML software app(s) is in *tinyml_vision/<proj_directory>/embedded_sw/SapphireSoc/software/standalone* directory.
    - Refer to *Using Eclipse and OpenOCD* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for other general setting and steps for running the demo software applications.
 
@@ -72,5 +69,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.150.5.11
-- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2023.1.3
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2023.2.307.5.10
+- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2023.2.5.1

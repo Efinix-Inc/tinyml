@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti180J484" location="/projects/SSE/aminh/1_my_projects/53_demo_j484/Ti180J484_yolo_person_detect_demo" version="2023.1.150.1.5" db_version="20231999" last_change_date="Wed Jul 19 09:53:26 2023" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti180J484" location="/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti180J484_yolo_person_detect_demo" version="2023.2.307.5.6" db_version="20232003" last_change_date="Thu May 16 17:03:19 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="2A_2B_2C" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="2A_2B_2C_MODE_SEL"/>
@@ -680,6 +680,51 @@
                 <efxpt:param name="tWR" value="18.000" value_type="float"/>
                 <efxpt:param name="tWTR" value="10.000" value_type="float"/>
             </efxpt:cs_memory_timing>
+            <efxpt:pin_swap>
+                <efxpt:param name="CA[0]" value="CA[0]" value_type="str"/>
+                <efxpt:param name="CA[1]" value="CA[1]" value_type="str"/>
+                <efxpt:param name="CA[2]" value="CA[2]" value_type="str"/>
+                <efxpt:param name="CA[3]" value="CA[3]" value_type="str"/>
+                <efxpt:param name="CA[4]" value="CA[4]" value_type="str"/>
+                <efxpt:param name="CA[5]" value="CA[5]" value_type="str"/>
+                <efxpt:param name="DM[0]" value="DM[0]" value_type="str"/>
+                <efxpt:param name="DM[1]" value="DM[1]" value_type="str"/>
+                <efxpt:param name="DM[2]" value="DM[2]" value_type="str"/>
+                <efxpt:param name="DM[3]" value="DM[3]" value_type="str"/>
+                <efxpt:param name="DQ[0]" value="DQ[0]" value_type="str"/>
+                <efxpt:param name="DQ[10]" value="DQ[10]" value_type="str"/>
+                <efxpt:param name="DQ[11]" value="DQ[11]" value_type="str"/>
+                <efxpt:param name="DQ[12]" value="DQ[12]" value_type="str"/>
+                <efxpt:param name="DQ[13]" value="DQ[13]" value_type="str"/>
+                <efxpt:param name="DQ[14]" value="DQ[14]" value_type="str"/>
+                <efxpt:param name="DQ[15]" value="DQ[15]" value_type="str"/>
+                <efxpt:param name="DQ[16]" value="DQ[16]" value_type="str"/>
+                <efxpt:param name="DQ[17]" value="DQ[17]" value_type="str"/>
+                <efxpt:param name="DQ[18]" value="DQ[18]" value_type="str"/>
+                <efxpt:param name="DQ[19]" value="DQ[19]" value_type="str"/>
+                <efxpt:param name="DQ[1]" value="DQ[1]" value_type="str"/>
+                <efxpt:param name="DQ[20]" value="DQ[20]" value_type="str"/>
+                <efxpt:param name="DQ[21]" value="DQ[21]" value_type="str"/>
+                <efxpt:param name="DQ[22]" value="DQ[22]" value_type="str"/>
+                <efxpt:param name="DQ[23]" value="DQ[23]" value_type="str"/>
+                <efxpt:param name="DQ[24]" value="DQ[24]" value_type="str"/>
+                <efxpt:param name="DQ[25]" value="DQ[25]" value_type="str"/>
+                <efxpt:param name="DQ[26]" value="DQ[26]" value_type="str"/>
+                <efxpt:param name="DQ[27]" value="DQ[27]" value_type="str"/>
+                <efxpt:param name="DQ[28]" value="DQ[28]" value_type="str"/>
+                <efxpt:param name="DQ[29]" value="DQ[29]" value_type="str"/>
+                <efxpt:param name="DQ[2]" value="DQ[2]" value_type="str"/>
+                <efxpt:param name="DQ[30]" value="DQ[30]" value_type="str"/>
+                <efxpt:param name="DQ[31]" value="DQ[31]" value_type="str"/>
+                <efxpt:param name="DQ[3]" value="DQ[3]" value_type="str"/>
+                <efxpt:param name="DQ[4]" value="DQ[4]" value_type="str"/>
+                <efxpt:param name="DQ[5]" value="DQ[5]" value_type="str"/>
+                <efxpt:param name="DQ[6]" value="DQ[6]" value_type="str"/>
+                <efxpt:param name="DQ[7]" value="DQ[7]" value_type="str"/>
+                <efxpt:param name="DQ[8]" value="DQ[8]" value_type="str"/>
+                <efxpt:param name="DQ[9]" value="DQ[9]" value_type="str"/>
+                <efxpt:param name="ENABLE_PIN_SWAP" value="false" value_type="bool"/>
+            </efxpt:pin_swap>
         </efxpt:adv_ddr>
     </efxpt:ddr_info>
     <efxpt:mipi_dphy_info/>

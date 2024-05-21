@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip",
+        "/tmp/tmp69frg3hw/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "2.2.9"
+            "version": "3.0.0"
         }
     ],
     "conf": {
@@ -143,40 +143,46 @@
         "USER_TIMER2_PS_WIDTH": "8",
         "USER_TIMER2_INT_ID": "21",
         "USER_TIMER2_M_Addr": "32'd69632",
-        "RAM_OPT": "1'b0"
+        "RAM_OPT": "1'b0",
+        "SOC_MODE": "0",
+        "MULDIV_EXT": "1'b0",
+        "BARREL_SHIFTER": "1'b0",
+        "REDUCED_CSR": "1'b1",
+        "DDRCLK_DOMAIN": "1",
+        "DDR_OPT": "1"
     },
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_define.vh",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_tmpl.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/SapphireSoc.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/SapphireSoc_tmpl.vhd"
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc_tmpl.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc_tmpl.vhd",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc_define.vh"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
         "external_example_design_ti180": [
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Ti180J484_devkit/soc.xml",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Ti180J484_devkit/design_modules.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc_define.vh"
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/design_modules.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc_define.vh",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/soc.xml"
         ],
         "external_testbench_testbench": [
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/MEM_IM.TXT",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/SECSI.TXT",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/SFDP.TXT",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/SREG.TXT",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/README",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/tb_soc.do",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/modelsim.do",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/wave.do",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/design_modules.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/sim_modules.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/SapphireSoc.v",
-            "/projects/SSE/mfaiz/validation/2023.1.150.5.11/efx_tinyml_encrypted/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/MEM_IM.TXT",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SECSI.TXT",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SFDP.TXT",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SREG.TXT",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/README",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/tb_soc.do",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/modelsim.do",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/wave.do",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/design_modules.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/sim_modules.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SapphireSoc.v",
+            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-10-10T02:00:36.409442"
+    "sw_version": "2023.2.307",
+    "generated_date": "2024-05-16T03:33:29.445557"
 }

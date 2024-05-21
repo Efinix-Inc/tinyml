@@ -1,3 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////////
+// Copyright 2024 Efinix.Inc. All Rights Reserved.
+// You may obtain a copy of the license at
+//    https://www.efinixinc.com/software-license.html
+///////////////////////////////////////////////////////////////////////////////////
+
 #include <stdlib.h>
 #include <stdint.h>
 #include "riscv.h"
@@ -117,6 +123,7 @@ extern "C" void main() {
    TfLiteStatus invoke_status;
    uint64_t timerCmp0, timerCmp1, timerDiff_0_1;
    uint64_t timerCmp2, timerCmp3, timerDiff_2_3;
+   uint64_t timerCmpTotal0, timerCmpTotal1, timerDiffTotal;
    u32 ms;
    
 	//Interrupt Initialization
@@ -125,7 +132,7 @@ extern "C" void main() {
 
    //Test image data
    MicroPrintf("Yolo Pico Person Inference...");
-   
+   timerCmpTotal0 = clint_getTime(BSP_CLINT);
    //Copy test image to tflite model input.
    for (unsigned int i = 0; i < input_img_000000018380_96x96x3_len; ++i)
       model_input->data.int8[i] = input_img_000000018380_96x96x3[i];  //Pre-normalized to [-128,127]
@@ -181,7 +188,7 @@ extern "C" void main() {
    timerCmp3 = clint_getTime(BSP_CLINT);
    MicroPrintf("Done\n\n\r");
    
-
+   timerCmpTotal1 = clint_getTime(BSP_CLINT);
    MicroPrintf("\n\rBoxes:\n\r");
    
    for (int i = 0; i < total_boxes; ++i) {
@@ -224,6 +231,15 @@ extern "C" void main() {
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_2_3/(SYSTEM_CLINT_HZ/1000);
    MicroPrintf("inference time (Yolo layer): %ums\n\r", ms);
+
+   timerDiffTotal = timerCmpTotal1 - timerCmpTotal0;
+   u32 *v3 = (u32 *)&timerDiffTotal;
+   MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v3[1], v3[0]); //Timestamp
+   //processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ
+   MicroPrintf("SYSTEM_CLINT_HZ (hex): %x\n\r", SYSTEM_CLINT_HZ);
+   MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
+   ms = timerDiffTotal/(SYSTEM_CLINT_HZ/1000);
+   MicroPrintf("inference time (Total): %ums\n\r", ms);
 
 
    ops_unload();

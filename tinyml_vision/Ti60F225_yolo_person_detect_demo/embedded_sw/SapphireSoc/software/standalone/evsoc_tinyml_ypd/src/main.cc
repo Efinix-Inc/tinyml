@@ -1,17 +1,8 @@
-/* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-==============================================================================*/
+///////////////////////////////////////////////////////////////////////////////////
+// Copyright 2024 Efinix.Inc. All Rights Reserved.
+// You may obtain a copy of the license at
+//    https://www.efinixinc.com/software-license.html
+///////////////////////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -450,6 +441,7 @@ void main() {
    //For timestamp
    uint64_t timerCmp0, timerCmp1, timerDiff_0_1;
    uint64_t timerCmp2, timerCmp3, timerDiff_2_3;
+   uint64_t timerCmpTotal0, timerCmpTotal1, timerDiffTotal;
    u32 ms;
    bbox_overlay_updated = 0;
    
@@ -480,7 +472,7 @@ void main() {
       /*******************************************************TINYML INFERENCE**********************************************************/
 
       MicroPrintf("TinyML Inference...");
-
+      timerCmpTotal0 = clint_getTime(BSP_CLINT);
       //Copy test image to tflite model input.
       for (unsigned int i = 0; i < YOLO_PICO_INPUT_BYTES; ++i)
          model_input->data.int8[i] = tinyml_input_array[i] - 128; //Input normalization: From range [0,255] to [-128,127]
@@ -532,6 +524,7 @@ void main() {
 
       //Pass bounding boxes info to annotator
       draw_boxes(boxes,total_boxes);
+      timerCmpTotal1 = clint_getTime(BSP_CLINT);
    
       timerDiff_0_1 = timerCmp1 - timerCmp0;
       u32 *v = (u32 *)&timerDiff_0_1;
@@ -550,6 +543,15 @@ void main() {
       MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
       ms = timerDiff_2_3/(SYSTEM_CLINT_HZ/1000);
       MicroPrintf("inference time (Yolo layer): %ums\n\r", ms);
+
+      timerDiffTotal = timerCmpTotal1 - timerCmpTotal0;
+      u32 *v3 = (u32 *)&timerDiffTotal;
+      MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v3[1], v3[0]); //Timestamp
+      //processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ
+      MicroPrintf("SYSTEM_CLINT_HZ (hex): %x\n\r", SYSTEM_CLINT_HZ);
+      MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
+      ms = timerDiffTotal/(SYSTEM_CLINT_HZ/1000);
+      MicroPrintf("inference time (Total): %ums\n\r", ms);
 
       //Clear all the memory allocation content
       for (int i = 0; i < total_output_layers; ++i) {

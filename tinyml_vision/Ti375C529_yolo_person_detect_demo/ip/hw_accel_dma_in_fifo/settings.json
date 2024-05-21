@@ -1,0 +1,72 @@
+{
+    "args": [
+        "-o",
+        "hw_accel_dma_in_fifo",
+        "--base_path",
+        "/tmp/tmpg_29e0kw/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH_2": "5",
+        "DATA_WIDTH": "32",
+        "MODE": "\"STANDARD\"",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "20",
+        "PROGRAMMABLE_FULL": "\"STATIC_SINGLE\"",
+        "PFN_INTERNAL": "20",
+        "PEA_INTERNAL": "2",
+        "PEN_INTERNAL": "3",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "FAMILY": "\"TITANIUM\"",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0"
+    },
+    "output": {
+        "external_source_source": [
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.vhd",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_define.vh",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo_tmpl.v"
+        ],
+        "external_example_example": [
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/hw_accel_dma_in_fifo_define.vh",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/T20F256_devkit/fifo_demo.xml"
+        ],
+        "external_example_2": [
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/hw_accel_dma_in_fifo_define.vh",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Ti60F225_devkit/fifo_demo.xml"
+        ],
+        "external_testbench_testbench": [
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/fifo_tb.sv",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/xrun.sh",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/msim.sh",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/flist",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/modelsim.do",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo.v",
+            "/tmp/tmpg_29e0kw/ip/hw_accel_dma_in_fifo/Testbench/hw_accel_dma_in_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2023.2.307",
+    "generated_date": "2024-05-09T03:06:28.591739"
+}

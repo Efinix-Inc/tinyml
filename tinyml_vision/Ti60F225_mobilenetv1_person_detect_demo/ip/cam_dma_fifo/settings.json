@@ -3,13 +3,13 @@
         "-o",
         "cam_dma_fifo",
         "--base_path",
-        "/tmp/tmpsttbnwa2/ip",
+        "/tmp/tmpta0z6gzv/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "5.0"
+            "version": "5.1"
         }
     ],
     "conf": {
@@ -34,39 +34,39 @@
     },
     "output": {
         "external_source_source": [
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/cam_dma_fifo.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd"
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/cam_dma_fifo_define.vh",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/cam_dma_fifo_tmpl.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/cam_dma_fifo.v"
         ],
         "external_example_example": [
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_top.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.peri.xml",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.xml",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_T20.sdc",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo_define.vh"
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/fifo_demo.xml",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_top.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/T20F256_devkit/cam_dma_fifo_define.vh"
         ],
         "external_example_2": [
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_top.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.xml",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo_define.vh"
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Ti60F225_devkit/cam_dma_fifo_define.vh"
         ],
         "external_testbench_testbench": [
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/fifo_tb.sv",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/xrun.sh",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/msim.sh",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/flist",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/modelsim.do",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/cam_dma_fifo.v",
-            "/tmp/tmpsttbnwa2/ip/cam_dma_fifo/Testbench/cam_dma_fifo_define.vh"
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/fifo_tb.sv",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/xrun.sh",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/msim.sh",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/flist",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/modelsim.do",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/cam_dma_fifo.v",
+            "/tmp/tmpta0z6gzv/ip/cam_dma_fifo/Testbench/cam_dma_fifo_define.vh"
         ]
     },
-    "sw_version": "2023.1.150",
-    "generated_date": "2023-07-21T08:55:45.468168"
+    "sw_version": "2023.2.307",
+    "generated_date": "2024-05-16T03:25:49.850580"
 }

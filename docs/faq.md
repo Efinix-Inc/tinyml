@@ -5,13 +5,15 @@
 - [How much resources are consumed by Efinix TinyML designs?](#how-much-resources-are-consumed-by-efinix-tinyml-designs)
 - [Why compile provided example designs using Efinity RISC-V Embedded Software IDE failed?](#why-compile-provided-example-designs-using-efinity-risc-v-embedded-software-ide-failed)
 - [Why compile Efinix TinyML Accelerator with a freshly created Efinity project gives error?](#why-compile-efinix-tinyml-accelerator-with-a-freshly-created-efinity-project-gives-error)
-- [How to compile AI inference software app for optimized speed performance?](#how-to-compile-ai-inference-software-app-for-optimized-speed-performance)
+- [How to compile AI inference software app with different optimization?](#how-to-compile-ai-inference-software-app-with-different-optimization)
 - [Where are AI training and quantization scripts located?](#where-are-ai-training-and-quantization-scripts-located)
 - [How to make use of outputs generated from model zoo training and quantization flow for inference purposes?](#how-to-make-use-of-outputs-generated-from-model-zoo-training-and-quantization-flow-for-inference-purposes)
 - [How to run inference with or without Efinix TinyML accelerator?](#how-to-run-inference-with-or-without-efinix-tinyml-accelerator)
 - [How to perform profiling of an AI model running on RISC-V?](#how-to-perform-profiling-of-an-ai-model-running-on-risc-v)
 - [How to boot a complete TinyML design from flash?](#how-to-boot-a-complete-tinyml-design-from-flash)
 - [How to modify Efinix Vision TinyML demo designs to use Google Coral Camera instead of Raspberry PI Camera v2?](#how-to-modify-efinix-vision-tinyml-demo-designs-to-use-google-coral-camera-instead-of-raspberry-pi-camera-v2)
+- [How to modify Efinix Vision TinyML demo designs to use Raspberry Pi Camera v3 instead of Raspberry Pi Camera v2?](#how-to-modify-efinix-vision-tinyml-demo-designs-to-use-raspberry-pi-camera-v3-instead-of-raspberry-pi-camera-v2)
+- [My Efinix TinyML design fails to compile due to timing errors. What should I do?](#my-efinix-tinyml-design-fails-to-compile-due-to-timing-errors-what-should-i-do)
 
 <br />
 
@@ -38,6 +40,9 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   ├── resnet_image_classification
 │   └── yolo_person_detection
 ├── quick_start
+│   ├── coral
+│   ├── picam_v2
+│   └── picam_v3
 ├── tinyml_hello_world
 │   ├── Ti60F225_tinyml_hello_world
 │   │    ├── embedded_sw
@@ -76,9 +81,19 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   │   ├── replace_files
 │   │   └── source
 │   └── Ti180J484_yolo_person_detect_demo
+│   │   ├── embedded_sw
+│   │   ├── ip
+│   │   ├── replace_files
+│   │   └── source
+│   ├── Ti375C529_mediapipe_face_landmark_demo
+│   │   ├── embedded_sw
+│   │   ├── ip
+│   │   ├── bootloader_16MB
+│   │   └── source
+│   └── Ti375C529_yolo_person_detect_demo
 │       ├── embedded_sw
 │       ├── ip
-│       ├── replace_files
+│       ├── bootloader_16MB
 │       └── source
 └── tools
     └── tinyml_generator
@@ -101,7 +116,7 @@ For [TinyML Hello World](../tinyml_hello_world/README.md) design, the project st
 │   │    │               └── tinyml_ad
 │   │    ├── ip
 │   │    ├── replace_files
-│   │    │   ├── bootloader_4MB
+│   │    │   ├── bootloader_16MB
 │   │    │   └── user_def_accelerator
 │   │    └── source
 │   │        ├── axi
@@ -123,7 +138,7 @@ For [TinyML Vision](../tinyml_vision/README.md) design, the project structure is
 │   │   │               └── evsoc_tinyml_<application_alias>
 │   │   ├── ip
 │   │   ├── replace_files
-│   │   │   └── bootloader_4MB
+│   │   │   └── bootloader_16MB
 │   │   └── source
 │   │       ├── axi
 │   │       ├── cam
@@ -139,7 +154,7 @@ For [TinyML Vision](../tinyml_vision/README.md) design, the project structure is
 <br />
 
 ## How much resources are consumed by Efinix TinyML designs?
-Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2023.1 are as follows.
+Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using Efinity® IDE v2023.2 are as follows.
     
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
@@ -153,22 +168,23 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
 
 <br />
 
- **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
+ **Resource utilization for Edge Vision TinyML Yolo Person Detection Demo design:**  
  | Building Block                | XLR   | FF    | ADD  | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:-----:|:-----:|:----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 56800 | 27554 | 9200 | 37065 | 222        | 54  |
- | RISC-V SoC                    |   -   | 7016  | 691  | 6018  | 43         | 4   |
- | DMA Controller                |   -   | 4383  | 520  | 5950  | 34         | 0   |
- | HyperRAM Controller Core      |   -   | 1229  | 327  | 2136  | 25         | 0   |
- | CSI-2 RX Controller Core      |   -   | 871   | 194  | 1884  | 15         | 0   |
- | DSI TX Controller Core        |   -   | 1776  | 415  | 3691  | 19         | 0   |
+ | Person Detection Demo (Total) | 58338 | 28947 | 6698 | 39963 | 217        | 30  |
+ | RISC-V SoC                    |   -   | 6828  | 687  | 5845  | 43         | 4   |
+ | DMA Controller                |   -   | 4383  | 520  | 5828  | 34         | 0   |
+ | HyperRAM Controller Core      |   -   | 1229  | 299  | 2164  | 25         | 0   |
+ | CSI-2 RX Controller Core      |   -   | 907   | 178  | 1916  | 15         | 0   |
+ | DSI TX Controller Core        |   -   | 1805  | 415  | 3709  | 19         | 0   |
  | Camera                        |   -   | 778   | 919  | 548   | 11         | 0   |
- | Display                       |   -   | 341   | 174  | 360   | 8          | 0   |
- | Hardware Accelerator*         |   -   | 334   | 273  | 129   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -   | 9946  | 5668 | 14603 | 59         | 48  |
+ | Display                       |   -   | 338   | 174  | 361   | 8          | 0   |
+ | Display Annotator             |   -   | 1165  | 41   | 3336  | 4          | 0   |
+ | Hardware Accelerator*         |   -   | 335   | 161  | 199   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -   | 10300 | 3289 | 14303 | 50         | 24  |
  
  
- Resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2023.1 are as follows.
+ Resource utilization tables compiled for Efinix Titanium® Ti180J484 device using Efinity® IDE v2023.2 are as follows.
     
  **Resource utilization for TinyML Hello World design:**  
  | Building Block                | XLR    | FF    | ADD   | LUT   | MEM (M10K) | DSP |
@@ -181,17 +197,34 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
 
 <br />
 
- **Resource utilization for Edge Vision TinyML MobileNetV1 Person Detection Demo design:**  
+ **Resource utilization for Edge Vision TinyML Yolo Person Detection Demo design:**  
  | Building Block                | XLR    | FF     | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:------:|:-----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 119282 | 56340  | 21890 | 74085 | 579        | 166 |
- | RISC-V SoC                    |   -    | 12223  | 762   | 7911  | 87         | 4   |
- | DMA Controller                |   -    | 8649.  | 1105  | 15285 | 65.        | 0   |
- | CSI-2 RX Controller Core      |   -    | 643    | 204   | 1406  | 17         | 0   |
- | Camera                        |   -    | 744    | 946   | 654   | 11         | 0   |
- | Display                       |   -    | 666    | 226   | 391   | 45         | 0   |
- | Hardware Accelerator*         |   -    | 352    | 294   | 138   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 30618  | 18344 | 42898 | 349        | 160 |
+ | Person Detection Demo (Total) | 139675 | 67642  | 21236 | 90938 | 602        | 178 |
+ | RISC-V SoC                    |   -    | 12036  | 747   | 7885  | 87         | 4   |
+ | DMA Controller                |   -    | 8649   | 1094  | 15248 | 65         | 0   |
+ | CSI-2 RX Controller Core      |   -    | 679    | 141   | 1396  | 17         | 0   |
+ | Camera                        |   -    | 744    | 937   | 657   | 11         | 0   |
+ | Display                       |   -    | 666    | 225   | 386   | 45         | 0   |
+ | Display Annotator             |   -    | 1167   | 41    | 3382  | 4          | 0   |
+ | Hardware Accelerator*         |   -    | 351    | 177   | 176   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -    | 40905  | 17867 | 56301 | 368        | 172 |
+
+  Resource utilization tables compiled for Efinix Titanium® Ti375C529 device using Efinity® IDE v2023.2 are as follows.
+
+ **Resource utilization for Edge Vision TinyML Yolo Person Detection Demo design:** 
+ | Building Block                | XLR    | FF     | ADD   | LUT   | MEM (M10K) | DSP |
+ |-------------------------------|:------:|:------:|:-----:|:-----:|:----------:|:---:|
+ | Person Detection Demo (Total) | 98421  | 43942  | 21449 | 62016 | 322        | 177 |
+ | Sapphire HP SoC Slb           |   -    | 981    | 238   | 1076  | 4          | 4   |
+ | DMA Controller                |   -    | 8665   | 1094  | 15521 | 65         | 0   |
+ | CSI-2 RX Controller Core      |   -    | 905    | 174   | 1991  | 15         | 0   |
+ | Camera                        |   -    | 744    | 937   | 675   | 11         | 0   |
+ | Display                       |   -    | 666    | 225   | 385   | 45         | 0   |
+ | Display Annotator             |   -    | 1167   | 41    | 3413  | 4          | 0   |
+ | Hardware Accelerator*         |   -    | 351    | 177   | 201   | 4          | 2   |
+ | Efinix TinyML Accelerator     |   -    | 30185  | 18501 | 38460 | 173        | 175 |
+
 
 \* Hardware accelerator consists of pre-processing blocks for inference. For the MobileNetv1 Person Detection Demo design, the pre-processing blocks are image downscaling, RGB to grayscale conversion, and grayscale pixel packing. Refer to the defines.v for respective design TinyML accelerator configuration
 
@@ -209,11 +242,13 @@ This is due to the Verilog version of a freshly created Efinity project is defau
 
 <br />
 
-## How to compile AI inference software app for optimized speed performance?
-In Efinity RISC-V Embedded Software IDE, set the environment variables for C/C++ compilation with O3 flag, optimize for speed performance. Go to Efinity RISC-V Embedded Software IDE -> Window -> Preferences -> C/C++ -> Build -> Environment
-- *BENCH* set to *yes*
-- *DEBUG* set to *no*
-- *DEBUG_OG* set to *no*
+## How to compile AI inference software app with different optimization?
+By default, the software app is compiled with 03 flag which is optimized for speed performance. To change the optimization option for software app compilation, modify the software app Makefile option.
+```c
+DEBUG    //for O0 flag which is the default debugging option
+DEBUG_OG //for 0g flag which is the opimized debugging option
+BENCH    //for 03 flag which is the optimized speed performance option 
+```
 
 <br />
 
@@ -271,9 +306,11 @@ The profiling convention is as follows:
 
 A complete TinyML design consists of hardware/RTL (FPGA bitstream) and software/firmware (software binary). FPGA bitstream is generated from Efinity® IDE compilation, whereas software binary is generated from Efinity RISC-V Embedded Software IDE compilation. By default, there is a RISC-V bootloader that copies 124KB user binary from flash to main memory for execution upon boot-up.
 
-As AI-related application binary is typically larger than 124KB, the bootloader is to be updated to copy larger software binary size. Bootloader for moving up to 4MB software binary is provided in *<proj_directory>/replace_files/bootloader_4MB* folder. User is to copy and replace the corresponding files i.e., *EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol\*.bin* in *ip/SapphireSoc* directory. Then, compile the Efinity project using Efinity® IDE for generating the FPGA bitstream.
+As AI-related application binary is typically larger than 124KB, the bootloader is to be updated to copy larger software binary size. Bootloader for moving up to 16MB software binary is provided in *<proj_directory>/replace_files/bootloader_16MB* folder. User is to copy and replace the corresponding files i.e., *EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol\*.bin* in *ip/SapphireSoc* directory. Then, compile the Efinity project using Efinity® IDE for generating the FPGA bitstream.
 
 Refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) *Copy a User Binary to Flash (Efinity Programmer)* section for steps to combine FPGA bitstream and user application binary using Efinity Programmer, as well as boot the design from flash.
+
+*Note*: For Ti375C529 Efinix Vision TinyML demo designs, it is not required to perform manual copy as the bootloader is updated to 16MB through IP generation.
 
 <br />
 
@@ -334,6 +371,13 @@ In summary, the required changes to use Google Coral Camera on Efinix Vision Tin
 
 <br />
 
+## How to modify Efinix Vision TinyML demo designs to use Raspberry Pi Camera v3 instead of Raspberry Pi Camera v2?
+
+- To use Raspberry Pi Camera v3, add the following line in main.cc:
+```
+#define PICAM_VERSION 3
+```
+
 ## How to run static input inference on a different test image with provided example quantized models?
 
 In the provided TinyML Hello World example designs, test image input data for static inference is defined in header file placed in corresponding *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/model* folder. For example, *quant_airplane.h* and *quant_bird.h* contain the airplane and bird test image, respectively, for the ResNet image classification model.
@@ -393,3 +437,14 @@ After running inference successfully with the targeted AI model (with expected i
 To implement a TinyML solution for vision application, user may make use of the presented Efinix Edge Vision TinyML framework. For more details about the flexible domain-specific Edge Vision SoC framework, visit [Edge Vision SoC webpage](https://www.efinixinc.com/edge-vision-soc.html). Furthermore, user may refer to the provided demo design on [Edge Vision TinyML framework](../tinyml_vision/README.md) for the interfacing and integration of a working vision AI system with camera and display.
 - Refer to [this FAQ](#how-to-train-and-quantize-a-different-ai-model-for-running-on-efinix-tinyml-platform) for training and quantization of an AI model.
 - Refer to [this FAQ](#how-to-run-inference-with-a-different-quantized-ai-model-using-efinix-tinyml-platform) for running inference with a quantized AI model on Efinix TinyML platform.
+
+
+## My Efinix TinyML design fails to compile due to timing errors. What should I do?
+In the Efinity software:
+1. Select File -> Edit Project -> Place and Route.
+2. Adjust the following parameter to get a better timing outcome:
+   - optimization_level 
+   - seed
+   - placer_effort_level
+
+Refer to [Efinity Timing Closure User Guide](https://www.efinixinc.com/docs/efinity-timing-closure-v5.0.pdf) for more details on these options and how to optimize timing closure.
