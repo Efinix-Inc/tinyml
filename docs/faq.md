@@ -308,9 +308,10 @@ A complete TinyML design consists of hardware/RTL (FPGA bitstream) and software/
 
 As AI-related application binary is typically larger than 124KB, the bootloader is to be updated to copy larger software binary size. Bootloader for moving up to 16MB software binary is provided in *<proj_directory>/replace_files/bootloader_16MB* folder. User is to copy and replace the corresponding files i.e., *EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol\*.bin* in *ip/SapphireSoc* directory. Then, compile the Efinity project using Efinity® IDE for generating the FPGA bitstream.
 
-Refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) *Copy a User Binary to Flash (Efinity Programmer)* section for steps to combine FPGA bitstream and user application binary using Efinity Programmer, as well as boot the design from flash.
+Refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) *Copy a User Binary to Flash (Efinity Programmer)* section for steps to combine FPGA bitstream and user application binary using Efinity Programmer, as well as boot the design from flash. 
 
-*Note*: For Ti375C529 Efinix Vision TinyML demo designs, it is not required to perform manual copy as the bootloader is updated to 16MB through IP generation.
+
+*Note*: For Ti375C529 Efinix Vision TinyML demo designs, it is not required to perform manual copy as the bootloader is updated to 16MB through IP generation. The RISC-V application binary address for Ti375C529 Efinix Vision TinyML demo designs is 0x0050_0000.
 
 <br />
 
