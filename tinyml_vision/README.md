@@ -38,7 +38,7 @@ Refer to the *model_zoo* directory for more details on the related model trainin
 The TinyML demo design is implemented on:
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
-- [Titanium® Ti375 C529 Development Kit]
+- [Titanium® Ti375 C529 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti375c529.html)
 
 **Note:** Efinity projects of the demo designs are in [tinyml_vision](./) directory.
 

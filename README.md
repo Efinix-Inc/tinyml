@@ -113,7 +113,7 @@ List of quick start demo designs:
   - MobilenetV1 Person Detection
   - Yolo Person Detection
   - MediaPipe Face Landmark Detection
-- [Titanium® Ti375 C529 Development Kit]
+- [Titanium® Ti375 C529 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti375c529.html)
   - Yolo Person Detection
   - MediaPipe Face Landmark Detection
 
@@ -177,4 +177,4 @@ Refer to [Frequently Asked Questions](docs/faq.md) for general questions and gui
 - [Sapphire RISC-V SoC Hardware and Software User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREUG)
 - [Titanium Ti60 F225 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti60F225-DK-UG)
 - [Titanium Ti180 J484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180J484-DK-UG)
-- [Titanium Ti375 C529 Development Kit User Guide]
+- [Titanium Ti375 C529 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti375C529-DK-UG)
