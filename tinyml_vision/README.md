@@ -40,7 +40,9 @@ The TinyML demo design is implemented on:
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
 - [Titanium® Ti375 C529 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti375c529.html)
 
-**Note:** Efinity projects of the demo designs are in [tinyml_vision](./) directory.
+**Note:** 
+- Efinity projects of the demo designs are in [tinyml_vision](./) directory.
+- For Ti375 demo design project, to remove Ti375C529_\*_demo.peri.xml after High Performance Sapphire IP generation. To update I/O related settings, please use the Interface Designer GUI.
 
 Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
 
