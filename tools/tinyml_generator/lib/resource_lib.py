@@ -19,11 +19,11 @@ lookup_table = {
     'COMMON_MODULE_2' : {
         "DISABLE": "[0,0,0,0,0]",
         "STANDARD": {
-            32:"[531,705,86,self.common_module_2_res_calc(),0]",
-            64:"[1024,813,86,self.common_module_2_res_calc(),0]",
-            128:"[2177,1029,86,self.common_module_2_res_calc(),0]",
-            256:"[4972,1461,86,self.common_module_2_res_calc(),0]",
-            512:"[11292,2325,86,self.common_module_2_res_calc(),0]",
+            32:"[1598,1731,129,self.common_module_2_res_calc(),0]",
+            64:"[2351,2052,129,self.common_module_2_res_calc(),0]",
+            128:"[4447,2686,129,self.common_module_2_res_calc(),0]",
+            256:"[4447,2686,129,self.common_module_2_res_calc(),0]",
+            512:"[12408,5213,129,self.common_module_2_res_calc(),0]",
         }
     },
 
@@ -39,11 +39,11 @@ lookup_table = {
     'ADD_MODE' : {
         "LITE": "[1159,1250,630,0,8]",
         "STANDARD": {
-            32:"[1609,1887,752,0,8]",
-            64:"[1681,2156,749,0,8]",
-            128:"[1904,2674,747,0,8]",
-            256:"[2829,3716,741,0,8]",
-            512:"[3617,5796,738,0,8]",
+            32:"[1741,1871,757,0,8]",
+            64:"[1723,2012,753,0,8]",
+            128:"[1814,2293,749,0,8]",
+            256:"[1826,2424,752,0,8]",
+            512:"[2533,2683,755,0,8]",
         }
     },
     'LR_MODE' : {
@@ -140,8 +140,19 @@ class ResourceUtil():
     def tinyml_cache_res_calc(self):
         CACHE_DEPTH=int(self.p_tinyml_gen['CACHE_DEPTH']['val'])
         CACHE_AW=roundup(log(CACHE_DEPTH,2))
-        cache_ram = self.calc_bram_size(CACHE_AW,int(self.p_tinyml_gen['AXI_DW']['val']))+3 
-        res = [int(self.AXI_DW_BYTES*10 + (CACHE_AW*80)),int(CACHE_AW*15+337+self.AXI_DW_BYTES),int(4*CACHE_AW-(self.AXI_DW_BYTES/4)+140),cache_ram,0]
+        #HM
+        fifo1_ram = self.calc_bram_size(log(16,2),roundup(log(7,2)))
+        fifo2_ram = self.calc_bram_size(log(8,2),54) + 1
+        #RCM
+        fifo3_ram = self.calc_bram_size(log(8,2),int(CACHE_AW+8))
+        fifo4_ram = self.calc_bram_size(log(512,2),int(self.p_tinyml_gen['AXI_DW']['val'])+1)
+        #RB
+        fifo5_ram = self.calc_bram_size(log(32,2),1)
+        #CL
+        fifo6_ram = self.calc_bram_size(roundup(pow(2,log(7,2))),int(CACHE_AW+CACHE_AW)) + 1
+        cache_ram = self.calc_bram_size(CACHE_AW,int(self.p_tinyml_gen['AXI_DW']['val'])) 
+        total_ram = fifo1_ram + fifo2_ram + fifo3_ram + fifo4_ram + fifo5_ram + fifo6_ram + cache_ram
+        res = [1465 + int(self.AXI_DW_BYTES) + 9*CACHE_AW ,1365 + (CACHE_AW*22),419 + (CACHE_AW*19),total_ram,0]
         return res
 
 
@@ -154,12 +165,11 @@ class ResourceUtil():
 
 
     def common_module_2_res_calc(self):
-        FIFO3_A=8
-        u2_ram = self.calc_bram_size(log(8,2),(int(self.AXI_DW+self.AXI_DW_BYTES)))
-        u3_ram = self.calc_bram_size(log(FIFO3_A,2),(self.AXI_DW_BYTES+32))
-        u4_ram = self.calc_bram_size(log(FIFO3_A*4,2),(self.AXI_DW_BYTES+roundup(log(self.AXI_DW_BYTES,2))))
-        u5_ram = self.calc_bram_size(log(FIFO3_A*4,2),(2+int(self.AXI_DW)))
-        total_ram =  u2_ram +u3_ram + u4_ram + u5_ram 
+        FIFO2_A=256
+        FIFO5_A=FIFO2_A
+        u2_ram = self.calc_bram_size(log(FIFO2_A,2),(1+int(self.AXI_DW+self.AXI_DW_BYTES)))
+        u5_ram = self.calc_bram_size(log(FIFO5_A,2),(1+2+int(self.AXI_DW)))
+        total_ram =   u2_ram  + u5_ram 
         return total_ram
 
 

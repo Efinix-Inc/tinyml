@@ -9,4 +9,8 @@ extern int lr_mode;
 extern int min_max_mode;
 extern int tinyml_cache;
 extern const char* layer_mode;
+extern int cache_depth;
+extern int axi_dw;
+extern int axi_db_w;
+extern int cache_mode;
 #endif

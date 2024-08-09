@@ -24,7 +24,9 @@
 //`define SOFT_TAP 1
 
 module edge_vision_soc #(
-
+    parameter RGB2GRAYSCALE          = "DISABLE",
+    parameter OUT_FRAME_WIDTH        = 96,
+    parameter OUT_FRAME_HEIGHT       = 96,
     parameter MIPI_FRAME_WIDTH  = 1920, // camera input Width
     parameter MIPI_FRAME_HEIGHT = 1080, // camera input Height
 	parameter AXI_0_DATA_WIDTH  = 512 // AXI Width 0 connected to SOC and TinyML Accelerator
@@ -1073,6 +1075,9 @@ assign io_ddrMasters_0_r_ready           = (axi_tinyml_rready);
 //Scale from FRAME_WIDTH x FRAME_HEIGHT to 96x96 resolution
 
 hw_accel_wrapper #(
+    .RGB2GRAYSCALE       (RGB2GRAYSCALE),
+    .OUT_FRAME_WIDTH     (OUT_FRAME_WIDTH),
+    .OUT_FRAME_HEIGHT    (OUT_FRAME_HEIGHT),
     .FRAME_WIDTH         (FRAME_WIDTH),
     .FRAME_HEIGHT        (FRAME_HEIGHT),
     .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo person detection demo

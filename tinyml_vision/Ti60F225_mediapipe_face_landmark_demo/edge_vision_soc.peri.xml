@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" location="/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo" version="2023.2.307.5.6" db_version="20232999" last_change_date="Thu May 16 14:19:29 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" location="/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_yolo_person_detect_demo" version="2023.2.307.5.6" db_version="20232999" last_change_date="Thu May 16 13:39:28 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="1A_MODE_SEL"/>

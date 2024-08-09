@@ -1,15 +1,15 @@
 {
     "args": [
         "-o",
-        "csi2_mipi_rx",
+        "csi2_rx_cam",
         "--base_path",
-        "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip",
+        "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx",
-            "version": "5.3.1"
+            "version": "5.5"
         }
     ],
     "conf": {
@@ -21,7 +21,7 @@
         "tHS_PREPARE_ZERO_NS": "145",
         "NUM_DATA_LANE": "2",
         "ASYNC_STAGE": "2",
-        "HS_BYTECLK_MHZ": "112",
+        "HS_BYTECLK_MHZ": "113",
         "CLOCK_FREQ_MHZ": "100",
         "DPHY_CLOCK_MODE": "\"Discontinuous\"",
         "PIXEL_FIFO_DEPTH": "2048",
@@ -36,61 +36,61 @@
     },
     "output": {
         "external_source_source": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/csi2_mipi_rx_tmpl.vhd",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/csi2_mipi_rx.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/csi2_mipi_rx_define.vh",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/csi2_mipi_rx_tmpl.v"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam_tmpl.vhd",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam_define.svh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam_tmpl.sv"
         ],
         "external_example_example": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/top.xml",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/top.peri.xml",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/data_unpack.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/datatype_gen.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/dual_clock_fifo.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/pattern_gen.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/shift_reg.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/simple_dual_port_ram.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/vga_gen.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/reset.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/top.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/efx_csi2_tx.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/mipi.sdc",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/pattern_gen2.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/lfsr.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/csi2_mipi_rx.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Ti60F225_devkit/csi2_mipi_rx_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/data_unpack.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/datatype_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/dual_clock_fifo.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/shift_reg.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/simple_dual_port_ram.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/vga_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/reset.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/top.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/efx_csi2_tx.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/mipi.sdc",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen2.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/lfsr.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam_define.svh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/top.xml",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/top.peri.xml"
         ],
         "external_testbench_testbench": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/data_unpack.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/datatype_gen.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/dual_clock_fifo.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/pattern_gen.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/shift_reg.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/simple_dual_port_ram.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/vga_gen.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/reset.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/TI60_MIPI_csi_tb.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/TI60_MIPI_csi_rx_modelsim.do",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/rx_filelist.f",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/top.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/efx_csi2_tx_modelsim.sv",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/pattern_gen2.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/lfsr.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/csi2_mipi_rx_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/data_unpack.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/datatype_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/dual_clock_fifo.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/pattern_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/shift_reg.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/simple_dual_port_ram.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/vga_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/reset.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/rx_filelist.f",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/top.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/pattern_gen2.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/lfsr.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/csi2_rx_cam_define.svh"
         ],
         "external_testbench_modelsim": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/modelsim/csi2_mipi_rx.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
         ],
         "external_testbench_ncsim": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/ncsim/csi2_mipi_rx.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
         ],
         "external_testbench_synopsys": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/synopsys/csi2_mipi_rx.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
         ],
         "external_testbench_aldec": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/csi2_mipi_rx/Testbench/aldec/csi2_mipi_rx.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/aldec/csi2_rx_cam.sv"
         ]
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-15T14:52:29.318765"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-08-06T00:40:03.147815"
 }

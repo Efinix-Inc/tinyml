@@ -158,15 +158,15 @@ extern "C" void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_0]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
    
    person_score_percent = ((person_score + 128) * 100) >> 8;
    
-   MicroPrintf("Person Score    : %d\n\r", person_score);
-   MicroPrintf("No Person Score : %d\n\r", no_person_score);
+   MicroPrintf("Person Score    : %d,\n\r ", person_score);
+   MicroPrintf("No Person Score : %d;\n\r", no_person_score);
    MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", person_score_percent);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
@@ -196,15 +196,15 @@ extern "C" void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_1]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
    
    person_score_percent = ((person_score + 128) * 100) >> 8;
    
-   MicroPrintf("Person Score    : %d\n\r", person_score);
-   MicroPrintf("No Person Score : %d\n\r", no_person_score);
+   MicroPrintf("Person Score    : %d,\n\r", person_score);
+   MicroPrintf("No Person Score : %d;\n\r", no_person_score);
    MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", person_score_percent);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
@@ -234,15 +234,15 @@ extern "C" void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_2]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
    
    person_score_percent = ((person_score + 128) * 100) >> 8;
    
-   MicroPrintf("Person Score    : %d\n\r", person_score);
-   MicroPrintf("No Person Score : %d\n\r", no_person_score);
+   MicroPrintf("Person Score    : %d,\n\r ", person_score);
+   MicroPrintf("No Person Score : %d;\n\r", no_person_score);
    MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", person_score_percent);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
@@ -271,15 +271,15 @@ extern "C" void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_3]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
    
    person_score_percent = ((person_score + 128) * 100) >> 8;
    
-   MicroPrintf("Person Score    : %d\n\r", person_score);
-   MicroPrintf("No Person Score : %d\n\r", no_person_score);
+   MicroPrintf("Person Score    : %d,\n\r ", person_score);
+   MicroPrintf("No Person Score : %d;\n\r", no_person_score);
    MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", person_score_percent);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
@@ -309,15 +309,15 @@ extern "C" void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_4]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
    
    person_score_percent = ((person_score + 128) * 100) >> 8;
    
-   MicroPrintf("Person Score    : %d\n\r", person_score);
-   MicroPrintf("No Person Score : %d\n\r", no_person_score);
+   MicroPrintf("Person Score    : %d,\n\r ", person_score);
+   MicroPrintf("No Person Score : %d;\n\r", no_person_score);
    MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", person_score_percent);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
@@ -347,15 +347,15 @@ extern "C" void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_5]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
    
    person_score_percent = ((person_score + 128) * 100) >> 8;
    
-   MicroPrintf("Person Score    : %d\n\r", person_score);
-   MicroPrintf("No Person Score : %d\n\r", no_person_score);
+   MicroPrintf("Person Score    : %d,\n\r ", person_score);
+   MicroPrintf("No Person Score : %d;\n\r", no_person_score);
    MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", person_score_percent);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
@@ -365,6 +365,6 @@ extern "C" void main() {
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_0_1/(SYSTEM_CLINT_HZ/1000);
    MicroPrintf("Inference time: %ums\n\r", ms);
-
+   MicroPrintf("Hello world complete\n\r");
    ops_unload();
  }

@@ -12,4 +12,5 @@ extern const char* layer_mode;
 extern int cache_depth;
 extern int axi_dw;
 extern int axi_db_w;
+extern int cache_mode;
 #endif

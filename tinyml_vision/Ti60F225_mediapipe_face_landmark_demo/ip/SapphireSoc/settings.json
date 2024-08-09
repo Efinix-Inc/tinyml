@@ -3,18 +3,18 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip",
+        "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "3.0.0"
+            "version": "3.1.1"
         }
     ],
     "conf": {
-        "HexFile_PathEnable": "1'b0",
-        "HexFile_Path": "\"\"",
+        "HexFile_PathEnable": "1'b1",
+        "HexFile_Path": "\"ref_files/bootloader_16MB/SapphireSoc/bootloader.hex\"",
         "APBSlave0_Size": "65536",
         "DEVKIT_CUSTOM": "\"sapphireBoard_rev0\"",
         "LDSize": "16380",
@@ -68,6 +68,8 @@
         "ICacheSize": "4096",
         "DCacheSize": "4096",
         "Cache": "1'b1",
+        "ICache_EN": "1'b1",
+        "DCache_EN": "1'b1",
         "DDR": "1'b1",
         "DDR_AXI4": "1'b0",
         "DDRWidth": "128",
@@ -154,46 +156,47 @@
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc_tmpl.vhd",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc_define.vh",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc_tmpl.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/SapphireSoc.v"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_define.vh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.vhd",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.v"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
         "external_example_design": [
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/design_modules.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/ddr_reset_sequencer.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/soc.hex",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc_define.vh",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/T120F324_devkit/soc.xml"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/design_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/ddr_reset_sequencer.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/soc.hex",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/SapphireSoc_define.vh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/T120F324_devkit/soc.xml"
         ],
         "external_example_design_ti": [
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/design_modules.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.encrypted.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.vh",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/soc.hex",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc_define.vh",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Ti60F225_devkit/soc.xml"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/design_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/hbram_top_define.vh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/soc.hex",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/SapphireSoc_define.vh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Ti60F225_devkit/soc.xml"
         ],
         "external_testbench_testbench": [
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/MEM_IM.TXT",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SECSI.TXT",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SFDP.TXT",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SREG.TXT",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/README",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/tb_soc.do",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/modelsim.do",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/wave.do",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/design_modules.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/sim_modules.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SapphireSoc.v",
-            "/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_mediapipe_face_landmark_demo/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/MEM_IM.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SECSI.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SFDP.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SREG.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/README",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/tb_soc.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/modelsim.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/wave.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/aldec.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/design_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/sim_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
         ]
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-16T04:39:46.849870"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-08-06T00:42:49.181322"
 }

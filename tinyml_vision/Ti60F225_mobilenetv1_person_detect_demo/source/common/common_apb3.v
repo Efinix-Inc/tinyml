@@ -28,6 +28,7 @@ module common_apb3 #(
    parameter   NUM_REG     = 10
 ) (
 //   input    [1:0]          select_demo_mode,
+   output                  enable_cam,
    output                  cam_confdone,
    output   [15:0]         rgb_control,
    output                  trigger_capture_frame,
@@ -174,5 +175,6 @@ integer              byteIndex;
    assign cam_dma_init_done        = slaveReg[4][0];
    assign set_red_green            = slaveReg[5][0];
    assign hw_accel_dma_init_done   = slaveReg[6][0];
+   assign enable_cam               = slaveReg[1][1];
    
 endmodule

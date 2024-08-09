@@ -22,6 +22,9 @@
 
 module hw_accel_wrapper
 #(
+   parameter RGB2GRAYSCALE          = "ENABLED",
+   parameter OUT_FRAME_WIDTH        = 96,
+   parameter OUT_FRAME_HEIGHT       = 96,
    parameter AXI_ADDR_WIDTH         = 32,
    parameter DATA_WIDTH             = 32,  //For DMA and AXI
    parameter FRAME_WIDTH            = 640,
@@ -74,7 +77,7 @@ module hw_accel_wrapper
    reg                               dma_write;
    reg  [INT_DATA_WIDTH-1:0]         sobel_thresh_val;
    reg  [1:0]                        hw_accel_mode; //2'd0: Sobel only; 2'd1: Sobel+Dilation; Otherwise: Sobel+Erosion
-//   reg                               hw_accel_dma_init_done;
+   reg                               hw_accel_dma_init_done;
    reg                               hw_accel_dma_init_done_r1;
    reg                               hw_accel_dma_init_done_r2;
    reg                               hw_accel_dma_init_done_r3;
@@ -104,6 +107,20 @@ module hw_accel_wrapper
    wire                              dma_out_fifo_rvalid;
    wire                              rst_hw_accel;
    wire [3:0]                        debug_hw_accel_fifo_status;
+   
+   //HW ACCEL DMA IN FIFO. Note that the depth should follow the depth used when instantiating the hw_accel_dma_in_fifo on IPM
+   localparam HW_ACCEL_DMA_IN_FIFO_DEPTH    = 32;
+   localparam HW_ACCEL_DMA_IN_FIFO_DEPTH_BW = $clog2(HW_ACCEL_DMA_IN_FIFO_DEPTH);
+   
+   wire [HW_ACCEL_DMA_IN_FIFO_DEPTH_BW:0]    dma_in_fifo_datacount;
+   
+   //HW ACCEL DMA OUT FIFO. Note that the depth should follow the depth used when instantiating the hw_accel_dma_out_fifo on IPM 
+   localparam HW_ACCEL_DMA_OUT_FIFO_DEPTH    = 64;
+   localparam HW_ACCEL_DMA_OUT_FIFO_DEPTH_BW = $clog2(HW_ACCEL_DMA_OUT_FIFO_DEPTH);
+   
+   wire [HW_ACCEL_DMA_OUT_FIFO_DEPTH_BW:0]    dma_out_fifo_datacount;
+
+   
    
    //assign axi_slave_re_pulse         = ~axi_slave_re_r && axi_slave_re; //Detect rising edge. Observed input axi_slave_re might be asserted unexpectedly more than 1 clock cycle
    assign rst_hw_accel               = rst || rst_after_each_frame;     //Reset after every output frame.
@@ -219,10 +236,10 @@ module hw_accel_wrapper
    
    //DMA read/input fifo
    assign dma_in_fifo_re = ~dma_in_fifo_empty && ~dma_out_fifo_prog_full;
+   assign dma_in_fifo_prog_full = (dma_in_fifo_datacount > HW_ACCEL_DMA_OUT_FIFO_DEPTH/2);
 
    hw_accel_dma_in_fifo u_dma_in_fifo (
       .almost_full_o  (),
-      .prog_full_o    (dma_in_fifo_prog_full),
       .full_o         (),
       .overflow_o     (dma_in_fifo_overflow),
       .wr_ack_o       (),
@@ -236,7 +253,7 @@ module hw_accel_wrapper
       .rd_en_i        (dma_in_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma_in_fifo_wdata),
-      .datacount_o    ()
+      .datacount_o    (dma_in_fifo_datacount)
    );
    
    //DMA write/output fifo - FWFT mode
@@ -245,10 +262,9 @@ module hw_accel_wrapper
    assign dma_wvalid      = dma_out_fifo_rvalid && dma_out_fifo_re;
    assign dma_wlast       = dma_wvalid && (dma_wr_words_count==DMA_TRANSFER_LENGTH-1);
    assign dma_wdata       = {{INT_DATA_WIDTH{1'b0}}, dma_out_fifo_rdata, dma_out_fifo_rdata, dma_out_fifo_rdata}; //Assume DATA_WIDTH = 4*INT_DATA_WIDTH
-   
+   assign dma_out_fifo_prog_full = (dma_out_fifo_datacount > HW_ACCEL_DMA_OUT_FIFO_DEPTH/2);
    hw_accel_dma_out_fifo u_dma_out_fifo (
       .almost_full_o  (),
-      .prog_full_o    (dma_out_fifo_prog_full),
       .full_o         (),
       .overflow_o     (dma_out_fifo_overflow),
       .wr_ack_o       (),
@@ -262,15 +278,18 @@ module hw_accel_wrapper
       .rd_en_i        (dma_out_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma_out_fifo_wdata),
-      .datacount_o    ()
+      .datacount_o    (dma_out_fifo_datacount)
    );
 
    //Hardware accelerator
    hw_accel
    # (
-      .DATA_WIDTH    (INT_DATA_WIDTH),
-      .FRAME_WIDTH   (FRAME_WIDTH),
-      .FRAME_HEIGHT  (FRAME_HEIGHT)
+      .RGB2GRAYSCALE    (RGB2GRAYSCALE),
+      .OUT_FRAME_WIDTH  (OUT_FRAME_WIDTH),
+      .OUT_FRAME_HEIGHT (OUT_FRAME_HEIGHT),
+      .DATA_WIDTH       (INT_DATA_WIDTH),
+      .FRAME_WIDTH      (FRAME_WIDTH),
+      .FRAME_HEIGHT     (FRAME_HEIGHT)
    ) u_hw_accel (
       .clk              (clk),
       .rst              (rst_hw_accel),

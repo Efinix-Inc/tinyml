@@ -4,6 +4,9 @@
 //    https://www.efinixinc.com/software-license.html
 ///////////////////////////////////////////////////////////////////////////////////
 
+//Define the picam version. By default is set to Picam V2.
+#define PICAM_VERSION 3
+
 #include <stdlib.h>
 #include <stdint.h>
 #include "riscv.h"
@@ -15,7 +18,11 @@
 #include "print.h"
 #include "clint.h"
 #include "common.h"
+#if PICAM_VERSION == 3
+#include "PiCamV3Driver.h"
+#else
 #include "PiCamDriver.h"
+#endif
 #include "apb3_cam.h"
 #include "i2c.h"
 #include "i2cDemo.h"
@@ -227,19 +234,29 @@ void main() {
    u32 rdata;
 
    MicroPrintf("Camera Setting...");
-   
+
+   //Assert camera reset
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
+   bsp_uDelay(1000000);
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000002);
+   bsp_uDelay(1000000);
+
    //Camera I2C configuration
    mipi_i2c_init();
-   PiCam_init();
-   MicroPrintf("Done\n\r");
-   
-   //Indicate camera configuration done
-   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000001);
-   MicroPrintf("Done\n\r");
+#if PICAM_VERSION == 3
+   PiCamV3_Init();
    
    //SET camera pre-processing RGB gain value
-   Set_RGBGain(1,5,3,4); 
-   
+   Set_RGBGain(1,5,3,7);
+#else
+   PiCam_init();
+
+   //SET camera pre-processing RGB gain value
+   Set_RGBGain(1,5,3,4);
+#endif
+
+   //Indicate camera configuration done
+   EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000003);
    MicroPrintf("Done\n\r");
 
    /*************************************************************SETUP DMA*************************************************************/
@@ -322,6 +339,10 @@ void main() {
     uint64_t timerCmp0, timerCmp1, timerDiff_0_1;
     u32 ms;
  
+#if PICAM_VERSION == 3
+   PiCamV3_StartStreaming();
+#endif
+
     while(1) {
  
        /***********************************************HW ACCELERATOR - TINYML PRE-PROCESSING********************************************/

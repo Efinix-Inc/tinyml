@@ -71,4 +71,4 @@ RV_D=no
 include ${STANDALONE}/common/riscv64-unknown-elf.mk
 include ${STANDALONE}/common/tinyml_standalone.mk
 
-LIBS+=${STANDALONE}/common/tinyml_beta_lib.a
+LIBS+=${STANDALONE}/common/tinyml_lib.a

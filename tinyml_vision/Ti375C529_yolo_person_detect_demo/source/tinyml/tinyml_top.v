@@ -80,9 +80,9 @@ wire [31:0] tinyml_accel_rsp_outputs_0;
 
 assign tinyml_accel_cmd_valid = cmd_valid & (cmd_function_id[9] == 1'b0);
 
-tinyml_accelerator_beta #(
+tinyml_accelerator #(
     .AXI_DW         (AXI_DW)
-) u_tinyml_accelerator_beta (
+) u_tinyml_accelerator (
    .clk              (clk                       ),
    .rstn             (!reset                    ),
    .cmd_valid        (tinyml_accel_cmd_valid    ),

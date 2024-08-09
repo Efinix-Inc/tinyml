@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="tinyml_soc" description="" last_change="1715847159" sw_version="2023.2.307.5.6" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="tinyml_soc" description="" last_change="1720266623" sw_version="2023.2.307.5.10" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="change" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti60F225"/>
@@ -9,13 +9,9 @@
         <efx:top_module name="tinyml_soc"/>
         <efx:design_file name="tinyml_soc.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_efx_fifo_wrapper.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_priority_encoder.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_arbiter.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_simple_dual_port_ram.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_reset_ctrl.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_true_dual_port_ram.v" version="default" library="default"/>
@@ -25,6 +21,18 @@
         <efx:design_file name="source/hw_accel/hw_accel_rgb2gray.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_nearest_neighbor_downscale.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/slave_coupler.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_rdata_sfifo.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/crossbar.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_interconnect_beta.sv" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/round_robin_priority_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_wdata_sfifo.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/slave_coupler_wrapper.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/lb_to_axi.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/fixed_priority_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/master_coupler.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
         <efx:design_file name="ip/hbram/hbram.v" version="default" library="default"/>
         <efx:design_file name="ip/hbram/hbram_define.vh" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
@@ -74,6 +82,7 @@
         <efx:param name="allow-const-ram-index" value="0" value_type="e_option"/>
         <efx:param name="hdl-compile-unit" value="1" value_type="e_option"/>
         <efx:param name="create-onehot-fsms" value="0" value_type="e_option"/>
+        <efx:param name="include" value="ip/hbram" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_in_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/dma" value_type="e_string"/>
@@ -91,8 +100,8 @@
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
-        <efx:param name="seed" value="3" value_type="e_integer"/>
-        <efx:param name="placer_effort_level" value="3" value_type="e_option"/>
+        <efx:param name="seed" value="1" value_type="e_integer"/>
+        <efx:param name="placer_effort_level" value="5" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
         <efx:param name="print_critical_path" value="10" value_type="e_integer"/>

@@ -11,4 +11,5 @@ int tinyml_cache=1;
 int cache_depth = 8192;
 int axi_dw = 128;
 int axi_db_w = axi_dw/8;
+int cache_mode = 1;
 const char* layer_mode="";

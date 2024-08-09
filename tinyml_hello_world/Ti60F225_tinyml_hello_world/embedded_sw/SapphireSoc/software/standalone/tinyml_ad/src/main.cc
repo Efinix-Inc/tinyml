@@ -164,9 +164,9 @@ void main() {
 	   diffsum += (diff * diff);
    }
    diffsum /= anomaly_id_01_00000250_s1_len;
-   MicroPrintf("Anomaly Score Slice 1 :");
+   MicroPrintf("[OUTPUT_0]Anamoly Detection Slice 1 Score :");
    print_float(diffsum);
-   MicroPrintf("\n\r");
+   MicroPrintf(";\n\r");
 
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
@@ -202,9 +202,9 @@ void main() {
 	   diffsum += (diff * diff);
    }
    diffsum /= anomaly_id_01_00000250_s2_len;
-   MicroPrintf("Anomaly Score Slice 2 :");
+   MicroPrintf("[OUTPUT_1]Anamoly Detection Slice 2 Score :");
    print_float(diffsum);
-   MicroPrintf("\n\r");
+   MicroPrintf(";\n\r");
 
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
@@ -241,9 +241,9 @@ void main() {
 	   diffsum += (diff * diff);
    }
    diffsum /= normal_id_01_00000200_s1_len;
-   MicroPrintf("Normal Score Slice 1 :");
+   MicroPrintf("[OUTPUT_2]Normal_Detection_Slice_1_Score :");
    print_float(diffsum);
-   MicroPrintf("\n\r");
+   MicroPrintf(";\n\r");
 
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
@@ -280,9 +280,9 @@ void main() {
 	   diffsum += (diff * diff);
    }
    diffsum /= normal_id_01_00000200_s2_len;
-   MicroPrintf("Normal Score Slice 2 :");
+   MicroPrintf("[OUTPUT_3]Normal Detection Slice 2 Score :");
    print_float(diffsum);
-   MicroPrintf("\n\r");
+   MicroPrintf(";\n\r");
 
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
@@ -291,7 +291,7 @@ void main() {
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_0_1/(SYSTEM_CLINT_HZ/1000);
    MicroPrintf("Inference time: %ums\n\r", ms);
-
+   MicroPrintf("Hello world complete\n\r", ms);
    
 
 

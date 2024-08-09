@@ -54,20 +54,7 @@ OBJS = $(patsubst %,$(TARGET)/%,$(addsuffix .o, $(basename $(SRCS))))
 $(TARGET):
 	@mkdir -p $(dir $(OBJS))
 
-RAM_LENGTH = 16384K
-STACK_SIZE = 2048K
-
-default_ld:
-ifeq ($(OS),Windows_NT)
-	@powershell -Command "(Get-Content -Path '$(BSP_PATH)\linker\default.ld' -Raw) -replace 'LENGTH = .*', 'LENGTH = $(RAM_LENGTH)' -replace '__stack_size : .*', '__stack_size : $(STACK_SIZE);' | Set-Content -Path '$(BSP_PATH)\linker\default.ld.tmp';; Move-Item -Path '$(BSP_PATH)\linker\default.ld.tmp' -Destination '$(BSP_PATH)\linker\default.ld' -Force"
-
-else
-	@sed -e 's/LENGTH = .*/LENGTH = $(RAM_LENGTH)/g' -e 's/__stack_size : .*/__stack_size : $(STACK_SIZE);/g' $(BSP_PATH)/linker/default.ld > $(BSP_PATH)/linker/default.ld.tmp
-	@mv $(BSP_PATH)/linker/default.ld.tmp $(BSP_PATH)/linker/default.ld
-	@chmod 755 $(BSP_PATH)/linker/default.ld
-endif
-
-all: $(TARGET) $(OBJS) default_ld
+all: $(TARGET) $(OBJS)
 	@echo LD $(PROJ_NAME).elf
 	@$(RISCV_CXX) $(OBJS) -o $(OBJDIR)/$(PROJ_NAME).elf $(LDFLAGS) $(LIBS)
 	@$(RISCV_OBJCOPY) -O ihex $(OBJDIR)/$(PROJ_NAME).elf  $(OBJDIR)/$(PROJ_NAME).hex

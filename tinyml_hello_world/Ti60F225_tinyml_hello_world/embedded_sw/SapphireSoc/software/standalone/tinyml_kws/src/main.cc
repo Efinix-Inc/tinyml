@@ -149,11 +149,11 @@ void main() {
      MicroPrintf("Invoke failed on data\n\r");
    }
    MicroPrintf("Done\n\r");
-   
+   MicroPrintf("[OUTPUT_0]");
    //Retrieve inference output
    for (int i = 0; i < kCategoryCount; ++i)
-      MicroPrintf("%s score: %d\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
-   
+      MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
+   MicroPrintf(";\n\r");
 
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
@@ -162,7 +162,7 @@ void main() {
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_0_1/(SYSTEM_CLINT_HZ/1000);
    MicroPrintf("Inference time: %ums\n\r", ms);
-   
+   MicroPrintf("Hello world complete\n\r");
 
    
 

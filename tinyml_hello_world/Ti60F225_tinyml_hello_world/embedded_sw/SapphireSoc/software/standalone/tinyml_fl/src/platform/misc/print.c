@@ -7,6 +7,9 @@
 #if __cplusplus
 extern "C" {
 #endif
+
+#if ENABLE_FLOATING_POINT_SUPPORT == 0
+
  /* reverse:  reverse string s in place */
  static void reverse(char s[])
  {
@@ -19,7 +22,7 @@ extern "C" {
           s[j] = c;
       }
  }
-
+#endif
 /* itoa:  convert n to characters in s */
  static void mitoa(int n, char s[])
  {
@@ -77,13 +80,14 @@ static void mftoa(double n, char* res1, char* res2)
 	mitoa((int)fpart_f, res2);
 }
 
+#if ENABLE_FLOATING_POINT_SUPPORT == 0
+
 void print_dec(uint32_t val)
 {
 	char sval[10];
 	mitoa(val, sval);
 	uart_writeStr(BSP_UART_TERMINAL, sval);
 }
-
 void print_float(double val)
 {
 	int i, j, neg;
@@ -114,6 +118,7 @@ void print_float(double val)
 	}
 	uart_writeStr(BSP_UART_TERMINAL, sval);
 }
+#endif
 
 void print_hex(u32 val, u32 digits)
 {

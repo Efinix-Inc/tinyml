@@ -49,7 +49,7 @@ extern "C" {
 #include "platform/tinyml/profiler.h"
 
 //Model data
-#include "model/yolo_person_detect_96x96x3_model_data.h"
+#include "model/yolo_person_detect_model_data.h"
 
 //Yolo layer
 #include "model/yolo.h"
@@ -128,7 +128,7 @@ void tinyml_init() {
    error_reporter = &micro_error_reporter;
 
    //Map the model into a usable data structure
-   model = tflite::GetModel(yolo_person_detect_96x96x3_model_data);
+   model = tflite::GetModel(yolo_person_detect_model_data);
 
    if (model->version() != TFLITE_SCHEMA_VERSION) {
       MicroPrintf("Model version does not match Schema\n\r");

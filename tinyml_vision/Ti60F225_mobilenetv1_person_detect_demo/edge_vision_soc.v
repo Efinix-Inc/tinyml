@@ -22,6 +22,9 @@
 
 
 module edge_vision_soc #(
+   parameter RGB2GRAYSCALE          = "ENABLE",
+   parameter OUT_FRAME_WIDTH        = 96,
+   parameter OUT_FRAME_HEIGHT       = 96,
    //Input frame resolution from MIPI Rx.
    parameter MIPI_FRAME_WIDTH      = 1920,  
    parameter MIPI_FRAME_HEIGHT     = 1080,
@@ -252,6 +255,9 @@ wire                    rgb_gray;
 wire                    cam_dma_init_done;
 wire  [31:0]            frames_per_second;
 wire                    cam_confdone;
+wire                    enable_cam;
+
+
 
 wire                    mipi_i2c_0_io_sda_write;
 wire                    mipi_i2c_0_io_scl_write;
@@ -656,7 +662,8 @@ assign   o_lcd_rstn           = r_lcd_rstn;
 assign   o_led                = dp_frame_cnt[4];
 assign   o_pll_rstn           = i_arstn;
 assign   o_mipi_pll_rstn      = i_arstn;
-assign   o_cam_rstn           = i_arstn;
+assign   o_cam_rstn           = i_arstn & enable_cam;
+
 
 ////////////////////////////////////////////////////////////////
 // MIPI CSI RX Channel - Camera
@@ -807,12 +814,13 @@ begin
    end
 end
 
-cam_picam_v2 # (
+cam_picam # (
    .MIPI_FRAME_WIDTH     (MIPI_FRAME_WIDTH),             //Input frame resolution from MIPI
    .MIPI_FRAME_HEIGHT    (MIPI_FRAME_HEIGHT),            //Input frame resolution from MIPI
    .FRAME_WIDTH          (FRAME_WIDTH),                  //Output frame resolution to external memory
    .FRAME_HEIGHT         (FRAME_HEIGHT),                 //Output frame resolution to external memory
-   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2)  //2PPC
+   .DMA_TRANSFER_LENGTH  ((FRAME_WIDTH*FRAME_HEIGHT)/2),  //2PPC
+   .MIPI_PCLK_CLK_RATE   (32'd100_000_000)               // as mipi_pclk is 100MHz
 ) u_cam (
    .mipi_pclk                             (i_mipi_rx_pclk),
    .rst_n                                 (w_mipi_rx_pclk_arstn),
@@ -878,7 +886,7 @@ end
 
 // Panel driver initialization
 display_panel_config #(
-   .INITIAL_CODE  ("source/display/display_dsi_panel_1080p_reg.mem"),
+   .INITIAL_CODE  ("source/display/dsi/display_dsi_panel_1080p_reg.mem"),
    .REG_DEPTH     (9'd15)
 ) u_panel_config (
    .i_axi_clk        (i_fb_clk),
@@ -1022,6 +1030,7 @@ common_apb3 #(
    .NUM_REG    (7)
 ) u_apb3_cam_display (
 //   .select_demo_mode                  ({user_dip1,user_dip0}),
+   .enable_cam                          (enable_cam),
    .cam_confdone                        (cam_confdone),
    .rgb_control                         (rgb_control),
    .trigger_capture_frame               (trigger_capture_frame),
@@ -1273,6 +1282,9 @@ SapphireSoc u_risc_v
 //For mobilenetv1 person detection model
 //Scale from FRAME_WIDTHxFRAME_HEIGHT to 96x96 resolution, and perform rgb2grayscale conversion
 hw_accel_wrapper #(
+   .RGB2GRAYSCALE       (RGB2GRAYSCALE),
+   .OUT_FRAME_WIDTH     (OUT_FRAME_WIDTH),
+   .OUT_FRAME_HEIGHT    (OUT_FRAME_HEIGHT),
    .FRAME_WIDTH         (FRAME_WIDTH),
    .FRAME_HEIGHT        (FRAME_HEIGHT),
    .DMA_TRANSFER_LENGTH ((96*96)/4) //S2MM DMA transfer for mobilenetv1 person detection demo
@@ -1419,25 +1431,22 @@ assign soc_io_arw_ready = (soc_io_arw_payload_write) ? axi_inter_s0_awready : ax
 assign axi_inter_s1_awid  = 8'hE0; //Don't care for DMA controller
 assign axi_inter_s1_arid  = 8'hE1; //Don't care for DMA controller
 
-axi_interconnect #(
-   .S_COUNT    (3),
-   .M_COUNT    (1),
-   .DATA_WIDTH (AXI_DATA_WIDTH),
-   .ADDR_WIDTH (32),
-   .ID_WIDTH   (8)
+axi_interconnect_beta #(
+    .S_COUNT                            (3                                                 ),
+    .SLAVE_ASYN_ARRAY                   ({1'b0,1'b0,1'b0}                                  ),
+    .S_AXI_DW_ARRAY                     ({AXI_DATA_WIDTH,AXI_DATA_WIDTH,AXI_DATA_WIDTH}    ),
+    .CB_DW                              (AXI_DATA_WIDTH                                    ),
+    .M_AXI_DW                           (AXI_DATA_WIDTH                                    ),
+    .ARB_MODE                           (1                                                 ),
+    .FAMILY                             ("TITANIUM"                                        ),
+    .RD_QUEUE_FIFO_RAM_STYLE            ("block_ram"                                       ),
+    .RD_QUEUE_FIFO_DEPTH                (256                                               )
 ) u_axi_interconnect (
-   .clk              (io_memoryClk),
-   .rst              (io_systemReset),
    //AXI slave interfaces - S0: Connected to RISC-V SoC; S1: Connected to DMA controller; S2: Connected to TinyML accelerator
-   .s_axi_awid       ({axi_inter_s2_awid   , axi_inter_s1_awid   , axi_inter_s0_awid   }),
+   .s_axi_clk       ({io_memoryClk         , io_memoryClk        , io_memoryClk        }),
+   .s_axi_rstn      ({!io_systemReset      , !io_systemReset     , !io_systemReset     }),
    .s_axi_awaddr     ({axi_inter_s2_awaddr , axi_inter_s1_awaddr , axi_inter_s0_awaddr }),
    .s_axi_awlen      ({axi_inter_s2_awlen  , axi_inter_s1_awlen  , axi_inter_s0_awlen  }),
-   .s_axi_awsize     ({axi_inter_s2_awsize , axi_inter_s1_awsize , axi_inter_s0_awsize }),
-   .s_axi_awburst    ({axi_inter_s2_awburst, axi_inter_s1_awburst, axi_inter_s0_awburst}),
-   .s_axi_awlock     ({axi_inter_s2_awlock , axi_inter_s1_awlock , axi_inter_s0_awlock }),
-   .s_axi_awcache    ({axi_inter_s2_awcache, axi_inter_s1_awcache, axi_inter_s0_awcache}),
-   .s_axi_awprot     ({axi_inter_s2_awprot , axi_inter_s1_awprot , axi_inter_s0_awprot }),
-   .s_axi_awqos      ({axi_inter_s2_awqos  , axi_inter_s1_awqos  , axi_inter_s0_awqos  }),
    .s_axi_awvalid    ({axi_inter_s2_awvalid, axi_inter_s1_awvalid, axi_inter_s0_awvalid}),
    .s_axi_awready    ({axi_inter_s2_awready, axi_inter_s1_awready, axi_inter_s0_awready}),
    .s_axi_wdata      ({axi_inter_s2_wdata  , axi_inter_s1_wdata  , axi_inter_s0_wdata  }),
@@ -1445,28 +1454,22 @@ axi_interconnect #(
    .s_axi_wlast      ({axi_inter_s2_wlast  , axi_inter_s1_wlast  , axi_inter_s0_wlast  }),
    .s_axi_wvalid     ({axi_inter_s2_wvalid , axi_inter_s1_wvalid , axi_inter_s0_wvalid }),
    .s_axi_wready     ({axi_inter_s2_wready , axi_inter_s1_wready , axi_inter_s0_wready }),
-   .s_axi_bid        ({axi_inter_s2_bid    , axi_inter_s1_bid    , axi_inter_s0_bid    }),
    .s_axi_bresp      ({axi_inter_s2_bresp  , axi_inter_s1_bresp  , axi_inter_s0_bresp  }),
    .s_axi_bvalid     ({axi_inter_s2_bvalid , axi_inter_s1_bvalid , axi_inter_s0_bvalid }),
    .s_axi_bready     ({axi_inter_s2_bready , axi_inter_s1_bready , axi_inter_s0_bready }),
-   .s_axi_arid       ({axi_inter_s2_arid   , axi_inter_s1_arid   , axi_inter_s0_arid   }),
    .s_axi_araddr     ({axi_inter_s2_araddr , axi_inter_s1_araddr , axi_inter_s0_araddr }),
    .s_axi_arlen      ({axi_inter_s2_arlen  , axi_inter_s1_arlen  , axi_inter_s0_arlen  }),
-   .s_axi_arsize     ({axi_inter_s2_arsize , axi_inter_s1_arsize , axi_inter_s0_arsize }),
-   .s_axi_arburst    ({axi_inter_s2_arburst, axi_inter_s1_arburst, axi_inter_s0_arburst}),
-   .s_axi_arlock     ({axi_inter_s2_arlock , axi_inter_s1_arlock , axi_inter_s0_arlock }),
-   .s_axi_arcache    ({axi_inter_s2_arcache, axi_inter_s1_arcache, axi_inter_s0_arcache}),
-   .s_axi_arprot     ({axi_inter_s2_arprot , axi_inter_s1_arprot , axi_inter_s0_arprot }),
-   .s_axi_arqos      ({axi_inter_s2_arqos  , axi_inter_s1_arqos  , axi_inter_s0_arqos  }),
    .s_axi_arvalid    ({axi_inter_s2_arvalid, axi_inter_s1_arvalid, axi_inter_s0_arvalid}),
    .s_axi_arready    ({axi_inter_s2_arready, axi_inter_s1_arready, axi_inter_s0_arready}),
-   .s_axi_rid        ({axi_inter_s2_rid    , axi_inter_s1_rid    , axi_inter_s0_rid    }),
    .s_axi_rdata      ({axi_inter_s2_rdata  , axi_inter_s1_rdata  , axi_inter_s0_rdata  }),
    .s_axi_rresp      ({axi_inter_s2_rresp  , axi_inter_s1_rresp  , axi_inter_s0_rresp  }),
    .s_axi_rlast      ({axi_inter_s2_rlast  , axi_inter_s1_rlast  , axi_inter_s0_rlast  }),
    .s_axi_rvalid     ({axi_inter_s2_rvalid , axi_inter_s1_rvalid , axi_inter_s0_rvalid }),
    .s_axi_rready     ({axi_inter_s2_rready , axi_inter_s1_rready , axi_inter_s0_rready }),
    //AXI master interface - Connect to HyperRAM controller
+   .m_axi_clk        (io_memoryClk),
+   .m_axi_rstn       (!io_systemReset),
+
    .m_axi_awid       (axi_inter_m_awid),
    .m_axi_awaddr     (axi_inter_m_awaddr),
    .m_axi_awlen      (axi_inter_m_awlen),
@@ -1475,8 +1478,6 @@ axi_interconnect #(
    .m_axi_awlock     (axi_inter_m_awlock),
    .m_axi_awcache    (axi_inter_m_awcache),
    .m_axi_awprot     (axi_inter_m_awprot),
-   .m_axi_awqos      (axi_inter_m_awqos),
-   .m_axi_awregion   (axi_inter_m_awregion),
    .m_axi_awvalid    (axi_inter_m_awvalid),
    .m_axi_awready    (axi_inter_m_awready),
    .m_axi_wdata      (axi_inter_m_wdata),
@@ -1484,7 +1485,6 @@ axi_interconnect #(
    .m_axi_wlast      (axi_inter_m_wlast),
    .m_axi_wvalid     (axi_inter_m_wvalid),
    .m_axi_wready     (axi_inter_m_wready),
-   .m_axi_bid        (axi_inter_m_bid),
    .m_axi_bresp      (axi_inter_m_bresp),
    .m_axi_bvalid     (axi_inter_m_bvalid),
    .m_axi_bready     (axi_inter_m_bready),
@@ -1496,11 +1496,8 @@ axi_interconnect #(
    .m_axi_arlock     (axi_inter_m_arlock),
    .m_axi_arcache    (axi_inter_m_arcache),
    .m_axi_arprot     (axi_inter_m_arprot),
-   .m_axi_arqos      (axi_inter_m_arqos),
-   .m_axi_arregion   (axi_inter_m_arregion),
    .m_axi_arvalid    (axi_inter_m_arvalid),
    .m_axi_arready    (axi_inter_m_arready),
-   .m_axi_rid        (axi_inter_m_rid),
    .m_axi_rdata      (axi_inter_m_rdata),
    .m_axi_rresp      (axi_inter_m_rresp),
    .m_axi_rlast      (axi_inter_m_rlast),

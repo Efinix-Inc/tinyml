@@ -4,6 +4,9 @@
 //    https://www.efinixinc.com/software-license.html
 ///////////////////////////////////////////////////////////////////////////////////
 
+//Define the picam version. By default is set to Picam V2.
+#define PICAM_VERSION 3
+
 #include <stdlib.h>
 #include <stdint.h>
 #include "riscv.h"
@@ -15,7 +18,11 @@
 #include "print.h"
 #include "clint.h"
 #include "common.h"
+#if PICAM_VERSION == 3
+#include "PiCamV3Driver.h"
+#else
 #include "PiCamDriver.h"
+#endif
 #include "apb3_cam.h"
 #include "i2c.h"
 #include "i2cDemo.h"
@@ -54,7 +61,7 @@ extern "C" {
 #define NET_HEIGHT 96
 #define NET_WIDTH 96
 #define OBJECTNESS_THRESHOLD 0.25
-#define IOU_THRESHOLD 0.5
+#define IOU_THRESHOLD 0.30
 
 #define YOLO_PICO_INPUT_BYTES 96*96*3
 
@@ -328,11 +335,18 @@ void init() {
 
    //Camera I2C configuration
    mipi_i2c_init();
+#if PICAM_VERSION == 3
+   PiCamV3_Init();
+   
+   //SET camera pre-processing RGB gain value
+   Set_RGBGain(1,5,3,7);
+#else
    PiCam_init();
    
    //SET camera pre-processing RGB gain value
    Set_RGBGain(1,5,3,4);
-   
+#endif
+
    MicroPrintf("Done\n\r");
 
    /*************************************************************SETUP DMA*************************************************************/
@@ -446,7 +460,10 @@ void main() {
    uint64_t timerCmpTotal0, timerCmpTotal1, timerDiffTotal;
    u32 ms;
    bbox_overlay_updated = 0;
-   
+#if PICAM_VERSION == 3
+   PiCamV3_StartStreaming();
+#endif
+
    while(1) {
 
       /***********************************************HW ACCELERATOR - TINYML PRE-PROCESSING********************************************/

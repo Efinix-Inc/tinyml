@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change="1715844042" sw_version="2023.2.307.5.6" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change="1718862232" sw_version="2023.2.307.5.10" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti60F225"/>
@@ -12,10 +12,18 @@
         <efx:design_file name="source/tinyml/tinyml_accelerator.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/tinyml_top.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_efx_fifo_wrapper.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/slave_coupler.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_rdata_sfifo.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/crossbar.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_interconnect_beta.sv" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/round_robin_priority_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_wdata_sfifo.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/slave_coupler_wrapper.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/lb_to_axi.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/fixed_priority_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/master_coupler.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_priority_encoder.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_arbiter.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_simple_dual_port_ram.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_reset_ctrl.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_true_dual_port_ram.v" version="default" library="default"/>
@@ -28,14 +36,14 @@
         <efx:design_file name="source/cam/cam_rgb2gray.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_rgb_gain.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_line_buffer.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/cam_picam_v2.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_picam.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_scale_down_2x_nn.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_crop.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_raw_to_rgb.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_scale_up_2x_nn.v" version="default" library="default"/>
-        <efx:design_file name="source/display/display_vga_gen.v" version="default" library="default"/>
-        <efx:design_file name="source/display/display_dsi.v" version="default" library="default"/>
-        <efx:design_file name="source/display/display_panel_config.v" version="default" library="default"/>
+        <efx:design_file name="source/display/dsi/display_vga_gen.v" version="default" library="default"/>
+        <efx:design_file name="source/display/dsi/display_dsi.v" version="default" library="default"/>
+        <efx:design_file name="source/display/dsi/display_panel_config.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_apb3.v" version="default" library="default"/>
         <efx:design_file name="ip/hbram/hbram.v" version="default" library="default"/>
         <efx:design_file name="ip/hbram/hbram_define.vh" version="default" library="default"/>

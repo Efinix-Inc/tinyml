@@ -144,7 +144,7 @@ extern "C" void main() {
 	IntcInitialize();
 
    //Airplane image data
-   MicroPrintf("\n\rImage Classification Inference 1 (Airplane)...");
+   MicroPrintf("\n\r[OUTPUT_0]");
 
    //Copy test image to tflite model input.
    for (unsigned int i = 0; i < quant_airplane_dat_len; ++i)
@@ -158,12 +158,11 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
+//   MicroPrintf("Done\n\r");
 
    //Retrieve inference output
    for (int i = 0; i < kCategoryCount; ++i)
-      MicroPrintf("%s score: %d\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
-
+	   MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);   MicroPrintf(";\n\r");
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
    MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v[1], v[0]);
@@ -176,7 +175,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 2*****************************************************/
    
    //Car image data
-   MicroPrintf("\n\rImage Classification Inference 2 (Car)...");
+   MicroPrintf("\n\r[OUTPUT_1]");
    //Copy test image to tflite model input.
    for (unsigned int i = 0; i < quant_car_dat_len; ++i)
       model_input->data.int8[i] = quant_car_dat[i];
@@ -189,12 +188,11 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
+//   MicroPrintf("Done\n\r");
    
    //Retrieve inference output
    for (int i = 0; i < kCategoryCount; ++i)
-      MicroPrintf("%s score: %d\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
-   
+	   MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);   MicroPrintf(";\n\r");
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
    MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v[1], v[0]);
@@ -207,7 +205,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 3*****************************************************/
    
    //Bird image data
-   MicroPrintf("\n\rImage Classification Inference 3 (Bird)...");
+   MicroPrintf("\n\r[OUTPUT_2]");
    
    //Copy test image to tflite model input.
    for (unsigned int i = 0; i < quant_bird_dat_len; ++i)
@@ -221,12 +219,11 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
+//   MicroPrintf("Done\n\r");
    
    //Retrieve inference output
    for (int i = 0; i < kCategoryCount; ++i)
-      MicroPrintf("%s score: %d\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
-   
+	   MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);   MicroPrintf(";\n\r");
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    v = (u32 *)&timerDiff_0_1;
    MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v[1], v[0]);
@@ -238,7 +235,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 4*****************************************************/
 
     //Truck image data
-    MicroPrintf("\n\rImage Classification Inference 4 (Truck)...");
+    MicroPrintf("\n\r[OUTPUT_3]");
 
     //Copy test image to tflite model input.
     for (unsigned int i = 0; i < quant_truck_dat_len; ++i)
@@ -252,12 +249,11 @@ extern "C" void main() {
     if (invoke_status != kTfLiteOk) {
       MicroPrintf("Invoke failed on data\n\r");
     }
-    MicroPrintf("Done\n\r");
+//    MicroPrintf("Done\n\r");
 
     //Retrieve inference output
     for (int i = 0; i < kCategoryCount; ++i)
-       MicroPrintf("%s score: %d\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
-
+    	MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);    MicroPrintf(";\n\r");
     timerDiff_0_1 = timerCmp1 - timerCmp0;
     v = (u32 *)&timerDiff_0_1;
     MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v[1], v[0]);
@@ -270,7 +266,7 @@ extern "C" void main() {
     /*********************************************************STATIC IMAGE INFERENCE 5*****************************************************/
 
      //Deer image data
-     MicroPrintf("\n\rImage Classification Inference 5 (Deer)...");
+     MicroPrintf("\n\r[OUTPUT_4]");
 
      //Copy test image to tflite model input.
      for (unsigned int i = 0; i < quant_deer_dat_len; ++i)
@@ -284,12 +280,12 @@ extern "C" void main() {
      if (invoke_status != kTfLiteOk) {
        MicroPrintf("Invoke failed on data\n\r");
      }
-     MicroPrintf("Done\n\r");
+//     MicroPrintf("Done\n\r");
 
      //Retrieve inference output
      for (int i = 0; i < kCategoryCount; ++i)
-        MicroPrintf("%s score: %d\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
-
+    	 MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);
+     MicroPrintf(";\n\r");
      timerDiff_0_1 = timerCmp1 - timerCmp0;
      v = (u32 *)&timerDiff_0_1;
      MicroPrintf("Inference clock cycle (hex): %x, %x\n\r", v[1], v[0]);
@@ -297,7 +293,7 @@ extern "C" void main() {
      MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
      ms = timerDiff_0_1/(SYSTEM_CLINT_HZ/1000);
      MicroPrintf("Inference time: %ums\n\r", ms);
-
+     MicroPrintf("Hello world complete\n\r");
    //Parameter Calculate
    ops_unload();
  }

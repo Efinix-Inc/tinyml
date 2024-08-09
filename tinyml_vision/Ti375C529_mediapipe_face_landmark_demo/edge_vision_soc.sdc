@@ -22,7 +22,7 @@ create_clock -period 30.0000 ddrCtrlClk
 create_clock -period 5.0000 io_cfuClk
 create_clock -period 13.4680 io_memFbClk
 create_clock -period 4.9773 io_memoryClk
-create_clock -period 4.0990 io_peripheralClk
+create_clock -period 4.9773 io_peripheralClk
 create_clock -period 4.9773 io_ddrMasters_0_clk
 create_clock -period 10.0000 sample
 create_clock -period 10.0000 i_pixel_clk

@@ -1,0 +1,5 @@
+#ifndef _DEEP_AUTOENCODER_ANOMALY_DETECTION_MODEL_DATA_H
+#define _DEEP_AUTOENCODER_ANOMALY_DETECTION_MODEL_DATA_H
+extern const unsigned int deep_autoencoder_anomaly_detection_model_data_len;
+extern const unsigned char deep_autoencoder_anomaly_detection_model_data[];
+#endif

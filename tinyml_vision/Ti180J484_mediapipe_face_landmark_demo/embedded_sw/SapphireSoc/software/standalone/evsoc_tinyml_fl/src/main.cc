@@ -4,6 +4,9 @@
 //    https://www.efinixinc.com/software-license.html
 ///////////////////////////////////////////////////////////////////////////////////
 
+//Define the picam version. By default is set to Picam V2.
+#define PICAM_VERSION 3
+
 #include <stdlib.h>
 #include <stdint.h>
 #include "riscv.h"
@@ -15,7 +18,11 @@
 #include "print.h"
 #include "clint.h"
 #include "common.h"
+#if PICAM_VERSION == 3
+#include "PiCamV3Driver.h"
+#else
 #include "PiCamDriver.h"
+#endif
 #include "apb3_cam.h"
 #include "i2c.h"
 #include "i2cDemo.h"
@@ -254,11 +261,18 @@ void main() {
 
    //Camera I2C configuration
    mipi_i2c_init();
+#if PICAM_VERSION == 3
+   PiCamV3_Init();
+
+   //SET camera pre-processing RGB gain value
+   Set_RGBGain(1,5,3,7);
+#else
    PiCam_init();
    
    //SET camera pre-processing RGB gain value
    Set_RGBGain(1,5,3,4);
-   
+#endif
+
    MicroPrintf("Done\n\r");
 
    /*************************************************************SETUP DMA*************************************************************/
@@ -335,7 +349,9 @@ void main() {
    uint64_t timerCmp0, timerCmp1, timerDiff_0_1;
    uint64_t timerCmp2, timerCmp3, timerDiff_2_3;
    u32 ms;
-
+#if PICAM_VERSION == 3
+   PiCamV3_StartStreaming();
+#endif
    while(1) {
 
       /***********************************************HW ACCELERATOR - TINYML PRE-PROCESSING********************************************/

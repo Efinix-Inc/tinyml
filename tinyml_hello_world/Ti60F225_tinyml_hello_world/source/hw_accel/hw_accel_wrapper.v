@@ -22,6 +22,9 @@
 
 module hw_accel_wrapper
 #(
+   parameter RGB2GRAYSCALE          = "ENABLED",
+   parameter OUT_FRAME_WIDTH        = 96,
+   parameter OUT_FRAME_HEIGHT       = 96,
    parameter AXI_ADDR_WIDTH         = 32,
    parameter DATA_WIDTH             = 32,  //For DMA and AXI
    parameter FRAME_WIDTH            = 640,
@@ -30,17 +33,19 @@ module hw_accel_wrapper
 ) (
    input  wire                      clk,
    input  wire                      rst,
-   input  wire                      axi_slave_clk,
-   input  wire                      axi_slave_rst,
+//   input  wire                      axi_slave_clk,
+//   input  wire                      axi_slave_rst,
    
    //AXI-related signals
-   input  wire                      axi_slave_we,
-   input  wire [AXI_ADDR_WIDTH-1:0] axi_slave_waddr,
-   input  wire [DATA_WIDTH-1:0]     axi_slave_wdata,
-   input  wire                      axi_slave_re,
-   input  wire [AXI_ADDR_WIDTH-1:0] axi_slave_raddr,
-   output reg  [DATA_WIDTH-1:0]     axi_slave_rdata,
-   output reg                       axi_slave_rvalid,
+//   input  wire                      axi_slave_we,
+//   input  wire [AXI_ADDR_WIDTH-1:0] axi_slave_waddr,
+//   input  wire [DATA_WIDTH-1:0]     axi_slave_wdata,
+//   input  wire                      axi_slave_re,
+//   input  wire [AXI_ADDR_WIDTH-1:0] axi_slave_raddr,
+//   output reg  [DATA_WIDTH-1:0]     axi_slave_rdata,
+//   output reg                       axi_slave_rvalid,
+
+   input  wire                      hw_accel_dma_init_done,
    
    //DMA-related signals
    output reg                       dma_rready,
@@ -50,7 +55,16 @@ module hw_accel_wrapper
    input  wire                      dma_wready,
    output wire                      dma_wvalid,
    output wire                      dma_wlast,
-   output wire [DATA_WIDTH-1:0]     dma_wdata
+   output wire [DATA_WIDTH-1:0]     dma_wdata,
+   
+   // Debug Register
+   output reg                       debug_dma_hw_accel_in_fifo_underflow,
+   output reg                       debug_dma_hw_accel_in_fifo_overflow,
+   output reg                       debug_dma_hw_accel_out_fifo_underflow,
+   output reg                       debug_dma_hw_accel_out_fifo_overflow,
+   
+   output reg  [31:0]               debug_dma_hw_accel_in_fifo_wcount,
+   output reg  [31:0]               debug_dma_hw_accel_out_fifo_rcount
 );
 
    localparam DMA_WR_WORDS_COUNT_BIT = $clog2(DMA_TRANSFER_LENGTH);
@@ -58,12 +72,6 @@ module hw_accel_wrapper
    localparam SOBEL_THRESH           = 100;
 
    reg                               axi_slave_re_r;
-   reg                               debug_dma_in_fifo_underflow;
-   reg                               debug_dma_in_fifo_overflow;
-   reg                               debug_dma_out_fifo_underflow;
-   reg                               debug_dma_out_fifo_overflow;
-   reg  [31:0]                       debug_dma_in_fifo_wcount;
-   reg  [31:0]                       debug_dma_out_fifo_rcount;
    reg  [DMA_WR_WORDS_COUNT_BIT-1:0] dma_wr_words_count;
    reg                               rst_after_each_frame;
    reg                               dma_write;
@@ -100,77 +108,91 @@ module hw_accel_wrapper
    wire                              rst_hw_accel;
    wire [3:0]                        debug_hw_accel_fifo_status;
    
-   assign axi_slave_re_pulse         = ~axi_slave_re_r && axi_slave_re; //Detect rising edge. Observed input axi_slave_re might be asserted unexpectedly more than 1 clock cycle
+   //HW ACCEL DMA IN FIFO. Note that the depth should follow the depth used when instantiating the hw_accel_dma_in_fifo on IPM
+   localparam HW_ACCEL_DMA_IN_FIFO_DEPTH    = 32;
+   localparam HW_ACCEL_DMA_IN_FIFO_DEPTH_BW = $clog2(HW_ACCEL_DMA_IN_FIFO_DEPTH);
+   
+   wire [HW_ACCEL_DMA_IN_FIFO_DEPTH_BW:0]    dma_in_fifo_datacount;
+   
+   //HW ACCEL DMA OUT FIFO. Note that the depth should follow the depth used when instantiating the hw_accel_dma_out_fifo on IPM 
+   localparam HW_ACCEL_DMA_OUT_FIFO_DEPTH    = 64;
+   localparam HW_ACCEL_DMA_OUT_FIFO_DEPTH_BW = $clog2(HW_ACCEL_DMA_OUT_FIFO_DEPTH);
+   
+   wire [HW_ACCEL_DMA_OUT_FIFO_DEPTH_BW:0]    dma_out_fifo_datacount;
+
+   
+   
+   //assign axi_slave_re_pulse         = ~axi_slave_re_r && axi_slave_re; //Detect rising edge. Observed input axi_slave_re might be asserted unexpectedly more than 1 clock cycle
    assign rst_hw_accel               = rst || rst_after_each_frame;     //Reset after every output frame.
-   assign debug_hw_accel_fifo_status = {debug_dma_in_fifo_underflow, debug_dma_in_fifo_overflow, debug_dma_out_fifo_underflow, debug_dma_out_fifo_overflow};
+//   assign debug_hw_accel_fifo_status = {debug_dma_hw_accel_in_fifo_underflow, debug_dma_hw_accel_in_fifo_overflow, debug_dma_hw_accel_out_fifo_underflow, debug_dma_hw_accel_out_fifo_overflow};
    
    //Debug registers
    always@(posedge clk or posedge rst) 
    begin
       if (rst) begin
-         debug_dma_in_fifo_underflow  <= 1'b0;
-         debug_dma_in_fifo_overflow   <= 1'b0;
-         debug_dma_out_fifo_underflow <= 1'b0;
-         debug_dma_out_fifo_overflow  <= 1'b0;
-         debug_dma_in_fifo_wcount     <= 32'd0;
-         debug_dma_out_fifo_rcount    <= 32'd0;
+         debug_dma_hw_accel_in_fifo_underflow  <= 1'b0;
+         debug_dma_hw_accel_in_fifo_overflow   <= 1'b0;
+         debug_dma_hw_accel_out_fifo_underflow <= 1'b0;
+         debug_dma_hw_accel_out_fifo_overflow  <= 1'b0;
+         debug_dma_hw_accel_in_fifo_wcount     <= 32'd0;
+         debug_dma_hw_accel_out_fifo_rcount    <= 32'd0;
       end else begin
-         debug_dma_in_fifo_underflow  <= (dma_in_fifo_underflow)  ? 1'b1 : debug_dma_in_fifo_underflow;
-         debug_dma_in_fifo_overflow   <= (dma_in_fifo_overflow)   ? 1'b1 : debug_dma_in_fifo_overflow;
-         debug_dma_out_fifo_underflow <= (dma_out_fifo_underflow) ? 1'b1 : debug_dma_out_fifo_underflow;
-         debug_dma_out_fifo_overflow  <= (dma_out_fifo_overflow)  ? 1'b1 : debug_dma_out_fifo_overflow;
-         debug_dma_in_fifo_wcount     <= (dma_in_fifo_we)         ? debug_dma_in_fifo_wcount  + 1'b1 : debug_dma_in_fifo_wcount;
-         debug_dma_out_fifo_rcount    <= (dma_out_fifo_re)        ? debug_dma_out_fifo_rcount + 1'b1 : debug_dma_out_fifo_rcount;
+         debug_dma_hw_accel_in_fifo_underflow  <= (dma_in_fifo_underflow)  ? 1'b1 : debug_dma_hw_accel_in_fifo_underflow;
+         debug_dma_hw_accel_in_fifo_overflow   <= (dma_in_fifo_overflow)   ? 1'b1 : debug_dma_hw_accel_in_fifo_overflow;
+         debug_dma_hw_accel_out_fifo_underflow <= (dma_out_fifo_underflow) ? 1'b1 : debug_dma_hw_accel_out_fifo_underflow;
+         debug_dma_hw_accel_out_fifo_overflow  <= (dma_out_fifo_overflow)  ? 1'b1 : debug_dma_hw_accel_out_fifo_overflow;
+         debug_dma_hw_accel_in_fifo_wcount     <= (dma_in_fifo_we)         ? debug_dma_hw_accel_in_fifo_wcount  + 1'b1 : debug_dma_hw_accel_in_fifo_wcount;
+         debug_dma_hw_accel_out_fifo_rcount    <= (dma_out_fifo_re)        ? debug_dma_hw_accel_out_fifo_rcount + 1'b1 : debug_dma_hw_accel_out_fifo_rcount;
       end
    end
    
    //AXI slave read/write from/to HW accelerator
-   always@(posedge axi_slave_clk or posedge axi_slave_rst) 
-   begin
-      if (axi_slave_rst) begin
-         axi_slave_re_r         <= 1'b0;
-         axi_slave_rvalid       <= 1'b0;
-         axi_slave_rdata        <= {DATA_WIDTH{1'b0}};
-         sobel_thresh_val       <= SOBEL_THRESH;
-         hw_accel_mode          <= 2'd0;
-         hw_accel_dma_init_done <= 1'b0;
-      end else begin
-         //AXI slave
-         axi_slave_re_r   <= axi_slave_re;
-         axi_slave_rvalid <= axi_slave_re_pulse;   //Read data ready after 1 clock cycle latency
-         //Default value
-         axi_slave_rdata        <= {DATA_WIDTH{1'b0}};
-         sobel_thresh_val       <= sobel_thresh_val;
-         hw_accel_mode          <= hw_accel_mode;
-         hw_accel_dma_init_done <= hw_accel_dma_init_done;
-         
-         //AXI write to HW accelerator
-         if (axi_slave_we) begin
-            case(axi_slave_waddr[5:2])
-               4'd0 : sobel_thresh_val       <= axi_slave_wdata [INT_DATA_WIDTH-1:0];
-               4'd1 : hw_accel_mode          <= axi_slave_wdata [1:0];
-               4'd2 : hw_accel_dma_init_done <= axi_slave_wdata [0];
-               default: 
-               begin
-                  sobel_thresh_val       <= sobel_thresh_val;
-                  hw_accel_mode          <= hw_accel_mode;
-                  hw_accel_dma_init_done <= hw_accel_dma_init_done;
-               end
-            endcase
-         end
-         
-         //AXI read from HW accelerator
-         if (axi_slave_re_pulse) begin
-            case(axi_slave_raddr[5:2])
-               4'd3 : axi_slave_rdata <= 32'hABCD_1234; //To check if slave read works correctly
-               4'd4 : axi_slave_rdata <= {28'd0, debug_hw_accel_fifo_status};
-               4'd5 : axi_slave_rdata <= debug_dma_in_fifo_wcount;
-               4'd6 : axi_slave_rdata <= debug_dma_out_fifo_rcount;
-               default: axi_slave_rdata <= {DATA_WIDTH{1'b0}};
-            endcase
-         end
-      end
-   end
+   //always@(posedge axi_slave_clk or posedge axi_slave_rst) 
+   //begin
+   //   if (axi_slave_rst) begin
+   //      axi_slave_re_r         <= 1'b0;
+   //      axi_slave_rvalid       <= 1'b0;
+   //      axi_slave_rdata        <= {DATA_WIDTH{1'b0}};
+   //      sobel_thresh_val       <= SOBEL_THRESH;
+   //      hw_accel_mode          <= 2'd0;
+   //      hw_accel_dma_init_done <= 1'b0;
+   //   end else begin
+   //      //AXI slave
+   //      axi_slave_re_r   <= axi_slave_re;
+   //      axi_slave_rvalid <= axi_slave_re_pulse;   //Read data ready after 1 clock cycle latency
+   //      //Default value
+   //      axi_slave_rdata        <= {DATA_WIDTH{1'b0}};
+   //      sobel_thresh_val       <= sobel_thresh_val;
+   //      hw_accel_mode          <= hw_accel_mode;
+   //      hw_accel_dma_init_done <= hw_accel_dma_init_done;
+   //      
+   //      //AXI write to HW accelerator
+   //      if (axi_slave_we) begin
+   //         case(axi_slave_waddr[5:2])
+   //            4'd0 : sobel_thresh_val       <= axi_slave_wdata [INT_DATA_WIDTH-1:0];
+   //            4'd1 : hw_accel_mode          <= axi_slave_wdata [1:0];
+   //            4'd2 : hw_accel_dma_init_done <= axi_slave_wdata [0];
+   //            default: 
+   //            begin
+   //               sobel_thresh_val       <= sobel_thresh_val;
+   //               hw_accel_mode          <= hw_accel_mode;
+   //               hw_accel_dma_init_done <= hw_accel_dma_init_done;
+   //            end
+   //         endcase
+   //      end
+   //      
+   //      //AXI read from HW accelerator
+   //      if (axi_slave_re_pulse) begin
+   //         case(axi_slave_raddr[5:2])
+   //            4'd3 : axi_slave_rdata <= 32'hABCD_1234; //To check if slave read works correctly
+   //            4'd4 : axi_slave_rdata <= {28'd0, debug_hw_accel_fifo_status};
+   //            4'd5 : axi_slave_rdata <= debug_dma_hw_accel_in_fifo_wcount;
+   //            4'd6 : axi_slave_rdata <= debug_dma_hw_accel_out_fifo_rcount;
+   //            default: axi_slave_rdata <= {DATA_WIDTH{1'b0}};
+   //         endcase
+   //      end
+   //   end
+   //end
    
    //DMA - Write to DDR & Control
    always@(posedge clk or posedge rst)
@@ -182,10 +204,10 @@ module hw_accel_wrapper
          hw_accel_dma_init_done_r1 <= 1'b0;
          hw_accel_dma_init_done_r2 <= 1'b0;
          hw_accel_dma_init_done_r3 <= 1'b0;
-         sobel_thresh_val_r        <= {INT_DATA_WIDTH{1'b0}};
-         sobel_thresh_val_synced   <= {INT_DATA_WIDTH{1'b0}};
-         hw_accel_mode_r           <= 2'd0;
-         hw_accel_mode_synced      <= 2'd0;
+         //sobel_thresh_val_r        <= {INT_DATA_WIDTH{1'b0}};
+         //sobel_thresh_val_synced   <= {INT_DATA_WIDTH{1'b0}};
+         //hw_accel_mode_r           <= 2'd0;
+         //hw_accel_mode_synced      <= 2'd0;
          dma_rready                <= 1'b0;
          dma_in_fifo_we            <= 1'b0;
          dma_in_fifo_wdata         <= {INT_DATA_WIDTH{1'b0}};
@@ -205,19 +227,19 @@ module hw_accel_wrapper
          hw_accel_dma_init_done_r1 <= hw_accel_dma_init_done;
          hw_accel_dma_init_done_r2 <= hw_accel_dma_init_done_r1;
          hw_accel_dma_init_done_r3 <= hw_accel_dma_init_done_r2;
-         sobel_thresh_val_r        <= sobel_thresh_val;
-         sobel_thresh_val_synced   <= sobel_thresh_val_r;
-         hw_accel_mode_r           <= hw_accel_mode;
-         hw_accel_mode_synced      <= hw_accel_mode_r;
+         //sobel_thresh_val_r        <= sobel_thresh_val;
+         //sobel_thresh_val_synced   <= sobel_thresh_val_r;
+         //hw_accel_mode_r           <= hw_accel_mode;
+         //hw_accel_mode_synced      <= hw_accel_mode_r;
       end
    end
    
    //DMA read/input fifo
    assign dma_in_fifo_re = ~dma_in_fifo_empty && ~dma_out_fifo_prog_full;
+   assign dma_in_fifo_prog_full = (dma_in_fifo_datacount > HW_ACCEL_DMA_OUT_FIFO_DEPTH/2);
 
    hw_accel_dma_in_fifo u_dma_in_fifo (
       .almost_full_o  (),
-      .prog_full_o    (dma_in_fifo_prog_full),
       .full_o         (),
       .overflow_o     (dma_in_fifo_overflow),
       .wr_ack_o       (),
@@ -231,7 +253,7 @@ module hw_accel_wrapper
       .rd_en_i        (dma_in_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma_in_fifo_wdata),
-      .datacount_o    ()
+      .datacount_o    (dma_in_fifo_datacount)
    );
    
    //DMA write/output fifo - FWFT mode
@@ -240,10 +262,9 @@ module hw_accel_wrapper
    assign dma_wvalid      = dma_out_fifo_rvalid && dma_out_fifo_re;
    assign dma_wlast       = dma_wvalid && (dma_wr_words_count==DMA_TRANSFER_LENGTH-1);
    assign dma_wdata       = {{INT_DATA_WIDTH{1'b0}}, dma_out_fifo_rdata, dma_out_fifo_rdata, dma_out_fifo_rdata}; //Assume DATA_WIDTH = 4*INT_DATA_WIDTH
-   
+   assign dma_out_fifo_prog_full = (dma_out_fifo_datacount > HW_ACCEL_DMA_OUT_FIFO_DEPTH/2);
    hw_accel_dma_out_fifo u_dma_out_fifo (
       .almost_full_o  (),
-      .prog_full_o    (dma_out_fifo_prog_full),
       .full_o         (),
       .overflow_o     (dma_out_fifo_overflow),
       .wr_ack_o       (),
@@ -257,15 +278,18 @@ module hw_accel_wrapper
       .rd_en_i        (dma_out_fifo_re),
       .a_rst_i        (rst_hw_accel),
       .wdata          (dma_out_fifo_wdata),
-      .datacount_o    ()
+      .datacount_o    (dma_out_fifo_datacount)
    );
 
    //Hardware accelerator
    hw_accel
    # (
-      .DATA_WIDTH    (INT_DATA_WIDTH),
-      .FRAME_WIDTH   (FRAME_WIDTH),
-      .FRAME_HEIGHT  (FRAME_HEIGHT)
+      .RGB2GRAYSCALE    (RGB2GRAYSCALE),
+      .OUT_FRAME_WIDTH  (OUT_FRAME_WIDTH),
+      .OUT_FRAME_HEIGHT (OUT_FRAME_HEIGHT),
+      .DATA_WIDTH       (INT_DATA_WIDTH),
+      .FRAME_WIDTH      (FRAME_WIDTH),
+      .FRAME_HEIGHT     (FRAME_HEIGHT)
    ) u_hw_accel (
       .clk              (clk),
       .rst              (rst_hw_accel),

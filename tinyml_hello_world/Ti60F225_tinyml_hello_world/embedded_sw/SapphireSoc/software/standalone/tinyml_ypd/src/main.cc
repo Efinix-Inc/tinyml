@@ -191,7 +191,8 @@ extern "C" void main() {
    
    timerCmpTotal1 = clint_getTime(BSP_CLINT);
    MicroPrintf("\n\rBoxes:\n\r");
-   
+   MicroPrintf("\n\r[OUTPUT_0]:");
+   int counter = 0;
    for (int i = 0; i < total_boxes; ++i) {
       print_float(boxes[i].x_min);
       MicroPrintf(", ");
@@ -209,11 +210,12 @@ extern "C" void main() {
          if (c < CLASSES - 1)
             MicroPrintf(", ");
          else
-            MicroPrintf("\n\r");
+        	counter = counter +1;
+         MicroPrintf("\n\r");
       }
    }
-
-   MicroPrintf("Total_boxes = %d\n\n\r", total_boxes);
+   MicroPrintf(";\n\r");
+   MicroPrintf("Total_boxes : %d;\n\n\r", total_boxes);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    u32 *v = (u32 *)&timerDiff_0_1;
@@ -222,7 +224,7 @@ extern "C" void main() {
    MicroPrintf("SYSTEM_CLINT_HZ (hex): %x\n\r", SYSTEM_CLINT_HZ);
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_0_1/(SYSTEM_CLINT_HZ/1000);
-   MicroPrintf("inference time (front layers): %ums\n\r", ms);
+   MicroPrintf("Inference time (front layers): %ums\n\r", ms);
    
    timerDiff_2_3 = timerCmp3 - timerCmp2;
    u32 *v2 = (u32 *)&timerDiff_2_3;
@@ -231,7 +233,7 @@ extern "C" void main() {
    MicroPrintf("SYSTEM_CLINT_HZ (hex): %x\n\r", SYSTEM_CLINT_HZ);
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_2_3/(SYSTEM_CLINT_HZ/1000);
-   MicroPrintf("inference time (Yolo layer): %ums\n\r", ms);
+   MicroPrintf("Inference time (Yolo layer): %ums\n\r", ms);
 
    timerDiffTotal = timerCmpTotal1 - timerCmpTotal0;
    u32 *v3 = (u32 *)&timerDiffTotal;
@@ -240,8 +242,8 @@ extern "C" void main() {
    MicroPrintf("SYSTEM_CLINT_HZ (hex): %x\n\r", SYSTEM_CLINT_HZ);
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiffTotal/(SYSTEM_CLINT_HZ/1000);
-   MicroPrintf("inference time (Total): %ums\n\r", ms);
-
+   MicroPrintf("Inference time (Total): %ums\n\r", ms);
+   MicroPrintf("Hello world complete\n\r");
 
    ops_unload();
 }

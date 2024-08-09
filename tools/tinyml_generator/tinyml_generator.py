@@ -28,6 +28,7 @@ params = {
                 'type': 'l',
                 'val': "128",
                 'combo':["32","64","128","256","512"],
+                'SW':True,
                 'visible': True,
             }
         }
@@ -161,6 +162,7 @@ params = {
                     'val': "512",
                     'combo':["512", "1024", "2048", "4096", "8192"],
                     'visible': True,
+                    'SW': True,
                     'require': "ENABLE"
                 }
             }
@@ -189,6 +191,7 @@ class Widget(QWidget):
         note_editor.setReadOnly(True)
         note_editor_path = os.path.join(os.getcwd(),'lib/INFO.txt')
         self.activate_in_parallel_modify = False
+        self.tflite_gen = False
         self.notes_description(note_editor,note_editor_path)
         app.setStyle("Fusion")
         self.E = E
@@ -200,6 +203,7 @@ class Widget(QWidget):
         self.res_util_lib=ResourceUtil()
         self.curr_cache_text="ENABLE"
         self.update_cache_text=False
+        self.parse_cache_depth = 0
         
         #H.addLayout(V)
         H.addWidget(scroll)
@@ -252,7 +256,6 @@ class Widget(QWidget):
         self.current_dir = os.getcwd()
         self.op_path = None
         self.running = False
-        self.tflite_gen = False
 
         def openfile():
             path = QFileDialog.getOpenFileName(filter = "*.tflite")
@@ -311,6 +314,9 @@ class Widget(QWidget):
                     val['val'] = text
                     if(p=="AXI_DW"):
                         self.modify_in_out_parallel_param(p2)
+                        self.modify_cache_param()
+                    if(p=="TINYML_CACHE"):
+                        self.modify_cache_param()
                     self.check_cache_enable(p2)
                     self.res_utilization()
                     if not 'children' in val:
@@ -345,6 +351,7 @@ class Widget(QWidget):
             self.modify_in_out_parallel_param(p2,activate=1)
 
 
+
     def res_utilization(self):
         if not self.model_loaded:
             return
@@ -375,7 +382,7 @@ class Widget(QWidget):
                 total_res[e] = total_res[e] + common_res[e]
             self.append_row("COMMON",common_res)
         self.append_row("TINYML_ACCELERATOR",total_res,bold_font=True)
-        
+ 
     def check_cache_enable(self,params_list):
         count_standard=0
         for p in params_list:
@@ -397,7 +404,15 @@ class Widget(QWidget):
                         self.update_cache_text=False
                         params_list['TINYML_CACHE']['val'] = self.curr_cache_text
                     cache_box.setEnabled(True)
-                
+
+    def calc_cache_depth(self,val):
+        cache_size_val = 2 ** round(math.log2(int(val))) 
+        if (cache_size_val > int(p2.get("CACHE_DEPTH")['combo'][-1])):
+            return p2.get("CACHE_DEPTH")['combo'][-1]
+        elif (cache_size_val < int(p2.get("CACHE_DEPTH")['combo'][0])):
+            return p2.get("CACHE_DEPTH")['combo'][0]
+        else: 
+            return cache_size_val      
 
     def append_row(self,module,data,bold_font=False):
         data_row=[]
@@ -451,7 +466,7 @@ class Widget(QWidget):
                             dout += 'extern int %s;\n' %(i.lower())
                         else:
                             if(val['val'].isnumeric()):
-                                cout += 'int %s=%d;\n' % (i.lower(), val['val'])
+                                cout += 'int %s=%d;\n' % (i.lower(), int(val['val']))
                                 dout += 'extern int %s;\n' %(i.lower())
                             else:
                                 cout += 'char %s[]="%s";\n' % (i.lower(), val['val'])
@@ -468,8 +483,12 @@ class Widget(QWidget):
         #For profiling
         prof_dout = 'extern const char* layer_mode;\n'
         prof_cout = 'const char* layer_mode="";\n'
-        dout = '#ifndef _TINYML_PARAMS_H\n#define _TINYML_PARAMS_H\n' + dout + prof_dout + '#endif\n'
-        cout = '#include "define.h"\n' + cout +prof_cout
+        axi_db_w_dout = 'extern int axi_db_w;\n'
+        axi_db_w_cout = 'int axi_db_w=axi_dw/8;\n'
+        cache_mode_dout = 'extern int cache_mode;\n'
+        cache_mode_cout = f'int cache_mode={self.get_cache_mode()};\n'
+        dout = '#ifndef _TINYML_PARAMS_H\n#define _TINYML_PARAMS_H\n' + dout + axi_db_w_dout+ cache_mode_dout + prof_dout  + '#endif\n'
+        cout = '#include "define.h"\n' + cout +axi_db_w_cout + cache_mode_cout +prof_cout 
         vh = os.path.join(self.op_path,"defines.v")
         ch = os.path.join(self.op_path,"define.cc")
         dh = os.path.join(self.op_path,"define.h")
@@ -551,13 +570,14 @@ class Widget(QWidget):
     def parse_model(self):
         ic = self.findChild(QObject, 'CONV_DEPTHW_STD_IN_PARALLEL')
         oc = self.findChild(QObject, 'CONV_DEPTHW_STD_OUT_PARALLEL')
+        axi_dw = p2.get("AXI_DW")['val']
         dir = os.path.join(os.path.dirname(__file__), "bin")
         if dir == "":
             dir = "./bin"
         path = dir + "/tflite"
         if platform.system() == "Windows":
             path += ".exe"
-        with subprocess.Popen([path, self.model_file, ic.text(), oc.text()], 
+        with subprocess.Popen([path, self.model_file, ic.text(), oc.text(), axi_dw], 
             stderr=subprocess.PIPE,
             bufsize=1, universal_newlines=True) as p:
             begin = False
@@ -583,6 +603,14 @@ class Widget(QWidget):
                                     box.setCurrentIndex(box.findText('DISABLE'))
                                     val['val'] = 'DISABLE'
                                     box.setEnabled(False)
+                                elif val['val'].isdigit():
+                                    if(v[0].upper() == 'CACHE_DEPTH'):
+                                        val['val'] = str(self.calc_cache_depth(v[1]))
+                                        self.parse_cache_depth = str(self.calc_cache_depth(v[1]))
+                                    else:
+                                        val['val'] =  v[1]
+                                    box.setCurrentIndex(box.findText(val['val']))
+                                    box.setEnabled(True)
                                 else:
                                     val['val'] = box.itemText(0)
                                     box.setCurrentIndex(0)
@@ -602,7 +630,58 @@ class Widget(QWidget):
                             continue
         self.res_utilization()
         print("done...")
-                        
+
+    def get_cache_mode(self):
+        if("ENABLE" in p2.get("TINYML_CACHE")['val'] and "STANDARD" in p2.get("CONV_DEPTHW_MODE")['val']):
+            curr_cache_index = p2.get("CACHE_DEPTH")['combo'].index(p2.get("CACHE_DEPTH")['val'])
+            rec_cache_index = p2.get("CACHE_DEPTH")['combo'].index(self.parse_cache_depth)
+            if(rec_cache_index - curr_cache_index >= 2):
+                return 0
+            else :
+                return 1
+        else:
+            return 0
+
+    def modify_cache_param(self):
+        if(self.tflite_gen and "ENABLE" in p2.get("TINYML_CACHE")['val'] and "STANDARD" in p2.get("CONV_DEPTHW_MODE")['val']):
+            ic = self.findChild(QObject, 'CONV_DEPTHW_STD_IN_PARALLEL')
+            oc = self.findChild(QObject, 'CONV_DEPTHW_STD_OUT_PARALLEL')
+            axi_dw = p2.get("AXI_DW")['val']
+            dir = os.path.join(os.path.dirname(__file__), "bin")
+            if dir == "":
+                dir = "./bin"
+            path = dir + "/tflite"
+            if platform.system() == "Windows":
+                path += ".exe"
+            with subprocess.Popen([path, self.model_file, ic.text(), oc.text(), axi_dw], 
+                stderr=subprocess.PIPE,
+                bufsize=1, universal_newlines=True) as p:
+                begin = False
+                for line in p.stderr:
+                    self.model_loaded = True
+                    l = str(line)
+                    l = l.replace("\n", "").replace("\r", "")
+                    if l.startswith("===="):
+                        begin = not begin
+                    elif begin and len(l) > 1:
+                        v = l.split(':')
+                        #iter(params, v[0].upper(), v[1])
+                        if v[0].upper() in p2:
+                            val = p2.get(v[0].upper())
+                            if val['type'] == 'l':
+                                if 'qval' in val:
+                                    box = val['qval']
+                                    if val['val'].isdigit():
+                                        if(v[0].upper() == 'CACHE_DEPTH'):
+                                            val['val'] = str(self.calc_cache_depth(v[1]))
+                                            self.parse_cache_depth = v[1]
+                                            box.setCurrentIndex(box.findText(val['val']))
+                                            box.setEnabled(True)
+            self.res_utilization()
+            print("done...")
+            
+ 
+            
     def generate(self):
         if self.running:
             print("return...")

@@ -3,18 +3,18 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/tmp/tmp69frg3hw/ip",
+        "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "3.0.0"
+            "version": "3.1.1"
         }
     ],
     "conf": {
-        "HexFile_PathEnable": "1'b0",
-        "HexFile_Path": "\"\"",
+        "HexFile_PathEnable": "1'b1",
+        "HexFile_Path": "\"ref_files/bootloader_16MB/SapphireSoc/bootloader.hex\"",
         "APBSlave0_Size": "65536",
         "DEVKIT_CUSTOM": "\"sapphireBoard_rev0\"",
         "LDSize": "16380",
@@ -68,6 +68,8 @@
         "ICacheSize": "4096",
         "DCacheSize": "4096",
         "Cache": "1'b1",
+        "ICache_EN": "1'b1",
+        "DCache_EN": "1'b1",
         "DDR": "1'b1",
         "DDR_AXI4": "1'b1",
         "DDRWidth": "512",
@@ -123,7 +125,7 @@
         "SPI2_INT_ID": "6",
         "I2C1_INT_ID": "9",
         "I2C0_INT_ID": "8",
-        "I2C0": "1'b0",
+        "I2C0": "1'b1",
         "AXIMasterWidth_1": "32",
         "AXIMaster_1": "1'b0",
         "AXIMasterWidth": "32",
@@ -154,35 +156,36 @@
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc_tmpl.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc_tmpl.vhd",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/SapphireSoc_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_define.vh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.vhd",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/SapphireSoc_tmpl.v"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
         "external_example_design_ti180": [
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/design_modules.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc_define.vh",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Ti180J484_devkit/soc.xml"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Ti180J484_devkit/soc.xml",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Ti180J484_devkit/design_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Ti180J484_devkit/SapphireSoc_define.vh"
         ],
         "external_testbench_testbench": [
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/MEM_IM.TXT",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SECSI.TXT",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SFDP.TXT",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SREG.TXT",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/README",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/tb_soc.do",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/modelsim.do",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/wave.do",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/design_modules.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/sim_modules.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SapphireSoc.v",
-            "/tmp/tmp69frg3hw/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/MEM_IM.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SECSI.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SFDP.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SREG.TXT",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/README",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/tb_soc.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/modelsim.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/wave.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/aldec.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/design_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/sim_modules.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/W25Q32JVxxIM.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti180J484_yolo_person_detect_demo/ip/SapphireSoc/Testbench/SapphireSoc_define.vh"
         ]
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-16T03:33:29.445557"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-08-06T00:42:47.272702"
 }

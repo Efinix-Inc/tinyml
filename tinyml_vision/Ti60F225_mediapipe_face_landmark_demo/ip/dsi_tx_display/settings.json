@@ -3,13 +3,13 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "/tmp/tmp7ij7dceu/ip",
+        "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "5.7"
+            "version": "5.9"
         }
     ],
     "conf": {
@@ -47,53 +47,53 @@
     },
     "output": {
         "external_source_source": [
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/dsi_tx_display.sv",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/dsi_tx_display_define.vh",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/dsi_tx_display_tmpl.v"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/dsi_tx_display_tmpl.vhd",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/dsi_tx_display.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/dsi_tx_display_define.svh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/dsi_tx_display_tmpl.sv"
         ],
         "external_testbench_modelsim": [
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
         ],
         "external_testbench_testbench": [
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/data_pack.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/dual_clock_fifo.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/panel_config.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/shift_reg.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/simple_dual_port_ram.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/true_dual_port_ram.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/vga_gen.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/dsi_hs_cmd_tb.mem",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/dsi_tb.mem",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/TI60F225_MIPI_dsi_tb.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/modelsim.do",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/dsi_tx_display.sv",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/dsi_tx_display_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/data_pack.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/dual_clock_fifo.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/panel_config.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/shift_reg.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/simple_dual_port_ram.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/true_dual_port_ram.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/vga_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/dsi_hs_cmd_tb.mem",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/dsi_tb.mem",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/TI60F225_MIPI_dsi_tb.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/modelsim.do",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/dsi_tx_display.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/dsi_tx_display_define.svh"
         ],
         "external_example_example": [
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.peri.xml",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.xml",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/data_pack.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/dual_clock_fifo.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/panel_config.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/reset.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/shift_reg.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/simple_dual_port_ram.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/true_dual_port_ram.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/vga_gen.v",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/Panel_1080p_reg.mem",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.sdc",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display.sv",
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display_define.vh"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/data_pack.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/dual_clock_fifo.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/panel_config.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/reset.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/shift_reg.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/simple_dual_port_ram.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/true_dual_port_ram.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/vga_gen.v",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/Panel_1080p_reg.mem",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.sdc",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display.sv",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/dsi_tx_display_define.svh",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.peri.xml",
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Ti60F225_devkit/ti60f225_demo.xml"
         ],
         "external_testbench_ncsim": [
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/ncsim/dsi_tx_display.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/ncsim/dsi_tx_display.sv"
         ],
         "external_testbench_synopsys": [
-            "/tmp/tmp7ij7dceu/ip/dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
+            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
         ]
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-16T03:26:33.152077"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-08-06T00:41:02.220786"
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti375C529" location="/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo" version="2023.2.307.5.6" db_version="20241003" last_change_date="Thu May 16 00:03:10 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti375C529" version="2024.1.163.2.12" db_version="20241999" last_change_date="Wed Aug  7 08:19:57 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="2A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="2A_MODE_SEL"/>
@@ -10,35 +10,20 @@
             <efxpt:iobank name="4A_4B" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="4A_4B_MODE_SEL"/>
             <efxpt:iobank name="4C" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="4C_MODE_SEL"/>
             <efxpt:iobank name="4D" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="4D_MODE_SEL"/>
-            <efxpt:iobank name="BL" iostd="3.3 V LVCMOS" is_dyn_voltage="false">
-                <efxpt:mode_sel_name>
-                    <efxpt:pin_name bank_name="BL2" value="BL2_MODE_SEL"/>
-                    <efxpt:pin_name bank_name="BL3" value="BL3_MODE_SEL"/>
-                </efxpt:mode_sel_name>
-            </efxpt:iobank>
+            <efxpt:iobank name="BL2_BL3" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BL2_BL3_MODE_SEL"/>
             <efxpt:iobank name="BR0" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BR0_MODE_SEL"/>
-            <efxpt:iobank name="BR1_BR2_BR3_BR4" iostd="3.3 V LVCMOS" is_dyn_voltage="false">
-                <efxpt:mode_sel_name>
-                    <efxpt:pin_name bank_name="BR3" value="BR3_MODE_SEL"/>
-                    <efxpt:pin_name bank_name="BR4" value="BR4_MODE_SEL"/>
-                </efxpt:mode_sel_name>
-            </efxpt:iobank>
-            <efxpt:iobank name="TL" iostd="3.3 V LVCMOS" is_dyn_voltage="false">
-                <efxpt:mode_sel_name>
-                    <efxpt:pin_name bank_name="TL1" value="TL1_MODE_SEL"/>
-                    <efxpt:pin_name bank_name="TL5" value="TL5_MODE_SEL"/>
-                </efxpt:mode_sel_name>
-            </efxpt:iobank>
+            <efxpt:iobank name="BR3_BR4" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BR3_BR4_MODE_SEL"/>
+            <efxpt:iobank name="TL1_TL5" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TL1_TL5_MODE_SEL"/>
             <efxpt:iobank name="TR0" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR0_MODE_SEL"/>
             <efxpt:iobank name="TR1" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR1_MODE_SEL"/>
-            <efxpt:iobank name="TR2_TR3_TR4_TR5_TR6" iostd="1.8 V LVCMOS" is_dyn_voltage="false">
-                <efxpt:mode_sel_name>
-                    <efxpt:pin_name bank_name="TR2" value="TR2_MODE_SEL"/>
-                </efxpt:mode_sel_name>
-            </efxpt:iobank>
+            <efxpt:iobank name="TR2" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR2_MODE_SEL"/>
         </efxpt:iobank_info>
         <efxpt:ctrl_info>
-            <efxpt:ctrl name="cfg" ctrl_def="CONFIG_CTRL0" clock_name="" is_clk_invert="false" cbsel_bus_name="cfg_CBSEL" config_ctrl_name="cfg_CONFIG" ena_capture_name="cfg_ENA" error_status_name="cfg_ERROR" um_signal_status_name="cfg_USR_STATUS" is_remote_update_enable="false" is_user_mode_enable="false"/>
+            <efxpt:ctrl name="cfg" ctrl_def="CONFIG_CTRL0" clock_name="" is_clk_invert="false" cbsel_bus_name="cfg_CBSEL" config_ctrl_name="cfg_CONFIG" ena_capture_name="cfg_ENA" error_status_name="cfg_ERROR" um_signal_status_name="cfg_USR_STATUS" is_remote_update_enable="false" is_user_mode_enable="false">
+                <efxpt:gen_param>
+                    <efxpt:param name="remote_update_retries" value="0" value_type="int"/>
+                </efxpt:gen_param>
+            </efxpt:ctrl>
         </efxpt:ctrl_info>
         <efxpt:seu_info>
             <efxpt:seu name="seu" block_def="CONFIG_SEU0" mode="auto" ena_detect="false" wait_interval="16500000">
@@ -240,13 +225,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="sample_hdmi" number="0" out_divider="124" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -286,13 +271,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="sample" number="0" out_divider="27" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -332,13 +317,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="io_memFbClk" number="0" out_divider="46" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -358,7 +343,7 @@
                 <efxpt:gen_pin/>
                 <efxpt:gen_param/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="io_peripheralClk" number="2" out_divider="14" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
+            <efxpt:comp_output_clock name="io_peripheralClk" number="2" out_divider="17" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
                 <efxpt:gen_param/>
             </efxpt:comp_output_clock>
@@ -378,13 +363,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="io_sysFbClk" number="0" out_divider="40" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -766,7 +751,7 @@
                 <efxpt:param name="CUSTOM_INSTRUCTION_3_EN" value="false" value_type="bool"/>
                 <efxpt:param name="JTAG_TYPE" value="FPGA" value_type="str"/>
                 <efxpt:param name="MEM_CLK_SOURCE" value="Clock 1" value_type="str"/>
-                <efxpt:param name="OCR_FILE_PATH" value="bootloader_16MB/bootloader.hex" value_type="str"/>
+                <efxpt:param name="OCR_FILE_PATH" value="ref_files/bootloader_16MB/efx_hard_soc/bootloader.hex" value_type="str"/>
                 <efxpt:param name="SYS_CLK_SOURCE" value="Clock 0" value_type="str"/>
             </efxpt:gen_param>
             <efxpt:gen_pin>

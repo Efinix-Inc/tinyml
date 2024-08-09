@@ -15,7 +15,7 @@
         <efx:design_file name="source/display/hdmi/display_hdmi_adv7511_config.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_csi_rx_controllers.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_reset.v" version="default" library="default"/>
-        <efx:design_file name="source/cam/cam_picam_v2.v" version="default" library="default"/>
+        <efx:design_file name="source/cam/cam_picam.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_rgb_gain.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_line_buffer.v" version="default" library="default"/>
         <efx:design_file name="source/common/common_true_dual_port_ram.v" version="default" library="default"/>
@@ -36,10 +36,17 @@
         <efx:design_file name="source/hw_accel/hw_accel_wrapper.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_axi4.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_arbiter.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_interconnect.v" version="default" library="default"/>
-        <efx:design_file name="source/axi/axi_priority_encoder.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/slave_coupler.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/crossbar.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/round_robin_priority_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/lb_to_axi.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_interconnect_beta.sv" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/master_coupler.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/slave_coupler_wrapper.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_rdata_sfifo.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/fixed_priority_arbiter.v" version="default" library="default"/>
+        <efx:design_file name="source/axi/axi_interconnect_beta/axi_wdata_sfifo.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_pack_rgb_gray.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_nearest_neighbor_downscale.v" version="default" library="default"/>
         <efx:design_file name="source/hw_accel/hw_accel_rgb2gray.v" version="default" library="default"/>

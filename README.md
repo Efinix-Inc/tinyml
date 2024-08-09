@@ -117,7 +117,7 @@ List of quick start demo designs:
   - Yolo Person Detection
   - MediaPipe Face Landmark Detection
 
-List of supported cameras for quick start demo:
+List of supported cameras:
 1. Raspberry PI Camera Module v2
    - Sony IMX219 image sensor
 2. Raspberry PI Camera Module v3
@@ -133,6 +133,7 @@ Bring up quick start demo design on Efinix development kit by following listed s
    - For Ti375C529 development kit,
       - Connect the HDMI daughter card to P1 header.
       - Connect the Raspberry Pi Camera daughter card to P2 header.
+   - The quick start demo design is using Rasperry Pi Camera Module v3 by default.
    - For quick start demo design that uses Google Coral Camera (*\<device\>\_coral\_\<architecture\>\_\<application\>\_demo.hex*),
       - Google Coral Camera and Google Coral Camera connector daughter card are required.
       - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Board, or P1 header on Titanium Ti180 J484 Development Board.

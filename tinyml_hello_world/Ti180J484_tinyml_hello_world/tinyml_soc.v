@@ -696,29 +696,25 @@ tinyml_top  #(
 );
 
 /////////////////////////////////////////////////////
-// AXI Interccnnect/ Arbiter TinyML / SOC <-> DDR IO
+// AXI Interconnect/ Arbiter TinyML / SOC <-> DDR IO
 /////////////////////////////////////////////////////
-axi_interconnect #(
-    .S_COUNT    (2),
-    .M_COUNT    (1),
-    .DATA_WIDTH (AXI_0_DATA_WIDTH),
-    .ADDR_WIDTH (32),
-    .ID_WIDTH   (8)
+axi_interconnect_beta #(
+    .S_COUNT                            (2                                  ),
+    .SLAVE_ASYN_ARRAY                   ({1'b0,1'b0}                        ),
+    .S_AXI_DW_ARRAY                     ({AXI_0_DATA_WIDTH,AXI_0_DATA_WIDTH}              ),
+    .CB_DW                              (AXI_0_DATA_WIDTH                       ),
+    .M_AXI_DW                           (AXI_0_DATA_WIDTH                       ),
+    .ARB_MODE                           (1                                  ),
+    .FAMILY                             ("TITANIUM"                         ),
+    .RD_QUEUE_FIFO_RAM_STYLE            ("block_ram"                        ),
+    .RD_QUEUE_FIFO_DEPTH                (256                                )
 ) u_axi_interconnect (
 
-   .clk              (i_axi0_mem_clk),
-   .rst              (io_systemReset),
-   
    //AXI slave interfaces - S0: Connected to RubySoC; S1: Connected to DMA controller
-   .s_axi_awid       ({axi_tinyml_awid      ,axi_soc_awid}),
+   .s_axi_clk        ({i_axi0_mem_clk         , i_axi0_mem_clk        }),
+   .s_axi_rstn       ({!io_systemReset             , !io_systemReset            }),
    .s_axi_awaddr     ({axi_tinyml_awaddr    ,axi_soc_awaddr}),
    .s_axi_awlen      ({axi_tinyml_awlen     ,axi_soc_awlen}),
-   .s_axi_awsize     ({axi_tinyml_awsize    ,axi_soc_awsize}),
-   .s_axi_awburst    ({axi_tinyml_awburst   ,axi_soc_awburst}),
-   .s_axi_awlock     ({axi_tinyml_awlock    ,axi_soc_awlock}),
-   .s_axi_awcache    ({axi_tinyml_awcache   ,axi_soc_awcache}),
-   .s_axi_awprot     ({axi_tinyml_awprot    ,axi_soc_awprot}),
-   .s_axi_awqos      ({axi_tinyml_awqos     ,axi_soc_awqos}),
    .s_axi_awvalid    ({axi_tinyml_awvalid   ,axi_soc_awvalid}),
    .s_axi_awready    ({axi_tinyml_awready   ,axi_soc_awready}),
    .s_axi_wdata      ({axi_tinyml_wdata     ,axi_soc_wdata}),
@@ -726,22 +722,13 @@ axi_interconnect #(
    .s_axi_wlast      ({axi_tinyml_wlast     ,axi_soc_wlast}),
    .s_axi_wvalid     ({axi_tinyml_wvalid    ,axi_soc_wvalid}),
    .s_axi_wready     ({axi_tinyml_wready    ,axi_soc_wready}),
-   .s_axi_bid        ({axi_tinyml_bid       ,axi_soc_bid}),
    .s_axi_bresp      ({axi_tinyml_bresp     ,axi_soc_bresp}),
    .s_axi_bvalid     ({axi_tinyml_bvalid    ,axi_soc_bvalid}),
    .s_axi_bready     ({axi_tinyml_bready    ,axi_soc_bready}),
-   .s_axi_arid       ({axi_tinyml_arid      ,axi_soc_arid}),
    .s_axi_araddr     ({axi_tinyml_araddr    ,axi_soc_araddr}),
    .s_axi_arlen      ({axi_tinyml_arlen     ,axi_soc_arlen}),
-   .s_axi_arsize     ({axi_tinyml_arsize    ,axi_soc_arsize}),
-   .s_axi_arburst    ({axi_tinyml_arburst   ,axi_soc_arburst}),
-   .s_axi_arlock     ({axi_tinyml_arlock    ,axi_soc_arlock}),
-   .s_axi_arcache    ({axi_tinyml_arcache   ,axi_soc_arcache}),
-   .s_axi_arprot     ({axi_tinyml_arprot    ,axi_soc_arprot}),
-   .s_axi_arqos      ({axi_tinyml_arqos     ,axi_soc_arqos}),
    .s_axi_arvalid    ({axi_tinyml_arvalid   ,axi_soc_arvalid}),
    .s_axi_arready    ({axi_tinyml_arready   ,axi_soc_arready}),
-   .s_axi_rid        ({axi_tinyml_rid       ,axi_soc_rid}),
    .s_axi_rdata      ({axi_tinyml_rdata     ,axi_soc_rdata}),
    .s_axi_rresp      ({axi_tinyml_rresp     ,axi_soc_rresp}),
    .s_axi_rlast      ({axi_tinyml_rlast     ,axi_soc_rlast}),
@@ -749,6 +736,8 @@ axi_interconnect #(
    .s_axi_rready     ({axi_tinyml_rready    ,axi_soc_rready}),
    
    //AXI master interface - Connect to DDR controller
+   .m_axi_clk        (i_axi0_mem_clk                       ),
+   .m_axi_rstn       (!io_systemReset                           ),
    .m_axi_awid       (io_ddrA_aw_payload_id_i),
    .m_axi_awaddr     (io_ddrA_aw_payload_addr_i),
    .m_axi_awlen      (ddr_inst_AWLEN_0),
@@ -757,8 +746,6 @@ axi_interconnect #(
    .m_axi_awlock     (ddr_inst_AWLOCK_0),
    .m_axi_awcache    (ddr_inst_AWCACHE_0),
    .m_axi_awprot     (),
-   .m_axi_awqos      (ddr_inst_AWQOS_0),
-   .m_axi_awregion   (),
    .m_axi_awvalid    (ddr_inst_AWVALID_0),
    .m_axi_awready    (ddr_inst_AWREADY_0),
    
@@ -768,7 +755,6 @@ axi_interconnect #(
    .m_axi_wvalid     (ddr_inst_WVALID_0),
    .m_axi_wready     (ddr_inst_WREADY_0),
    
-   .m_axi_bid        (io_ddrA_b_payload_id_i),
    .m_axi_bresp      (ddr_inst_BRESP_0),
    .m_axi_bvalid     (ddr_inst_BVALID_0),
    .m_axi_bready     (ddr_inst_BREADY_0),
@@ -781,12 +767,9 @@ axi_interconnect #(
    .m_axi_arlock     (ddr_inst_ARLOCK_0),
    .m_axi_arcache    (),
    .m_axi_arprot     (),
-   .m_axi_arqos      (ddr_inst_ARQOS_0),
-   .m_axi_arregion   (),
    .m_axi_arvalid    (ddr_inst_ARVALID_0),
    .m_axi_arready    (ddr_inst_ARREADY_0),
    
-   .m_axi_rid        (io_ddrA_r_payload_id_i),
    .m_axi_rdata      (ddr_inst_RDATA_0),
    .m_axi_rresp      (ddr_inst_RRESP_0),
    .m_axi_rlast      (ddr_inst_RLAST_0),

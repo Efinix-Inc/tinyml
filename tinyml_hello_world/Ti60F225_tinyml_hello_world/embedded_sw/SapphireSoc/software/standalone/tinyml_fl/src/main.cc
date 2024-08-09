@@ -135,20 +135,23 @@ void landmark_output(int enable_printing) {
 								/ model_input->dims->data[(
 										j % COORDINATES != 1 ? 1 : 2)];
 			if(enable_printing == 1){
-				MicroPrintf("geoffrey_hinton_tflite_quant_face_landmarks:\n\r");
+				int counter =0;
+				MicroPrintf("[OUTPUT_0] :");
 				for (int j = 0; j < total; ++j) {
-					print_float(face_landmarks[j]);
 
+					print_float(face_landmarks[j]);
+//					MicroPrintf("[END]\n\r");
 					if (j < total - 1) {
 						if (j % COORDINATES != 2) {
 							MicroPrintf(", ");
 						} else {
-							MicroPrintf(", \n\r");
+							MicroPrintf(",\n\r");
 						}
 					} else {
-						MicroPrintf("\n\r");
+						MicroPrintf(",\n\r");
 					}
 			}
+				MicroPrintf(";\n\r");
 			}
 		} else if (i == 1) {
 			float *face_flags = (float*) calloc(total, sizeof(float));
@@ -158,10 +161,10 @@ void landmark_output(int enable_printing) {
 			activate_logistic(face_flags, total);
 
 			if(enable_printing == 1) {
-				MicroPrintf("geoffrey_hinton_tflite_quant_face_flag:\n\r");
+				MicroPrintf("[OUTPUT_1] :");
 				for (int j = 0; j < total; ++j) {
 					print_float(face_flags[j]);
-					MicroPrintf("\n\r");
+					MicroPrintf(";\n\r");
 				}
 			}
 		}
@@ -221,7 +224,7 @@ extern "C" void main() {
 	MicroPrintf(
 			"NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
 	ms = timerDiff_0_1 / (SYSTEM_CLINT_HZ / 1000);
-	MicroPrintf("inference time (front layers): %ums\n\r", ms);
+	MicroPrintf("Inference time (front layers): %ums\n\r", ms);
 
 	timerDiff_2_3 = timerCmp3 - timerCmp2;
 	u32 *v2 = (u32*) &timerDiff_2_3;
@@ -231,6 +234,7 @@ extern "C" void main() {
 	MicroPrintf(
 			"NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
 	ms = timerDiff_2_3 / (SYSTEM_CLINT_HZ / 1000);
-	MicroPrintf("inference time (output layer): %ums\n\r", ms);
+	MicroPrintf("Inference time (output layer): %ums\n\r", ms);
+	MicroPrintf("Hello world complete\n\r");
 	ops_unload();
 }

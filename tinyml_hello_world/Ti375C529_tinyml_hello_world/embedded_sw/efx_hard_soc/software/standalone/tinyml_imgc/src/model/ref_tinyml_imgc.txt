@@ -1,0 +1,59 @@
+[OUTPUT_0]
+quant_airplane score: 9,
+quant_car score: -128,
+quant_bird score: -125,
+quant_cat score: -128,
+quant_deer score: -127,
+quant_dog score: -116,
+quant_frog score: -127,
+quant_horse score: -31,
+quant_ship score: -128,
+quant_truck score: -124;
+
+[OUTPUT_1]
+quant_airplane score: -128,
+quant_car score: 127,
+quant_bird score: -128,
+quant_cat score: -128,
+quant_deer score: -128,
+quant_dog score: -128,
+quant_frog score: -128,
+quant_horse score: -128,
+quant_ship score: -128,
+quant_truck score: -128;
+
+[OUTPUT_2]
+quant_airplane score: -128,
+quant_car score: -128,
+quant_bird score: 127,
+quant_cat score: -128,
+quant_deer score: -128,
+quant_dog score: -128,
+quant_frog score: -128,
+quant_horse score: -128,
+quant_ship score: -128,
+quant_truck score: -128;
+
+[OUTPUT_3] 
+quant_airplane score: -128,
+quant_car score: -128,
+quant_bird score: -128,
+quant_cat score: -128,
+quant_deer score: -128,
+quant_dog score: -128,
+quant_frog score: -128,
+quant_horse score: -128,
+quant_ship score: -128,
+quant_truck score: 127;
+
+[OUTPUT_4] 
+quant_airplane score: -128,
+quant_car score: -128,
+quant_bird score: -128,
+quant_cat score: -128,
+quant_deer score: 109,
+quant_dog score: -127,
+quant_frog score: -110,
+quant_horse score: -128,
+quant_ship score: -128,
+quant_truck score: -128;

@@ -3,13 +3,13 @@
         "-o",
         "EfxSapphireHpSoc_slb",
         "--base_path",
-        "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip",
+        "/projects/SSE/mfaiz/validation/2024.1/Ti375C529_tinyml_hello_world/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_hard_soc",
-            "version": "1.00"
+            "version": "1.10"
         }
     ],
     "conf": {
@@ -63,7 +63,7 @@
         "PERI_APB_2_SIZE": "4096",
         "PERI_FREQ": "250",
         "APP_OVERWRITE": "1'b1",
-        "APP_OVERWRITE_PATH": "\"bootloader_16MB/bootloader.hex\"",
+        "APP_OVERWRITE_PATH": "\"bootloader_16MB/efx_hard_soc/bootloader.hex\"",
         "INTF_JTAG_TAP_SEL": "9",
         "INTF_AXIS": "1'b1",
         "PERI_PIN_ASSIGN": "1'b0",
@@ -93,21 +93,30 @@
         "PLL_SOC_SYS_EXT_CLK_SRC": "0",
         "PLL_SOC_MEM_EXT_CLK_SRC": "1",
         "PERI_SDHC": "1'b0",
-        "PERI_TSEMAC": "1'b0"
+        "PERI_TSEMAC": "1'b0",
+        "SW_FTDI_CH_NUM": "6011",
+        "SW_APP_SIZE": "16380",
+        "SW_APP_SIZE_CUSTOM": "0",
+        "SW_STACK_SIZE": "99999999",
+        "SW_STACK_SIZE_CUSTOM": "2048",
+        "SW_BOARD": "\"Ti375C529 Development Kit\"",
+        "SW_BOARD_CUSTOM": "\"\"",
+        "SW_FTDI_TARGET_CH": "1",
+        "SW_FTDI_CH_NUM_SOFT": "6011",
+        "SW_FTDI_TARGET_CH_SOFT": "0"
     },
     "output": {
         "external_script_Peripheral_Generator": [],
         "external_source_source": [
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_define.vh",
-            "/home/mfaiz/go/ti375c529/20th_may_release/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd"
+            "/projects/SSE/mfaiz/validation/2024.1/Ti375C529_tinyml_hello_world/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_define.vh",
+            "/projects/SSE/mfaiz/validation/2024.1/Ti375C529_tinyml_hello_world/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd",
+            "/projects/SSE/mfaiz/validation/2024.1/Ti375C529_tinyml_hello_world/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v",
+            "/projects/SSE/mfaiz/validation/2024.1/Ti375C529_tinyml_hello_world/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v"
         ],
         "external_script_PT_Configuration": [],
         "external_script_Peripheral_Post_Script": [],
-        "external_script_Embedded_SW": [],
-        "external_script_Example_Design": []
+        "external_script_Embedded_SW": []
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-15T16:02:13.661856"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-07-11T10:56:55.083875"
 }
