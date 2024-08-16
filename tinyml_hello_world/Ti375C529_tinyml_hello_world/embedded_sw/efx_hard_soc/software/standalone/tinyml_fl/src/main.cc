@@ -135,12 +135,10 @@ void landmark_output(int enable_printing) {
 								/ model_input->dims->data[(
 										j % COORDINATES != 1 ? 1 : 2)];
 			if(enable_printing == 1){
-				int counter =0;
-				MicroPrintf("[OUTPUT_0] :");
+				MicroPrintf("[OUTPUT_0]geoffrey_hinton_tflite_quant_face_landmarks:\n\r");
 				for (int j = 0; j < total; ++j) {
-
 					print_float(face_landmarks[j]);
-//					MicroPrintf("[END]\n\r");
+
 					if (j < total - 1) {
 						if (j % COORDINATES != 2) {
 							MicroPrintf(", ");
@@ -161,7 +159,7 @@ void landmark_output(int enable_printing) {
 			activate_logistic(face_flags, total);
 
 			if(enable_printing == 1) {
-				MicroPrintf("[OUTPUT_1] :");
+				MicroPrintf("[OUTPUT_1]geoffrey_hinton_tflite_quant_face_flag:\n\r");
 				for (int j = 0; j < total; ++j) {
 					print_float(face_flags[j]);
 					MicroPrintf(";\n\r");

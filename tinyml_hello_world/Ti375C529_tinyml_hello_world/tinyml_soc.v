@@ -164,7 +164,7 @@ output		                    userInterruptA,
 output		                    userInterruptB,
 output		                    userInterruptC,
 output		                    userInterruptD,
-
+output		                    userInterruptE,
 
 
 input                           io_memoryClk,
@@ -596,8 +596,8 @@ hw_accel_wrapper #(
 );
 
 
-assign userInterruptC = cpu0_customInstruction_cmd_int;
-assign userInterruptD = |dma_interrupts;
+assign userInterruptD = cpu0_customInstruction_cmd_int;
+assign userInterruptE = |dma_interrupts;
 
 
 /////////////////////////////////////
@@ -693,6 +693,7 @@ EfxSapphireHpSoc_slb u_top_peripherals(
 .io_apbSlave_1_PSLVERROR(io_apbSlave_1_PSLVERROR),
 .userInterruptA(userInterruptA),
 .userInterruptB(userInterruptB),
+.userInterruptC(userInterruptC),
 `ifndef SOFT_TAP
 .jtagCtrl_tdi(jtagCtrl_tdi),
 .jtagCtrl_tdo(jtagCtrl_tdo),

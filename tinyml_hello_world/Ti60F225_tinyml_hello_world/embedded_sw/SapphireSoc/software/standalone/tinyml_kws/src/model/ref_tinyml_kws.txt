@@ -1,4 +1,4 @@
-[OUTPUT_0]
+[OUTPUT_0]Keyword Spotting Inference 1
 down score: -128,
 go score: -128,
 left score: -128,

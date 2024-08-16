@@ -143,7 +143,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 1*****************************************************/
    
    //Person image data from tflite micro example
-   MicroPrintf("\n\rPerson Detection Inference 1 (Person)...");
+   MicroPrintf("\n\r[OUTPUT_0]Person Detection Inference 1 (Person)...\n\r");
    
    //Copy test image to tflite model input. Input size to person detection model 96*96=9216
    for (unsigned int i = 0; i < g_person_data_size; ++i)
@@ -157,8 +157,6 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_0]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
@@ -181,7 +179,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 2*****************************************************/
    
    //No person image data from tflite micro example
-   MicroPrintf("\n\rPerson Detection Inference 2 (No Person)...");
+   MicroPrintf("\n\r[OUTPUT_1]Person Detection Inference 2 (No Person)...\n\r");
    
    //Copy test image to tflite model input. Input size to person detection model 96*96=9216
    for (unsigned int i = 0; i < g_no_person_data_size; ++i)
@@ -195,8 +193,6 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_1]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
@@ -219,7 +215,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 3*****************************************************/
    
    //Person image data extracted from online image
-   MicroPrintf("\n\rPerson Detection Inference 3 (Person)...");
+   MicroPrintf("\n\r[OUTPUT_2]Person Detection Inference 3 (Person)...\n\r");
    
    //Copy test image to tflite model input. Input size to person detection model 96*96=9216
    for (unsigned int i = 0; i < people1_data_size; ++i)
@@ -233,8 +229,6 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_2]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
@@ -256,7 +250,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 4*****************************************************/
    
    //Person image data extracted from online image
-   MicroPrintf("\n\rPerson Detection Inference 4 (Person)...");
+   MicroPrintf("\n\r[OUTPUT_3]Person Detection Inference 4 (Person)...\n\r");
    
    //Copy test image to tflite model input. Input size to person detection model 96*96=9216
    for (unsigned int i = 0; i < people2_data_size; ++i)
@@ -270,8 +264,6 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_3]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
@@ -294,7 +286,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 5*****************************************************/
    
    //No person image data extracted from online image
-   MicroPrintf("\n\rPerson Detection Inference 5 (No Person)...");
+   MicroPrintf("\n\r[OUTPUT_4]Person Detection Inference 5 (No Person)...\n\r");
    
    //Copy test image to tflite model input. Input size to person detection model 96*96=9216
    for (unsigned int i = 0; i < no_people1_data_size; ++i)
@@ -308,8 +300,6 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_4]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];
@@ -332,7 +322,7 @@ extern "C" void main() {
    /*********************************************************STATIC IMAGE INFERENCE 6*****************************************************/
    
    //No person image data extracted from online image
-   MicroPrintf("\n\rPerson Detection Inference 6 (No Person)...");
+   MicroPrintf("\n\r[OUTPUT_5]Person Detection Inference 6 (No Person)...\n\r");
    
    //Copy test image to tflite model input. Input size to person detection model 96*96=9216
    for (unsigned int i = 0; i < no_people2_data_size; ++i)
@@ -346,8 +336,6 @@ extern "C" void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_5]");
    //Retrieve inference output
    no_person_score = interpreter->output(0)->data.int8[kNotAPersonIndex];
    person_score    = interpreter->output(0)->data.int8[kPersonIndex];

@@ -558,7 +558,7 @@ assign   cam_d1_RST      = ~i_arstn;
 
 
 
-csi2_mipi_rx #(
+csi2_rx_cam #(
 ) u_csi2_rx_cam (
    .reset_n             (i_arstn),
    .clk                 (i_pixel_clk),

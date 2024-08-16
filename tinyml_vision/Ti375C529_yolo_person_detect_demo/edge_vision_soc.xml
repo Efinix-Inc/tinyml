@@ -80,8 +80,8 @@
         <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
             <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
         </efx:ip>
-        <efx:ip instance_name="csi2_mipi_rx" path="ip/csi2_mipi_rx/settings.json">
-            <efx:ip_src_file name="csi2_mipi_rx.sv"/>
+        <efx:ip instance_name="csi2_rx_cam" path="ip/csi2_rx_cam/settings.json">
+            <efx:ip_src_file name="csi2_rx_cam.sv"/>
         </efx:ip>
         <efx:ip instance_name="EfxSapphireHpSoc_slb" path="ip/EfxSapphireHpSoc_slb/settings.json">
             <efx:ip_src_file name="EfxSapphireHpSoc_slb.v"/>
@@ -125,7 +125,7 @@
         <efx:param name="include" value="ip/display_dma_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_in_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
-        <efx:param name="include" value="ip/csi2_mipi_rx" value_type="e_string"/>
+        <efx:param name="include" value="ip/csi2_rx_cam" value_type="e_string"/>
         <efx:param name="include" value="ip/EfxSapphireHpSoc_slb" value_type="e_string"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">

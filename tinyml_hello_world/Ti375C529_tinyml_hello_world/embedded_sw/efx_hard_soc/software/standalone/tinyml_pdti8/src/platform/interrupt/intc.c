@@ -22,7 +22,7 @@ void userInterrupt(){
 	//While there is pending interrupts
 	while(claim = plic_claim(BSP_PLIC, BSP_PLIC_CPU_0)){
 		switch(claim){
-		case SYSTEM_PLIC_USER_INTERRUPT_C_INTERRUPT:
+		case SYSTEM_PLIC_USER_INTERRUPT_D_INTERRUPT:
 			ops_drv_intr();
 			break;
 		default: crash(); break;
@@ -51,9 +51,9 @@ void IntcInitialize()
 	//configure PLIC
 	plic_set_threshold(BSP_PLIC, BSP_PLIC_CPU_0, 0); //cpu 0 accept all interrupts with priority above 0
 
-	//enable SYSTEM_PLIC_USER_INTERRUPT_C_INTERRUPT rising edge interrupt
-	plic_set_enable(BSP_PLIC, BSP_PLIC_CPU_0, SYSTEM_PLIC_USER_INTERRUPT_C_INTERRUPT, 1);
-	plic_set_priority(BSP_PLIC, SYSTEM_PLIC_USER_INTERRUPT_C_INTERRUPT, 1);
+	//enable SYSTEM_PLIC_USER_INTERRUPT_D_INTERRUPT rising edge interrupt
+	plic_set_enable(BSP_PLIC, BSP_PLIC_CPU_0, SYSTEM_PLIC_USER_INTERRUPT_D_INTERRUPT, 1);
+	plic_set_priority(BSP_PLIC, SYSTEM_PLIC_USER_INTERRUPT_D_INTERRUPT, 1);
 
 	//enable riscV interrupts
 	csr_write(mtvec, trap_entry); //Set the machine trap vector (../common/trap.S)

@@ -190,9 +190,7 @@ extern "C" void main() {
    MicroPrintf("Done\n\n\r");
    
    timerCmpTotal1 = clint_getTime(BSP_CLINT);
-   MicroPrintf("\n\rBoxes:\n\r");
-   MicroPrintf("\n\r[OUTPUT_0]:");
-   int counter = 0;
+   MicroPrintf("\n\r[OUTPUT_0]Boxes:\n\r");
    for (int i = 0; i < total_boxes; ++i) {
       print_float(boxes[i].x_min);
       MicroPrintf(", ");
@@ -210,12 +208,11 @@ extern "C" void main() {
          if (c < CLASSES - 1)
             MicroPrintf(", ");
          else
-        	counter = counter +1;
-         MicroPrintf("\n\r");
+            MicroPrintf("\n\r");
       }
    }
    MicroPrintf(";\n\r");
-   MicroPrintf("Total_boxes : %d;\n\n\r", total_boxes);
+   MicroPrintf("[OUTPUT_1]Total_boxes = %d;\n\n\r", total_boxes);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    u32 *v = (u32 *)&timerDiff_0_1;

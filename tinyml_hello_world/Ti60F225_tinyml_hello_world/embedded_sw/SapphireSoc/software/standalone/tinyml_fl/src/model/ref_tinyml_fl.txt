@@ -1,4 +1,4 @@
-[OUTPUT_0]:
+[OUTPUT_0]geoffrey_hinton_tflite_quant_face_landmarks:
 0.5137, 0.7385, -0.0733,
 0.5045, 0.6513, -0.1284,
 0.5091, 0.6789, -0.0688,
@@ -468,4 +468,4 @@
 0.6926, 0.5045, 0.0321,
 0.7064, 0.4954, 0.0321;
 
-[OUTPUT_1]: 0.9200;
+[OUTPUT_1]geoffrey_hinton_tflite_quant_face_flag: 0.9200;

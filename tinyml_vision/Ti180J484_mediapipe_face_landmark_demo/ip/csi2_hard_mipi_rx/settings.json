@@ -3,13 +3,13 @@
         "-o",
         "csi2_hard_mipi_rx",
         "--base_path",
-        "/tmp/tmpse42xb9l/ip",
+        "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx_top",
-            "version": "5.5.1"
+            "version": "5.7"
         }
     ],
     "conf": {
@@ -28,31 +28,31 @@
     },
     "output": {
         "external_source_source": [
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.vh",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.v"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.vhd",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_define.svh",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/csi2_hard_mipi_rx_tmpl.sv"
         ],
         "external_example_example": [
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.xml",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.peri.xml",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/data_unpack.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/datatype_gen.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/dual_clock_fifo.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/shift_reg.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/simple_dual_port_ram.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/vga_gen.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/reset.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/top_2_5g.sv",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/efx_csi2_tx_top.sv",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.sdc",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen2.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/lfsr.v",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx.sv",
-            "/tmp/tmpse42xb9l/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx_define.vh"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.xml",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.peri.xml",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/data_unpack.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/datatype_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/dual_clock_fifo.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/shift_reg.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/simple_dual_port_ram.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/vga_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/reset.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/top_2_5g.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/efx_csi2_tx_top.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/Ti180_mipi.sdc",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/pattern_gen2.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/lfsr.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti180J484_yolo_person_detect_demo/ip/csi2_hard_mipi_rx/Ti180M484_devkit/csi2_hard_mipi_rx_define.svh"
         ]
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-16T03:33:37.106319"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-08-07T20:27:10.071477"
 }

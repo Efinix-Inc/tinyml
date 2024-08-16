@@ -4,10 +4,10 @@
 # WARNING: Any manual changes made to this file will be lost when generating constraints.
 
 # Efinity Interface Designer SDC
-# Version: 2023.2.307.5.10
-# Date: 2024-05-28 13:42
+# Version: 2024.1.163.2.15
+# Date: 2024-08-14 12:07
 
-# Copyright (C) 2013 - 2023 Efinix Inc. All rights reserved.
+# Copyright (C) 2013 - 2024 Efinix Inc. All rights reserved.
 
 # Device: Ti375C529
 # Project: tinyml_soc
@@ -22,7 +22,7 @@ create_clock -period 30.0000 ddrCtrlClk
 create_clock -period 5.0000 io_cfuClk
 create_clock -period 13.4680 io_memFbClk
 create_clock -period 4.9773 io_memoryClk
-create_clock -period 4.0990 io_peripheralClk
+create_clock -period 4.9773 io_peripheralClk
 create_clock -period 4.9773 io_ddrMasters_0_clk
 create_clock -period 9.9546 i_soc_clk
 

@@ -131,8 +131,8 @@
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
-        <efx:param name="seed" value="1" value_type="e_integer"/>
-        <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
+        <efx:param name="seed" value="3" value_type="e_integer"/>
+        <efx:param name="placer_effort_level" value="5" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
         <efx:param name="print_critical_path" value="10" value_type="e_integer"/>

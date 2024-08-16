@@ -3,13 +3,13 @@
         "-o",
         "csi2_rx_cam",
         "--base_path",
-        "/tmp/tmpwoxxj4xw/ip",
+        "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx",
-            "version": "5.3.1"
+            "version": "5.5"
         }
     ],
     "conf": {
@@ -36,61 +36,61 @@
     },
     "output": {
         "external_source_source": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/csi2_rx_cam_tmpl.vhd",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/csi2_rx_cam.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/csi2_rx_cam_define.vh",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/csi2_rx_cam_tmpl.v"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam_tmpl.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam_tmpl.vhd",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/csi2_rx_cam_define.svh"
         ],
         "external_example_example": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/top.xml",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/top.peri.xml",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/data_unpack.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/datatype_gen.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/dual_clock_fifo.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/shift_reg.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/simple_dual_port_ram.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/vga_gen.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/reset.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/top.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/efx_csi2_tx.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/mipi.sdc",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen2.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/lfsr.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam_define.vh"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/top.xml",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/top.peri.xml",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/data_unpack.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/datatype_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/dual_clock_fifo.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/shift_reg.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/simple_dual_port_ram.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/vga_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/reset.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/top.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/efx_csi2_tx.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/mipi.sdc",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/pattern_gen2.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/lfsr.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam_define.svh"
         ],
         "external_testbench_testbench": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/data_unpack.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/datatype_gen.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/dual_clock_fifo.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/pattern_gen.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/shift_reg.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/simple_dual_port_ram.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/vga_gen.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/reset.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/rx_filelist.f",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/top.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/pattern_gen2.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/lfsr.v",
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/csi2_rx_cam_define.vh"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/data_unpack.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/datatype_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/dual_clock_fifo.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/pattern_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/shift_reg.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/simple_dual_port_ram.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/vga_gen.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/reset.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/rx_filelist.f",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/top.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/pattern_gen2.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/lfsr.v",
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/csi2_rx_cam_define.svh"
         ],
         "external_testbench_modelsim": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
         ],
         "external_testbench_ncsim": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
         ],
         "external_testbench_synopsys": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
         ],
         "external_testbench_aldec": [
-            "/tmp/tmpwoxxj4xw/ip/csi2_rx_cam/Testbench/aldec/csi2_rx_cam.sv"
+            "/projects/SSE/_tinyml/regression_xlsx/compilation/tinyml/test_release_2024_08_08_04_24_54/Ti60F225_yolo_person_detect_demo/ip/csi2_rx_cam/Testbench/aldec/csi2_rx_cam.sv"
         ]
     },
-    "sw_version": "2023.2.307",
-    "generated_date": "2024-05-16T03:25:43.365321"
+    "sw_version": "2024.1.163",
+    "generated_date": "2024-08-07T20:27:10.089212"
 }

@@ -134,7 +134,7 @@ void main() {
 
    /*********************************************************STATIC IMAGE INFERENCE 1*****************************************************/
    
-   MicroPrintf("\n\rKeyword Spotting Inference 1=(On) ...");
+   MicroPrintf("\n\r[OUTPUT_0]Keyword Spotting Inference 1=(On) ...\n\r");
    
 
    for (unsigned int i = 0; i < kKwsInputSize; ++i)
@@ -148,8 +148,6 @@ void main() {
    if (invoke_status != kTfLiteOk) {
      MicroPrintf("Invoke failed on data\n\r");
    }
-   MicroPrintf("Done\n\r");
-   MicroPrintf("[OUTPUT_0]");
    //Retrieve inference output
    for (int i = 0; i < kCategoryCount; ++i)
       MicroPrintf("%s score: %d,\n\r", kCategoryLabels[i], interpreter->output(0)->data.int8[i]);

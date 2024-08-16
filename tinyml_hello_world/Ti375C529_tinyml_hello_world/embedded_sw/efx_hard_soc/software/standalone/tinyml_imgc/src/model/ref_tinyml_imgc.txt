@@ -1,4 +1,4 @@
-[OUTPUT_0]
+[OUTPUT_0]Image Classification Inference 1
 quant_airplane score: 9,
 quant_car score: -128,
 quant_bird score: -125,
@@ -10,7 +10,7 @@ quant_horse score: -31,
 quant_ship score: -128,
 quant_truck score: -124;
 
-[OUTPUT_1]
+[OUTPUT_1]Image Classification Inference 2
 quant_airplane score: -128,
 quant_car score: 127,
 quant_bird score: -128,
@@ -22,7 +22,7 @@ quant_horse score: -128,
 quant_ship score: -128,
 quant_truck score: -128;
 
-[OUTPUT_2]
+[OUTPUT_2]Image Classification Inference 3
 quant_airplane score: -128,
 quant_car score: -128,
 quant_bird score: 127,
@@ -34,7 +34,7 @@ quant_horse score: -128,
 quant_ship score: -128,
 quant_truck score: -128;
 
-[OUTPUT_3] 
+[OUTPUT_3]Image Classification Inference 4 
 quant_airplane score: -128,
 quant_car score: -128,
 quant_bird score: -128,
@@ -46,7 +46,7 @@ quant_horse score: -128,
 quant_ship score: -128,
 quant_truck score: 127;
 
-[OUTPUT_4] 
+[OUTPUT_4]Image Classification Inference 5 
 quant_airplane score: -128,
 quant_car score: -128,
 quant_bird score: -128,

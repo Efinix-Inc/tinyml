@@ -291,7 +291,7 @@ void main() {
    MicroPrintf("NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
    ms = timerDiff_0_1/(SYSTEM_CLINT_HZ/1000);
    MicroPrintf("Inference time: %ums\n\r", ms);
-   MicroPrintf("Hello world complete\n\r", ms);
+   MicroPrintf("Hello world complete\n\r");
    
 
 
