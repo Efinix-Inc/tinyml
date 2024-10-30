@@ -117,14 +117,7 @@ List of quick start demo designs:
   - Yolo Person Detection
   - MediaPipe Face Landmark Detection
 
-List of supported cameras:
-1. Raspberry PI Camera Module v2
-   - Sony IMX219 image sensor
-2. Raspberry PI Camera Module v3
-   - Sony IMX708 image sensor
-3. Google Coral Camera Module
-   - Omnivision OV5645 SoC with build-in image signal processor
-   - Auto focus, auto exposure control, auto white balance, and more.
+*Note* : The quick start demo designs are running on Raspberry PI Camera Module v3 
 
 Bring up quick start demo design on Efinix development kit by following listed steps below:
 

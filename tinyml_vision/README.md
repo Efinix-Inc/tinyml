@@ -64,10 +64,21 @@ Bring up Edge Vision TinyML demo design on Efinix development kit by following l
 
 <br />
 
-Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and guidelines for creating your own TinyML solution using Efinix TinyML platform.
+List of supported cameras for TinyML demo design:
+1. Raspberry PI Camera Module v2
+   - Sony IMX219 image sensor
+2. Raspberry PI Camera Module v3
+   - Sony IMX708 image sensor
+3. Google Coral Camera Module
+   - Omnivision OV5645 SoC with build-in image signal processor
+   - Auto focus, auto exposure control, auto white balance, and more.
+
+</br>
+
+Refer to [Frequently Asked Questions](../docs/faq.md) for general questions, guidelines for creating your own TinyML solution using Efinix TinyML platform and different camera support.
 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.1.163.2.15
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.1.163.4.11
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2024.1.0.1

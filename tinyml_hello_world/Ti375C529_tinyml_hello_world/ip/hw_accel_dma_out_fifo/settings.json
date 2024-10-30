@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_out_fifo",
         "--base_path",
-        "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo",
+        "/home/kwcheah/Downloads/tinyml/tinyml_hello_world/Ti60F225_tinyml_hello_world",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "6.0"
+            "version": "7.0"
         }
     ],
     "conf": {
@@ -19,9 +19,11 @@
         "DATA_WIDTH": "32",
         "MODE": "\"FWFT\"",
         "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "4",
         "PROGRAMMABLE_FULL": "\"NONE\"",
-        "PEA_INTERNAL": "2",
-        "PEN_INTERNAL": "8",
+        "PFN_INTERNAL": "3",
+        "PEA_INTERNAL": "0",
+        "PEN_INTERNAL": "0",
         "PROGRAMMABLE_EMPTY": "\"NONE\"",
         "OPTIONAL_FLAGS": "1",
         "PIPELINE_REG": "1",
@@ -34,39 +36,12 @@
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v"
-        ],
-        "external_example_example": [
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo_top.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo_T20.sdc",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/hw_accel_dma_out_fifo.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/hw_accel_dma_out_fifo_define.vh",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo.peri.xml",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/T20F256_devkit/fifo_demo.xml"
-        ],
-        "external_example_2": [
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo_top.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/hw_accel_dma_out_fifo.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/hw_accel_dma_out_fifo_define.vh",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Ti60F225_devkit/fifo_demo.xml"
-        ],
-        "external_testbench_testbench": [
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/fifo_tb.sv",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/xrun.sh",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/msim.sh",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/flist",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/modelsim.do",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/hw_accel_dma_out_fifo.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/hw_accel_dma_out_fifo/Testbench/hw_accel_dma_out_fifo_define.vh"
+            "/home/kwcheah/Downloads/tinyml/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
+            "/home/kwcheah/Downloads/tinyml/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh",
+            "/home/kwcheah/Downloads/tinyml/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
+            "/home/kwcheah/Downloads/tinyml/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v"
         ]
     },
     "sw_version": "2024.1.163",
-    "generated_date": "2024-08-06T00:41:16.100415"
+    "generated_date": "2024-10-10T08:11:27.556080"
 }

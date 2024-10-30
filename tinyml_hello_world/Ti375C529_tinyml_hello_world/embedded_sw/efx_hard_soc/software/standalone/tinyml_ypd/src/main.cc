@@ -212,7 +212,7 @@ extern "C" void main() {
       }
    }
    MicroPrintf(";\n\r");
-   MicroPrintf("[OUTPUT_1]Total_boxes = %d;\n\n\r", total_boxes);
+   MicroPrintf("[OUTPUT_1]Total_boxes : %d;\n\n\r", total_boxes);
    
    timerDiff_0_1 = timerCmp1 - timerCmp0;
    u32 *v = (u32 *)&timerDiff_0_1;
