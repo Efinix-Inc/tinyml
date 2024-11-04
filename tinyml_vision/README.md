@@ -69,9 +69,6 @@ List of supported cameras for TinyML demo design:
    - Sony IMX219 image sensor
 2. Raspberry PI Camera Module v3
    - Sony IMX708 image sensor
-3. Google Coral Camera Module
-   - Omnivision OV5645 SoC with build-in image signal processor
-   - Auto focus, auto exposure control, auto white balance, and more.
 
 </br>
 
