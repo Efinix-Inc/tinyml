@@ -63,18 +63,21 @@ params = {
                 'type': 'n',
                 'val': 512,
                 'visible': False,
+                'regen' : True,
                 'require': "STANDARD"
             },
             "CONV_DEPTHW_STD_FILTER_FIFO_A": {
                 'type': 'n',
                 'val': 512,
                 'visible': False,
+                'regen' : True,
                 'require': "STANDARD"
             },
             "CONV_DEPTHW_STD_CNT_DTH": {
                 'type': 'n',
                 'val': 256,
                 'visible': False,
+                'regen' : True,
                 'require': "STANDARD"
             },
             "CONV_DEPTHW_LITE_PARALLEL": {
@@ -160,7 +163,7 @@ params = {
                 "CACHE_DEPTH": {
                     'type': 'l',
                     'val': "512",
-                    'combo':["512", "1024", "2048", "4096", "8192"],
+                    'combo':["512", "1024", "2048", "4096", "8192", "16384"],
                     'visible': True,
                     'SW': True,
                     'require': "ENABLE"
@@ -310,12 +313,12 @@ class Widget(QWidget):
                 self.tree.setItemWidget(c, 1, box)
                 box.setCurrentIndex(box.findText(val['val']))
                 val['qval'] = box
-                def slot(val, text):
+                def slot(val, p, text):
                     val['val'] = text
-                    if(p=="AXI_DW"):
+                    if(p == "AXI_DW"):
                         self.modify_in_out_parallel_param(p2)
                         self.modify_cache_param()
-                    if(p=="TINYML_CACHE"):
+                    if(p == "TINYML_CACHE"):
                         self.modify_cache_param()
                     self.check_cache_enable(p2)
                     self.res_utilization()
@@ -326,8 +329,8 @@ class Widget(QWidget):
                         if 'qval' in children[i]:
                             show = children[i]['require'] == text
                             children[i]['qval'].setEnabled(show) 
-                box.currentTextChanged.connect(partial(slot, val))
-                slot(val, val['val'])
+                box.currentTextChanged.connect(partial(slot, val, p))
+                slot(val,p, val['val'])
             elif val['type'] == 'n':
                 line = QSpinBox()
                 if('min' in val):
@@ -567,7 +570,7 @@ class Widget(QWidget):
         oh.write("#endif")
         oh.close()
 
-    def parse_model(self):
+    def parse_model(self,check_regen = False):
         ic = self.findChild(QObject, 'CONV_DEPTHW_STD_IN_PARALLEL')
         oc = self.findChild(QObject, 'CONV_DEPTHW_STD_OUT_PARALLEL')
         axi_dw = p2.get("AXI_DW")['val']
@@ -592,42 +595,43 @@ class Widget(QWidget):
                     #iter(params, v[0].upper(), v[1])
                     if v[0].upper() in p2:
                         val = p2.get(v[0].upper())
-                        if val['type'] == 'b':
-                            val['val'] = int(v[1]) > 0
-                            if 'qval' in val:
-                                val['qval'].setChecked(int(v[1]) > 0)
-                        elif val['type'] == 'l':
-                            if 'qval' in val:
-                                box = val['qval']
-                                if int(v[1]) == 0:
-                                    box.setCurrentIndex(box.findText('DISABLE'))
-                                    val['val'] = 'DISABLE'
-                                    box.setEnabled(False)
-                                elif val['val'].isdigit():
-                                    if(v[0].upper() == 'CACHE_DEPTH'):
-                                        val['val'] = str(self.calc_cache_depth(v[1]))
-                                        self.parse_cache_depth = str(self.calc_cache_depth(v[1]))
+                        if (not check_regen) or (check_regen and 'regen' in val):
+                            if val['type'] == 'b':
+                                val['val'] = int(v[1]) > 0
+                                if 'qval' in val:
+                                    val['qval'].setChecked(int(v[1]) > 0)
+                            elif val['type'] == 'l':
+                                if 'qval' in val:
+                                    box = val['qval']
+                                    if int(v[1]) == 0:
+                                        box.setCurrentIndex(box.findText('DISABLE'))
+                                        val['val'] = 'DISABLE'
+                                        box.setEnabled(False)
+                                    elif val['val'].isdigit():
+                                        if(v[0].upper() == 'CACHE_DEPTH'):
+                                            val['val'] = str(self.calc_cache_depth(v[1]))
+                                            self.parse_cache_depth = str(self.calc_cache_depth(v[1]))
+                                        else:
+                                            val['val'] =  v[1]
+                                        box.setCurrentIndex(box.findText(val['val']))
+                                        box.setEnabled(True)
                                     else:
-                                        val['val'] =  v[1]
-                                    box.setCurrentIndex(box.findText(val['val']))
-                                    box.setEnabled(True)
-                                else:
-                                    val['val'] = box.itemText(0)
-                                    box.setCurrentIndex(0)
-                                    box.setEnabled(True)
-                                if 'children' in val:
-                                    children = val['children']
-                                    for i in children:
-                                        if 'qval' in children[i]:
-                                            show = children[i]['require'] == val['val']
-                                            children[i]['qval'].setEnabled(show)                         
+                                        val['val'] = box.itemText(0)
+                                        box.setCurrentIndex(0)
+                                        box.setEnabled(True)
+                                    if 'children' in val:
+                                        children = val['children']
+                                        for i in children:
+                                            if 'qval' in children[i]:
+                                                show = children[i]['require'] == val['val']
+                                                children[i]['qval'].setEnabled(show)                         
 
-                        elif val['type'] == 'n':
-                            val['val'] = int(v[1])
-                            if 'qval' in val:
-                                val['qval'].setValue(int(v[1]))
-                        else:
-                            continue
+                            elif val['type'] == 'n':
+                                val['val'] = int(v[1])
+                                if 'qval' in val:
+                                    val['qval'].setValue(int(v[1]))
+                            else:
+                                continue
         self.res_utilization()
         print("done...")
 
@@ -674,7 +678,7 @@ class Widget(QWidget):
                                     if val['val'].isdigit():
                                         if(v[0].upper() == 'CACHE_DEPTH'):
                                             val['val'] = str(self.calc_cache_depth(v[1]))
-                                            self.parse_cache_depth = v[1]
+                                            self.parse_cache_depth = str(self.calc_cache_depth(v[1]))
                                             box.setCurrentIndex(box.findText(val['val']))
                                             box.setEnabled(True)
             self.res_utilization()
@@ -694,7 +698,7 @@ class Widget(QWidget):
         self.check_regen_stat()
         
         if not self.tflite_gen:
-            self.parse_model()
+            self.parse_model(check_regen = True)
             self.tflite_gen = True
 
         self.op_path = self.create_op_folder(self.current_dir,delete_file=True)
