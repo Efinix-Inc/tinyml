@@ -18,7 +18,6 @@ limitations under the License.
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "tensorflow/lite/micro/micro_error_reporter.h"
 #include "platform/tinyml/ops/conv.h"
-
 /********************************* Function **********************************/
 
 namespace tflite {

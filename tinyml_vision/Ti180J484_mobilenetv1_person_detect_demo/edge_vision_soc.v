@@ -474,7 +474,7 @@ wire  [31:0]                          cpu_customInstruction_outputs_0;
 wire                                  cpu_customInstruction_cmd_int;
 
 // AXI for TinyML Accelerator
-localparam AXI_TINYML_DATA_WIDTH =  AXI_0_DATA_WIDTH;
+localparam AXI_TINYML_DATA_WIDTH =  512;
 
 wire [7:0]                            axi_tinyml_awid;
 wire [31:0]                           axi_tinyml_awaddr;
@@ -1155,7 +1155,7 @@ hw_accel_wrapper #(
 // TinyML Accelerator Custom instruction
 ///////////////////////////////////////
 tinyml_top  #(
-    .AXI_DW          (AXI_0_DATA_WIDTH)
+    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
 ) u_tinyml_top (
 
    .clk              (i_soc_clk),

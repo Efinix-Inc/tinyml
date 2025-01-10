@@ -247,6 +247,7 @@ void trigger_next_cam_dma() {
 
 
 void main() {
+   
    MicroPrintf("\t--Hello Efinix Edge Vision TinyML - Face Landmark Detection Demo--\n\r");
    
    /************************************************************SETUP PICAM************************************************************/

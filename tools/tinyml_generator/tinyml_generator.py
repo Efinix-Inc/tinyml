@@ -728,17 +728,43 @@ class Widget(QWidget):
         return output_file
 
     def modify_in_out_parallel_param(self,params_list,depth_multiplier_val=1,activate=0):
+        ##Modify custom steps to support power of 2
+        # Define the step size (powers of 2 behavior)
+        def custom_step_by(self, steps: int):
+            current_value = self.value()
+            
+            # Increment or decrement based on steps
+            if steps > 0:
+                new_value = current_value * 2  # Multiply by 2 for positive steps (powers of 2)
+            else:
+                new_value = current_value // 2  # Divide by 2 for negative steps
+            
+            # Set the new value
+            self.setValue(new_value)
+
         if(self.activate_in_parallel_modify):
             curr_axi_dw = int(params_list.get("AXI_DW")["val"])
+
+            #For IN_PARALLEL
+            #Limit to 16 for current config
             curr_conv_depthw_par_in = params_list.get("CONV_DEPTHW_STD_IN_PARALLEL")
-            conv_depthw_std_parallel_in_max = int(curr_axi_dw/8)
+            conv_depthw_std_parallel_in_max = int(curr_axi_dw/8)  if int(curr_axi_dw/8) < 16 else 16
             conv_depthw_std_parallel_in_min = depth_multiplier_val
             if(curr_conv_depthw_par_in['val']>conv_depthw_std_parallel_in_max):
                 curr_conv_depthw_par_in['val'] = int(conv_depthw_std_parallel_in_max)
-            #For IN_PARALLEL
             curr_conv_depthw_par_in['qval'].setMinimum(int(conv_depthw_std_parallel_in_min))
             curr_conv_depthw_par_in['qval'].setMaximum(int(conv_depthw_std_parallel_in_max))
             curr_conv_depthw_par_in['qval'].setValue(int(curr_conv_depthw_par_in['val']))
+            # Override the stepBy method. Power of 2 
+            curr_conv_depthw_par_in['qval'].stepBy = custom_step_by.__get__(curr_conv_depthw_par_in['qval'])
+
+            #For OUT_PARALLEL
+            #Limit to 16 for current config
+            curr_conv_depthw_par_out = params_list.get("CONV_DEPTHW_STD_OUT_PARALLEL")
+            if(curr_conv_depthw_par_out):
+                curr_conv_depthw_par_out['qval'].setMinimum(int(1))
+                curr_conv_depthw_par_out['qval'].setMaximum(int(16))
+                curr_conv_depthw_par_out['qval'].stepBy = custom_step_by.__get__(curr_conv_depthw_par_out['qval'])
         if(activate==1):
             self.activate_in_parallel_modify=True
 

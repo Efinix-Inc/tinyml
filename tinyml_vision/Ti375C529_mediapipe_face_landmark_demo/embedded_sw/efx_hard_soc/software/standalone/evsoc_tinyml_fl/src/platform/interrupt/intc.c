@@ -88,5 +88,6 @@ void dma_init()
     csr_write(mtvec, trap_entry); //Set the machine trap vector (../common/trap.S)
 //  csr_set(mie, MIE_MTIE | MIE_MEIE); //Enable machine timer and external interrupts
     csr_set(mie, MIE_MEIE); //Enable machine timer and external interrupts
-    csr_write(mstatus, MSTATUS_MPP | MSTATUS_MIE);
+	// csr_write(mstatus, MSTATUS_MPP | MSTATUS_MIE);
+	csr_write(mstatus, csr_read(mstatus) | MSTATUS_MPP | MSTATUS_MIE);
 }

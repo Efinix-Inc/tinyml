@@ -50,6 +50,13 @@
         <efx:design_file name="source/axi/axi_interconnect_beta/crossbar.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_interconnect_beta/axi_wdata_sfifo.v" version="default" library="default"/>
         <efx:design_file name="source/cam/cam_picam.v" version="default" library="default"/>
+        <efx:design_file name="ip/csi2_rx_cam/csi2_rx_cam.sv" version="default" library="default"/>
+        <efx:design_file name="ip/cam_dma_fifo/cam_dma_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/display_dma_fifo/display_dma_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/dma/dma.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
@@ -59,27 +66,6 @@
     <efx:sim_info/>
     <efx:misc_info/>
     <efx:ip_info>
-        <efx:ip instance_name="dma" path="ip/dma/settings.json">
-            <efx:ip_src_file name="dma.v"/>
-        </efx:ip>
-        <efx:ip instance_name="cam_dma_fifo" path="ip/cam_dma_fifo/settings.json">
-            <efx:ip_src_file name="cam_dma_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="cam_pixel_remap_fifo" path="ip/cam_pixel_remap_fifo/settings.json">
-            <efx:ip_src_file name="cam_pixel_remap_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="display_dma_fifo" path="ip/display_dma_fifo/settings.json">
-            <efx:ip_src_file name="display_dma_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="hw_accel_dma_in_fifo" path="ip/hw_accel_dma_in_fifo/settings.json">
-            <efx:ip_src_file name="hw_accel_dma_in_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
-            <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="csi2_rx_cam" path="ip/csi2_rx_cam/settings.json">
-            <efx:ip_src_file name="csi2_rx_cam.sv"/>
-        </efx:ip>
         <efx:ip instance_name="EfxSapphireHpSoc_slb" path="ip/EfxSapphireHpSoc_slb/settings.json">
             <efx:ip_src_file name="EfxSapphireHpSoc_slb.v"/>
         </efx:ip>

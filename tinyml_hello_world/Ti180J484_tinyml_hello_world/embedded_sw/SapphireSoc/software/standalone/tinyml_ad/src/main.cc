@@ -116,7 +116,7 @@ void tinyml_init() {
 }
 
 void main() {
-
+   
    MicroPrintf("\t--Hello Efinix TinyML--\n\r");
    
    /***********************************************************TFLITE-MICRO TINYML*******************************************************/

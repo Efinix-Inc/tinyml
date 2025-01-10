@@ -34,6 +34,9 @@
         <efx:design_file name="source/axi/axi_interconnect_beta/arbiter.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_interconnect_beta/crossbar.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_interconnect_beta/axi_wdata_sfifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/dma/dma.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
@@ -43,15 +46,6 @@
     <efx:sim_info/>
     <efx:misc_info/>
     <efx:ip_info>
-        <efx:ip instance_name="dma" path="ip/dma/settings.json">
-            <efx:ip_src_file name="dma.v"/>
-        </efx:ip>
-        <efx:ip instance_name="hw_accel_dma_in_fifo" path="ip/hw_accel_dma_in_fifo/settings.json">
-            <efx:ip_src_file name="hw_accel_dma_in_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
-            <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
-        </efx:ip>
         <efx:ip instance_name="EfxSapphireHpSoc_slb" path="ip/EfxSapphireHpSoc_slb/settings.json">
             <efx:ip_src_file name="EfxSapphireHpSoc_slb.v"/>
         </efx:ip>

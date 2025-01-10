@@ -480,7 +480,7 @@ assign debug_fifo_status = {28'd0,  debug_dma_hw_accel_out_fifo_overflow,debug_d
 
 
 // AXI for TinyML Accelerator
-localparam AXI_TINYML_DATA_WIDTH =  128;
+localparam AXI_TINYML_DATA_WIDTH = 128;
 
 wire [7:0]                          axi_tinyml_awid;
 wire [31:0]                         axi_tinyml_awaddr;
@@ -604,7 +604,7 @@ assign userInterruptE = |dma_interrupts;
 // TinyML Acclerator Custom instruction
 ///////////////////////////////////////
 tinyml_top  #(
-    .AXI_DW          (128)
+    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
 ) u_tinyml_top (
 
    .clk              (io_cfuClk),

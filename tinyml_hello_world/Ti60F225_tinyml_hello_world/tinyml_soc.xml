@@ -34,7 +34,9 @@
         <efx:design_file name="source/axi/axi_interconnect_beta/master_coupler.v" version="default" library="default"/>
         <efx:design_file name="source/axi/axi_full_to_half_duplex.v" version="default" library="default"/>
         <efx:design_file name="ip/hbram/hbram.v" version="default" library="default"/>
-        <efx:design_file name="ip/hbram/hbram_define.vh" version="default" library="default"/>
+        <efx:design_file name="ip/hw_accel_dma_in_fifo/hw_accel_dma_in_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v" version="default" library="default"/>
+        <efx:design_file name="ip/dma/dma.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
@@ -44,15 +46,6 @@
     <efx:sim_info/>
     <efx:misc_info/>
     <efx:ip_info>
-        <efx:ip instance_name="hw_accel_dma_in_fifo" path="ip/hw_accel_dma_in_fifo/settings.json">
-            <efx:ip_src_file name="hw_accel_dma_in_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="hw_accel_dma_out_fifo" path="ip/hw_accel_dma_out_fifo/settings.json">
-            <efx:ip_src_file name="hw_accel_dma_out_fifo.v"/>
-        </efx:ip>
-        <efx:ip instance_name="dma" path="ip/dma/settings.json">
-            <efx:ip_src_file name="dma.v"/>
-        </efx:ip>
         <efx:ip instance_name="SapphireSoc" path="ip/SapphireSoc/settings.json">
             <efx:ip_src_file name="SapphireSoc.v"/>
         </efx:ip>
@@ -101,7 +94,7 @@
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
         <efx:param name="seed" value="1" value_type="e_integer"/>
-        <efx:param name="placer_effort_level" value="5" value_type="e_option"/>
+        <efx:param name="placer_effort_level" value="4" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
         <efx:param name="print_critical_path" value="10" value_type="e_integer"/>

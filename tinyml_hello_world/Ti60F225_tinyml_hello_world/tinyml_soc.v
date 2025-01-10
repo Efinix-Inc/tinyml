@@ -98,11 +98,6 @@ module tinyml_soc #(
 `endif
 );
 
-`ifndef SIM
-   `include "./ip/hbram/hbram_define.vh"
-`else
-   `include "hbram_define.vh"
-`endif
 
 ////////////////////////////////////////////////////////////////
 // RISC-V SoC
@@ -121,15 +116,15 @@ wire                    io_arw_payload_write;
 wire    [7:0]           io_w_payload_id;
 wire                    io_w_valid;
 wire                    io_w_ready;
-wire    [AXI_DBW-1:0]   io_w_payload_data;
-wire    [AXI_DBW/8-1:0] io_w_payload_strb;
+wire    [AXI_DATA_WIDTH-1:0]   io_w_payload_data;
+wire    [AXI_DATA_WIDTH/8-1:0] io_w_payload_strb;
 wire                    io_w_payload_last;
 wire                    io_b_valid;
 wire                    io_b_ready;
 wire    [7:0]           io_b_payload_id;
 wire                    io_r_valid;
 wire                    io_r_ready;
-wire    [AXI_DBW-1:0]   io_r_payload_data;
+wire    [AXI_DATA_WIDTH-1:0]   io_r_payload_data;
 wire    [7:0]           io_r_payload_id;
 wire    [1:0]           io_r_payload_resp;
 wire                    io_r_payload_last;
@@ -219,6 +214,9 @@ wire                    cpu_customInstruction_cmd_int;
 
 ////////////////////////////////////////////////////////////////
 // AXI interconnect
+
+localparam AXI_TINYML_DATA_WIDTH = 128;
+
 wire                    soc_io_arw_valid;
 wire                    soc_io_arw_ready;
 wire  [31:0]            soc_io_arw_payload_addr;
@@ -334,8 +332,8 @@ wire [2:0]              axi_inter_s2_awprot;
 wire [3:0]              axi_inter_s2_awqos;
 wire                    axi_inter_s2_awvalid;
 wire                    axi_inter_s2_awready;
-wire [127:0]            axi_inter_s2_wdata;
-wire [15:0]             axi_inter_s2_wstrb;
+wire [AXI_TINYML_DATA_WIDTH-1:0]            axi_inter_s2_wdata;
+wire [AXI_TINYML_DATA_WIDTH/8-1:0]             axi_inter_s2_wstrb;
 wire                    axi_inter_s2_wlast;
 wire                    axi_inter_s2_wvalid;
 wire                    axi_inter_s2_wready;
@@ -355,7 +353,7 @@ wire [3:0]              axi_inter_s2_arqos;
 wire                    axi_inter_s2_arvalid;
 wire                    axi_inter_s2_arready;
 wire [7:0]              axi_inter_s2_rid;
-wire [127:0]            axi_inter_s2_rdata;
+wire [AXI_TINYML_DATA_WIDTH-1:0]            axi_inter_s2_rdata;
 wire [1:0]              axi_inter_s2_rresp;
 wire                    axi_inter_s2_rlast;
 wire                    axi_inter_s2_rvalid;
@@ -512,9 +510,10 @@ assign mcuReset = ~(i_hbramClk_pll_locked & i_pll_locked & i_arstn);
 assign userInterruptA = cpu_customInstruction_cmd_int;
 assign userInterruptB = |dma_interrupts;
 
+
 //Custom instruction
 tinyml_top #(
-    .AXI_DW          (AXI_DATA_WIDTH)
+    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
 ) u_tinyml_top (
    .clk              (i_systemClk),
    .reset            (io_systemReset),
@@ -815,7 +814,7 @@ assign axi_inter_s1_arid  = 8'hE1; //Don't care for DMA controller
 axi_interconnect_beta #(
     .S_COUNT                            (3                                                 ),
     .SLAVE_ASYN_ARRAY                   ({1'b0,1'b0,1'b0}                                  ),
-    .S_AXI_DW_ARRAY                     ({AXI_DATA_WIDTH,AXI_DATA_WIDTH,AXI_DATA_WIDTH}    ),
+    .S_AXI_DW_ARRAY                     ({AXI_TINYML_DATA_WIDTH,AXI_DATA_WIDTH,AXI_DATA_WIDTH}    ),
     .CB_DW                              (AXI_DATA_WIDTH                                    ),
     .M_AXI_DW                           (AXI_DATA_WIDTH                                    ),
     .ARB_MODE                           (1                                                 ),

@@ -456,6 +456,7 @@ void draw_boxes(box* boxes,int total_boxes){
 
 void main() {
 
+   
    MicroPrintf("\t--Hello Efinix Edge Vision TinyML--\n\r");
    u32 rdata;
    init();

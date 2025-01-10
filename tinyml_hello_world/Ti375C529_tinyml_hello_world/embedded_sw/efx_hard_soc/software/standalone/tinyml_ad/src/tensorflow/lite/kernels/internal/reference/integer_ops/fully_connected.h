@@ -18,7 +18,8 @@ limitations under the License.
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "print.h"
 #include "clint.h"
-#include "riscv.h"
+#include "riscv.h"#include "soc.h"
+#include "vexriscv.h"
 
 #include "platform/tinyml/ops/fully_connected.h"
 
@@ -87,10 +88,13 @@ inline void FullyConnected(
 				output_data[out_c + output_depth * b] = static_cast<int8_t>(acc);
 			}
 		}
+        free(acc_store);
 		return;
 	} else if( res == OP_BYPASS) {
+        free(acc_store);
 		return;
 	}
+    free(acc_store);
   
     for (int b = 0; b < batches; ++b) {
         for (int out_c = 0; out_c < output_depth; ++out_c) {

@@ -113,7 +113,7 @@ void tinyml_init() {
 }
 
 extern "C" void main() {
-
+	
    MicroPrintf("\t--Hello Efinix TinyML--\n\r");
    
    MicroPrintf("TinyML Setup...");

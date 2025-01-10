@@ -228,6 +228,7 @@ void trigger_next_cam_dma() {
 
 void main() {
 
+   
    MicroPrintf("\t--Hello Efinix Edge Vision SoC TinyML--\n\r");
    
    /************************************************************SETUP PICAM************************************************************/

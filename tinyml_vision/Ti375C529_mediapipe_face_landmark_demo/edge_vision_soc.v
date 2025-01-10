@@ -1096,7 +1096,7 @@ assign userInterruptE = |dma_interrupts;
 // TinyML Acclerator Custom instruction
 ///////////////////////////////////////
 tinyml_top  #(
-    .AXI_DW          (128)
+    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
 ) u_tinyml_top (
 
    .clk              (io_cfuClk),

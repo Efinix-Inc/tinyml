@@ -172,7 +172,7 @@ void landmark_output(int enable_printing) {
 }
 
 extern "C" void main() {
-
+	
 	MicroPrintf("\t--Hello Efinix TinyML--\n\r");
 
 	MicroPrintf("TinyML Setup...");

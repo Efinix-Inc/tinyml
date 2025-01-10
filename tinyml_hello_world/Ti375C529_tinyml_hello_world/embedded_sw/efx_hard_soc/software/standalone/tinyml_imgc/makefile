@@ -66,8 +66,6 @@ CXXFLAGS +=-std=c++11 \
 		-fmessage-length=0 
 				 
 include ${STANDALONE}/common/bsp.mk
-RV_F=no
-RV_D=no
 include ${STANDALONE}/common/riscv64-unknown-elf.mk
 include ${STANDALONE}/common/tinyml_standalone.mk
 

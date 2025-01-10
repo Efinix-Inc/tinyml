@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_out_fifo",
         "--base_path",
-        "/home/kwcheah/Downloads/tinyml/tinyml_vision/Ti180J484_mediapipe_face_landmark_demo",
+        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_hello_world/Ti180J484_tinyml_hello_world/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "7.0"
+            "version": "7.2"
         }
     ],
     "conf": {
@@ -36,12 +36,12 @@
     },
     "output": {
         "external_source_source": [
-            "/home/kwcheah/Downloads/tinyml/tinyml_vision/Ti180J484_mediapipe_face_landmark_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
-            "/home/kwcheah/Downloads/tinyml/tinyml_vision/Ti180J484_mediapipe_face_landmark_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh",
-            "/home/kwcheah/Downloads/tinyml/tinyml_vision/Ti180J484_mediapipe_face_landmark_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
-            "/home/kwcheah/Downloads/tinyml/tinyml_vision/Ti180J484_mediapipe_face_landmark_demo/ip/hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v"
+            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
+            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh",
+            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
+            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v"
         ]
     },
-    "sw_version": "2024.1.163",
-    "generated_date": "2024-10-11T15:25:55.542308"
+    "sw_version": "2024.2.294",
+    "generated_date": "2024-12-23T01:52:17.440966+00:00"
 }

@@ -21,8 +21,6 @@ limitations under the License.
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "../../../../../platform/tinyml/ops/lr.h"
 
-
-
 namespace tflite {
 namespace reference_ops {
 

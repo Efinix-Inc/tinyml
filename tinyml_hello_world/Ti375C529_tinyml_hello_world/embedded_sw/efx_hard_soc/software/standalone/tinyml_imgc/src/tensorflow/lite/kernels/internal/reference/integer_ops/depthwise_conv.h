@@ -18,7 +18,6 @@ limitations under the License.
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "tensorflow/lite/micro/micro_error_reporter.h"
 #include "platform/tinyml/ops/depthwise.h"
-
 namespace tflite {
 namespace reference_integer_ops {
 static inline void DepthwiseConvPerChannel(

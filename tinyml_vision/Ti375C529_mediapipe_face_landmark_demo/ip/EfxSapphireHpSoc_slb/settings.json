@@ -3,13 +3,13 @@
         "-o",
         "EfxSapphireHpSoc_slb",
         "--base_path",
-        "/projects/SSE/mfaiz/validation/2024.1.163.2.15/2.15/compilation_14_aug/tinyml/tinyml_vision/Ti375C529_yolo_person_detect_demo/ip",
+        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_hello_world/Ti375C529_tinyml_hello_world/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_hard_soc",
-            "version": "1.10.2"
+            "version": "1.15"
         }
     ],
     "conf": {
@@ -49,6 +49,7 @@
         "PERI_I2C_2": "1'b0",
         "PERI_GPIO_0": "1'b0",
         "PERI_GPIO_1": "1'b0",
+        "PERI_WDT_0": "1'b0",
         "PERI_APB_0": "1'b1",
         "PERI_APB_1": "1'b1",
         "PERI_APB_2": "1'b0",
@@ -61,7 +62,7 @@
         "PERI_APB_0_SIZE": "65536",
         "PERI_APB_1_SIZE": "4096",
         "PERI_APB_2_SIZE": "4096",
-        "PERI_FREQ": "200",
+        "PERI_FREQ": "148",
         "APP_OVERWRITE": "1'b1",
         "APP_OVERWRITE_PATH": "\"ref_files/bootloader_16MB/efx_hard_soc/bootloader.hex\"",
         "INTF_JTAG_TAP_SEL": "9",
@@ -103,20 +104,24 @@
         "SW_BOARD_CUSTOM": "\"\"",
         "SW_FTDI_TARGET_CH": "1",
         "SW_FTDI_CH_NUM_SOFT": "6011",
-        "SW_FTDI_TARGET_CH_SOFT": "0"
+        "SW_FTDI_TARGET_CH_SOFT": "0",
+        "SW_FRTOS_APP_SIZE": "16380",
+        "SW_FRTOS_APP_SIZE_CUSTOM": "0",
+        "SW_FRTOS_STACK_SIZE": "4",
+        "SW_FRTOS_STACK_SIZE_CUSTOM": "0"
     },
     "output": {
         "external_script_Peripheral_Generator": [],
         "external_source_source": [
-            "/projects/SSE/mfaiz/validation/2024.1.163.2.15/2.15/compilation_14_aug/tinyml/tinyml_vision/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v",
-            "/projects/SSE/mfaiz/validation/2024.1.163.2.15/2.15/compilation_14_aug/tinyml/tinyml_vision/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd",
-            "/projects/SSE/mfaiz/validation/2024.1.163.2.15/2.15/compilation_14_aug/tinyml/tinyml_vision/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v",
-            "/projects/SSE/mfaiz/validation/2024.1.163.2.15/2.15/compilation_14_aug/tinyml/tinyml_vision/Ti375C529_yolo_person_detect_demo/ip/EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_define.vh"
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v",
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_define.vh",
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd",
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v"
         ],
         "external_script_PT_Configuration": [],
         "external_script_Peripheral_Post_Script": [],
         "external_script_Embedded_SW": []
     },
-    "sw_version": "2024.1.163",
-    "generated_date": "2024-08-14T03:40:38.292277"
+    "sw_version": "2024.2.294",
+    "generated_date": "2024-12-23T01:51:23.349174+00:00"
 }

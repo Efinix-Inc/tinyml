@@ -3,13 +3,13 @@
         "-o",
         "cam_pixel_remap_fifo",
         "--base_path",
-        "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo",
+        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "6.0"
+            "version": "7.2"
         }
     ],
     "conf": {
@@ -19,7 +19,9 @@
         "DATA_WIDTH": "32",
         "MODE": "\"STANDARD\"",
         "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "4",
         "PROGRAMMABLE_FULL": "\"NONE\"",
+        "PFN_INTERNAL": "3",
         "PEA_INTERNAL": "2",
         "PEN_INTERNAL": "3",
         "PROGRAMMABLE_EMPTY": "\"NONE\"",
@@ -34,12 +36,12 @@
     },
     "output": {
         "external_source_source": [
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo.v",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.vh",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
-            "/projects/SSE/zhng/efx_solution_dev/july_release/regression_script/compilation/tinyml/test_release_2024_08_06_08_37_44/Ti60F225_yolo_person_detect_demo/ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.v"
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo.v",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_define.vh",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.vhd",
+            "cam_pixel_remap_fifo/cam_pixel_remap_fifo_tmpl.v"
         ]
     },
-    "sw_version": "2024.1.163",
-    "generated_date": "2024-08-06T00:39:59.215357"
+    "sw_version": "2024.2.294",
+    "generated_date": "2024-12-23T01:49:12.938129+00:00"
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" location="/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_vision/Ti60F225_yolo_person_detect_demo" version="2023.2.307.5.6" db_version="20232999" last_change_date="Thu May 16 13:39:28 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti60F225" version="2024.2.288" db_version="20242999" last_change_date="Mon Nov  4 11:26:25 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="1A_MODE_SEL"/>
@@ -287,16 +287,16 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
-                <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
-                <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
+                <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
+                <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="i_mipi_clk" number="0" out_divider="20" is_dyn_phase="false" phase_setting="0" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_txc_sclk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="3" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_txc_sclk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="4" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_mipi_txd_sclk" number="2" out_divider="4" is_dyn_phase="false" phase_setting="1" is_inverted="false">
+            <efxpt:comp_output_clock name="i_mipi_txd_sclk" number="2" out_divider="4" is_dyn_phase="false" phase_setting="2" is_inverted="false">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
             <efxpt:comp_output_clock name="i_mipi_tx_pclk" number="3" out_divider="16" is_dyn_phase="false" phase_setting="0" is_inverted="false">
@@ -426,7 +426,7 @@
                     <efxpt:pin name="mipi_dp_clk_LP_P_OE" type_name="LP_P_OE" is_bus="false"/>
                     <efxpt:pin name="mipi_dp_clk_LP_N_OE" type_name="LP_N_OE" is_bus="false"/>
                     <efxpt:pin name="i_mipi_txc_sclk" type_name="FASTCLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
-                    <efxpt:pin name="i_mipi_tx_pclk" type_name="SLOWCLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
+                    <efxpt:pin name="i_mipi_txd_sclk" type_name="SLOWCLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
                 </efxpt:gen_pin>
             </efxpt:tx_info>
         </efxpt:mipi_dphy>
