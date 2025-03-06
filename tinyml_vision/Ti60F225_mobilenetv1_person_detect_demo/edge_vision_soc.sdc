@@ -26,7 +26,7 @@ create_clock -period 9.999 -name i_mipi_rx_pclk [get_ports {i_mipi_rx_pclk}]
 create_clock -period 100 -name jtag_inst1_TCK [get_ports {jtag_inst1_TCK}]
 create_clock -period 8.00 -name i_cam_ck_CLKOUT_0 [get_ports {i_cam_ck_CLKOUT_0}]
 
-set_clock_groups -exclusive -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK} -group {i_mipi_clk} -group {i_mipi_tx_pclk} -group {i_fb_clk} -group {i_cam_ck_CLKOUT_0}
+set_clock_groups -exclusive -group {i_mipi_txc_sclk i_mipi_txd_sclk} -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK} -group {i_mipi_clk} -group {i_mipi_tx_pclk} -group {i_fb_clk} -group {i_cam_ck_CLKOUT_0}
 
 set_multicycle_path 3 -setup -to [get_ports mipi_dp_clk_HS_OUT[*]] -end
 set_multicycle_path 2 -hold -to [get_ports mipi_dp_clk_HS_OUT[*]] -end

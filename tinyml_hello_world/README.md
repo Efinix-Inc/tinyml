@@ -18,7 +18,7 @@ List of static inference examples:
 6. Deep AutoEncoder Anomaly Detection (*tinyml_ad*) - Trained with Tensorflow framework using Deep AutoEncoder architecture in detecting anomalies in machine operating sounds
 
 
-Refer to the *model_zoo* directory for more details on the related model training and quantization.
+> Refer to the *model_zoo* directory for more details on the related model training and quantization.
 
 <br />
 
@@ -26,9 +26,18 @@ Refer to the *model_zoo* directory for more details on the related model trainin
 The example designs are implemented on:
 - [Titanium® Ti60 F225 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti60f225.html)
 - [Titanium® Ti180 J484 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti180j484.html)
+- [Titanium® Ti375 C529 Development Kit](https://www.efinixinc.com/products-devkits-titaniumti375c529.html)
 
-**Note:** Efinity projects of the hello world designs are in [tinyml_hello_world](./) directory.
+> **Note:** Efinity projects of the hello world designs are in [tinyml_hello_world](./) directory.
 
+SoC Utilization in Example Designs;
+| Example Design  | SoC Type                      |
+|-----------------|-------------------------------|
+| Ti375C529       | Sapphire High-Performance SoC |
+| Ti60F225        | Soft Sapphire SoC             |
+| Ti180J484       | Soft Sapphire SoC             |
+
+<br />
 Efinity® IDE is required for project compilation and bitstream generation, whereas Efinity RISC-V Embedded Software IDE is used to manage RISC-V software projects and for debugging purposes.
 
 <br />
@@ -57,5 +66,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.1.19
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.3.14
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.0.1

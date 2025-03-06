@@ -4,7 +4,7 @@
 //    https://www.efinixinc.com/software-license.html
 ///////////////////////////////////////////////////////////////////////////////////
 
-//Define the picam version. By default is set to Picam V2.
+// Define the picam version. Picam V2 will be the default if PICAM_VERSION is not defined.
 #define PICAM_VERSION 3
 
 #include <stdlib.h>
@@ -30,6 +30,9 @@ extern "C" {
 #include "dmasg.h"
 }
 #include "axi4_hw_accel.h"
+
+//Arena allocator
+#include "model/arena.h"
 
 //Tinyml Header File
 #include "intc.h"
@@ -328,9 +331,9 @@ void init() {
 
    //Assert camera reset
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
-   bsp_uDelay(1000000);
+   bsp_uDelay(100);
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000002);
-   bsp_uDelay(1000000);
+   bsp_uDelay(1000*10); //10ms delay
 
    //Camera I2C configuration
    mipi_i2c_init();
@@ -421,26 +424,30 @@ void draw_boxes(box* boxes,int total_boxes){
    float objectness_tresh=0.5;
    int count_boxes=0;
 
-   for (int i = 0; i<=(BBOX_MAX); i++) {
-
-      if(boxes[i].x_min < min_val || boxes[i].y_min < min_val || boxes[i].x_max < min_val|| boxes[i].y_max <min_val || boxes[i].x_min > max_val || boxes[i].y_min > max_val ||  i>total_boxes || boxes[i].objectness < objectness_tresh ){
-         bbox_array[i+1] = 0xffffffffffffffff;
+   for (int i = 0; i<(BBOX_MAX); i++) {
+      if(i < total_boxes) {
+         if(boxes[i].x_min < min_val || boxes[i].y_min < min_val || boxes[i].x_max < min_val|| boxes[i].y_max <min_val || boxes[i].x_min > max_val || boxes[i].y_min > max_val ||  i>total_boxes || boxes[i].objectness < objectness_tresh ){
+            bbox_array[i+1] = 0xffffffffffffffff;
+         }
+         else {
+            x_min = (boxes[i].x_min)*FRAME_WIDTH;
+            y_min = (boxes[i].y_min)*FRAME_HEIGHT;
+            x_max = (boxes[i].x_max)*FRAME_WIDTH;
+            y_max = (boxes[i].y_max)*FRAME_HEIGHT;
+      
+            if(x_max > FRAME_WIDTH){
+               x_max = (FRAME_WIDTH-1);
+            }
+            if(y_max > FRAME_HEIGHT){
+               y_max = (FRAME_HEIGHT-1);
+            }
+            box_coordinates = (uint64_t) x_min << 48 | (uint64_t) y_min << 32 | (uint64_t) x_max << 16 |(uint64_t) y_max << 0;
+            bbox_array[i+1] = box_coordinates;
+            count_boxes++;
+         }
       }
       else {
-         x_min = (boxes[i].x_min)*FRAME_WIDTH;
-         y_min = (boxes[i].y_min)*FRAME_HEIGHT;
-         x_max = (boxes[i].x_max)*FRAME_WIDTH;
-         y_max = (boxes[i].y_max)*FRAME_HEIGHT;
-   
-         if(x_max > FRAME_WIDTH){
-            x_max = (FRAME_WIDTH-1);
-         }
-         if(y_max > FRAME_HEIGHT){
-            y_max = (FRAME_HEIGHT-1);
-         }
-         box_coordinates = (uint64_t) x_min << 48 | (uint64_t) y_min << 32 | (uint64_t) x_max << 16 |(uint64_t) y_max << 0;
-         bbox_array[i+1] = box_coordinates;
-         count_boxes++;
+         bbox_array[i+1] = 0xffffffffffffffff;
       }
    }
    MicroPrintf("Total Boxes : %d\n\r",count_boxes);
@@ -448,6 +455,11 @@ void draw_boxes(box* boxes,int total_boxes){
 }
 
 void main() {
+
+   //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
+   u32 hartId = csr_read(mhartid);
+   // Create 500KB arena size
+	arena[hartId] = arena_create(500000);
 
    
    MicroPrintf("\t--Hello Efinix Edge Vision TinyML--\n\r");
@@ -511,7 +523,7 @@ void main() {
       //Yolo layer
       MicroPrintf("Pass data to Yolo layer...");
 
-      layer* yolo_layers = (layer*)calloc(total_output_layers, sizeof(layer));
+      layer* yolo_layers = (layer*)arena_calloc(arena[hartId],total_output_layers, sizeof(layer));
       for (int i = 0; i < total_output_layers; ++i) {
          yolo_layers[i].channels = interpreter->output(i)->dims->data[0];
          yolo_layers[i].height = interpreter->output(i)->dims->data[1];
@@ -526,7 +538,7 @@ void main() {
             interpreter->output(i)->dims->data[0] * interpreter->output(i)->dims->data[1] * interpreter->output(i)->dims->data[2] * interpreter->output(i)->dims->data[3]
          );
 
-         yolo_layers[i].outputs = (float*)calloc(total, sizeof(float));
+         yolo_layers[i].outputs = (float*)arena_calloc(arena[hartId],total, sizeof(float));
          TfLiteAffineQuantization params = *(static_cast<TfLiteAffineQuantization *>(interpreter->output(i)->quantization.params));
 
          for (int j = 0; j < total; ++j)
@@ -574,18 +586,12 @@ void main() {
       ms = timerDiffTotal/(SYSTEM_CLINT_HZ/1000);
       MicroPrintf("inference time (Total): %ums\n\r", ms);
 
-      //Clear all the memory allocation content
-      for (int i = 0; i < total_output_layers; ++i) {
-        free(yolo_layers[i].outputs);
-      }
-	   for (int i = 0; i < total_boxes; ++i) {
-		 free(boxes[i].class_probabilities);
-	   }
-      free(yolo_layers);
-      free(boxes);
-      
       //Switch draw buffer to latest complete frame
       draw_buffer = next_display_buffer;
+
+      //Clear memory allocation
+      arena_clear(arena[hartId]);
+
    }
 
    /**********************************************Check APB3 Slave Status (Camera, Display & HW Accelerator)******************************************/

@@ -1,0 +1,98 @@
+{
+    "args": [
+        "-o",
+        "csi2_rx_cam",
+        "--base_path",
+        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "mipi",
+            "name": "efx_csi2_rx",
+            "version": "5.8"
+        }
+    ],
+    "conf": {
+        "tLPX_NS": "50",
+        "tINIT_NS": "100000",
+        "tCLK_TERM_EN_NS": "38",
+        "tD_TERM_EN_NS": "35",
+        "tHS_SETTLE_NS": "85",
+        "tHS_PREPARE_ZERO_NS": "145",
+        "NUM_DATA_LANE": "2",
+        "ASYNC_STAGE": "2",
+        "HS_BYTECLK_MHZ": "113",
+        "CLOCK_FREQ_MHZ": "100",
+        "DPHY_CLOCK_MODE": "\"Discontinuous\"",
+        "PIXEL_FIFO_DEPTH": "2048",
+        "AREGISTER": "8",
+        "ENABLE_USER_DESKEWCAL": "1'b0",
+        "Pack_40": "1'b1",
+        "Pack_48": "1'b1",
+        "Pack_56": "1'b1",
+        "Pack_64": "1'b1",
+        "FRAME_MODE": "\"GENERIC\"",
+        "ENABLE_VCX": "1'b0",
+        "MIPI_CSI2_RX_DEBUG": "1'b0"
+    },
+    "output": {
+        "external_source_source": [
+            "csi2_rx_cam/csi2_rx_cam.sv",
+            "csi2_rx_cam/csi2_rx_cam_define.svh",
+            "csi2_rx_cam/csi2_rx_cam_tmpl.sv",
+            "csi2_rx_cam/csi2_rx_cam_tmpl.vhd"
+        ],
+        "external_testbench_modelsim": [
+            "csi2_rx_cam/Testbench/modelsim/csi2_rx_cam.sv"
+        ],
+        "external_testbench_ncsim": [
+            "csi2_rx_cam/Testbench/ncsim/csi2_rx_cam.sv"
+        ],
+        "external_testbench_synopsys": [
+            "csi2_rx_cam/Testbench/synopsys/csi2_rx_cam.sv"
+        ],
+        "external_testbench_aldec": [
+            "csi2_rx_cam/Testbench/aldec/csi2_rx_cam.sv"
+        ],
+        "external_example_example": [
+            "csi2_rx_cam/Ti60F225_devkit/top.xml",
+            "csi2_rx_cam/Ti60F225_devkit/top.peri.xml",
+            "csi2_rx_cam/Ti60F225_devkit/data_unpack.v",
+            "csi2_rx_cam/Ti60F225_devkit/datatype_gen.v",
+            "csi2_rx_cam/Ti60F225_devkit/dual_clock_fifo.v",
+            "csi2_rx_cam/Ti60F225_devkit/pattern_gen.v",
+            "csi2_rx_cam/Ti60F225_devkit/shift_reg.v",
+            "csi2_rx_cam/Ti60F225_devkit/simple_dual_port_ram.v",
+            "csi2_rx_cam/Ti60F225_devkit/vga_gen.v",
+            "csi2_rx_cam/Ti60F225_devkit/reset.v",
+            "csi2_rx_cam/Ti60F225_devkit/top.sv",
+            "csi2_rx_cam/Ti60F225_devkit/efx_csi2_tx.sv",
+            "csi2_rx_cam/Ti60F225_devkit/mipi.sdc",
+            "csi2_rx_cam/Ti60F225_devkit/pattern_gen2.v",
+            "csi2_rx_cam/Ti60F225_devkit/lfsr.v",
+            "csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam.sv",
+            "csi2_rx_cam/Ti60F225_devkit/csi2_rx_cam_define.svh"
+        ],
+        "external_testbench_testbench": [
+            "csi2_rx_cam/Testbench/data_unpack.v",
+            "csi2_rx_cam/Testbench/datatype_gen.v",
+            "csi2_rx_cam/Testbench/dual_clock_fifo.v",
+            "csi2_rx_cam/Testbench/pattern_gen.v",
+            "csi2_rx_cam/Testbench/shift_reg.v",
+            "csi2_rx_cam/Testbench/simple_dual_port_ram.v",
+            "csi2_rx_cam/Testbench/vga_gen.v",
+            "csi2_rx_cam/Testbench/reset.v",
+            "csi2_rx_cam/Testbench/TI60_MIPI_csi_tb.sv",
+            "csi2_rx_cam/Testbench/TI60_MIPI_csi_rx_modelsim.do",
+            "csi2_rx_cam/Testbench/rx_filelist.f",
+            "csi2_rx_cam/Testbench/top.sv",
+            "csi2_rx_cam/Testbench/efx_csi2_tx_modelsim.sv",
+            "csi2_rx_cam/Testbench/pattern_gen2.v",
+            "csi2_rx_cam/Testbench/lfsr.v",
+            "csi2_rx_cam/Testbench/csi2_rx_cam.sv",
+            "csi2_rx_cam/Testbench/csi2_rx_cam_define.svh"
+        ]
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2024-12-23T01:49:16.964582+00:00"
+}

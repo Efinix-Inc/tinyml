@@ -4,7 +4,7 @@
 //    https://www.efinixinc.com/software-license.html
 ///////////////////////////////////////////////////////////////////////////////////
 
-//Define the picam version. By default is set to Picam V2.
+// Define the picam version. Picam V2 will be the default if PICAM_VERSION is not defined.
 #define PICAM_VERSION 3
 
 #include <stdlib.h>
@@ -238,9 +238,9 @@ void main() {
 
    //Assert camera reset
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
-   bsp_uDelay(1000000);
+   bsp_uDelay(100);
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000002);
-   bsp_uDelay(1000000);
+   bsp_uDelay(1000*10); //10ms delay
 
    //Camera I2C configuration
    mipi_i2c_init();

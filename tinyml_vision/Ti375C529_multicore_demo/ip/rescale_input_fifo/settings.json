@@ -1,0 +1,74 @@
+{
+    "args": [
+        "-o",
+        "rescale_input_fifo",
+        "--base_path",
+        "/projects/SSE/mfaiz/validation/tinyml_multicore/28jan2025/Ti375C529_demo_multicore/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "7.2"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH_2": "10",
+        "DATA_WIDTH": "48",
+        "MODE": "\"STANDARD\"",
+        "OUTPUT_REG": "1",
+        "PROG_FULL_ASSERT": "4",
+        "PROGRAMMABLE_FULL": "\"NONE\"",
+        "PFN_INTERNAL": "3",
+        "PEA_INTERNAL": "0",
+        "PEN_INTERNAL": "0",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "1",
+        "ASYM_WIDTH_RATIO": "3",
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "1",
+        "RAM_STYLE": "\"block_ram\"",
+        "OVERFLOW_PROTECT": "1",
+        "UNDERFLOW_PROTECT": "1"
+    },
+    "output": {
+        "external_source_source": [
+            "rescale_input_fifo/rescale_input_fifo.v",
+            "rescale_input_fifo/rescale_input_fifo_define.vh",
+            "rescale_input_fifo/rescale_input_fifo_tmpl.v",
+            "rescale_input_fifo/rescale_input_fifo_tmpl.vhd"
+        ],
+        "external_example_example": [
+            "rescale_input_fifo/T20F256_devkit/fifo_demo.peri.xml",
+            "rescale_input_fifo/T20F256_devkit/fifo_demo.xml",
+            "rescale_input_fifo/T20F256_devkit/fifo_demo_top.v",
+            "rescale_input_fifo/T20F256_devkit/fifo_demo_T20.sdc",
+            "rescale_input_fifo/T20F256_devkit/efx_symmetric_width_fifo_top.v",
+            "rescale_input_fifo/T20F256_devkit/rescale_input_fifo.v",
+            "rescale_input_fifo/T20F256_devkit/rescale_input_fifo_define.vh"
+        ],
+        "external_example_2": [
+            "rescale_input_fifo/Ti60F225_devkit/fifo_demo.peri.xml",
+            "rescale_input_fifo/Ti60F225_devkit/fifo_demo.xml",
+            "rescale_input_fifo/Ti60F225_devkit/fifo_demo_top.v",
+            "rescale_input_fifo/Ti60F225_devkit/fifo_demo_Ti60.sdc",
+            "rescale_input_fifo/Ti60F225_devkit/efx_symmetric_width_fifo_top.v",
+            "rescale_input_fifo/Ti60F225_devkit/rescale_input_fifo.v",
+            "rescale_input_fifo/Ti60F225_devkit/rescale_input_fifo_define.vh"
+        ],
+        "external_testbench_testbench": [
+            "rescale_input_fifo/Testbench/fifo_tb.sv",
+            "rescale_input_fifo/Testbench/xrun.sh",
+            "rescale_input_fifo/Testbench/msim.sh",
+            "rescale_input_fifo/Testbench/flist",
+            "rescale_input_fifo/Testbench/modelsim.do",
+            "rescale_input_fifo/Testbench/rescale_input_fifo.v",
+            "rescale_input_fifo/Testbench/rescale_input_fifo_define.vh"
+        ]
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2025-01-28T05:07:40.509304+00:00"
+}

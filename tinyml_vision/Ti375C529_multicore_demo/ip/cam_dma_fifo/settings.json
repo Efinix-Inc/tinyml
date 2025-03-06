@@ -1,0 +1,47 @@
+{
+    "args": [
+        "-o",
+        "cam_dma_fifo",
+        "--base_path",
+        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory",
+            "name": "efx_fifo_top",
+            "version": "7.2"
+        }
+    ],
+    "conf": {
+        "SYNC_CLK": "1",
+        "SYNC_STAGE": "2",
+        "DEPTH_2": "10",
+        "DATA_WIDTH": "48",
+        "MODE": "\"FWFT\"",
+        "OUTPUT_REG": "0",
+        "PROG_FULL_ASSERT": "4",
+        "PROGRAMMABLE_FULL": "\"NONE\"",
+        "PFN_INTERNAL": "3",
+        "PEA_INTERNAL": "2",
+        "PEN_INTERNAL": "3",
+        "PROGRAMMABLE_EMPTY": "\"NONE\"",
+        "OPTIONAL_FLAGS": "1",
+        "PIPELINE_REG": "0",
+        "ASYM_WIDTH_RATIO": "4",
+        "BYPASS_RESET_SYNC": "0",
+        "ENDIANESS": "0",
+        "RAM_STYLE": "\"block_ram\"",
+        "OVERFLOW_PROTECT": "1",
+        "UNDERFLOW_PROTECT": "1"
+    },
+    "output": {
+        "external_source_source": [
+            "cam_dma_fifo/cam_dma_fifo.v",
+            "cam_dma_fifo/cam_dma_fifo_define.vh",
+            "cam_dma_fifo/cam_dma_fifo_tmpl.vhd",
+            "cam_dma_fifo/cam_dma_fifo_tmpl.v"
+        ]
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2024-12-23T01:49:02.878321+00:00"
+}

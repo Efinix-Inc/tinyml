@@ -7,6 +7,11 @@ Edge Vision TinyML framework is a domain-specific TinyML framework for vision an
 - Highly **flexible HW/SW co-design** is feasible (RISC-V performs control & compute, HW accelerator for time-critical computations).
 - Enable **quick porting** of users' design for **edge AI and vision solutions**.
 
+## Single Core Design
+
+- The single-core design executes a single model on one core, requiring fewer hardware resources because only one TinyML Accelerator module is instantiated on the FPGA fabric.
+- Single-core design examples are available and supported on the Ti60F225 (Sapphire SoC), Ti180J484 (Sapphire SoC), and Ti375C529 (Sapphire High-Performance SoC).
+
 <br />
 
 <img src="../docs/tinyml_vision_top_level.png "/>
@@ -33,6 +38,42 @@ List of video streaming inference demo:
 Refer to the *model_zoo* directory for more details on the related model training and quantization.
 
 <br />
+
+## Multi Cores Design
+
+- The multi-core design enables the concurrent execution of multiple models across several cores. This approach requires more hardware resources than a single-core design, as it instantiates multiple TinyML Accelerator modules.
+- Currently, the multi-core design is officially supported only on our Ti375C529 Development Board, which is optimized to harness the full power of our Sapphire High-Performance SoC. Although the design is compatible with our multi-core Sapphire SoC, users will need to manually port it to support multi-core configurations.
+
+<img src="../docs/tinyml_vision_top_level_multicore.jpg " width="1200" alt="TinyML Vision Top Level Multicore"/>
+
+<br />
+
+List of video streaming inference demo:
+1. Multi-model detection (*evsoc_tinyml_mc*)
+   - Enables simultaneous execution of multiple models within a single application.
+   - Leverages all four cores of the High-Performance Sapphire SoC to accelerate detection processing.
+   - Core 0: Yolo Person Detection 
+      - Trained with Tensorflow using Yolo architecture to perform person detection
+      - Input to model 96x96 RGB video frame
+      - Hardware accelerator - Nearest neighbour downscaling, Pack output pixels to DMA channel data width
+      - Output on display - Bounding box(es) in green color is drawn on detected person.
+   - Core 1: Mediapipe Face Detection
+      - A pre-trained Tensorflow model using Mediapipe architecture to perform face detection
+      - Input to model 128x128 RGB video frame
+      - Hardware accelerator - Nearest neighbour downscaling, Pack output pixels to DMA channel data width
+      - Output on display - Bounding box(es) in cyan color is drawn on detected face(s).
+   - Core 2: MediaPipe Face Landmark Detection
+      - A pre-trained Tensorflow model using Mediapipe architecture to perform face landmark detection
+      - Face Landmark Detection on the first face detected from Core 1
+      - Input to model 192x192 RGB video frame
+      - Nearest neighbour downscaling via software, Pack output pixels to DMA channel data width
+      - Output on display - 468 detected face landmark points are plotted.
+   - Core 3: MediaPipe Face Landmark Detection
+      - A pre-trained Tensorflow model using Mediapipe architecture to perform face landmark detection
+      - Face Landmark Detection on the second face detected from Core 1
+      - Input to model 192x192 RGB video frame
+      - Nearest neighbour downscaling via software, Pack output pixels to DMA channel data width
+      - Output on display - 468 detected face landmark points are plotted.
 
 ## Get Started
 The TinyML demo design is implemented on:
@@ -77,5 +118,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions, gui
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.1.19
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.3.14
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.0.1

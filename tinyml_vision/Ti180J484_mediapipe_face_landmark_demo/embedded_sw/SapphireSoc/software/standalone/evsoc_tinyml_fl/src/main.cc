@@ -4,7 +4,7 @@
 //    https://www.efinixinc.com/software-license.html
 ///////////////////////////////////////////////////////////////////////////////////
 
-//Define the picam version. By default is set to Picam V2.
+// Define the picam version. Picam V2 will be the default if PICAM_VERSION is not defined.
 #define PICAM_VERSION 3
 
 #include <stdlib.h>
@@ -49,6 +49,8 @@ extern "C" {
 //Model data
 #include "model/mediapipe_face_landmark_model_data.h"
 
+//Arena allocator
+#include "model/arena.h"
 
 #include "model/face_landmark_detection.h"
 #include "platform/tinyml/profiler.h"
@@ -248,6 +250,10 @@ void trigger_next_cam_dma() {
 
 void main() {
 
+   //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
+   u32 hartId = csr_read(mhartid);
+   // Create 500KB arena size
+	arena[hartId] = arena_create(500000);
    
    MicroPrintf("\t--Hello Efinix Edge Vision TinyML - Face Landmark Detection Demo--\n\r");
    
@@ -258,7 +264,9 @@ void main() {
    
    // Reset mipi
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000001);// assert reset
+   bsp_uDelay(100);
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);//de-assert reset
+   bsp_uDelay(1000*10); // 10ms delay to ensure the camera fully exits reset and stabilizes before proceeding
 
    //Camera I2C configuration
    mipi_i2c_init();
@@ -408,7 +416,7 @@ void main() {
          TfLiteAffineQuantization params = *(static_cast<TfLiteAffineQuantization *>(interpreter->output(i)->quantization.params));
          
          if (i == 0) {
-            float* face_landmarks = (float*)calloc(total, sizeof(float));
+            float* face_landmarks = (float*)arena_calloc(arena[hartId],total, sizeof(float));
             for (int j = 0; j < total; ++j)
                face_landmarks[j] = (
                   (float)interpreter->output(i)->data.int8[j] - params.zero_point->data[0]
@@ -420,20 +428,18 @@ void main() {
                landmark_y[k] = face_landmarks[k*3+1] * FRAME_HEIGHT;
             }
             
-            free(face_landmarks);
          }
          else if (i == 1) {
-            float* face_flags = (float*)calloc(total, sizeof(float));
+            float* face_flags = (float*)arena_calloc(arena[hartId],total, sizeof(float));
             for (int j = 0; j < total; ++j)
                face_flags[j] = ((float)interpreter->output(i)->data.int8[j] - params.zero_point->data[0]) * params.scale->data[0];
-            activate_logistic(face_flags, total);
+            fl_activate_logistic(face_flags, total);
             
             if (face_flags[0] > FACE_FLAG_THRESH) //Assume only one landmark flag is produced
                landmark_valid = 1;
             else
                landmark_valid = 0;
             
-            free(face_flags);
          }
       }
 
@@ -459,6 +465,10 @@ void main() {
       MicroPrintf("inference time (output layer): %ums\n\r", ms);
       
       draw_buffer = next_display_buffer;
+
+      //Clear memory allocation
+	   arena_clear(arena[hartId]);
+
    }
 
    /**********************************************Check APB3 Slave Status (Camera, Display & HW Accelerator)******************************************/

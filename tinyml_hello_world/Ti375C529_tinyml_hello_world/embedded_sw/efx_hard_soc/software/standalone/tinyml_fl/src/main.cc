@@ -28,6 +28,9 @@
 #include "tensorflow/lite/micro/debug_log.h"
 #include "tensorflow/lite/micro/micro_time.h"
 
+//Arena allocator
+#include "model/arena.h"
+
 //Model data
 #include "model/mediapipe_face_landmark_model_data.h"
 
@@ -115,6 +118,7 @@ void tinyml_init() {
 }
 
 void landmark_output(int enable_printing) {
+	u32 hartId = csr_read(mhartid);
 	for (int i = 0; i < total_output_layers; ++i) {
 		int total = (interpreter->output(i)->dims->data[0]
 				* interpreter->output(i)->dims->data[1]
@@ -126,7 +130,7 @@ void landmark_output(int enable_printing) {
 
 
 		if (i == 0) {
-			float *face_landmarks = (float*) calloc(total, sizeof(float));
+			float *face_landmarks = (float*) arena_calloc(arena[hartId],total, sizeof(float));
 			for (int j = 0; j < total; ++j)
 				face_landmarks[j] =
 						((float) interpreter->output(i)->data.int8[j]
@@ -152,11 +156,11 @@ void landmark_output(int enable_printing) {
 				MicroPrintf(";\n\r");
 			}
 		} else if (i == 1) {
-			float *face_flags = (float*) calloc(total, sizeof(float));
+			float *face_flags = (float*) arena_calloc(arena[hartId], total, sizeof(float));
 			for (int j = 0; j < total; ++j)
 				face_flags[j] = ((float) interpreter->output(i)->data.int8[j]
 						- params.zero_point->data[0]) * params.scale->data[0];
-			activate_logistic(face_flags, total);
+			fl_activate_logistic(face_flags, total);
 
 			if(enable_printing == 1) {
 				MicroPrintf("[OUTPUT_1]geoffrey_hinton_tflite_quant_face_flag:\n\r");
@@ -173,6 +177,11 @@ void landmark_output(int enable_printing) {
 
 extern "C" void main() {
 	
+   //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
+   u32 hartId = csr_read(mhartid);
+   // Create 500KB arena size
+	arena[hartId] = arena_create(500000);
+
 	MicroPrintf("\t--Hello Efinix TinyML--\n\r");
 
 	MicroPrintf("TinyML Setup...");
@@ -233,6 +242,10 @@ extern "C" void main() {
 			"NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
 	ms = timerDiff_2_3 / (SYSTEM_CLINT_HZ / 1000);
 	MicroPrintf("Inference time (output layer): %ums\n\r", ms);
-	MicroPrintf("Hello world complete\n\r");
+	MicroPrintf("Hello world complete\n\r");   
+	
+	//Clear memory allocation
+	arena_clear(arena[hartId]);
+ 
 	ops_unload();
 }

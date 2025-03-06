@@ -29,6 +29,9 @@
 #include "tensorflow/lite/micro/micro_time.h"
 #include "platform/tinyml/profiler.h"
 
+//Arena allocator
+#include "model/arena.h"
+
 //Model data
 #include "model/yolo_person_detect_model_data.h"
 
@@ -114,6 +117,12 @@ void tinyml_init() {
 
 extern "C" void main() {
 	
+   //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
+   u32 hartId = csr_read(mhartid);
+   // Create 500KB arena size
+	arena[hartId] = arena_create(500000);
+
+
    MicroPrintf("\t--Hello Efinix TinyML--\n\r");
    
    MicroPrintf("TinyML Setup...");
@@ -151,7 +160,7 @@ extern "C" void main() {
    //Yolo layer
    MicroPrintf("Pass data to Yolo layer...");
 
-   layer* yolo_layers = (layer*)calloc(total_output_layers, sizeof(layer));
+   layer* yolo_layers = (layer*)arena_calloc(arena[hartId],total_output_layers, sizeof(layer));
    for (int i = 0; i < total_output_layers; ++i) {
       yolo_layers[i].channels = interpreter->output(i)->dims->data[0];
       yolo_layers[i].height = interpreter->output(i)->dims->data[1];
@@ -166,7 +175,7 @@ extern "C" void main() {
          interpreter->output(i)->dims->data[0] * interpreter->output(i)->dims->data[1] * interpreter->output(i)->dims->data[2] * interpreter->output(i)->dims->data[3]
       );
       
-      yolo_layers[i].outputs = (float*)calloc(total, sizeof(float));
+      yolo_layers[i].outputs = (float*)arena_calloc(arena[hartId],total, sizeof(float));
       TfLiteAffineQuantization params = *(static_cast<TfLiteAffineQuantization *>(interpreter->output(i)->quantization.params));
       
       MicroPrintf("\n\rOutput %d Scale: ", i);
@@ -241,6 +250,9 @@ extern "C" void main() {
    ms = timerDiffTotal/(SYSTEM_CLINT_HZ/1000);
    MicroPrintf("Inference time (Total): %ums\n\r", ms);
    MicroPrintf("Hello world complete\n\r");
+   
+	//Clear memory allocation
+	arena_clear(arena[hartId]);
 
    ops_unload();
 }

@@ -624,44 +624,28 @@ wire  [3:0]             dma_interrupts;
 ////////////////////////////////////////////////////////////////
 // Reset related
 
-`ifndef SIM
-   common_reset_ctrl #(
-      .NUM_RST          (8),
+common_reset_ctrl #(
+      .NUM_RST          (6),
       .CYCLE            (1),
-      .IN_RST_ACTIVE    (8'b000000),
-      .OUT_RST_ACTIVE   (8'b101010)
+      .IN_RST_ACTIVE    (6'b111111),
+      .OUT_RST_ACTIVE   (6'b100001)
    ) common_reset_ctrl (
-      .i_arst ({{2{w_cam_confdone}}, {2{i_pll_locked}}, {4{r_rst_cnt[19]}}}),
-      .i_clk  ({{2{i_mipi_rx_pclk}}, {2{i_fb_clk}}, {2{i_fb_clk}}, {2{i_sysclk_div_2}}}),
-      .o_srst ({  w_mipi_rx_pclk_arst, w_mipi_rx_pclk_arstn,
-                  w_fb_clk_arst,       w_fb_clk_arstn,
-                  w_fb_dp_arst,        w_fb_dp_arstn,
-                  w_sys_dp_arst,       w_sys_dp_arstn})
+      .i_arst ({6{io_systemReset}} ),
+      .i_clk  ({i_mipi_rx_pclk, i_mipi_rx_pclk, i_fb_clk, i_fb_clk, i_sysclk_div_2, i_mipi_txd_sclk} ),
+      .o_srst ({w_mipi_rx_pclk_arst, w_mipi_rx_pclk_arstn, w_fb_clk_arstn, w_fb_dp_arstn, w_sys_dp_arstn, mipi_dp_clk_RST} )
    );
-`else
-   assign w_mipi_rx_pclk_arst    = ~i_arstn;
-   assign w_mipi_rx_pclk_arstn   = i_arstn;
-   assign w_fb_clk_arst          = ~i_arstn;
-   assign w_fb_clk_arstn         = i_arstn;
-   assign w_fb_dp_arst           = ~i_arstn;
-   assign w_fb_dp_arstn          = i_arstn;
-   assign w_sys_dp_arst          = ~i_arstn;
-   assign w_sys_dp_arstn         = i_arstn;
-`endif
-
-assign   mipi_dp_clk_RST      = ~i_arstn;
-assign   mipi_dp_data0_RST    = ~i_arstn;
-assign   mipi_dp_data1_RST    = ~i_arstn;
-assign   mipi_dp_data2_RST    = ~i_arstn;
-assign   mipi_dp_data3_RST    = ~i_arstn;
+   
+assign   mipi_dp_data0_RST    = mipi_dp_clk_RST;
+assign   mipi_dp_data1_RST    = mipi_dp_clk_RST;
+assign   mipi_dp_data2_RST    = mipi_dp_clk_RST;
+assign   mipi_dp_data3_RST    = mipi_dp_clk_RST;
 
 assign   o_hbramClk_pll_rstn  = i_arstn;
-assign   o_lcd_rstn           = r_lcd_rstn;
+assign   o_lcd_rstn           = ~io_systemReset;
 assign   o_led                = dp_frame_cnt[4];
 assign   o_pll_rstn           = i_arstn;
 assign   o_mipi_pll_rstn      = i_arstn;
-assign   o_cam_rstn           = i_arstn & enable_cam;
-
+assign   o_cam_rstn           = ~io_systemReset & enable_cam;
 
 ////////////////////////////////////////////////////////////////
 // MIPI CSI RX Channel - Camera
