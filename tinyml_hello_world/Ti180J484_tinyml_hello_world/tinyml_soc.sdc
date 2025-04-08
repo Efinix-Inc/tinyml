@@ -1,9 +1,9 @@
 
 # Efinity Interface Designer SDC
-# Version: 2023.1.150.4.10
-# Date: 2023-09-29 09:22
+# Version: 2024.2.294.3.14
+# Date: 2025-03-19 17:46
 
-# Copyright (C) 2017 - 2023 Efinix Inc. All rights reserved.
+# Copyright (C) 2013 - 2024 Efinix Inc. All rights reserved.
 
 # Device: Ti180J484
 # Project: tinyml_soc
@@ -11,34 +11,50 @@
 
 # PLL Constraints
 #################
-create_clock -period 10.0000 mipi_clk
-create_clock -period 10.0000 i_sys_clk
-create_clock -period 10.0000 i_axi0_mem_clk
-create_clock -period 4.0000 i_soc_clk
-create_clock -period 7.5008 pll_ddr_CLKOUT0
-create_clock -period 50 [get_ports {jtag_inst1_TCK}]
+create_clock -period 10.000 -name mipi_clk [get_ports {mipi_clk}]
+create_clock -period 10.000 -name i_sys_clk [get_ports {i_sys_clk}]
+create_clock -period 10.000 -name i_axi0_mem_clk [get_ports {i_axi0_mem_clk}]
+create_clock -period 4.000 -name i_soc_clk [get_ports {i_soc_clk}]
+create_clock -period 7.501 -name pll_ddr_CLKOUT0 [get_ports {pll_ddr_CLKOUT0}]
 
 set_clock_groups -exclusive -group {i_soc_clk} -group {i_axi0_mem_clk} -group {jtag_inst1_TCK} -group {i_sys_clk} -group {mipi_clk}
 
+# GPIO Constraints
+####################
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {io_jtag_tck}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {io_jtag_tck}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {io_jtag_tdi}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {io_jtag_tdi}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {io_jtag_tms}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {io_jtag_tms}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {system_uart_0_io_rxd}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {system_uart_0_io_rxd}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {io_jtag_tdo}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {io_jtag_tdo}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {system_uart_0_io_txd}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {system_uart_0_io_txd}]
+
 # JTAG Constraints
 ####################
-# create_clock -period <USER_PERIOD> [get_ports {jtag_inst1_TCK}]
-set_output_delay -clock jtag_inst1_TCK -max 0.117 [get_ports {jtag_inst1_TDO}]
-set_output_delay -clock jtag_inst1_TCK -min -0.075 [get_ports {jtag_inst1_TDO}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_CAPTURE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_CAPTURE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.243 [get_ports {jtag_inst1_SEL}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.162 [get_ports {jtag_inst1_SEL}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_UPDATE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_UPDATE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.337 [get_ports {jtag_inst1_SHIFT}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.225 [get_ports {jtag_inst1_SHIFT}]
+# create_clock -period <USER_PERIOD> -name jtag_inst1_TCK [get_ports {jtag_inst1_TCK}]
+set_output_delay -clock jtag_inst1_TCK -max 1.387 [get_ports {jtag_inst1_TDO}]
+set_output_delay -clock jtag_inst1_TCK -min 0.555 [get_ports {jtag_inst1_TDO}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.603 [get_ports {jtag_inst1_CAPTURE}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.282 [get_ports {jtag_inst1_CAPTURE}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -max 1.191 [get_ports {jtag_inst1_RESET}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.682 [get_ports {jtag_inst1_RESET}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.593 [get_ports {jtag_inst1_SEL}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.344 [get_ports {jtag_inst1_SEL}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.564 [get_ports {jtag_inst1_UPDATE}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.362 [get_ports {jtag_inst1_UPDATE}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.575 [get_ports {jtag_inst1_SHIFT}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.294 [get_ports {jtag_inst1_SHIFT}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -max 1.416 [get_ports {jtag_inst1_DRCK}]
+set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.884 [get_ports {jtag_inst1_DRCK}]
 # JTAG Constraints (extra... not used by current Efinity debug tools)
-# create_clock -period <USER_PERIOD> [get_ports {jtag_inst1_DRCK}]
-# set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.280 [get_ports {jtag_inst1_RUNTEST}]
-# set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.187 [get_ports {jtag_inst1_RUNTEST}]
+# create_clock -period <USER_PERIOD> -name jtag_inst1_DRCK [get_ports {jtag_inst1_DRCK}]
+# set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.626 [get_ports {jtag_inst1_RUNTEST}]
+# set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.332 [get_ports {jtag_inst1_RUNTEST}]
 # Create separate clock groups for JTAG clocks. Remove DRCK clock from the list below if it is not defined.
 # set_clock_groups -asynchronous -group {jtag_inst1_TCK jtag_inst1_DRCK}
 
@@ -203,6 +219,24 @@ set_input_delay -clock i_axi0_mem_clk -reference_pin [get_ports {i_axi0_mem_clk~
 
 # HSIO GPIO Constraints
 #########################
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {i_osc1_ref_clk}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {i_osc1_ref_clk}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {i_sw[0]}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {i_sw[0]}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {i_sw[1]}]
+# set_input_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {i_sw[1]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led[0]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led[0]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led[1]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led[1]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led[2]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led[2]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led[3]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led[3]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led[4]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led[4]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -max <MAX CALCULATION> [get_ports {o_led[5]}]
+# set_output_delay -clock <CLOCK> [-reference_pin <clkout_pad>] -min <MIN CALCULATION> [get_ports {o_led[5]}]
 set_output_delay -clock i_sys_clk -reference_pin [get_ports {i_sys_clk~CLKOUT~18~1}] -max 0.263 [get_ports {system_spi_0_io_sclk_write}]
 set_output_delay -clock i_sys_clk -reference_pin [get_ports {i_sys_clk~CLKOUT~18~1}] -min -0.140 [get_ports {system_spi_0_io_sclk_write}]
 set_output_delay -clock i_sys_clk -reference_pin [get_ports {i_sys_clk~CLKOUT~78~1}] -max 0.263 [get_ports {system_spi_0_io_ss}]
@@ -236,3 +270,15 @@ set_output_delay -clock i_sys_clk -reference_pin [get_ports {i_sys_clk~CLKOUT~19
 set_output_delay -clock i_sys_clk -reference_pin [get_ports {i_sys_clk~CLKOUT~193~1}] -max 0.263 [get_ports {system_spi_1_io_data_1_writeEnable}]
 set_output_delay -clock i_sys_clk -reference_pin [get_ports {i_sys_clk~CLKOUT~193~1}] -min -0.140 [get_ports {system_spi_1_io_data_1_writeEnable}]
 
+# Clock Latency Constraints
+############################
+# set_clock_latency -source -setup <board_max + 0.828> [get_ports {mipi_clk}]
+# set_clock_latency -source -hold <board_min + 0.552> [get_ports {mipi_clk}]
+# set_clock_latency -source -setup <pll_clk_latency_mipi_clk_max + 2.386> [get_ports {i_sys_clk}]
+# set_clock_latency -source -hold <pll_clk_latency_mipi_clk_min + 1.545> [get_ports {i_sys_clk}]
+# set_clock_latency -source -setup <pll_clk_latency_mipi_clk_max + 2.386> [get_ports {i_axi0_mem_clk}]
+# set_clock_latency -source -hold <pll_clk_latency_mipi_clk_min + 1.545> [get_ports {i_axi0_mem_clk}]
+# set_clock_latency -source -setup <pll_clk_latency_mipi_clk_max + 2.386> [get_ports {i_soc_clk}]
+# set_clock_latency -source -hold <pll_clk_latency_mipi_clk_min + 1.545> [get_ports {i_soc_clk}]
+# set_clock_latency -source -setup <board_max + 1.907> [get_ports {pll_ddr_CLKOUT0}]
+# set_clock_latency -source -hold <board_min + 1.271> [get_ports {pll_ddr_CLKOUT0}]

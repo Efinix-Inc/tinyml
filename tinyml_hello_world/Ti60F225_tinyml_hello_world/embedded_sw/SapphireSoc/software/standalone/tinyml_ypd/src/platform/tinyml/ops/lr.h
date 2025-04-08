@@ -3,7 +3,7 @@
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "ops_api.h"
 #include "intc.h"
-#include "model/define.h"
+#include "platform/tinyml/accel_settings.h"
 
 OP_STATUS_T lr_drv(
 		int size,

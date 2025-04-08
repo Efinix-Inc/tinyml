@@ -127,6 +127,8 @@ extern "C" void main() {
    
    MicroPrintf("TinyML Setup...");
    tinyml_init();
+   init_accel(hartId);
+   print_accel(hartId);
    MicroPrintf("Done\n\n\r");
    
    TfLiteStatus invoke_status;

@@ -8,7 +8,7 @@
     <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008" unified_flow="false">
         <efx:top_module name="edge_vision_soc"/>
         <efx:design_file name="edge_vision_soc.v" version="default" library="default"/>
-        <efx:design_file name="source/tinyml/defines.v" version="default" library="default"/>
+        <efx:design_file name="source/tinyml/tinyml_defines.v" version="default" library="default"/>
         <efx:design_file name="ip/csi2_rx_cam/csi2_rx_cam.sv" version="default" library="default"/>
         <efx:design_file name="ip/cam_dma_fifo/cam_dma_fifo.v" version="default" library="default"/>
         <efx:design_file name="ip/cam_pixel_remap_fifo/cam_pixel_remap_fifo.v" version="default" library="default"/>
@@ -85,6 +85,7 @@
         <efx:param name="include" value="ip/hw_accel_dma_out_fifo" value_type="e_string"/>
         <efx:param name="include" value="source/display/hdmi" value_type="e_string"/>
         <efx:param name="include" value="source/display/hdmi/mif_yuv" value_type="e_string"/>
+        <efx:param name="include" value="source/tinyml" value_type="e_string"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>

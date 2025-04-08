@@ -10,7 +10,7 @@ Edge Vision TinyML framework is a domain-specific TinyML framework for vision an
 ## Single Core Design
 
 - The single-core design executes a single model on one core, requiring fewer hardware resources because only one TinyML Accelerator module is instantiated on the FPGA fabric.
-- Single-core design examples are available and supported on the Ti60F225 (Sapphire SoC), Ti180J484 (Sapphire SoC), and Ti375C529 (Sapphire High-Performance SoC).
+- Single-core design examples are available and supported on the Ti60F225 (Sapphire SoC), and Ti180J484 (Sapphire SoC).
 
 <br />
 
@@ -89,7 +89,37 @@ Efinity® IDE is required for project compilation and bitstream generation, wher
 
 Bring up Edge Vision TinyML demo design on Efinix development kit by following listed steps below:
 1. Set up hardware
-   - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
+   - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for Ti60F225 and Ti180J484 development kits.
+   - For Ti375C529, refer to the following hardware setup:
+      - Attach the HDMI Connector Daughter Card to the P1 connector of the Ti375C529 Development Board.
+      - Attach the Dual Raspberry Pi Camera Connector Daughter Card to the P2 connector of the Ti375C529 Development Board.
+      - Refer to the table below for headers' connection.
+
+   <table>
+      <tr>
+         <th style="margin: 0 auto; text-align: center;">Connection</th>
+         <th style="margin: 0 auto; text-align: center;">Headers</th>
+         <th style="margin: 0 auto; text-align: center;">Pins to Connect</th>
+      </tr>
+     <tr>
+         <td style="text-align:center;">Power Rails</td>
+         <td style="text-align:center;">PJ5, PJ6, PJ7, PJ8, PJ9, PJ10, PJ11, PJ12</td>
+         <td style="text-align:center;">1,2</td>
+      </tr>
+      <tr>
+         <td style="text-align:center;">QSE1</td>
+         <td style="text-align:center;">PJ13</td>
+         <td style="text-align:center;">3,4</td>
+      </tr>
+      <tr>
+         <td style="text-align:center;">QSE2</td>
+         <td style="text-align:center;">PJ14</td>
+         <td style="text-align:center;">3,4</td>
+      </tr>
+   </table>
+
+   <br>
+
 2. Using Efinity® IDE
    - Pre-compiled bitstream .hex (for Programmer SPI active mode) and .bit (for Programmer JTAG mode) files are provided in Efinity project(s) in *tinyml_vision* directory. User may skip Efinity project compilation by using the provided bitstream.
    - To compile Edge Vision TinyML demo design,
@@ -118,5 +148,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions, gui
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.3.14
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.4.15
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.0.1

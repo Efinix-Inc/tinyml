@@ -3,7 +3,7 @@
 
 #include "ops_api.h"
 #include "intc.h"
-#include "model/define.h"
+#include "platform/tinyml/accel_settings.h"
 
 
 

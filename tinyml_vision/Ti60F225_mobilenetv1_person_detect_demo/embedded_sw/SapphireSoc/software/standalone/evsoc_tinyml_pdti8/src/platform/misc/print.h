@@ -10,8 +10,10 @@
 #if __cplusplus
 extern "C" {
 #endif
+#if ENABLE_FLOATING_POINT_SUPPORT == 0
 void print_dec(uint32_t val);
 void print_float(double val);
+#endif
 void print_hex(u32 val, u32 digits);
 void print_hex_digit(u8 digit);
 void print_hex_byte(u8 byte);

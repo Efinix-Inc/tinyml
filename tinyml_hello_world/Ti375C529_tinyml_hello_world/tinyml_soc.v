@@ -62,6 +62,34 @@ output		                    cpu0_customInstruction_rsp_valid,
 input		                    cpu0_customInstruction_rsp_ready,
 output [31:0]                   cpu0_customInstruction_outputs_0,
 
+input		                    cpu1_customInstruction_cmd_valid,
+output		                    cpu1_customInstruction_cmd_ready,
+input [9:0]                     cpu1_customInstruction_function_id,
+input [31:0]                    cpu1_customInstruction_inputs_0,
+input [31:0]                    cpu1_customInstruction_inputs_1,
+output		                    cpu1_customInstruction_rsp_valid,
+input		                    cpu1_customInstruction_rsp_ready,
+output [31:0]                   cpu1_customInstruction_outputs_0,
+
+input		                    cpu2_customInstruction_cmd_valid,
+output		                    cpu2_customInstruction_cmd_ready,
+input [9:0]                     cpu2_customInstruction_function_id,
+input [31:0]                    cpu2_customInstruction_inputs_0,
+input [31:0]                    cpu2_customInstruction_inputs_1,
+output		                    cpu2_customInstruction_rsp_valid,
+input		                    cpu2_customInstruction_rsp_ready,
+output [31:0]                   cpu2_customInstruction_outputs_0,
+
+input		                    cpu3_customInstruction_cmd_valid,
+output		                    cpu3_customInstruction_cmd_ready,
+input [9:0]                     cpu3_customInstruction_function_id,
+input [31:0]                    cpu3_customInstruction_inputs_0,
+input [31:0]                    cpu3_customInstruction_inputs_1,
+output		                    cpu3_customInstruction_rsp_valid,
+input		                    cpu3_customInstruction_rsp_ready,
+output [31:0]                   cpu3_customInstruction_outputs_0,
+
+
 output		                    io_ddrMasters_0_aw_valid,
 input		                    io_ddrMasters_0_aw_ready,
 output [31:0]                   io_ddrMasters_0_aw_payload_addr,
@@ -165,6 +193,9 @@ output		                    userInterruptB,
 output		                    userInterruptC,
 output		                    userInterruptD,
 output		                    userInterruptE,
+output		                    userInterruptF,
+output		                    userInterruptG,
+output		                    userInterruptH,
 
 
 input                           io_memoryClk,
@@ -264,10 +295,59 @@ wire		io_apbSlave_1_PSLVERROR;
 
 wire [3:0]  dma_interrupts;	
 
+/* Reset sychronizers */
+wire io_systemReset_sync_rst; 
+// Reset synchronizer
+common_reset #(
+    .IN_RST_ACTIVE("HIGH"),
+    .OUT_RST_ACTIVE("HIGH"),
+    .CYCLE(1)
+) u_common_reset_system_reset (
+    .i_arst (io_systemReset),
+	.i_clk  (i_soc_clk),
+	.o_srst (io_systemReset_sync_rst)
+);           
+
+wire io_systemReset_memoryClk_sync_rst; 
+// Reset synchronizer
+common_reset #(
+    .IN_RST_ACTIVE("HIGH"),
+    .OUT_RST_ACTIVE("HIGH"),
+    .CYCLE(1)
+) u_common_reset_system_reset_memory_clk (
+    .i_arst (io_systemReset),
+	.i_clk  (io_memoryClk),
+	.o_srst (io_systemReset_memoryClk_sync_rst)
+);           
+
+wire io_cfuReset_sync_rst; 
+// Reset synchronizer
+common_reset #(
+    .IN_RST_ACTIVE("HIGH"),
+    .OUT_RST_ACTIVE("HIGH"),
+    .CYCLE(1)
+) u_common_reset_cfu_reset (
+    .i_arst (io_cfuReset),
+	.i_clk  (io_cfuClk),
+	.o_srst (io_cfuReset_sync_rst)
+);           
+
+wire io_ddrMasters_0_sync_rstn; 
+// Reset synchronizer
+common_reset #(
+    .IN_RST_ACTIVE("HIGH"),
+    .OUT_RST_ACTIVE("LOW"),
+    .CYCLE(1)
+) u_common_reset_ddrMaster_reset (
+    .i_arst (io_ddrMasters_0_reset),
+	.i_clk  (io_ddrMasters_0_clk),
+	.o_srst (io_ddrMasters_0_sync_rstn)
+);       
+
 //////////////////
 //Configure AXI0//
 //////////////////
-assign soc_ddr_inst1_ARSTN_0 = ~io_systemReset;
+assign soc_ddr_inst1_ARSTN_0 = ~io_systemReset_memoryClk_sync_rst;
 wire [7:0] dma_arid;
 wire [7:0] dma_awid;
 
@@ -342,7 +422,7 @@ wire                                    hw_accel_dma_init_done;
 dma u_dma(
 
     .clk                (io_memoryClk),
-    .reset              (io_systemReset),
+    .reset              (io_systemReset_memoryClk_sync_rst),
     
     .ctrl_clk           (io_peripheralClk),
     .ctrl_reset         (io_peripheralReset),
@@ -423,7 +503,7 @@ dma u_dma(
 
    //32-bit dma channel (S2MM - to DDR)
    .dat2_i_clk          (i_soc_clk),
-   .dat2_i_reset        (io_systemReset),
+   .dat2_i_reset        (io_systemReset_sync_rst),
    .dat2_i_tvalid       (hw_accel_dma_wvalid),
    .dat2_i_tready       (hw_accel_dma_wready),
    .dat2_i_tdata        (hw_accel_dma_wdata),
@@ -433,7 +513,7 @@ dma u_dma(
    
    //32-bit dma channel (MM2S - from DDR)
    .dat3_o_clk          (i_soc_clk),
-   .dat3_o_reset        (io_systemReset),
+   .dat3_o_reset        (io_systemReset_sync_rst),
    .dat3_o_tvalid       (hw_accel_dma_rvalid),
    .dat3_o_tready       (hw_accel_dma_rready),
    .dat3_o_tdata        (hw_accel_dma_rdata),
@@ -480,7 +560,8 @@ assign debug_fifo_status = {28'd0,  debug_dma_hw_accel_out_fifo_overflow,debug_d
 
 
 // AXI for TinyML Accelerator
-localparam AXI_TINYML_DATA_WIDTH = 128;
+localparam AXI_TINYML_DATA_WIDTH =  128;
+localparam NUM_TINYML_CHANNEL    =  4;
 
 wire [7:0]                          axi_tinyml_awid;
 wire [31:0]                         axi_tinyml_awaddr;
@@ -521,7 +602,9 @@ wire                                axi_tinyml_rlast;
 wire                                axi_tinyml_rvalid;
 wire                                axi_tinyml_rready;
 wire                                cpu0_customInstruction_cmd_int;
-
+wire                                cpu1_customInstruction_cmd_int;
+wire                                cpu2_customInstruction_cmd_int;
+wire                                cpu3_customInstruction_cmd_int;
  
 //////////////////////////
 //AXI MASTER <-> TINYML/// 
@@ -572,7 +655,7 @@ hw_accel_wrapper #(
     .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo person detection demo
 ) u_hw_accel_wrapper (
     .clk                                         (i_soc_clk),
-    .rst                                         (io_systemReset),
+    .rst                                         (io_systemReset_sync_rst),
     .hw_accel_dma_init_done                      (hw_accel_dma_init_done),
     
     .dma_rready                                  (hw_accel_dma_rready),
@@ -597,31 +680,36 @@ hw_accel_wrapper #(
 
 
 assign userInterruptD = cpu0_customInstruction_cmd_int;
+assign userInterruptF = cpu1_customInstruction_cmd_int;
+assign userInterruptG = cpu2_customInstruction_cmd_int;
+assign userInterruptH = cpu3_customInstruction_cmd_int;
 assign userInterruptE = |dma_interrupts;
 
 
 /////////////////////////////////////
 // TinyML Acclerator Custom instruction
 ///////////////////////////////////////
-tinyml_top  #(
-    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
-) u_tinyml_top (
+tinyml_accelerator_channels#(
+  .AXI_DW_M             (AXI_TINYML_DATA_WIDTH)
+) u_tinyml_top_channels(
 
    .clk              (io_cfuClk),
-   .reset            (io_cfuReset),
-   
-   .cmd_valid        (cpu0_customInstruction_cmd_valid),
-   .cmd_ready        (cpu0_customInstruction_cmd_ready),
-   .cmd_function_id  (cpu0_customInstruction_function_id),
-   .cmd_inputs_0     (cpu0_customInstruction_inputs_0),
-   .cmd_inputs_1     (cpu0_customInstruction_inputs_1),
-   .cmd_int          (cpu0_customInstruction_cmd_int),
-   .rsp_valid        (cpu0_customInstruction_rsp_valid),
-   .rsp_ready        (cpu0_customInstruction_rsp_ready),
-   .rsp_outputs_0    (cpu0_customInstruction_outputs_0),
+   .reset            (io_cfuReset_sync_rst),
+   //Command Interface
+   .cmd_valid        ({cpu3_customInstruction_cmd_valid		,cpu2_customInstruction_cmd_valid		,cpu1_customInstruction_cmd_valid		,cpu0_customInstruction_cmd_valid		}),
+   .cmd_ready        ({cpu3_customInstruction_cmd_ready		,cpu2_customInstruction_cmd_ready		,cpu1_customInstruction_cmd_ready		,cpu0_customInstruction_cmd_ready		}),
+   .cmd_function_id  ({cpu3_customInstruction_function_id	,cpu2_customInstruction_function_id		,cpu1_customInstruction_function_id		,cpu0_customInstruction_function_id		}),
+   .cmd_inputs_0     ({cpu3_customInstruction_inputs_0		,cpu2_customInstruction_inputs_0		,cpu1_customInstruction_inputs_0		,cpu0_customInstruction_inputs_0		}),
+   .cmd_inputs_1     ({cpu3_customInstruction_inputs_1		,cpu2_customInstruction_inputs_1		,cpu1_customInstruction_inputs_1		,cpu0_customInstruction_inputs_1		}),
+   .cmd_int          ({cpu3_customInstruction_cmd_int		,cpu2_customInstruction_cmd_int			,cpu1_customInstruction_cmd_int			,cpu0_customInstruction_cmd_int			}),
+   //Response Interface
+   .rsp_valid        ({cpu3_customInstruction_rsp_valid		,cpu2_customInstruction_rsp_valid		,cpu1_customInstruction_rsp_valid		,cpu0_customInstruction_rsp_valid		}),
+   .rsp_ready        ({cpu3_customInstruction_rsp_ready		,cpu2_customInstruction_rsp_ready		,cpu1_customInstruction_rsp_ready		,cpu0_customInstruction_rsp_ready		}),
+   .rsp_outputs_0    ({cpu3_customInstruction_outputs_0		,cpu2_customInstruction_outputs_0		,cpu1_customInstruction_outputs_0		,cpu0_customInstruction_outputs_0		}),
+ 
 
    .m_axi_clk        (io_ddrMasters_0_clk),
-   .m_axi_rstn       (!io_ddrMasters_0_reset),
+   .m_axi_rstn       (io_ddrMasters_0_sync_rstn),
    .m_axi_awvalid    (axi_tinyml_awvalid),
    .m_axi_awaddr     (axi_tinyml_awaddr),
    .m_axi_awlen      (axi_tinyml_awlen),

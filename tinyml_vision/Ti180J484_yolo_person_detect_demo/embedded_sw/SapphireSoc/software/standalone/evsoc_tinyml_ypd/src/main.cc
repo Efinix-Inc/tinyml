@@ -409,7 +409,10 @@ void init() {
    /***********************************************************TFLITE-MICRO TINYML*******************************************************/
 
    MicroPrintf("TinyML Setup...");
+   u32 hartId = csr_read(mhartid);
    tinyml_init();
+   init_accel(hartId);
+   print_accel(hartId);
    MicroPrintf("Done\n\r");
 }
 

@@ -84,7 +84,7 @@ void tinyml_init() {
 	static tflite::MicroInterpreter static_interpreter(model, *op_resolver,
 			tensor_arena, kTensorArenaSize,
 			error_reporter, nullptr); //Without profiler
-//			error_reporter, &prof); //With profiler
+	//			error_reporter, &prof); //With profiler
 	interpreter = &static_interpreter;
 	prof.setInterpreter(interpreter);
 	prof.setDump(false);
@@ -152,7 +152,7 @@ void landmark_output(int enable_printing) {
 					} else {
 						MicroPrintf(",\n\r");
 					}
-			}
+				}
 				MicroPrintf(";\n\r");
 			}
 		} else if (i == 1) {
@@ -176,16 +176,18 @@ void landmark_output(int enable_printing) {
 }
 
 extern "C" void main() {
-	
-   //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
-   u32 hartId = csr_read(mhartid);
-   // Create 500KB arena size
+
+	//Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
+	u32 hartId = csr_read(mhartid);
+	// Create 500KB arena size
 	arena[hartId] = arena_create(500000);
 
 	MicroPrintf("\t--Hello Efinix TinyML--\n\r");
 
 	MicroPrintf("TinyML Setup...");
 	tinyml_init();
+	init_accel(hartId);
+	print_accel(hartId);
 	MicroPrintf("Done\n\n\r");
 
 	TfLiteStatus invoke_status;
@@ -195,7 +197,7 @@ extern "C" void main() {
 
 	//Interrupt Initialization
 	IntcInitialize();
-	
+
 	/*************************************************************RUN INFERENCE*************************************************************/
 
 	//Test image data
@@ -242,10 +244,10 @@ extern "C" void main() {
 			"NOTE: processing_time (second) = timestamp_clock_cycle/SYSTEM_CLINT_HZ\n\r");
 	ms = timerDiff_2_3 / (SYSTEM_CLINT_HZ / 1000);
 	MicroPrintf("Inference time (output layer): %ums\n\r", ms);
-	MicroPrintf("Hello world complete\n\r");   
-	
+	MicroPrintf("Hello world complete\n\r");
+
 	//Clear memory allocation
 	arena_clear(arena[hartId]);
- 
+
 	ops_unload();
 }

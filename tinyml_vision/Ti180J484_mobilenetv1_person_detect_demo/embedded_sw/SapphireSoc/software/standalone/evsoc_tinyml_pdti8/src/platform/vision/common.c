@@ -44,7 +44,7 @@ void assert(int cond){
 //    print_hex_digit(byte >> 4);
 //    print_hex_digit(byte & 0x0F);
 //}
-//
+
 //void print_hex(u32 val, u32 digits)
 //{
 //	for (int i = (4*digits)-4; i >= 0; i -= 4)

@@ -1,11 +1,10 @@
-#include "../../platform/interrupt/intc.h"
-
 #include <stdint.h>
 #include "riscv.h"
 #include "plic.h"
 #include "bsp.h"
 #include "platform/tinyml/ops/ops_api.h"
 
+#include "../../platform/interrupt/intc.h"
 /********************************* Variable Instantiation ********************/
 
 //For DMA interrupt
@@ -21,16 +20,6 @@ void trap_entry();
 void trigger_next_display_dma();
 void trigger_next_cam_dma();
 
-
-
-#include <stdint.h>
-#include "riscv.h"
-#include "plic.h"
-#include "bsp.h"
-#include "platform/tinyml/ops/ops_api.h"
-
-#include "../../platform/interrupt/intc.h"
-/********************************* Variable Instantiation ********************/
 
 
 /********************************* Function **********************************/

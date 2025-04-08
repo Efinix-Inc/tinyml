@@ -19,28 +19,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 ///////////////////////////////////////////////////////////////////////////////////
-`include "defines.v"
+`include "tinyml_core0_define.v"
+
 module tinyml_top #(
-   parameter AXI_DW                          = `AXI_DW, 
-   parameter ADD_MODE                        = `ADD_MODE,
-   parameter MIN_MAX_MODE                    = `MIN_MAX_MODE,
-   parameter MUL_MODE                        = `MUL_MODE,
-   parameter FC_MODE                         = `FC_MODE,
-   parameter LR_MODE                         = `LR_MODE,
-   parameter TINYML_CACHE                    = `TINYML_CACHE,
-   parameter CACHE_DEPTH                     = `CACHE_DEPTH,
+   parameter AXI_DW                          = `TML_C0_AXI_DW, 
+   parameter ADD_MODE                        = `TML_C0_ADD_MODE,
+   parameter MIN_MAX_MODE                    = `TML_C0_MIN_MAX_MODE,
+   parameter MUL_MODE                        = `TML_C0_MUL_MODE,
+   parameter FC_MODE                         = `TML_C0_FC_MODE,
+   parameter LR_MODE                         = `TML_C0_LR_MODE,
+   parameter TINYML_CACHE                    = `TML_C0_TINYML_CACHE,
+   parameter CACHE_DEPTH                     = `TML_C0_CACHE_DEPTH,
    //Convolution & Depthwise Convolution OP Parameter          
-   parameter CONV_DEPTHW_MODE                = `CONV_DEPTHW_MODE,    
-   parameter CONV_DEPTHW_LITE_PARALLEL       = `CONV_DEPTHW_LITE_PARALLEL,        
-   parameter CONV_DEPTHW_LITE_AW             = `CONV_DEPTHW_LITE_AW,        
-   parameter CONV_DEPTHW_STD_IN_PARALLEL     = `CONV_DEPTHW_STD_IN_PARALLEL,        
-   parameter CONV_DEPTHW_STD_OUT_PARALLEL    = `CONV_DEPTHW_STD_OUT_PARALLEL,
-   parameter CONV_DEPTHW_STD_OUT_CH_FIFO_A   = `CONV_DEPTHW_STD_OUT_CH_FIFO_A,
-   parameter CONV_DEPTHW_STD_FILTER_FIFO_A   = `CONV_DEPTHW_STD_FILTER_FIFO_A,
-   parameter CONV_DEPTHW_STD_CNT_DTH         = `CONV_DEPTHW_STD_CNT_DTH,
+   parameter CONV_DEPTHW_MODE                = `TML_C0_CONV_DEPTHW_MODE,    
+   parameter CONV_DEPTHW_LITE_PARALLEL       = `TML_C0_CONV_DEPTHW_LITE_PARALLEL,        
+   parameter CONV_DEPTHW_LITE_AW             = `TML_C0_CONV_DEPTHW_LITE_AW,        
+   parameter CONV_DEPTHW_STD_IN_PARALLEL     = `TML_C0_CONV_DEPTHW_STD_IN_PARALLEL,        
+   parameter CONV_DEPTHW_STD_OUT_PARALLEL    = `TML_C0_CONV_DEPTHW_STD_OUT_PARALLEL,
+   parameter CONV_DEPTHW_STD_OUT_CH_FIFO_A   = `TML_C0_CONV_DEPTHW_STD_OUT_CH_FIFO_A,
+   parameter CONV_DEPTHW_STD_FILTER_FIFO_A   = `TML_C0_CONV_DEPTHW_STD_FILTER_FIFO_A,
+   parameter CONV_DEPTHW_STD_CNT_DTH         = `TML_C0_CONV_DEPTHW_STD_CNT_DTH,
    //FC OP Parameter         
-   parameter FC_MAX_IN_NODE                  = `FC_MAX_IN_NODE,  
-   parameter FC_MAX_OUT_NODE                 = `FC_MAX_OUT_NODE   
+   parameter FC_MAX_IN_NODE                  = `TML_C0_FC_MAX_IN_NODE,  
+   parameter FC_MAX_OUT_NODE                 = `TML_C0_FC_MAX_OUT_NODE,
+   parameter ENABLED_ACCELERATOR_CHANNEL     = 4'b0001
   
 ) (
    input                            clk,
@@ -120,7 +122,8 @@ tinyml_accelerator #(
     .CONV_DEPTHW_STD_CNT_DTH        (CONV_DEPTHW_STD_CNT_DTH),
     //FC OP Parameter         
     .FC_MAX_IN_NODE                 (FC_MAX_IN_NODE),  
-    .FC_MAX_OUT_NODE                (FC_MAX_OUT_NODE)   
+    .FC_MAX_OUT_NODE                (FC_MAX_OUT_NODE),
+    .ENABLED_ACCELERATOR_CHANNEL    (ENABLED_ACCELERATOR_CHANNEL)   
 
 ) u_tinyml_accelerator (
    .clk              (clk                       ),

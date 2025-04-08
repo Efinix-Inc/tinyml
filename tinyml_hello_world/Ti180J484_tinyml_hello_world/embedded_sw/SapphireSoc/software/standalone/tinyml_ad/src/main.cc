@@ -124,7 +124,10 @@ void main() {
    TfLiteStatus invoke_status;
 
    MicroPrintf("TinyML Setup...");
+   u32 hartId = csr_read(mhartid);
    tinyml_init();
+   init_accel(hartId);
+   print_accel(hartId);
    MicroPrintf("Done\n\r");
 
    //For timestamp

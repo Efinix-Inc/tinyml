@@ -19,7 +19,6 @@
 #if __cplusplus
 extern "C" {
 #endif
-
 void init_mem_content(volatile uint32_t mem_array [], int32_t num_words);
 void check_mem_content(volatile uint32_t mem_array [], int32_t num_words);
 //void print_hex_64(uint64_t val, uint32_t digits);
@@ -38,8 +37,8 @@ u32 UartGetDec(void);
 
 void mipi_i2c_init(void);
 void hdmi_i2c_init(void);
-
 #if __cplusplus
 }
 #endif
+
 #endif /* SRC_COMMON_H_ */

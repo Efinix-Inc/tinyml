@@ -19,16 +19,32 @@ from lib.resource_lib import ResourceUtil
 logo_path = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())),"docs/efinix-logo")
 
 params = {
+    "CPU CONFIG": {
+        'type': 'l',
+        'val': "SINGLE CORE",
+        'combo':["SINGLE CORE","MULTICORE"],
+        'exclude_setting':True,
+        'visible': True,
+        'children' : {
+                "CPU ID": {
+                'type': 'l',
+                'val': "0",
+                'combo':["0","1","2","3"],
+                'require': "MULTICORE",
+                'visible': True,
+                'exclude_setting':True,
+            }
+        }
+    },
     "SYSTEM" : {
         'type': 'dd',
         'visible' : True,
         'val': True,
-        'children' : {   
+        'children' : {      
                 "AXI_DW": {
                 'type': 'l',
                 'val': "128",
                 'combo':["32","64","128","256","512"],
-                'SW':True,
                 'visible': True,
             }
         }
@@ -38,7 +54,6 @@ params = {
         'combo':["STANDARD", "LITE", "DISABLE"],
         'val': "STANDARD",
         'visible': True,
-        'SW': True,
         'res': True,        
         'children': {
             "CONV_DEPTHW_STD_IN_PARALLEL": {
@@ -84,8 +99,7 @@ params = {
                 'type': 'n',
                 'val': 4,
                 'min' : 1,
-                'max' : 128,
-                'SW': True,
+                'max' : 8,
                 'visible': True,
                 'require': "LITE"
             },
@@ -99,7 +113,6 @@ params = {
     },    
     "ADD_MODE": {
         'type': 'l',
-        'SW': True,
         'combo':["STANDARD", "LITE", "DISABLE"],
         'res': True,
         'val': "STANDARD",
@@ -107,7 +120,6 @@ params = {
     },
     "LR_MODE": {
         'type': 'l',
-        'SW': True,
         'combo':["STANDARD", "DISABLE"],
         'res': True,
         'val': "STANDARD",
@@ -119,7 +131,6 @@ params = {
         'combo':["STANDARD","LITE", "DISABLE"],
         'val': "STANDARD",
         'visible': True,
-        'SW': True,
         'res': True,
         'children': {
             "FC_MAX_IN_NODE": {
@@ -137,7 +148,6 @@ params = {
         }
     },
     "MUL_MODE": {
-        'SW': True,
         'type': 'l',
         'combo':["STANDARD","LITE", "DISABLE"],
         'val': "STANDARD",
@@ -145,7 +155,6 @@ params = {
         'visible': True
     },
     "MIN_MAX_MODE": {
-        'SW': True,
         'type': 'l',
         'combo':["STANDARD","LITE", "DISABLE"],
         'val': "STANDARD",
@@ -156,7 +165,6 @@ params = {
         'type': 'l',
         'visible' : True,
         'combo' : ["ENABLE","DISABLE"],
-        'SW'    : True,
         'val': "DISABLE",
         'res': True,
         'children' : {   
@@ -165,7 +173,6 @@ params = {
                     'val': "512",
                     'combo':["512", "1024", "2048", "4096", "8192", "16384"],
                     'visible': True,
-                    'SW': True,
                     'require': "ENABLE"
                 }
             }
@@ -320,6 +327,8 @@ class Widget(QWidget):
                         self.modify_cache_param()
                     if(p == "TINYML_CACHE"):
                         self.modify_cache_param()
+                    if(p == "CPU CONFIG"):
+                        self.check_cpu_param(p2)
                     self.check_cache_enable(p2)
                     self.res_utilization()
                     if not 'children' in val:
@@ -351,8 +360,12 @@ class Widget(QWidget):
                    mval['val'] = int(text)
                    self.res_utilization()
                 line.textChanged.connect(partial(slot, val))
-            self.modify_in_out_parallel_param(p2,activate=1)
+        #Only start calculating the in out parallel based on AXI DW once all param is mapped
+        if(p2.get("CONV_DEPTHW_STD_IN_PARALLEL")):
+            self.modify_in_out_parallel_param(p2,activate = 1)
+            
 
+                
 
 
     def res_utilization(self):
@@ -385,6 +398,14 @@ class Widget(QWidget):
                 total_res[e] = total_res[e] + common_res[e]
             self.append_row("COMMON",common_res)
         self.append_row("TINYML_ACCELERATOR",total_res,bold_font=True)
+
+    def check_cpu_param(self,params_list):
+        cpu_config = params_list.get("CPU CONFIG")["val"]
+        if "SINGLE CORE" in cpu_config:
+            cpuid_val=params_list.get("CPU ID")['qval']
+            cpuid_val.setCurrentIndex(cpuid_val.findText("0"))
+            
+
  
     def check_cache_enable(self,params_list):
         count_standard=0
@@ -448,67 +469,34 @@ class Widget(QWidget):
     def dump_params(self, mparams):
         vout = ""
         def iter(p):
+            cpuid = int(p2.get("CPU ID")["val"])
             vout = ""
             cout = ""
             dout = ""
             for i in p:
                 val = p[i]
-                if val['type'] == 'n':
-                    vout += '`define %s\t%d\n' % (i, val['val'])
-                    if 'SW' in val:
-                        cout += 'int %s=%d;\n' % (i.lower(), val['val'])
-                        dout += 'extern int %s;\n' %(i.lower())
-                if val['type'] == 'l':
+                if val['type'] == 'n' and 'exclude_setting' not in val:
+                    vout += '`define TML_C%d_%s\t%d\n' % (cpuid,i, val['val'])
+                if val['type'] == 'l' and 'exclude_setting' not in val:
                     if(val['val'].isnumeric()):
-                        vout += '`define %s\t%d\n' % (i, int(val['val']))
+                        vout += '`define TML_C%d_%s\t%d\n' % (cpuid,i, int(val['val']))
                     else:
-                        vout += '`define %s\t"%s"\n' % (i, val['val'])
-                    if 'SW' in val:
-                        if val['val'] in mode_selection:
-                            cout += 'int %s=%d;\n' % (i.lower(), mode_selection[val['val']])
-                            dout += 'extern int %s;\n' %(i.lower())
-                        else:
-                            if(val['val'].isnumeric()):
-                                cout += 'int %s=%d;\n' % (i.lower(), int(val['val']))
-                                dout += 'extern int %s;\n' %(i.lower())
-                            else:
-                                cout += 'char %s[]="%s";\n' % (i.lower(), val['val'])
-                                dout += 'extern char %s[];\n' %(i.lower())
+                        vout += '`define TML_C%d_%s\t"%s"\n' % (cpuid,i, val['val'])
                 if 'children' in val:
-                    v, c ,d= iter(val['children'])
-                    cout += c
+                    v= iter(val['children'])
                     vout += v
-                    dout += d
-            return vout, cout , dout
+            return vout
 
-        vout, cout, dout = iter(mparams)
+        vout = iter(mparams)
 
         #For profiling
-        prof_dout = 'extern const char* layer_mode;\n'
-        prof_cout = 'const char* layer_mode="";\n'
-        axi_db_w_dout = 'extern int axi_db_w;\n'
-        axi_db_w_cout = 'int axi_db_w=axi_dw/8;\n'
-        cache_mode_dout = 'extern int cache_mode;\n'
-        cache_mode_cout = f'int cache_mode={self.get_cache_mode()};\n'
-        dout = '#ifndef _TINYML_PARAMS_H\n#define _TINYML_PARAMS_H\n' + dout + axi_db_w_dout+ cache_mode_dout + prof_dout  + '#endif\n'
-        cout = '#include "define.h"\n' + cout +axi_db_w_cout + cache_mode_cout +prof_cout 
-        vh = os.path.join(self.op_path,"defines.v")
-        ch = os.path.join(self.op_path,"define.cc")
-        dh = os.path.join(self.op_path,"define.h")
+        cpuid = int(p2.get("CPU ID")["val"])
+        vh = os.path.join(self.op_path,f"tinyml_core{cpuid}_define.v")
         vhp = os.path.relpath(vh).replace("\\",'/')
-        chp = os.path.relpath(ch).replace("\\",'/')
-        dhp = os.path.relpath(dh).replace("\\",'/')
         vh = open(vh, "w")
         vh.write(vout)
         vh.close()
         #self.E.append(vout)
-        ch = open(ch, "w")
-        ch.write(cout)
-        ch.close()
-        #self.E.append(cout)
-        dh = open(dh, "w")
-        dh.write(dout)
-        dh.close()
         self.E.setFontWeight(QFont.Bold)
         self.E.append("Hardware Definition File")   
         self.E.setFontWeight(QFont.Normal)     
@@ -517,13 +505,6 @@ class Widget(QWidget):
         self.E.setFontWeight(QFont.Bold)
         self.E.append("End File Generation")  
         self.E.append("\n")      
-        self.E.append("Software Definition File")
-        self.E.setFontWeight(QFont.Normal)             
-        self.E.append("Generated software definition file : %s  ..." % chp)
-        self.E.append("Generated software definition file : %s  ..." % dhp)
-        self.E.append("Include the file under : embedded_sw/SapphireSoC/software/standalone/<application_name>/src/model")
-        self.E.setFontWeight(QFont.Bold)             
-        self.E.append("End File Generation")  
         self.E.append("\n")      
         self.E.setFontWeight(QFont.Normal)             
 
@@ -717,6 +698,8 @@ class Widget(QWidget):
     
     def create_op_folder(self,path,delete_file=True):
         base = os.path.basename(self.model_file).replace('.tflite', "")
+        cpuid = int(p2.get("CPU ID")["val"])
+        base = f"{base}_core{cpuid}"
         output_file = os.path.join(path,'output')
         output_file = os.path.join(output_file,base)
         if os.path.exists(output_file):
@@ -761,9 +744,15 @@ class Widget(QWidget):
             #For OUT_PARALLEL
             #Limit to 16 for current config
             curr_conv_depthw_par_out = params_list.get("CONV_DEPTHW_STD_OUT_PARALLEL")
+            conv_depthw_std_parallel_out_max = int(curr_axi_dw/32)  if int(curr_axi_dw/32) < 16 else 16
+
             if(curr_conv_depthw_par_out):
+                if(curr_conv_depthw_par_out['val']>conv_depthw_std_parallel_out_max):
+                    curr_conv_depthw_par_out['val'] = int(conv_depthw_std_parallel_out_max)
+
                 curr_conv_depthw_par_out['qval'].setMinimum(int(1))
-                curr_conv_depthw_par_out['qval'].setMaximum(int(16))
+                curr_conv_depthw_par_out['qval'].setMaximum(conv_depthw_std_parallel_out_max)
+                curr_conv_depthw_par_out['qval'].setValue(int(curr_conv_depthw_par_out['val']))
                 curr_conv_depthw_par_out['qval'].stepBy = custom_step_by.__get__(curr_conv_depthw_par_out['qval'])
         if(activate==1):
             self.activate_in_parallel_modify=True

@@ -3,13 +3,13 @@
         "-o",
         "EfxSapphireHpSoc_slb",
         "--base_path",
-        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_hello_world/Ti375C529_tinyml_hello_world/ip",
+        "/home/jjho/work/feb_release/Ti375C529_demo_multicore/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_hard_soc",
-            "version": "1.15"
+            "version": "1.17"
         }
     ],
     "conf": {
@@ -36,11 +36,11 @@
         "DDR_PIN_NAME": "\"soc_ddr_inst1\"",
         "INTF_AXIM": "1'b1",
         "INTF_CI_0": "1'b1",
-        "INTF_CI_1": "1'b0",
-        "INTF_CI_2": "1'b0",
-        "INTF_CI_3": "1'b0",
+        "INTF_CI_1": "1'b1",
+        "INTF_CI_2": "1'b1",
+        "INTF_CI_3": "1'b1",
         "INTF_JTAG_TYPE": "0",
-        "INTF_UINTR": "5",
+        "INTF_UINTR": "8",
         "PERI_SPI_0": "1'b1",
         "PERI_SPI_1": "1'b0",
         "PERI_SPI_2": "1'b0",
@@ -53,6 +53,8 @@
         "PERI_APB_0": "1'b1",
         "PERI_APB_1": "1'b1",
         "PERI_APB_2": "1'b0",
+        "PERI_APB_3": "1'b0",
+        "PERI_APB_4": "1'b0",
         "PERI_GEN": "1'b1",
         "PERI_UART_0": "1'b1",
         "PERI_UART_1": "1'b0",
@@ -62,6 +64,8 @@
         "PERI_APB_0_SIZE": "65536",
         "PERI_APB_1_SIZE": "4096",
         "PERI_APB_2_SIZE": "4096",
+        "PERI_APB_3_SIZE": "4096",
+        "PERI_APB_4_SIZE": "4096",
         "PERI_FREQ": "148",
         "APP_OVERWRITE": "1'b1",
         "APP_OVERWRITE_PATH": "\"ref_files/bootloader_32MB/efx_hard_soc/bootloader.hex\"",
@@ -113,15 +117,15 @@
     "output": {
         "external_script_Peripheral_Generator": [],
         "external_source_source": [
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v",
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v",
             "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_define.vh",
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd",
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v"
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v",
+            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd"
         ],
         "external_script_PT_Configuration": [],
         "external_script_Peripheral_Post_Script": [],
         "external_script_Embedded_SW": []
     },
     "sw_version": "2024.2.294",
-    "generated_date": "2024-12-23T01:51:23.349174+00:00"
+    "generated_date": "2025-02-21T05:36:13.447373+00:00"
 }

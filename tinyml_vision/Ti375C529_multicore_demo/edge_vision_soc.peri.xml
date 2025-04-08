@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti375C529" version="2024.2.294.3.14" db_version="20242999" last_change_date="Fri Feb 21 14:43:58 2025" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti375C529" version="2024.2.294.3.14" db_version="20242999" last_change_date="Tue Mar 25 15:35:22 2025" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="2A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="2A_MODE_SEL"/>
@@ -14,9 +14,9 @@
             <efxpt:iobank name="BR0" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BR0_MODE_SEL"/>
             <efxpt:iobank name="BR3_BR4" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="BR3_BR4_MODE_SEL"/>
             <efxpt:iobank name="TL1_TL5" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TL1_TL5_MODE_SEL"/>
-            <efxpt:iobank name="TR0" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR0_MODE_SEL"/>
-            <efxpt:iobank name="TR1" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR1_MODE_SEL"/>
-            <efxpt:iobank name="TR2" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR2_MODE_SEL"/>
+            <efxpt:iobank name="TR0" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR0_MODE_SEL"/>
+            <efxpt:iobank name="TR1" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR1_MODE_SEL"/>
+            <efxpt:iobank name="TR2" iostd="3.3 V LVCMOS" is_dyn_voltage="false" mode_sel_name="TR2_MODE_SEL"/>
         </efxpt:iobank_info>
         <efxpt:ctrl_info>
             <efxpt:ctrl name="cfg" ctrl_def="CONFIG_CTRL0" clock_name="" is_clk_invert="false" cbsel_bus_name="cfg_CBSEL" config_ctrl_name="cfg_CONFIG" ena_capture_name="cfg_ENA" error_status_name="cfg_ERROR" um_signal_status_name="cfg_USR_STATUS" is_remote_update_enable="false" is_user_mode_enable="false">
@@ -331,7 +331,7 @@
                     <efxpt:param name="SWALLOWING_DIV" value="9" value_type="int"/>
                 </efxpt:gen_param>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="io_ddrMasters_0_clk" number="3" out_divider="23" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
+            <efxpt:comp_output_clock name="io_ddrMasters_0_clk" number="3" out_divider="17" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
                 <efxpt:gen_param/>
             </efxpt:comp_output_clock>

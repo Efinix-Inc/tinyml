@@ -129,7 +129,10 @@ extern "C" void main() {
    int8_t no_person_score;
 
    MicroPrintf("TinyML Setup...");
+   u32 hartId = csr_read(mhartid);
    tinyml_init();
+   init_accel(hartId);
+   print_accel(hartId);
    MicroPrintf("Done\n\r");
 
    //For timestamp

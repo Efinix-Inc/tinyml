@@ -1154,9 +1154,9 @@ hw_accel_wrapper #(
 ///////////////////////////////////////
 // TinyML Accelerator Custom instruction
 ///////////////////////////////////////
-tinyml_top  #(
-    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
-) u_tinyml_top (
+tinyml_accelerator_channels#(
+  .AXI_DW_M             (AXI_TINYML_DATA_WIDTH)
+) u_tinyml_top_channels(
 
    .clk              (i_soc_clk),
    .reset            (io_systemReset),

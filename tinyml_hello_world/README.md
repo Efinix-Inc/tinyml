@@ -4,8 +4,20 @@ Efinix TinyML Hello World design is targeted for running AI inference on static 
 
 TinyML Hello World design is composed of Efinix Sapphire RISC-V SoC, DMA controller, Efinix TinyML Accelerator, pre-defined accelerator socket, and reserved interface for optional user-defined accelerator.
 
-<img src="../docs/tinyml_hello_world_top_level.png "/>
 
+
+
+<br />
+
+
+## Single Core Design
+
+- The single-core design executes a single model on one core, requiring fewer hardware resources because only one TinyML Accelerator module is instantiated on the FPGA fabric.
+- Single-core design examples are available and supported on the Ti60F225 (Sapphire SoC), and Ti180J484 (Sapphire SoC).
+
+<br />
+
+<img src="../docs/tinyml_hello_world_top_level.png "/>
 
 <br />
 
@@ -17,8 +29,32 @@ List of static inference examples:
 5. MediaPipe Face Landmark Detection (*tinyml_fl*) - A pre-trained Tensorflow model obtained using MediaPipe architecture to perform face landmark detection.
 6. Deep AutoEncoder Anomaly Detection (*tinyml_ad*) - Trained with Tensorflow framework using Deep AutoEncoder architecture in detecting anomalies in machine operating sounds
 
+Refer to the *model_zoo* directory for more details on the related model training and quantization.
 
-> Refer to the *model_zoo* directory for more details on the related model training and quantization.
+<br />
+
+## Multi Cores Design
+
+- The multi-core design enables the concurrent execution of multiple models across several cores. This approach requires more hardware resources than a single-core design, as it instantiates multiple TinyML Accelerator modules.
+- Currently, the multi-core design is officially supported only on our Ti375C529 Development Board, which is optimized to harness the full power of our Sapphire High-Performance SoC. Although the design is compatible with our multi-core Sapphire SoC, users will need to manually port it to support multi-core configurations.
+
+<img src="../docs/tinyml_hello_world_top_level_multicore.jpg " width="1200" alt="TinyML Hello World Top Level Multicore"/>
+
+<br />
+
+List of static inference examples:
+1. Multi-model inference (*tinyml_mc_multi_model
+*)
+   - Enables simultaneous execution of multiple models within a single application.
+   - Leverages all four cores of the High-Performance Sapphire SoC to accelerate detection processing.
+   - Core 0: Yolo Person Detection 
+      - Trained with Tensorflow using Yolo architecture to perform person detection
+   - Core 1: MediaPipe Face Landmark Detection
+      - A pre-trained Tensorflow model using Mediapipe architecture to perform face landmark detection
+   - Core 2: MobilenetV1 Person Detection
+      - Trained with Tensorflow using MobilenetV1 architecture to perform human presence detection.
+   - Core 3: Image Classification
+      - Trained with Tensorflow using ResNet architecture to perform classification (CIFAR10 - 10 classes).
 
 <br />
 
@@ -66,5 +102,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.3.14
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.4.15
 - [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.0.1

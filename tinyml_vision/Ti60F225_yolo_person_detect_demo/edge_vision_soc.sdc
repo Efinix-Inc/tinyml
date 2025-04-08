@@ -1,7 +1,7 @@
 
 # Efinity Interface Designer SDC
-# Version: 2024.2.288
-# Date: 2024-11-04 11:26
+# Version: 2024.2.294.3.14
+# Date: 2025-03-19 17:50
 
 # Copyright (C) 2013 - 2024 Efinix Inc. All rights reserved.
 
@@ -11,7 +11,7 @@
 
 # PLL Constraints
 #################
-create_clock -period 10.000 -name i_hbramClk_fb [get_ports {i_hbramClk_fb}]
+create_clock -period 40.000 -name i_hbramClk_fb [get_ports {i_hbramClk_fb}]
 create_clock -waveform {1.250 3.750} -period 5.000 -name i_hbramClk90 [get_ports {i_hbramClk90}]
 create_clock -period 5.000 -name i_hbramClk_cal [get_ports {i_hbramClk_cal}]
 create_clock -period 5.000 -name i_hbramClk [get_ports {i_hbramClk}]
@@ -19,10 +19,10 @@ create_clock -period 10.000 -name i_mipi_clk [get_ports {i_mipi_clk}]
 create_clock -waveform {1.000 2.000} -period 2.000 -name i_mipi_txc_sclk [get_ports {i_mipi_txc_sclk}]
 create_clock -waveform {0.500 1.500} -period 2.000 -name i_mipi_txd_sclk [get_ports {i_mipi_txd_sclk}]
 create_clock -period 8.000 -name i_mipi_tx_pclk [get_ports {i_mipi_tx_pclk}]
-create_clock -period 39.996 -name i_fb_clk [get_ports {i_fb_clk}]
+create_clock -period 40.000 -name i_fb_clk [get_ports {i_fb_clk}]
 create_clock -period 3.333 -name i_systemClk [get_ports {i_systemClk}]
-create_clock -period 15.998 -name i_sysclk_div_2 [get_ports {i_sysclk_div_2}]
-create_clock -period 9.999 -name i_mipi_rx_pclk [get_ports {i_mipi_rx_pclk}]
+create_clock -period 16.000 -name i_sysclk_div_2 [get_ports {i_sysclk_div_2}]
+create_clock -period 10.000 -name i_mipi_rx_pclk [get_ports {i_mipi_rx_pclk}]
 create_clock -period 100 -name jtag_inst1_TCK [get_ports {jtag_inst1_TCK}]
 create_clock -period 8.00 -name i_cam_ck_CLKOUT_0 [get_ports {i_cam_ck_CLKOUT_0}]
 

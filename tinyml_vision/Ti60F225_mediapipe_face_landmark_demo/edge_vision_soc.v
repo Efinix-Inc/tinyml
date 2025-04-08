@@ -1114,9 +1114,9 @@ assign userInterruptA = cpu_customInstruction_cmd_int;
 assign userInterruptB = |dma_interrupts;
 
 //Custom instruction
-tinyml_top #(
-    .AXI_DW          (AXI_TINYML_DATA_WIDTH)
-) u_tinyml_top (
+tinyml_accelerator_channels#(
+  .AXI_DW_M             (AXI_TINYML_DATA_WIDTH)
+) u_tinyml_top_channels(
    .clk              (i_systemClk),
    .reset            (io_systemReset),
    .cmd_valid        (cpu_customInstruction_cmd_valid),

@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 #include "intc.h"
+
+#define TOTAL_CORE 4
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -46,7 +49,7 @@ static void __attribute__((constructor(101))) __##a##_load() { \
 	op->priv = t; \
 	op->next = 0; \
 }
-extern int global_intr_id;
+extern int global_intr_id[TOTAL_CORE];
 
 #ifdef __cplusplus
 }

@@ -8,7 +8,8 @@
 - [How to compile AI inference software app with different optimization?](#how-to-compile-ai-inference-software-app-with-different-optimization)
 - [Where are AI training and quantization scripts located?](#where-are-ai-training-and-quantization-scripts-located)
 - [How to make use of outputs generated from model zoo training and quantization flow for inference purposes?](#how-to-make-use-of-outputs-generated-from-model-zoo-training-and-quantization-flow-for-inference-purposes)
-- [How to run inference with or without Efinix TinyML accelerator?](#how-to-run-inference-with-or-without-efinix-tinyml-accelerator)
+- [How to selectively turn on or off particular layer accelerators?](#how-to-selectively-turn-on-or-off-particular-layer-accelerators)
+- [How do accelerators work in a multi core design?](#how-do-accelerators-work-in-a-multi-core-design)
 - [How to perform profiling of an AI model running on RISC-V?](#how-to-perform-profiling-of-an-ai-model-running-on-risc-v)
 - [How to boot a complete TinyML design from flash?](#how-to-boot-a-complete-tinyml-design-from-flash)
 - [How to modify Efinix Vision TinyML demo designs to use Raspberry Pi Camera v3 instead of Raspberry Pi Camera v2?](#how-to-modify-efinix-vision-tinyml-demo-designs-to-use-raspberry-pi-camera-v3-instead-of-raspberry-pi-camera-v2)
@@ -46,7 +47,12 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   │    ├── ip
 │   │    ├── ref_files
 │   │    └── source
-│   └── Ti180J484_tinyml_hello_world
+│   ├── Ti180J484_tinyml_hello_world
+│   │    ├── embedded_sw
+│   │    ├── ip
+│   │    ├── ref_files
+│   │    └── source
+│   └── Ti375C529_tinyml_hello_world
 │       ├── embedded_sw
 │       ├── ip
 │       ├── ref_files
@@ -82,12 +88,7 @@ The directory structure of Efinix TinyML repo is depicted below:
 │   │   ├── ip
 │   │   ├── ref_files
 │   │   └── source
-│   ├── Ti375C529_mediapipe_face_landmark_demo
-│   │   ├── embedded_sw
-│   │   ├── ip
-│   │   ├── ref_files
-│   │   └── source
-│   └── Ti375C529_yolo_person_detect_demo
+│   └── Ti375C529_multicore_demo
 │       ├── embedded_sw
 │       ├── ip
 │       ├── ref_files
@@ -172,7 +173,7 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
  | RISC-V SoC                    |   -   | 6832  | 687  | 6033  | 43         | 4   |
  | DMA Controller                |   -   | 4448  | 530  | 5960  | 34         | 0   |
  | HyperRAM Controller Core      |   -   | 1202  | 299  | 2139  | 25         | 0   |
- | CSI-2 RX Controller Core      |   -   | 932   | 161  | 1916  | 15         | 0   |
+ | CSI​-2 RX Controller Core    |   -   | 932   | 161  | 1916  | 15         | 0   |
  | DSI TX Controller Core        |   -   | 1901  | 368  | 3621  | 25         | 0   |
  | Camera                        |   -   | 777   | 892  | 640   | 11         | 0   |
  | Display                       |   -   | 338   | 173  | 375   | 8          | 0   |
@@ -200,7 +201,7 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
  | Person Detection Demo (Total) | 146760 | 67686  | 21737 | 95286 | 626        | 181 |
  | RISC-V SoC                    |   -    | 11993  | 747   | 7841  | 87         | 4   |
  | DMA Controller                |   -    | 8697   | 1104  | 15246 | 65         | 0   |
- | CSI-2 RX Controller Core      |   -    | 704    | 126   | 1392  | 17         | 0   |
+ | CSI​-2 RX Controller Core      |   -    | 704    | 126   | 1392  | 17         | 0   |
  | Camera                        |   -    | 743    | 914   | 671   | 11         | 0   |
  | Display                       |   -    | 666    | 224   | 374   | 45         | 0   |
  | Display Annotator             |   -    | 1167   | 41    | 3354  | 4          | 0   |
@@ -209,18 +210,18 @@ Resource utilization tables compiled for Efinix Titanium® Ti60F225 device using
 
   Resource utilization tables compiled for Efinix Titanium® Ti375C529 device using Efinity® IDE v2024.1 are as follows.
 
- **Resource utilization for Edge Vision TinyML Yolo Person Detection Demo design:** 
+ **Resource utilization for Edge Vision TinyML Multicore Demo design:** 
  | Building Block                | XLR    | FF     | ADD   | LUT   | MEM (M10K) | DSP |
  |-------------------------------|:------:|:------:|:-----:|:-----:|:----------:|:---:|
- | Person Detection Demo (Total) | 97291  | 43350  | 21300 | 61411 | 309        | 177 |
- | Sapphire HP SoC Slb           |   -    | 985    | 238   | 1068  | 4          | 4   |
- | DMA Controller                |   -    | 8703   | 1104  | 15424 | 65         | 0   |
- | CSI-2 RX Controller Core      |   -    | 928    | 157   | 1908  | 15         | 0   |
- | Camera                        |   -    | 743    | 914   | 643   | 11         | 0   |
- | Display                       |   -    | 666    | 224   | 380   | 45         | 0   |
- | Display Annotator             |   -    | 1167   | 41    | 3427  | 4          | 0   |
- | Hardware Accelerator*         |   -    | 350    | 169   | 183   | 4          | 2   |
- | Efinix TinyML Accelerator     |   -    | 29529  | 18391 | 37991 | 160        | 175 |
+ | Person Detection Demo (Total) | 219616 | 98704  | 46233 | 135388| 944        | 387 |
+ | Sapphire HP SoC Slb           |   -    | 1024   | 245   | 1058  | 4          | 0   |
+ | DMA Controller                |   -    | 8682   | 1132  | 15160 | 65         | 0   |
+ | CSI​-2 RX Controller Core      |   -    | 928    | 157   | 1889  | 15         | 0   |
+ | Camera                        |   -    | 792    | 918   | 686   | 11         | 0   |
+ | Display                       |   -    | 673    | 224   | 373   | 45         | 0   |
+ | Display Annotator             |   -    | 2507   | 45    | 3633  | 4          | 0   |
+ | Hardware Accelerator*         |   -    | 523    | 199   | 279   | 16         | 4   |
+ | Efinix TinyML Accelerator     |   -    | 83311  | 43251 | 111985| 767        | 382 |
 
 
 \* Hardware accelerator consists of pre-processing blocks for inference. For the MobileNetv1 Person Detection Demo design, the pre-processing blocks are image downscaling, RGB to grayscale conversion, and grayscale pixel packing. Refer to the defines.v for respective design TinyML accelerator configuration
@@ -264,10 +265,31 @@ The model data header is included in the *main.cc* in corresponding *<proj_direc
 ```
 <br />
 
-## How to run inference with or without Efinix TinyML accelerator?
-By default, the provided example/demo designs are with Efinix TinyML accelerator enabled, where it is set in *define.cc* in corresponding *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/model* directory. Note that, define.cc file is generated using [Efinix TinyML Generator](../tools/tinyml_generator/README.md).
+## How to selectively turn on or off particular layer accelerators?
+By default, the provided example/demo designs are with Efinix TinyML accelerator enabled, where it is set in *tinyml_core0_define.v* for single core designs and *tinyml_core0_define.v, tinyml_core1_define.v, tinyml_core2_define.v, and tinyml_core3_define.v* for multi core designs. **define.v* file(s) can be generated using [Efinix TinyML Generator](../tools/tinyml_generator/README.md). A read-back mechanism is implemented in software to automatically match the hardware accelerator configurations that are set in **define.v*.
 
-To run AI inference using pure software approach, user can make use of [Efinix TinyML Generator](../tools/tinyml_generator/README.md) to disable Efinix TinyML accelerator accordingly. Alternatively, user may set all the *\*_mode* variables in *define.cc* to *0*.
+To selectively turn on or off certain layer accelerators, user can make use of [Efinix TinyML Generator](..tools/tinyml_generator/READ.md) to disable Efinix TinyML accelerator accordingly in hardware. Alternatively, user may selectively set *.***_en* variables to 0 to turn off particular layer accelerators and set *.override_flag* to 1 to overwrite the accelerator settings (software) in *<proj_directory>/embedded_sw/SapphireSoc/software/standalone/<application_name>/src/platform/tinyml/accel_settings.cc*. Below is example of turning off all layer accelerators on core 0 ([0]) in *accel_settings.cc*.
+
+
+```
+       [0] = {.cache_en = 0,
+        .conv_depthw_en = 0,
+        .add_en = 0,
+        .fc_en = 0,
+        .mul_en = 0,
+        .lr_en = 0,
+        .min_max_en = 0,
+        .override_flag = 1},  // Core 0
+```
+
+<br />
+
+## How do accelerators work in a multi-core design?
+
+When running a multi-core design, user must set accelerator configurations for each of the four cores available in the multi-core design through *tinyml_core0_define.v, tinyml_core1_define.v, tinyml_core2_define.v, and tinyml_core3_define.v* design files.
+
+To do so, user must select MULTICORE option for `CPU CORE` parameter and select on which `CPU ID` to deploy the accelerators on, where `CPU ID` corresponds to each of the CPU CORE (0, 1, 2, and 3) available in [Efinix TinyML Generator](..tools/tinyml_generator/READ.md).
+
 
 <br />
 

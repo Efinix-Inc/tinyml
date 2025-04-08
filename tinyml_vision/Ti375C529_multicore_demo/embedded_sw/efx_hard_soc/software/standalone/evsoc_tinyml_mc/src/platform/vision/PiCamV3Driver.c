@@ -276,9 +276,6 @@ void PiCamV3_Init()
 	PiCamV3_OffActuator();
 
 //	PiCamV3_StartStreaming();
-//	PiCamV3_SetExposure(0x150);
-//	PiCamV3_SetExposure(0x320);
-
 
 	uart_writeStr(BSP_UART_TERMINAL, "\n\rDone Camera Init");
 }

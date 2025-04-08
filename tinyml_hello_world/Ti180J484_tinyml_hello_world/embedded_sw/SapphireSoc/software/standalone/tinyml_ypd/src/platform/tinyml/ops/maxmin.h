@@ -2,7 +2,7 @@
 #define MAXMIN_H
 #include "ops_api.h"
 #include "intc.h"
-#include "model/define.h"
+#include "platform/tinyml/accel_settings.h"
 template<typename T, bool Max>
 OP_STATUS_T maxmin_drv(
 		const T *data1,

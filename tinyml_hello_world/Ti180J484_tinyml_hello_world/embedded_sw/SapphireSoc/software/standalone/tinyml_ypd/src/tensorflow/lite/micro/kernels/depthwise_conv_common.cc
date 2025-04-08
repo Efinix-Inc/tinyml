@@ -93,13 +93,13 @@ TfLiteStatus CalculateOpDataDepthwiseConv(
       params.dilation_width_factor, height, width, filter_height, filter_width,
       padding, &out_height, &out_width);
 
-  const TfLiteTensor* input = GetInput(context, node, kConvInputTensor);
+  const TfLiteTensor* input = GetInput(context, node, kDepthwiseConvInputTensor);
   TF_LITE_ENSURE(context, input != nullptr);
-  const TfLiteTensor* filter = GetInput(context, node, kConvWeightsTensor);
+  const TfLiteTensor* filter = GetInput(context, node, kDepthwiseConvWeightsTensor);
   TF_LITE_ENSURE(context, filter != nullptr);
   const TfLiteTensor* bias =
-      GetOptionalInputTensor(context, node, kConvBiasTensor);
-  TfLiteTensor* output = GetOutput(context, node, kConvOutputTensor);
+      GetOptionalInputTensor(context, node, kDepthwiseConvBiasTensor);
+  TfLiteTensor* output = GetOutput(context, node, kDepthwiseConvOutputTensor);
   TF_LITE_ENSURE(context, output != nullptr);
 
   // Note that quantized inference requires that all tensors have their

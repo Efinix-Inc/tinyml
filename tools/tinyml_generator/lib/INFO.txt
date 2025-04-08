@@ -2,4 +2,8 @@
 2. LITE accelerator is a lightweight accelerator with less resource usage. 
 3. STANDARD accelerator is a high performance accelerator with more resource usage.
 4. TinyML cache is an optional feature to speed-up data access of STANDARD mode accelerator.
-5. Resource Estimator estimates resource usage of TinyML accelerator based on configured parameter setting for Efinix Titanium FPGAs. Open .tflite model file to get started.
+5. Supports Single Core and Multi-Core designs
+   - Single Core : Generates a define.v file for a single-channel TinyML accelerator.
+   - Multi-Core : Generates a define.v file for multi-core designs targeting different cores. 
+                  Seperate define.v file must be generated for each target core, ensuring it includes the required model configuration.
+6. Resource Estimator estimates resource usage of TinyML accelerator based on configured parameter setting for Efinix Titanium FPGAs. Open .tflite model file to get started.

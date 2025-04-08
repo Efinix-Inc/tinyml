@@ -103,7 +103,7 @@
         "SW_APP_SIZE": "32764",
         "SW_APP_SIZE_CUSTOM": "427640",
         "SW_STACK_SIZE": "99999999",
-        "SW_STACK_SIZE_CUSTOM": "20480",
+        "SW_STACK_SIZE_CUSTOM": "2048",
         "SW_BOARD": "\"Ti375C529 Development Kit\"",
         "SW_BOARD_CUSTOM": "\"\"",
         "SW_FTDI_TARGET_CH": "1",

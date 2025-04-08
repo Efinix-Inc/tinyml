@@ -416,7 +416,6 @@
 
 //Image Compression Capability Registers – [0x1300-0x1301]	(Read Only)
 #define compression_capability					0x1301	//[0]
-
 #if __cplusplus
 extern "C" {
 #endif
@@ -432,6 +431,7 @@ void PiCam_TestPattern(u8 Enable,u8 mode,u16 X,u16 Y);
 #if __cplusplus
 }
 #endif
+
 
 #endif /* SRC_PICAMDRIVER_H_ */
 

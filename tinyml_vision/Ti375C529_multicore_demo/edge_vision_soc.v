@@ -1191,7 +1191,6 @@ assign userInterruptE = |dma_interrupts;
 ///////////////////////////////////////
 
 tinyml_accelerator_channels#(
-  .NUMBER_OF_CHANNELS   (NUM_TINYML_CHANNEL),
   .AXI_DW_M             (AXI_TINYML_DATA_WIDTH)
 ) u_tinyml_top_channels(
 	.clk             (io_cfuClk),
