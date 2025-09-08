@@ -327,9 +327,15 @@ A complete TinyML design consists of hardware/RTL (FPGA bitstream) and software/
 
 Refer to [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) *Copy a User Binary to Flash (Efinity Programmer)* section for steps to combine FPGA bitstream and user application binary using Efinity Programmer, as well as boot the design from flash. 
 
+The flash address spaces are as follows:
 
-*Note*: The RISC-V application binary address for Ti375C529 Efinix Vision TinyML demo designs is 0x0050_0000.
+| Item                               | Ti60F225/Ti180J484 Flash Address  | Ti375C529 Flash Address    |
+|------------------------------------|:--------------------:|:------------:|
+| Hardware Design                    | 0x0000_0000          | 0x0000_0000  | 
+| `font.hex`                         |   -                  | 0x005F_0000  |
+| RISC-V application binary          | 0x0038_0000          | 0x0060_0000  |
 
+Note: The RISC-V bootloader for Ti375C529 copies 32MB user binary from flash to main memory for execution upon boot-up.
 <br />
 
 
