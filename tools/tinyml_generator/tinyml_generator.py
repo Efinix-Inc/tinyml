@@ -6,9 +6,9 @@ https://www.efinixinc.com/software-license.html
 
 from genericpath import exists
 import sys,math,re,os,subprocess,platform,shutil
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
+from PyQt6.QtWidgets import *
+from PyQt6.QtGui import *
+from PyQt6.QtCore import *
 from functools import partial
 from lib.auto_resizing_text_edit import AutoResizingTextEdit
 import warnings
@@ -161,6 +161,13 @@ params = {
         'res': True,
         'visible': True
     },
+    "RESHAPE_MODE": {
+        'type': 'l',
+        'combo':["STANDARD", "DISABLE"],
+        'val': "STANDARD",
+        'res': True,
+        'visible': True
+    },
     "TINYML_CACHE" : {
         'type': 'l',
         'visible' : True,
@@ -231,7 +238,7 @@ class Widget(QWidget):
         self.datasheet.setModel(sm)
         self.datasheet.setColumnWidth(0,180)
         self.res_model = sm
-        self.datasheet.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.datasheet.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.model_loaded = False
         Rvbox.addWidget(self.datasheet)
         Rvbox.addWidget(E)
@@ -243,7 +250,7 @@ class Widget(QWidget):
         flabel = QLabel("Model File: ")
         self.file = QLineEdit("")
 
-        size_policy = QSizePolicy(0, 1)
+        size_policy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         Bottom = QHBoxLayout()
         open.setSizePolicy(size_policy)
         gen.setSizePolicy(size_policy)
@@ -466,6 +473,48 @@ class Widget(QWidget):
 
 
             
+    # def dump_params(self, mparams):
+    #     vout = ""
+    #     def iter(p):
+    #         cpuid = int(p2.get("CPU ID")["val"])
+    #         vout = ""
+    #         cout = ""
+    #         dout = ""
+    #         for i in p:
+    #             val = p[i]
+    #             if val['type'] == 'n' and 'exclude_setting' not in val:
+    #                 vout += '`define TML_C%d_%s\t%d\n' % (cpuid,i, val['val'])
+    #             if val['type'] == 'l' and 'exclude_setting' not in val:
+    #                 if(val['val'].isnumeric()):
+    #                     vout += '`define TML_C%d_%s\t%d\n' % (cpuid,i, int(val['val']))
+    #                 else:
+    #                     vout += '`define TML_C%d_%s\t"%s"\n' % (cpuid,i, val['val'])
+    #             if 'children' in val:
+    #                 v= iter(val['children'])
+    #                 vout += v
+    #         return vout
+
+    #     vout = iter(mparams)
+
+    #     #For profiling
+    #     cpuid = int(p2.get("CPU ID")["val"])
+    #     vh = os.path.join(self.op_path,f"tinyml_core{cpuid}_define.v")
+    #     vhp = os.path.relpath(vh).replace("\\",'/')
+    #     vh = open(vh, "w")
+    #     vh.write(vout)
+    #     vh.close()
+    #     #self.E.append(vout)
+    #     self.E.setFontWeight(QFont.Weight.Bold)
+    #     self.E.append("Hardware Definition File")   
+    #     self.E.setFontWeight(QFont.Weight.Normal)     
+    #     self.E.append("Generated hardware definition file : %s..." % vhp)
+    #     self.E.append("Include the file under : source/tinyml")
+    #     self.E.setFontWeight(QFont.Weight.Bold)
+    #     self.E.append("End File Generation")  
+    #     self.E.append("\n")      
+    #     self.E.append("\n")      
+    #     self.E.setFontWeight(QFont.Weight.Normal)   
+
     def dump_params(self, mparams):
         vout = ""
         def iter(p):
@@ -489,6 +538,32 @@ class Widget(QWidget):
 
         vout = iter(mparams)
 
+        # ADD ACCELERATOR DETECTION SUMMARY
+        self.E.setFontWeight(QFont.Weight.Bold)
+        self.E.append("Model Accelerators Summary")
+        self.E.setFontWeight(QFont.Weight.Normal)
+        
+        accelerator_modes = [
+            "CONV_DEPTHW_MODE",
+            "ADD_MODE",
+            "LR_MODE",
+            "FC_MODE",
+            "MUL_MODE",
+            "MIN_MAX_MODE",
+            "RESHAPE_MODE"
+        ]
+        
+        for accel in accelerator_modes:
+            if accel in p2:
+                mode_value = p2.get(accel)['val']
+                accel_name = accel.replace("_MODE", "").replace("_", " ")
+                if mode_value == "DISABLE":
+                    self.E.append(f"{accel_name}: DISABLED (not in model)")
+                else:
+                    self.E.append(f"{accel_name}: {mode_value}")
+        
+        self.E.append("\n")
+        
         #For profiling
         cpuid = int(p2.get("CPU ID")["val"])
         vh = os.path.join(self.op_path,f"tinyml_core{cpuid}_define.v")
@@ -497,16 +572,16 @@ class Widget(QWidget):
         vh.write(vout)
         vh.close()
         #self.E.append(vout)
-        self.E.setFontWeight(QFont.Bold)
+        self.E.setFontWeight(QFont.Weight.Bold)
         self.E.append("Hardware Definition File")   
-        self.E.setFontWeight(QFont.Normal)     
+        self.E.setFontWeight(QFont.Weight.Normal)     
         self.E.append("Generated hardware definition file : %s..." % vhp)
         self.E.append("Include the file under : source/tinyml")
-        self.E.setFontWeight(QFont.Bold)
+        self.E.setFontWeight(QFont.Weight.Bold)
         self.E.append("End File Generation")  
         self.E.append("\n")      
         self.E.append("\n")      
-        self.E.setFontWeight(QFont.Normal)             
+        self.E.setFontWeight(QFont.Weight.Normal)          
 
     def dump_model(self):
         fd = open(self.model_file, 'rb')
@@ -516,9 +591,9 @@ class Widget(QWidget):
         oc = os.path.join(self.op_path, base + "_model_data.cc")
         ohp = os.path.relpath(oh).replace("\\","/")
         ocp = os.path.relpath(oc).replace("\\","/")
-        self.E.setFontWeight(QFont.Bold)             
+        self.E.setFontWeight(QFont.Weight.Bold)             
         self.E.append("Software Model File") 
-        self.E.setFontWeight(QFont.Normal)                    
+        self.E.setFontWeight(QFont.Weight.Normal)                    
         self.E.append("Generated model file: %s..." % ocp)
 
         dlen = "const unsigned int "+base+"_model_data_len = %d;\n" % len(data)
@@ -540,10 +615,10 @@ class Widget(QWidget):
         oc.close()
         self.E.append("Generated model file: %s... " % ohp)
         self.E.append("Include the file under :" + "embedded_sw/SapphireSoC/software/standalone/<application_name>/src/model")
-        self.E.setFontWeight(QFont.Bold)             
+        self.E.setFontWeight(QFont.Weight.Bold)             
         self.E.append("End File Generation") 
         self.E.append("\n")       
-        self.E.setFontWeight(QFont.Normal)             
+        self.E.setFontWeight(QFont.Weight.Normal)             
         oh = open(oh, "w")
         oh.write("#ifndef _%s_MODEL_DATA_H\n#define _%s_MODEL_DATA_H\n" %(base.upper(), base.upper()))
         oh.write('extern const unsigned int %s_model_data_len;\n' % base)
@@ -689,9 +764,9 @@ class Widget(QWidget):
         
 
     def notes_description(self,editor,note_file):
-        editor.setFontWeight(QFont.Bold)
+        editor.setFontWeight(QFont.Weight.Bold)
         editor.append("NOTES:")
-        editor.setFontWeight(QFont.Normal)
+        editor.setFontWeight(QFont.Weight.Normal)
         with open(note_file) as f:
             for note in f:
                 editor.append(note.strip())

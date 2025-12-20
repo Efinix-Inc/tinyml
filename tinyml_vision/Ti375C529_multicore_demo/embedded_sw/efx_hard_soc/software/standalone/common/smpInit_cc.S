@@ -1,4 +1,4 @@
-#include "userDef.h"
+#include "coreDef.h"
 
 .global smpInit
 .type smpInit, %function

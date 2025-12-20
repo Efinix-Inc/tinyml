@@ -1139,7 +1139,8 @@ dma u_dma(
 //HW ACCELERATOR 
 /////////////////
 //For yolo person detection model
-//Scale from FRAME_WIDTH x FRAME_HEIGHT to 96x96 resolution
+//Scale from FRAME_WIDTH x FRAME_HEIGHT to OUT_FRAME_WIDTH X OUT_FRAME_HEIGHT resolution
+//The ratio of FRAME_WIDTH to OUT_FRAME_WIDTH need to be more than or equal to 2
 
 hw_accel_wrapper #(
     .RGB2GRAYSCALE       (RGB2GRAYSCALE),
@@ -1147,7 +1148,7 @@ hw_accel_wrapper #(
     .OUT_FRAME_HEIGHT    (OUT_FRAME_HEIGHT),
     .FRAME_WIDTH         (FRAME_WIDTH),
     .FRAME_HEIGHT        (FRAME_HEIGHT),
-    .DMA_TRANSFER_LENGTH ((96*96*3)/4) //S2MM DMA transfer for yolo person detection demo
+    .DMA_TRANSFER_LENGTH ((OUT_FRAME_WIDTH*OUT_FRAME_HEIGHT*3)/4) //S2MM DMA transfer for yolo person detection demo
 ) u_hw_accel_wrapper (
     .clk                                         (i_soc_clk),
     .rst                                         (io_systemReset),

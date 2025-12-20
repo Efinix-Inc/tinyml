@@ -80,7 +80,7 @@ void tinyml_init() {
    
    //Build an interpreter to run the model
    
-   FullProfiler prof;
+   static FullProfiler prof;
    static tflite::MicroInterpreter static_interpreter(
       model, resolver, tensor_arena, kTensorArenaSize,
       error_reporter, nullptr); //Without profiler

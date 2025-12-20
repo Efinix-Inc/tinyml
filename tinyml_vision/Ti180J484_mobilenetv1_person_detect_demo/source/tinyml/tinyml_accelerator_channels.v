@@ -122,6 +122,7 @@ module tinyml_accelerator_channels#(
     localparam [8*STRING_LENGTH-1:0]    MUL_MODE[0:0]                           = {`TML_C0_MUL_MODE};
     localparam [8*STRING_LENGTH-1:0]    FC_MODE[0:0]                            = {`TML_C0_FC_MODE};
     localparam [8*STRING_LENGTH-1:0]    LR_MODE[0:0]                            = {`TML_C0_LR_MODE};
+    localparam [8*STRING_LENGTH-1:0]    RS_MODE[0:0]                            = {`TML_C0_RS_MODE};
     localparam [8*STRING_LENGTH-1:0]    TINYML_CACHE[0:0]                       = {`TML_C0_TINYML_CACHE};
     localparam int                      CACHE_DEPTH[0:0]                        = {`TML_C0_CACHE_DEPTH};
     localparam [8*STRING_LENGTH-1:0]    CONV_DEPTHW_MODE[0:0]                   = {`TML_C0_CONV_DEPTHW_MODE};
@@ -143,6 +144,7 @@ module tinyml_accelerator_channels#(
     localparam [8*STRING_LENGTH-1:0]    MUL_MODE[1:0]                           = {`TML_C1_MUL_MODE, `TML_C0_MUL_MODE};
     localparam [8*STRING_LENGTH-1:0]    FC_MODE[1:0]                            = {`TML_C1_FC_MODE, `TML_C0_FC_MODE};
     localparam [8*STRING_LENGTH-1:0]    LR_MODE[1:0]                            = {`TML_C1_LR_MODE, `TML_C0_LR_MODE};
+    localparam [8*STRING_LENGTH-1:0]    RS_MODE[1:0]                            = {`TML_C1_RS_MODE, `TML_C0_RS_MODE};
     localparam [8*STRING_LENGTH-1:0]    TINYML_CACHE[1:0]                       = {`TML_C1_TINYML_CACHE, `TML_C0_TINYML_CACHE};
     localparam int                      CACHE_DEPTH[1:0]                        = {`TML_C1_CACHE_DEPTH, `TML_C0_CACHE_DEPTH};
     localparam [8*STRING_LENGTH-1:0]    CONV_DEPTHW_MODE[1:0]                   = {`TML_C1_CONV_DEPTHW_MODE, `TML_C0_CONV_DEPTHW_MODE};
@@ -158,24 +160,25 @@ module tinyml_accelerator_channels#(
 `endif   
  
 `ifdef NUM_TINYML_CHANNEL_3
-    localparam int                          AXI_DW[2:0]                         = {`TML_C2_AXI_DW, `TML_C1_AXI_DW, `TML_C0_AXI_DW};
-        localparam [8*STRING_LENGTH-1:0]    ADD_MODE[2:0]                       = {`TML_C2_ADD_MODE, `TML_C1_ADD_MODE, `TML_C0_ADD_MODE};
-        localparam [8*STRING_LENGTH-1:0]    MIN_MAX_MODE[2:0]                   = {`TML_C2_MIN_MAX_MODE, `TML_C1_MIN_MAX_MODE, `TML_C0_MIN_MAX_MODE};
-        localparam [8*STRING_LENGTH-1:0]    MUL_MODE[2:0]                       = {`TML_C2_MUL_MODE, `TML_C1_MUL_MODE, `TML_C0_MUL_MODE};
-        localparam [8*STRING_LENGTH-1:0]    FC_MODE[2:0]                        = {`TML_C2_FC_MODE, `TML_C1_FC_MODE, `TML_C0_FC_MODE};
-        localparam [8*STRING_LENGTH-1:0]    LR_MODE[2:0]                        = {`TML_C2_LR_MODE, `TML_C1_LR_MODE, `TML_C0_LR_MODE};
-        localparam [8*STRING_LENGTH-1:0]    TINYML_CACHE[2:0]                   = {`TML_C2_TINYML_CACHE, `TML_C1_TINYML_CACHE, `TML_C0_TINYML_CACHE};
-        localparam int                      CACHE_DEPTH[2:0]                    = {`TML_C2_CACHE_DEPTH, `TML_C1_CACHE_DEPTH, `TML_C0_CACHE_DEPTH};
-        localparam [8*STRING_LENGTH-1:0]    CONV_DEPTHW_MODE[2:0]               = {`TML_C2_CONV_DEPTHW_MODE, `TML_C1_CONV_DEPTHW_MODE, `TML_C0_CONV_DEPTHW_MODE};
-        localparam int                      CONV_DEPTHW_LITE_PARALLEL[2:0]      = {`TML_C2_CONV_DEPTHW_LITE_PARALLEL, `TML_C1_CONV_DEPTHW_LITE_PARALLEL, `TML_C0_CONV_DEPTHW_LITE_PARALLEL};
-        localparam int                      CONV_DEPTHW_LITE_AW[2:0]            = {`TML_C2_CONV_DEPTHW_LITE_AW, `TML_C1_CONV_DEPTHW_LITE_AW, `TML_C0_CONV_DEPTHW_LITE_AW};
-        localparam int                      CONV_DEPTHW_STD_IN_PARALLEL[2:0]    = {`TML_C2_CONV_DEPTHW_STD_IN_PARALLEL, `TML_C1_CONV_DEPTHW_STD_IN_PARALLEL, `TML_C0_CONV_DEPTHW_STD_IN_PARALLEL};
-        localparam int                      CONV_DEPTHW_STD_OUT_PARALLEL[2:0]   = {`TML_C2_CONV_DEPTHW_STD_OUT_PARALLEL, `TML_C1_CONV_DEPTHW_STD_OUT_PARALLEL, `TML_C0_CONV_DEPTHW_STD_OUT_PARALLEL};
-        localparam int                      CONV_DEPTHW_STD_OUT_CH_FIFO_A[2:0]  = {`TML_C2_CONV_DEPTHW_STD_OUT_CH_FIFO_A, `TML_C1_CONV_DEPTHW_STD_OUT_CH_FIFO_A, `TML_C0_CONV_DEPTHW_STD_OUT_CH_FIFO_A};
-        localparam int                      CONV_DEPTHW_STD_FILTER_FIFO_A[2:0]  = {`TML_C2_CONV_DEPTHW_STD_FILTER_FIFO_A, `TML_C1_CONV_DEPTHW_STD_FILTER_FIFO_A, `TML_C0_CONV_DEPTHW_STD_FILTER_FIFO_A};
-        localparam int                      CONV_DEPTHW_STD_CNT_DTH[2:0]        = {`TML_C2_CONV_DEPTHW_STD_CNT_DTH, `TML_C1_CONV_DEPTHW_STD_CNT_DTH, `TML_C0_CONV_DEPTHW_STD_CNT_DTH};
-        localparam int                      FC_MAX_IN_NODE[2:0]                 = {`TML_C2_FC_MAX_IN_NODE, `TML_C1_FC_MAX_IN_NODE, `TML_C0_FC_MAX_IN_NODE};
-        localparam int                      FC_MAX_OUT_NODE[2:0]                = {`TML_C2_FC_MAX_OUT_NODE, `TML_C1_FC_MAX_OUT_NODE, `TML_C0_FC_MAX_OUT_NODE};
+    localparam int                      AXI_DW[2:0]                             = {`TML_C2_AXI_DW, `TML_C1_AXI_DW, `TML_C0_AXI_DW};
+    localparam [8*STRING_LENGTH-1:0]    ADD_MODE[2:0]                           = {`TML_C2_ADD_MODE, `TML_C1_ADD_MODE, `TML_C0_ADD_MODE};
+    localparam [8*STRING_LENGTH-1:0]    MIN_MAX_MODE[2:0]                       = {`TML_C2_MIN_MAX_MODE, `TML_C1_MIN_MAX_MODE, `TML_C0_MIN_MAX_MODE};
+    localparam [8*STRING_LENGTH-1:0]    MUL_MODE[2:0]                           = {`TML_C2_MUL_MODE, `TML_C1_MUL_MODE, `TML_C0_MUL_MODE};
+    localparam [8*STRING_LENGTH-1:0]    FC_MODE[2:0]                            = {`TML_C2_FC_MODE, `TML_C1_FC_MODE, `TML_C0_FC_MODE};
+    localparam [8*STRING_LENGTH-1:0]    LR_MODE[2:0]                            = {`TML_C2_LR_MODE, `TML_C1_LR_MODE, `TML_C0_LR_MODE};
+    localparam [8*STRING_LENGTH-1:0]    RS_MODE[2:0]                            = {`TML_C2_RS_MODE, `TML_C1_RS_MODE, `TML_C0_RS_MODE};
+    localparam [8*STRING_LENGTH-1:0]    TINYML_CACHE[2:0]                       = {`TML_C2_TINYML_CACHE, `TML_C1_TINYML_CACHE, `TML_C0_TINYML_CACHE};
+    localparam int                      CACHE_DEPTH[2:0]                        = {`TML_C2_CACHE_DEPTH, `TML_C1_CACHE_DEPTH, `TML_C0_CACHE_DEPTH};
+    localparam [8*STRING_LENGTH-1:0]    CONV_DEPTHW_MODE[2:0]                   = {`TML_C2_CONV_DEPTHW_MODE, `TML_C1_CONV_DEPTHW_MODE, `TML_C0_CONV_DEPTHW_MODE};
+    localparam int                      CONV_DEPTHW_LITE_PARALLEL[2:0]          = {`TML_C2_CONV_DEPTHW_LITE_PARALLEL, `TML_C1_CONV_DEPTHW_LITE_PARALLEL, `TML_C0_CONV_DEPTHW_LITE_PARALLEL};
+    localparam int                      CONV_DEPTHW_LITE_AW[2:0]                = {`TML_C2_CONV_DEPTHW_LITE_AW, `TML_C1_CONV_DEPTHW_LITE_AW, `TML_C0_CONV_DEPTHW_LITE_AW};
+    localparam int                      CONV_DEPTHW_STD_IN_PARALLEL[2:0]        = {`TML_C2_CONV_DEPTHW_STD_IN_PARALLEL, `TML_C1_CONV_DEPTHW_STD_IN_PARALLEL, `TML_C0_CONV_DEPTHW_STD_IN_PARALLEL};
+    localparam int                      CONV_DEPTHW_STD_OUT_PARALLEL[2:0]       = {`TML_C2_CONV_DEPTHW_STD_OUT_PARALLEL, `TML_C1_CONV_DEPTHW_STD_OUT_PARALLEL, `TML_C0_CONV_DEPTHW_STD_OUT_PARALLEL};
+    localparam int                      CONV_DEPTHW_STD_OUT_CH_FIFO_A[2:0]      = {`TML_C2_CONV_DEPTHW_STD_OUT_CH_FIFO_A, `TML_C1_CONV_DEPTHW_STD_OUT_CH_FIFO_A, `TML_C0_CONV_DEPTHW_STD_OUT_CH_FIFO_A};
+    localparam int                      CONV_DEPTHW_STD_FILTER_FIFO_A[2:0]      = {`TML_C2_CONV_DEPTHW_STD_FILTER_FIFO_A, `TML_C1_CONV_DEPTHW_STD_FILTER_FIFO_A, `TML_C0_CONV_DEPTHW_STD_FILTER_FIFO_A};
+    localparam int                      CONV_DEPTHW_STD_CNT_DTH[2:0]            = {`TML_C2_CONV_DEPTHW_STD_CNT_DTH, `TML_C1_CONV_DEPTHW_STD_CNT_DTH, `TML_C0_CONV_DEPTHW_STD_CNT_DTH};
+    localparam int                      FC_MAX_IN_NODE[2:0]                     = {`TML_C2_FC_MAX_IN_NODE, `TML_C1_FC_MAX_IN_NODE, `TML_C0_FC_MAX_IN_NODE};
+    localparam int                      FC_MAX_OUT_NODE[2:0]                    = {`TML_C2_FC_MAX_OUT_NODE, `TML_C1_FC_MAX_OUT_NODE, `TML_C0_FC_MAX_OUT_NODE};
 `endif
 
 `ifdef NUM_TINYML_CHANNEL_4
@@ -185,6 +188,7 @@ module tinyml_accelerator_channels#(
     localparam [8*STRING_LENGTH-1:0]    MUL_MODE[3:0]                           = {`TML_C3_MUL_MODE, `TML_C2_MUL_MODE, `TML_C1_MUL_MODE, `TML_C0_MUL_MODE};
     localparam [8*STRING_LENGTH-1:0]    FC_MODE[3:0]                            = {`TML_C3_FC_MODE, `TML_C2_FC_MODE, `TML_C1_FC_MODE, `TML_C0_FC_MODE};
     localparam [8*STRING_LENGTH-1:0]    LR_MODE[3:0]                            = {`TML_C3_LR_MODE, `TML_C2_LR_MODE, `TML_C1_LR_MODE, `TML_C0_LR_MODE};
+    localparam [8*STRING_LENGTH-1:0]    RS_MODE[3:0]                            = {`TML_C3_RS_MODE, `TML_C2_RS_MODE, `TML_C1_RS_MODE, `TML_C0_RS_MODE};
     localparam [8*STRING_LENGTH-1:0]    TINYML_CACHE[3:0]                       = {`TML_C3_TINYML_CACHE, `TML_C2_TINYML_CACHE, `TML_C1_TINYML_CACHE, `TML_C0_TINYML_CACHE};
     localparam int                      CACHE_DEPTH[3:0]                        = {`TML_C3_CACHE_DEPTH, `TML_C2_CACHE_DEPTH, `TML_C1_CACHE_DEPTH, `TML_C0_CACHE_DEPTH};
     localparam [8*STRING_LENGTH-1:0]    CONV_DEPTHW_MODE[3:0]                   = {`TML_C3_CONV_DEPTHW_MODE, `TML_C2_CONV_DEPTHW_MODE, `TML_C1_CONV_DEPTHW_MODE, `TML_C0_CONV_DEPTHW_MODE};
@@ -249,6 +253,7 @@ tinyml_top  #(
     .MUL_MODE                       (MUL_MODE[i]),
     .FC_MODE                        (FC_MODE[i]),
     .LR_MODE                        (LR_MODE[i]),
+    .RS_MODE                        (RS_MODE[i]),
     .TINYML_CACHE                   (TINYML_CACHE[i]),
     .CACHE_DEPTH                    (CACHE_DEPTH[i]),
     //Convolution & Depthwise Convolution OP Parameter          

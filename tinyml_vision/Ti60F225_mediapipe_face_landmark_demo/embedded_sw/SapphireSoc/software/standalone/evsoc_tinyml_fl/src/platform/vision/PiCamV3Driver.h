@@ -9,7 +9,7 @@
 #define SRC_PICAMV3DRIVER_H_
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //BSP
+#include "userDef.h" //BSP
 
 #define IMX708_I2C_ADDRESS              0x1A
 

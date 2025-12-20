@@ -1,0 +1,5 @@
+#ifndef _YOLO_PERSON_DETECT_MODEL_DATA_H
+#define _YOLO_PERSON_DETECT_MODEL_DATA_H
+extern const unsigned int yolo_person_detect_model_data_len;
+extern const unsigned char yolo_person_detect_model_data[];
+#endif

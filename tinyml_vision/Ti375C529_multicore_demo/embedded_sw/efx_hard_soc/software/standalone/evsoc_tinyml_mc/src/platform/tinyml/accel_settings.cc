@@ -65,5 +65,5 @@ void print_accel(int32_t hartId) {
 }
 
 //Printing layer mode
-const char* layer_mode="";
+const char* layer_mode[TOTAL_CORE]={"", "", "", ""};
 

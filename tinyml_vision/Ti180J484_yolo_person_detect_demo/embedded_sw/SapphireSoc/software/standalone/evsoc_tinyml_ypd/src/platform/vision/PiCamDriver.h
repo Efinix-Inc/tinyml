@@ -9,7 +9,7 @@
 #define SRC_PICAMDRIVER_H_
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //BSP
+#include "userDef.h" //BSP
 
 
 

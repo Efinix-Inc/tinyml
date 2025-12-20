@@ -13,14 +13,31 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+#include "tensorflow/lite/kernels/internal/reference/reshape.h"
+
 #include "tensorflow/lite/c/builtin_op_data.h"
 #include "tensorflow/lite/c/common.h"
+#include "tensorflow/lite/kernels/internal/common.h"
 #include "tensorflow/lite/kernels/internal/tensor_ctypes.h"
 #include "tensorflow/lite/kernels/kernel_util.h"
 #include "tensorflow/lite/kernels/op_macros.h"
 #include "tensorflow/lite/micro/kernels/kernel_util.h"
 #include "tensorflow/lite/micro/memory_helpers.h"
 #include "tensorflow/lite/micro/micro_utils.h"
+#include "clint.h"
+#include "bsp.h"
+#include "print.h"
+#include "tensorflow/lite/micro/micro_error_reporter.h"
+
+#include "riscv.h"
+#include "vexriscv.h"
+
+#include "cstring"
+#include "../../../../platform/interrupt/intc.h"
+#include "../src/platform/tinyml/ops/cache.h"
+
+
+
 
 namespace tflite {
 namespace ops {
@@ -39,6 +56,7 @@ TfLiteStatus ReshapeOutput(TfLiteContext* context, TfLiteNode* node) {
   // special -1 value, meaning it will be calculated automatically based on the
   // input. Here we calculate what that dimension should be so that the number
   // of output elements in the same as the number of input elements.
+
   int num_input_elements = NumElements(input);
   TfLiteIntArray* output_shape = output->dims;
 
@@ -68,19 +86,30 @@ TfLiteStatus ReshapeOutput(TfLiteContext* context, TfLiteNode* node) {
 
   TF_LITE_ENSURE_TYPES_EQ(context, input->type, output->type);
   TF_LITE_ENSURE_EQ(context, num_input_elements, num_output_elements);
+
   return kTfLiteOk;
 }
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+
   TF_LITE_ENSURE(context, NumInputs(node) == 1 || NumInputs(node) == 2);
   TF_LITE_ENSURE_EQ(context, NumOutputs(node), 1);
   TF_LITE_ENSURE_EQ(context, ReshapeOutput(context, node), kTfLiteOk);
+
   return kTfLiteOk;
 }
 
+void TFLiteOperation(const TfLiteEvalTensor* input_address,
+                     TfLiteEvalTensor* output_address,
+                     int32_t input_bytes   ) {
+tflite::reference_ops::ReshapeFunction(input_address, output_address, input_bytes);
+}
+
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+
   const TfLiteEvalTensor* input =
       tflite::micro::GetEvalInput(context, node, kInputTensor);
+
   TfLiteEvalTensor* output =
       tflite::micro::GetEvalOutput(context, node, kOutputTensor);
 
@@ -90,17 +119,14 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_ENSURE_STATUS(TfLiteTypeSizeOf(input->type, &input_bytes));
   input_bytes *= ElementCount(*input->dims);
 
-  // Do nothing for in-place reshape.
-  if (input->data.raw != output->data.raw) {
-    // Otherwise perform reshape with copy.
-    for (size_t i = 0; i < input_bytes; ++i) {
-      output->data.raw[i] = input->data.raw[i];
-    }
-  }
+  TFLiteOperation(input, output, input_bytes);
+
   return kTfLiteOk;
 }
 
 }  // namespace reshape
+
+
 
 TfLiteRegistration Register_RESHAPE() {
   return {/*init=*/nullptr,

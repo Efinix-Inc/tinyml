@@ -25,7 +25,7 @@
 #endif
 #include "apb3_cam.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+#include "userDef.h"
 extern "C" {
 #include "dmasg.h"
 }
@@ -146,7 +146,7 @@ void tinyml_init() {
 
    //Build an interpreter to run the model
 
-   FullProfiler prof;
+   static FullProfiler prof;
    static tflite::MicroInterpreter static_interpreter(
       model, *op_resolver, tensor_arena, kTensorArenaSize,
       error_reporter, nullptr); //Without profiler

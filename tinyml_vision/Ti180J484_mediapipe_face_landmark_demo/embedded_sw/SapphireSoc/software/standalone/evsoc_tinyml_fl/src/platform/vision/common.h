@@ -11,7 +11,7 @@
 #include "soc.h"
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //From BSP
+#include "userDef.h" //From BSP
 #include "print.h"
 
 #define I2C_CTRL_MIPI	SYSTEM_I2C_0_IO_CTRL

@@ -1,0 +1,5 @@
+#ifndef _MEDIAPIPE_FACE_DETECTION_MODEL_DATA_H
+#define _MEDIAPIPE_FACE_DETECTION_MODEL_DATA_H
+extern const unsigned int mediapipe_face_detection_model_data_len;
+extern const unsigned char mediapipe_face_detection_model_data[];
+#endif

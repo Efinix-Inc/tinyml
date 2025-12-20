@@ -147,10 +147,10 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   // Quantized kernels use an int32 scratch buffer.
   if (input->type == kTfLiteUInt8 || input->type == kTfLiteInt8) {
     TFLITE_DCHECK(context->RequestScratchBufferInArena != nullptr);
-    TFLITE_DCHECK(context->RequestScratchBufferInArena(
+    TF_LITE_ENSURE_STATUS(context->RequestScratchBufferInArena(
                       context,
                       GetTensorShape(output).FlatSize() * sizeof(int32_t),
-                      &(data->scratch_buffer_index)) == kTfLiteOk);
+                      &(data->scratch_buffer_index)));
   }
 
   // All per-channel quantized tensors need valid zero point and scale arrays.

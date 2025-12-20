@@ -13,6 +13,7 @@ struct override_setting override_hw_accel_setting[1] = {
         .mul_en = 1,
         .lr_en = 1,
         .min_max_en = 1,
+		.reshape_en = 1,
         .override_flag = 0}  // Core 0
 };
 
@@ -38,5 +39,4 @@ void print_accel(int32_t hartId) {
 }
 
 //Printing layer mode
-const char* layer_mode="";
-
+const char* layer_mode[1]={""};

@@ -13,9 +13,9 @@
 #include "tensorflow/lite/micro/micro_interpreter.h"
 
 #include "ypd/yolo.h"
+#include "fd/blazeface.h"
+#include "fd/ssd_anchors.h"
 #include "fl/face_landmark_detection.h"
-#include "pdti8/model_settings.h"
-#include "imgc/model_settings.h"
 
 #include "model/arena.h"
 #include "model/tinyml_init.h"
@@ -43,6 +43,14 @@ struct yolo_result : BaseResult {
 	layer* yolo_layers;
 };
 
+struct fd_result : BaseResult {
+	uint64_t fd_layer_time_start;
+	uint64_t fd_layer_time_end;
+	bf_box* boxes;
+	int total_boxes;
+	int total_keypoint_values;
+};
+
 struct fl_result : BaseResult {
 	uint64_t fl_layer_time_start;
 	uint64_t fl_layer_time_end;
@@ -51,17 +59,6 @@ struct fl_result : BaseResult {
 	int total[2];
 };
 
-struct pdt8_result : BaseResult {
-	int8_t person_score;
-	int8_t person_score_percent;
-	int8_t no_person_score;
-	int person;
-};
-
-struct imgc_result : BaseResult {
-	int img_class;
-	int8_t output[kCategoryCountImgc];
-};
 
 /**********************************************************************INVOKE *************************************************************/
 
@@ -118,6 +115,52 @@ void run_yolo_layer(volatile TfliteMicroModel* model, volatile yolo_result * res
 	result->total_boxes = total_boxes;
 }
 
+void run_fd_layer(volatile TfliteMicroModel* model, volatile fd_result * result) {
+	asm("fence r,r");
+	u32 hartIds = csr_read(mhartid);
+    int total_results = 0;
+    int detection_size = 0;
+    for (int i = 0; i < model->total_output_layers; ++i) {
+        if (model->interpreter->output(i)->dims->data[2] > 1) {
+            total_results += model->interpreter->output(i)->dims->data[1];
+            detection_size = model->interpreter->output(i)->dims->data[2];
+        }
+    }
+	float* detections = (float*)arena_calloc(arena[hartIds],total_results * detection_size, sizeof(float));
+    float* scores = (float*)arena_calloc(arena[hartIds],total_results, sizeof(float));
+    int detection_index = 0;
+    int score_index = 0;
+
+	for (int i = 0; i < model->total_output_layers; ++i) {
+		int total = (model->interpreter->output(i)->dims->data[0] * model->interpreter->output(i)->dims->data[1] * model->interpreter->output(i)->dims->data[2]);
+		TfLiteAffineQuantization params =
+				*(static_cast<TfLiteAffineQuantization*>(model->interpreter->output(i)->quantization.params));
+		if (model->interpreter->output(i)->dims->data[2] == detection_size) {
+			for (int j = 0; j < total; ++j){
+                float value = ((float)model->interpreter->output(i)->data.int8[j] - params.zero_point->data[0]) * params.scale->data[0];
+                detections[detection_index + j] = value;
+			}
+			detection_index += total;
+		} else {
+			for (int j = 0; j < total; ++j) {
+                float value = ((float)model->interpreter->output(i)->data.int8[j] - params.zero_point->data[0]) * params.scale->data[0];
+                scores[score_index + j] = value;
+			}
+			score_index += total;
+		}
+	}
+    int total_keypoint_values = detection_size - 4;
+    int total_boxes = 0;
+
+	result->fd_layer_time_start = clint_getTime(BSP_CLINT);
+    result->boxes = bf_perform_inference(
+        detections, scores, (float*)ssd_anchors, &total_boxes, score_index, detection_size, model->input->dims->data[1], model->input->dims->data[2], FD_OBJECTNESS_THRESHOLD,
+        FD_IOU_THRESHOLD
+    );
+	result->fd_layer_time_end = clint_getTime(BSP_CLINT);
+    result->total_keypoint_values = total_keypoint_values;
+	result->total_boxes = total_boxes;
+}
 
 //Face Landmark//
 void run_landmark_output(volatile TfliteMicroModel* model, volatile fl_result * result) {
@@ -211,6 +254,59 @@ void show_output_yolo(volatile yolo_result * result, uint32_t data){
 	}
 }
 
+void show_output_fd(volatile fd_result * result)
+{
+	if (result->status != kTfLiteOk)
+	{
+	     MicroPrintf("Invoke failed on data\n\r");
+	}
+	else
+	{
+		//For timestamp
+		uint64_t timerDiff_0_1,timerDiff_2_3;
+		u32 ms;
+		u32 *v;
+
+		MicroPrintf("\n\r[OUTPUT_0]Boxes:\n\r");
+
+	   for (int i = 0; i < result->total_boxes; ++i) {
+	      print_float(result->boxes[i].x_min);
+	      MicroPrintf(", ");
+	      print_float(result->boxes[i].y_min);
+	      MicroPrintf(", ");
+	      print_float(result->boxes[i].x_max);
+	      MicroPrintf(", ");
+	      print_float(result->boxes[i].y_max);
+	      MicroPrintf(", ");
+	      print_float(result->boxes[i].objectness);
+	      MicroPrintf(", ");
+	   }
+
+		MicroPrintf("\n\r[OUTPUT_1]Keypoints:\n\r");
+	    for (int i = 0; i < result->total_boxes; ++i) {
+	        for (int j = 0; j < result->total_keypoint_values; ++j) {
+	            print_float(result->boxes[i].keypoints[j]);
+	            if (j < result->total_keypoint_values - 1)
+	                MicroPrintf(", ");
+	            else
+	                if (i < result->total_boxes - 1)
+	                    MicroPrintf(", \n\r");
+	        }
+	    }
+
+
+	   MicroPrintf("\n\r[OUTPUT_2]Total_boxes : %d\n\r", result->total_boxes);
+
+		//Front layer inference
+	   print_inference_time("Front Layer",result->time_start,result->time_end);
+
+	   //Last layer inference
+	   print_inference_time("Face Detection Layer",result->fd_layer_time_start,result->fd_layer_time_end);
+
+
+	}
+}
+
 //FL//
 void show_output_fl(volatile TfliteMicroModel* model, uint32_t data, volatile fl_result * result) {
 	if (result->status != kTfLiteOk) {
@@ -218,7 +314,7 @@ void show_output_fl(volatile TfliteMicroModel* model, uint32_t data, volatile fl
 	} else {
 		for (int i = 0; i < model->total_output_layers; ++i) {
 			if(i == 0){
-				MicroPrintf("[Core_1][OUTPUT_%d_0]geoffrey_hinton_tflite_quant_face_landmarks:\n\r", data);
+				MicroPrintf("[Core_2&3][OUTPUT_%d_0]geoffrey_hinton_tflite_quant_face_landmarks:\n\r", data);
 				for (int j = 0; j < result->total[i]; ++j) {
 					print_float(result->face_landmarks[j]);
 
@@ -235,7 +331,7 @@ void show_output_fl(volatile TfliteMicroModel* model, uint32_t data, volatile fl
 				MicroPrintf(";\n\r");
 			}
 			if (i == 1) {
-				MicroPrintf("[Core_1][OUTPUT_%d_1]geoffrey_hinton_tflite_quant_face_flag:\n\r", data);
+				MicroPrintf("[Core_2&3][OUTPUT_%d_1]geoffrey_hinton_tflite_quant_face_flag:\n\r", data);
 				for (int j = 0; j < result->total[i]; ++j) {
 					print_float(result->face_flags[j]);
 					MicroPrintf(";\n\r");
@@ -244,43 +340,10 @@ void show_output_fl(volatile TfliteMicroModel* model, uint32_t data, volatile fl
 		}
 
 		//Front layer inference
-		print_inference_time("[Core_1] Face Landmark Front Layers",result->time_start,result->time_end);
+		print_inference_time("[Core_2&3] Face Landmark Front Layers",result->time_start,result->time_end);
 
 		//Last layer inference
-		print_inference_time("[Core_1] Face Landmark Last Layer",result->fl_layer_time_start,result->fl_layer_time_end);
-	}
-}
-
-
-//PDTI8//
-void show_output_pdt8(volatile TfliteMicroModel* model, uint32_t data, volatile pdt8_result * result) {
-	if (result->status != kTfLiteOk) {
-		MicroPrintf("Invoke failed on data\n\r");
-	} else {
-		MicroPrintf("\n\r[Core_2][OUTPUT_%d]Person Detection Inference %d ...\n\r", data, data + 1);
-		char* person_str = "Person";
-		if(result->person == 0){
-			person_str = "No Person";
-		}
-		MicroPrintf("%s Detection Inference ...\n\r",person_str);
-		MicroPrintf("Person Score    : %d,\n\r",result->person_score);
-		MicroPrintf("No Person Score : %d;\n\r", result->no_person_score);
-		MicroPrintf("Person Detection Score (Percentage): %d%%\n\r", result->person_score_percent);
-
-		print_inference_time("[Core_2] Person Detection", result->time_start, result->time_end);
-	}
-}
-
-//IMGC//
-void show_output_imgc(volatile TfliteMicroModel* model, uint32_t data, volatile imgc_result * result) {
-	if (result->status != kTfLiteOk) {
-		MicroPrintf("Invoke failed on data\n\r");
-	} else {
-		MicroPrintf("\n\r[Core_3][OUTPUT_%d]Image Classification Inference %d (%s)...\n\r", data, data + 1, kCategoryLabelsImgc[result->img_class]);
-		for (int i = 0; i < kCategoryCountImgc; ++i)
-			MicroPrintf("%s score: %d,\n\r", kCategoryLabelsImgc[i], result->output[i]);
-		MicroPrintf(";\n\r");
-		print_inference_time("[Core_3] Image Classification", result->time_start, result->time_end);
+		print_inference_time("[Core_2&3] Face Landmark Last Layer",result->fl_layer_time_start,result->fl_layer_time_end);
 	}
 }
 

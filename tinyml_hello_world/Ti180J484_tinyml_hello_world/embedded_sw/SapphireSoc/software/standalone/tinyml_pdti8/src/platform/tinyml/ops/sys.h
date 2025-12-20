@@ -20,6 +20,7 @@ struct hw_setting {
     int32_t mul_mode;
     int32_t lr_mode;
     int32_t min_max_mode;
+    int32_t reshape_mode;
     int32_t conv_depthw_mode_input_cnt;
     int32_t conv_depthw_mode_output_cnt;
     int override_flag;
@@ -35,6 +36,7 @@ struct override_setting {
     int32_t mul_en;
     int32_t lr_en;
     int32_t min_max_en;
+    int32_t reshape_en;
     int override_flag;
 };
 
@@ -50,6 +52,7 @@ int32_t tinyml_accel_get_fc_mode();
 int32_t tinyml_accel_get_mul_mode();
 int32_t tinyml_accel_get_lr_mode();
 int32_t tinyml_accel_get_min_max_mode();
+int32_t tinyml_accel_get_reshape_mode();
 int32_t tinyml_accel_get_accel_count();
 void 	turn_accel_off(hw_setting *hw_setting);
 void 	apply_accel_config(hw_setting *hw_setting, override_setting * override_setting);

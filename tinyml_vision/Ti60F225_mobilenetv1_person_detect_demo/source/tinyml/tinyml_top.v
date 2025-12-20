@@ -28,6 +28,7 @@ module tinyml_top #(
    parameter MUL_MODE                        = `TML_C0_MUL_MODE,
    parameter FC_MODE                         = `TML_C0_FC_MODE,
    parameter LR_MODE                         = `TML_C0_LR_MODE,
+   parameter RS_MODE                         = `TML_C0_RS_MODE,
    parameter TINYML_CACHE                    = `TML_C0_TINYML_CACHE,
    parameter CACHE_DEPTH                     = `TML_C0_CACHE_DEPTH,
    //Convolution & Depthwise Convolution OP Parameter          
@@ -109,6 +110,7 @@ tinyml_accelerator #(
     .MUL_MODE                       (MUL_MODE),
     .FC_MODE                        (FC_MODE),
     .LR_MODE                        (LR_MODE),
+    .RS_MODE                        (RS_MODE),
     .TINYML_CACHE                   (TINYML_CACHE),
     .CACHE_DEPTH                    (CACHE_DEPTH),
     //Convolution & Depthwise Convolution OP Parameter          

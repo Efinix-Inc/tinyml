@@ -4,8 +4,7 @@
 #include "tensorflow/lite/micro/debug_log.h"
 #include "tensorflow/lite/micro/kernels//kernel_util.h"
 #include "tensorflow/lite/micro/micro_error_reporter.h"
-#include "accel_settings.h"
-
+#include "platform/tinyml/accel_settings.h"
 #include "bsp.h"
 
 
@@ -24,7 +23,9 @@ public:
     }
     virtual u64 BeginEvent(const char *ltag) {
         op_tag = ltag;
-        layer_mode="SOFTWARE";
+    	u32 hartId = csr_read(mhartid);
+        layer_mode[hartId]="SOFTWARE";
+        //MicroPrintf("%s ===> ", ltag);
         st = clint_getTime(BSP_CLINT);
         return 0;
     }
@@ -32,7 +33,9 @@ public:
         auto ed = clint_getTime(BSP_CLINT);
         u64 cost = (ed - st)/(SYSTEM_CLINT_HZ/1000UL);
         u32 dcost = (u32)cost;
-        MicroPrintf("%u; %s; %s; %ums\n\r", lid, op_tag,layer_mode, dcost);
+    	u32 hartId = csr_read(mhartid);
+//        if(tag_filter == op_tag)
+        MicroPrintf("%u; %s; %s; %u\n\r", lid, op_tag,layer_mode[hartId], dcost);
 
 
 

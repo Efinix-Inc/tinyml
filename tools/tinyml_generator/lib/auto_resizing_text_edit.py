@@ -26,9 +26,9 @@ SOFTWARE.
 """ A text editor that automatically adjusts its height to the height of the text
     in its document when managed by a layout. """
 
-from PyQt5.QtWidgets import QTextEdit, QSizePolicy
-from PyQt5.QtGui     import QFontMetrics
-from PyQt5.QtCore    import QSize
+from PyQt6.QtWidgets import QTextEdit, QSizePolicy
+from PyQt6.QtGui     import QFontMetrics
+from PyQt6.QtCore    import QSize
 
 class AutoResizingTextEdit(QTextEdit):
     def __init__(self, parent = None):
@@ -39,7 +39,7 @@ class AutoResizingTextEdit(QTextEdit):
         # I still set it to True in size policy just in case - for consistency.
         size_policy = self.sizePolicy()
         size_policy.setHeightForWidth(True)
-        size_policy.setVerticalPolicy(QSizePolicy.Preferred)
+        size_policy.setVerticalPolicy(QSizePolicy.Policy.Preferred)
         self.setSizePolicy(size_policy)
 
         self.textChanged.connect(lambda: self.updateGeometry())

@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/projects/SSE/mfaiz/validation/static_ip/tinyml/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip",
+        "/projects/SSE/izzat/regression_2025/ww53_finalregression/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "3.2.0"
+            "version": "3.3.0"
         }
     ],
     "conf": {
@@ -24,6 +24,7 @@
         "IDE_SEL": "1'b0",
         "RISCV_DEBUG_PRIV": "1'b1",
         "HARD_BREAKPOINT": "0",
+        "CO_DEBUG": "1'b0",
         "SOFT_TAP": "1'b0",
         "TAP_MODE": "1'b0",
         "TAP_COUNT": "0",
@@ -162,19 +163,21 @@
         "BARREL_SHIFTER": "1'b0",
         "REDUCED_CSR": "1'b1",
         "DDRCLK_DOMAIN": "1",
-        "DDR_OPT": "1"
+        "DDR_OPT": "1",
+        "SW_REMOVED": "1'b0"
     },
     "output": {
         "external_script_generator": [],
         "external_source_source": [
-            "SapphireSoc/SapphireSoc.v",
             "SapphireSoc/SapphireSoc_tmpl.vhd",
             "SapphireSoc/SapphireSoc_tmpl.v",
+            "SapphireSoc/SapphireSoc.v",
             "SapphireSoc/SapphireSoc_define.vh"
         ],
         "external_script_script": [],
         "external_script_embedded_sw": []
     },
-    "sw_version": "2024.2.294",
-    "generated_date": "2024-12-31T05:04:07.109153+00:00"
+    "ooc_synthesis": {},
+    "sw_version": "2025.2.288.1.6",
+    "generated_date": "2025-12-20T02:45:17.812138+00:00"
 }

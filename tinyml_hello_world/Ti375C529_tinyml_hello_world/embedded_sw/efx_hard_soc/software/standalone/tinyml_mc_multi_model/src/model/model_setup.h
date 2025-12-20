@@ -11,6 +11,7 @@
 
 #include "tensorflow/lite/micro/micro_error_reporter.h"
 #include "tensorflow/lite/micro/micro_interpreter.h"
+#include "platform/tinyml/profiler.h"
 //#include "tensorflow/lite/micro/micro_mutable_op_resolver.h"
 #include "tensorflow/lite/micro/all_ops_resolver.h"
 #include "bsp.h"
@@ -130,5 +131,7 @@ void assign_model_input(TfliteMicroModel* model, uint8_t* raw_input) {
 	}
 
 }
+
+
 
 #endif /* SRC_MODEL_MODEL_SETUP_H_ */

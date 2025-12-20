@@ -1151,7 +1151,7 @@ hw_accel_stream #(
 );
 
 //For face detection model
-//Scale from FRAME_WIDTH x FRAME_HEIGHT to 96x96 resolution
+//Scale from FRAME_WIDTH x FRAME_HEIGHT to CH1_OUT_FRAME_WIDTH X CH1_OUT_FRAME_HEIGHT resolution
 
 hw_accel_stream #(
     .RGB2GRAYSCALE       (RGB2GRAYSCALE),

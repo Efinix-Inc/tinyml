@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="tinyml_soc" device_def="Ti60F225" location="/projects/SSE/yhlee/compile_2023_2_patch5/p5_6/tinyml_hello_world/Ti60F225_tinyml_hello_world" version="2023.2.307.5.6" db_version="20232999" last_change_date="Thu May 16 14:53:36 2024" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="tinyml_soc" device_def="Ti60F225" version="2025.2.288.1.6" db_version="20252006" last_change_date="Sat Dec 20 11:00:26 2025" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="1A_MODE_SEL"/>
@@ -252,13 +252,13 @@
                 <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="108" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="108" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="9" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="9" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_peripheralClk" number="2" out_divider="27" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_peripheralClk" number="2" out_divider="27" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
             <efxpt:comp_prop/>
@@ -271,16 +271,16 @@
                 <efxpt:pin name="o_hbc_cal_SHIFT" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="o_hbc_cal_SHIFT_SEL" type_name="SHIFT_SEL" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="32" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="32" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="4" is_dyn_phase="false" phase_setting="2" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="4" is_dyn_phase="false" phase_setting="2" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="4" is_dyn_phase="true" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="4" is_dyn_phase="true" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="4" is_dyn_phase="false" phase_setting="0" is_inverted="false">
+            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="4" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
                 <efxpt:gen_pin/>
             </efxpt:comp_output_clock>
             <efxpt:comp_prop/>

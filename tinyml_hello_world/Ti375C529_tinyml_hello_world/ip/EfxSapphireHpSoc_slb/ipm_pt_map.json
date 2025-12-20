@@ -1,0 +1,20 @@
+{
+    "PLL": {},
+    "GPIO": {
+        "UART": [],
+        "SPI": [],
+        "I2C": [],
+        "JTAG": [],
+        "GPIO": []
+    },
+    "SOC": {
+        "SOC_PIN_NAME": {
+            "SOC_PIN_NAME": "qcrv32_inst1"
+        }
+    },
+    "JTAG": {
+        "HARD_JTAG_INST_NAME": {
+            "HARD_JTAG_INST_NAME": "soc_jtag_inst1"
+        }
+    }
+}

@@ -19,7 +19,7 @@ extern struct hw_setting hw_accel_setting[TOTAL_CORE];
 extern struct override_setting override_hw_accel_setting[TOTAL_CORE];
 
 //Profile layer
-extern const char* layer_mode;
+extern const char* layer_mode[TOTAL_CORE];
 
 //Check number of accelerator instantiation
 extern int accel_count;

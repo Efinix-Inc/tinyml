@@ -1,7 +1,7 @@
 
 #include "bsp.h"
 #include "i2c.h"
-#include "i2cDemo.h" //From BSP
+#include "userDef.h" //From BSP
 #include "riscv.h"
 #include "PiCamDriver.h"
 #include "common.h"

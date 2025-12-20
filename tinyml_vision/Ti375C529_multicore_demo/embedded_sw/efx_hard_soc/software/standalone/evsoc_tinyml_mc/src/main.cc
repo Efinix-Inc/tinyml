@@ -25,7 +25,7 @@
 #endif
 #include "apb3_cam.h"
 #include "i2c.h"
-#include "i2cDemo.h"
+#include "userDef.h"
 extern "C" {
 #include "dmasg.h"
 }
@@ -49,7 +49,7 @@ extern "C" {
 #include "platform/tinyml/profiler.h"
 
 //Multicore user def
-#include "userDef.h"
+#include "coreDef.h"
 
 
 //Arena allocation
