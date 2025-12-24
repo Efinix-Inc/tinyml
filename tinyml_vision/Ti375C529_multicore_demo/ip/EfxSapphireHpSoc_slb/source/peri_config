@@ -1,7 +1,0 @@
---PeripheralClock true
---i2c name=system_i2c_0_io,address=0x20000,interruptId=6
---peripheralFrequency 150000000
---uart name=system_uart_0_io,address=0x10000,interruptId=0
---apbSlave name=io_apbSlave_0,address=0x100000,size=65536
---spi name=system_spi_0_io,address=0x30000,interruptId=3,width=8,ssCount=4
---apbSlave name=io_apbSlave_1,address=0x200000,size=4096
