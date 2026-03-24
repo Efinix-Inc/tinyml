@@ -13,6 +13,7 @@ struct override_setting override_hw_accel_setting[TOTAL_CORE] = {
         .mul_en = 1,
         .lr_en = 1,
         .min_max_en = 1,
+		.reshape_en = 1,
 		.override_flag = 0},  // Core 0
 
  [1] = {.cache_en = 1,
@@ -22,6 +23,7 @@ struct override_setting override_hw_accel_setting[TOTAL_CORE] = {
 		.mul_en = 1,
 		.lr_en = 1,
 		.min_max_en = 1,
+		.reshape_en = 1,
 		.override_flag = 0},  // Core 1
 
  [2] = {.cache_en = 1,
@@ -31,6 +33,7 @@ struct override_setting override_hw_accel_setting[TOTAL_CORE] = {
 		.mul_en = 1,
 		.lr_en = 1,
 		.min_max_en = 1,
+		.reshape_en = 1,
 		.override_flag = 0},  // Core 2
 
  [3] = {.cache_en = 1,
@@ -40,6 +43,7 @@ struct override_setting override_hw_accel_setting[TOTAL_CORE] = {
 		.mul_en = 1,
 		.lr_en = 1,
 		.min_max_en = 1,
+		.reshape_en = 1,
 		.override_flag = 0}  // Core 3
 };
 
@@ -66,4 +70,3 @@ void print_accel(int32_t hartId) {
 
 //Printing layer mode
 const char* layer_mode[TOTAL_CORE]={"", "", "", ""};
-

@@ -80,6 +80,8 @@ The generator also supports deployment of accelerators on multiple cores based d
 
 `MIN_MAX_MODE` - Option to accelerate minimum and maximum layer on hardware. Supports Standard and Lite mode.
 
+`RESHAPE_MODE` - Option to accelerate reshape layer on hardware. Supports Standard mode.
+
 `TINYML_CACHE` - Option to enable cache for faster data access by STANDARD mode accelerator.
 
 `CACHE_DEPTH` - Parameterizable TinyML cache size, which may be determined based on available resources and size of targeted AI model.
@@ -99,6 +101,8 @@ The generator also supports deployment of accelerators on multiple cores based d
 - Minimum and Maximum Layer
 
 - Leaky Relu Layer
+
+- Reshape Layer
 
 <br />
 

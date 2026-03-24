@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="edge_vision_soc" description="" last_change="1715857418" sw_version="2023.2.307.5.6" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="edge_vision_soc" description="" last_change="1773028859" sw_version="2025.2.288.3.8" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium"/>
         <efx:device name="Ti180J484"/>
         <efx:timing_model name="C4"/>
     </efx:device_info>
-    <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008">
+    <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008" unified_flow="false">
         <efx:top_module name="edge_vision_soc"/>
         <efx:design_file name="edge_vision_soc.v" version="default" library="default"/>
         <efx:design_file name="source/tinyml/tinyml_defines.v" version="default" library="default"/>
@@ -26,8 +26,9 @@
     </efx:constraint_info>
     <efx:sim_info/>
     <efx:misc_info/>
+    <efx:ooc_info/>
     <efx:ip_info>
-        <efx:ip instance_name="SapphireSoc" path="ip/SapphireSoc/settings.json">
+        <efx:ip instance_name="SapphireSoc" path="ip/SapphireSoc/settings.json" ooc="false">
             <efx:ip_src_file name="SapphireSoc.v"/>
         </efx:ip>
     </efx:ip_info>
@@ -72,17 +73,28 @@
         <efx:param name="mult-auto-pipeline" value="0" value_type="e_option"/>
         <efx:param name="use-logic-for-small-mem" value="64" value_type="e_integer"/>
         <efx:param name="use-logic-for-small-rom" value="64" value_type="e_integer"/>
+        <efx:param name="bram-push-tco-outreg" value="0" value_type="e_option"/>
+        <efx:param name="hdl-loop-limit" value="20000" value_type="e_integer"/>
+        <efx:param name="enable-mark-debug" value="1" value_type="e_option"/>
+        <efx:param name="max-bit-blast-mem-size" value="10240" value_type="e_integer"/>
+        <efx:param name="peri-syn-instantiation" value="0" value_type="e_option"/>
+        <efx:param name="peri-syn-inference" value="0" value_type="e_option"/>
+        <efx:param name="ram-decomp-mode" value="0" value_type="e_option"/>
+        <efx:param name="max_threads" value="-1" value_type="e_integer"/>
+        <efx:param name="suppress_info_msgs" value="off" value_type="e_bool"/>
+        <efx:param name="suppress_warning_msgs" value="off" value_type="e_bool"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
-        <efx:param name="load_delaym" value="on" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
         <efx:param name="seed" value="0" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="beneficial_skew" value="on" value_type="e_option"/>
         <efx:param name="print_critical_path" value="10" value_type="e_integer"/>
+        <efx:param name="suppress_info_msgs" value="off" value_type="e_bool"/>
+        <efx:param name="suppress_warning_msgs" value="off" value_type="e_bool"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
         <efx:param name="mode" value="active" value_type="e_option"/>
@@ -111,7 +123,6 @@
     </efx:debugger>
     <efx:security>
         <efx:param name="randomize_iv_value" value="on" value_type="e_bool"/>
-        <efx:param name="iv_value" value="" value_type="e_string"/>
         <efx:param name="enable_bitstream_encrypt" value="off" value_type="e_bool"/>
         <efx:param name="enable_bitstream_auth" value="off" value_type="e_bool"/>
         <efx:param name="encryption_key_file" value="NONE" value_type="e_string"/>

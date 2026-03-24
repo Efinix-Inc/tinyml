@@ -4,8 +4,8 @@
 # WARNING: Any manual changes made to this file will be lost when generating constraints.
 
 # Efinity Interface Designer SDC
-# Version: 2025.2.288.1.6
-# Date: 2025-12-20 11:00
+# Version: 2025.2.288.3.8
+# Date: 2026-03-10 09:32
 
 # Copyright (C) 2013 - 2025 Efinix Inc. All rights reserved.
 
@@ -27,6 +27,7 @@ create_clock -period 40.000 -name i_hbramClk_fb [get_ports {i_hbramClk_fb}]
 create_clock -waveform {1.250 3.750} -period 5.000 -name i_hbramClk90 [get_ports {i_hbramClk90}]
 create_clock -period 5.000 -name i_hbramClk_cal [get_ports {i_hbramClk_cal}]
 create_clock -period 5.000 -name i_hbramClk [get_ports {i_hbramClk}]
+create_clock -period 100 -name jtag_inst1_TCK [get_ports {jtag_inst1_TCK}]
 create_clock -period 8.00 -name i_cam_ck_CLKOUT_0 [get_ports {i_cam_ck_CLKOUT_0}]
 
 set_clock_groups -exclusive -group {i_mipi_txc_sclk i_mipi_txd_sclk} -group {i_systemClk} -group {i_hbramClk i_hbramClk_cal i_hbramClk90} -group {i_sysclk_div_2} -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK} -group {i_mipi_clk} -group {i_mipi_tx_pclk} -group {i_fb_clk} -group {i_cam_ck_CLKOUT_0}

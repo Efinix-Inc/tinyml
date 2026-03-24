@@ -101,7 +101,7 @@ A GUI-based [Efinix TinyML Generator](tools/tinyml_generator/README.md) is provi
 
 ## Quick Start
 
-For a quick start on Efinix TinyML Platform, pre-built combined hex files (FPGA bitstream + RISC-V application binary) for demo designs are available in the [Release Package](https://github.com/Efinix-Inc/tinyml/releases/latest). Extract **Bitstream.zip** from the release package and navigate to the `quick_start` folder to access the demo hex files.
+For a quick start on Efinix TinyML Platform, combined hex file (FPGA bitstream + RISC-V application binary) for demo design is provided in [quick_start](./quick_start) directory.
 
 List of quick start demo designs:
 
@@ -126,7 +126,7 @@ Bring up quick start demo design on Efinix development kit by following listed s
    - For Ti375C529 development kit,
       - Connect the HDMI daughter card to P1 header.
       - Connect the Raspberry Pi Camera daughter card to P2 header.
-   - The quick start demo design is using Raspberry Pi Camera Module v3 by default.
+   - The quick start demo design is using Rasperry Pi Camera Module v3 by default.
    - For quick start demo design that uses Google Coral Camera (*\<device\>\_coral\_\<architecture\>\_\<application\>\_demo.hex*),
       - Google Coral Camera and Google Coral Camera connector daughter card are required.
       - Connect the Google Coral Camera connector daughter card to P2 header on Titanium Ti60 F225 Development Board, or P1 header on Titanium Ti180 J484 Development Board.

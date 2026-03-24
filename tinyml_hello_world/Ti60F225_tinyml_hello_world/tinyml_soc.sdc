@@ -4,8 +4,8 @@
 # WARNING: Any manual changes made to this file will be lost when generating constraints.
 
 # Efinity Interface Designer SDC
-# Version: 2025.2.288.1.6
-# Date: 2025-12-20 11:00
+# Version: 2025.2.288.3.8
+# Date: 2026-03-09 10:30
 
 # Copyright (C) 2013 - 2025 Efinix Inc. All rights reserved.
 
