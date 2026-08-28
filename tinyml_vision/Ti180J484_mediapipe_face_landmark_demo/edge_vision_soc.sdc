@@ -4,17 +4,17 @@
 # WARNING: Any manual changes made to this file will be lost when generating constraints.
 
 # Efinity Interface Designer SDC
-# Version: 2025.2.288.3.8
-# Date: 2026-03-10 09:37
+# Version: 2026.1.132
+# Date: 2026-06-15 11:02
 
-# Copyright (C) 2013 - 2025 Efinix Inc. All rights reserved.
+# Copyright (C) 2013 - 2026 Efinix Inc. All rights reserved.
 
 # Device: Ti180J484
 # Project: edge_vision_soc
 # Timing Model: C4 (final)
 
 # PLL Constraints
-###################
+###################l
 create_clock -period 6.734 -name i_hdmi_clk_148p5MHz [get_ports {i_hdmi_clk_148p5MHz}]
 create_clock -period 10.000 -name mipi_clk [get_ports {mipi_clk}]
 create_clock -period 10.000 -name i_pixel_clk [get_ports {i_pixel_clk}]

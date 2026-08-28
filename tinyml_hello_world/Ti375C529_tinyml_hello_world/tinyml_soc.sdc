@@ -4,10 +4,10 @@
 # WARNING: Any manual changes made to this file will be lost when generating constraints.
 
 # Efinity Interface Designer SDC
-# Version: 2025.2.288.3.8
-# Date: 2026-03-09 11:42
+# Version: 2026.1.132
+# Date: 2026-06-15 11:14
 
-# Copyright (C) 2013 - 2025 Efinix Inc. All rights reserved.
+# Copyright (C) 2013 - 2026 Efinix Inc. All rights reserved.
 
 # Device: Ti375C529
 # Project: tinyml_soc
