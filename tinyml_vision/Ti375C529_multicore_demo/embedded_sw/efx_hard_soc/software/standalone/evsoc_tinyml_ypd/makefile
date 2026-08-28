@@ -1,4 +1,4 @@
-PROJ_NAME=tinyml_ypd
+PROJ_NAME=evsoc_tinyml_ypd
 STANDALONE = ..
 DEBUG=no
 DEBUG_OG=no
@@ -13,6 +13,7 @@ SRCS = $(wildcard src/*.c) \
        $(wildcard src/*.cpp) \
        $(wildcard src/*.S) \
        $(wildcard src/model/*.cc) \
+        $(wildcard src/model/*/*.cc) \
        $(wildcard src/platform/*/*.cc) \
        $(wildcard src/platform/*/*.c) \
        $(wildcard src/platform/*/*/*.cc) \
@@ -35,7 +36,7 @@ SRCS = $(wildcard src/*.c) \
        ${STANDALONE}/common/trap.S \
 	   $(STANDALONE)/common/syscalls.s
 
-CFLAGS += -DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/platform/interrupt -Isrc/platform/misc -Isrc/platform/tinyml \
+CFLAGS += -DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/platform/interrupt  -Isrc/platform/vision -Isrc/platform/misc -Isrc/platform/tinyml \
 		-Isrc/tensorflow/third_party/flatbuffers/include \
 		-Isrc/tensorflow/third_party/gemmlowp \
 		-Isrc/tensorflow/third_party/ruy \

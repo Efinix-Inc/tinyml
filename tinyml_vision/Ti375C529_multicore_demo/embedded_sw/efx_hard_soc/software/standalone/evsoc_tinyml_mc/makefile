@@ -34,7 +34,8 @@ SRCS = $(wildcard src/*.c) \
        $(wildcard src/tensorflow/lite/schema/*.cc) \
        ${STANDALONE}/common/start.S  \
        ${STANDALONE}/common/smpInit_cc.S \
-       ${STANDALONE}/common/trap.S
+       ${STANDALONE}/common/trap.S \
+	   $(STANDALONE)/common/syscalls.s
 
 CFLAGS += -DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/platform/interrupt  -Isrc/platform/vision -Isrc/platform/misc -Isrc/platform/tinyml \
 		-Isrc/tensorflow/third_party/flatbuffers/include \
@@ -44,7 +45,6 @@ CFLAGS += -DOPTIMIZE_X -funroll-loops -mdiv -I. -Isrc -Isrc/platform -Isrc/platf
 		-fdata-sections \
 		-fno-common \
 		-fomit-frame-pointer \
-		-ffreestanding \
 		-Wsign-compare\
 		-Wdouble-promotion\
 		-Wshadow\
@@ -65,6 +65,7 @@ CXXFLAGS +=-std=c++11 \
 		-fno-rtti \
 		-fno-exceptions \
 		-fno-threadsafe-statics\
+		-fno-use-cxa-atexit  \
 		-fmessage-length=0 
 				 
 include ${STANDALONE}/common/bsp.mk
