@@ -1,11 +1,8 @@
 /* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,20 +11,19 @@ limitations under the License.
 ==============================================================================*/
 #ifndef TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_INTEGER_OPS_DEPTHWISE_CONV_SW_H_
 #define TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_INTEGER_OPS_DEPTHWISE_CONV_SW_H_
-
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "tensorflow/lite/micro/micro_error_reporter.h"
 #include "platform/tinyml/ops/depthwise.h"
 namespace tflite {
 namespace reference_integer_ops {
-static inline void DepthwiseConvPerChannel(
+
+static inline __attribute__((noinline)) void DepthwiseConvPerChannel(
 	const DepthwiseParams& params, const int32_t* output_multiplier,
 	const int32_t* output_shift, const RuntimeShape& input_shape,
 	const int8_t* input_data, const RuntimeShape& filter_shape,
 	const int8_t* filter_data, const RuntimeShape& bias_shape,
 	const int32_t* bias_data, const RuntimeShape& output_shape,
 	int8_t* output_data) {
-
   const int stride_width = params.stride_width;
   const int stride_height = params.stride_height;
   const int dilation_width_factor = params.dilation_width_factor;
@@ -39,12 +35,10 @@ static inline void DepthwiseConvPerChannel(
   const int32_t output_offset = params.output_offset;
   const int32_t output_activation_min = params.quantized_activation_min;
   const int32_t output_activation_max = params.quantized_activation_max;
-
   // Check dimensions of the tensors.
   TFLITE_DCHECK_EQ(input_shape.DimensionsCount(), 4);
   TFLITE_DCHECK_EQ(filter_shape.DimensionsCount(), 4);
   TFLITE_DCHECK_EQ(output_shape.DimensionsCount(), 4);
-
   TFLITE_DCHECK_LE(output_activation_min, output_activation_max);
   const int batches = MatchingDim(input_shape, 0, output_shape, 0);
   const int output_depth = MatchingDim(filter_shape, 3, output_shape, 3);
@@ -57,7 +51,6 @@ static inline void DepthwiseConvPerChannel(
   const int output_width = output_shape.Dims(2);
   TFLITE_DCHECK_EQ(output_depth, input_depth * depth_multiplier);
   TFLITE_DCHECK_EQ(bias_shape.FlatSize(), output_depth);
-
   // tinyml driver
   auto res = depthwise_drv(stride_width, stride_height, dilation_width_factor, dilation_height_factor, pad_width, pad_height, depth_multiplier,
 						   input_offset, output_offset, output_activation_min, output_activation_max, batches,
@@ -67,6 +60,149 @@ static inline void DepthwiseConvPerChannel(
   if(res == OP_OK || res == OP_BYPASS) {
 	  return;
   }
+
+  const int kMaxDepthMultiplier = 32;
+#define DW_EMIT(OC, A)                                                        \
+  do {                                                                        \
+	int32_t a_ = (A);                                                           \
+	if (bias_data) a_ += bias_data[(OC)];                                       \
+	a_ = MultiplyByQuantizedMultiplier(a_, output_multiplier[(OC)],             \
+									   output_shift[(OC)]);                     \
+	a_ += output_offset;                                                        \
+	a_ = std::max(a_, output_activation_min);                                   \
+	a_ = std::min(a_, output_activation_max);                                   \
+	out_px[(OC)] = static_cast<int8_t>(a_);                                     \
+  } while (0)
+  if (depth_multiplier <= kMaxDepthMultiplier) {
+	const int in_row_stride  = input_width * input_depth;
+	const int in_img_stride  = input_height * in_row_stride;
+	const int f_row_stride   = filter_width * output_depth;
+	const int out_row_stride = output_width * output_depth;
+	const int out_img_stride = output_height * out_row_stride;
+	const int in_px_stride   = dilation_width_factor * input_depth;
+	const int in_rw_stride   = dilation_height_factor * in_row_stride;
+
+	for (int batch = 0; batch < batches; ++batch) {
+	  const int8_t* in_batch = input_data + batch * in_img_stride;
+	  int8_t* out_batch = output_data + batch * out_img_stride;
+
+	  for (int out_y = 0; out_y < output_height; ++out_y) {
+		const int in_y_origin = (out_y * stride_height) - pad_height;
+		int8_t* out_row = out_batch + out_y * out_row_stride;
+
+		int fy0 = 0, fy1 = filter_height;
+		while (fy0 < fy1 && in_y_origin + fy0 * dilation_height_factor < 0) ++fy0;
+		while (fy1 > fy0 &&
+			   in_y_origin + (fy1 - 1) * dilation_height_factor >= input_height) --fy1;
+
+		for (int out_x = 0; out_x < output_width; ++out_x) {
+		  const int in_x_origin = (out_x * stride_width) - pad_width;
+		  int8_t* out_px = out_row + out_x * output_depth;
+
+		  int fx0 = 0, fx1 = filter_width;
+		  while (fx0 < fx1 && in_x_origin + fx0 * dilation_width_factor < 0) ++fx0;
+		  while (fx1 > fx0 &&
+				 in_x_origin + (fx1 - 1) * dilation_width_factor >= input_width) --fx1;
+
+		  const int8_t* in_base = in_batch
+			  + (in_y_origin + fy0 * dilation_height_factor) * in_row_stride
+			  + (in_x_origin + fx0 * dilation_width_factor) * input_depth;
+		  const int8_t* f_base = filter_data + fy0 * f_row_stride + fx0 * output_depth;
+
+		  if (depth_multiplier == 1) {
+			for (int in_channel = 0; in_channel < input_depth; ++in_channel) {
+			  int32_t acc = 0;
+			  const int8_t* in_p = in_base + in_channel;
+			  const int8_t* f_p  = f_base  + in_channel;
+			  for (int fy = fy0; fy < fy1;
+				   ++fy, in_p += in_rw_stride, f_p += f_row_stride) {
+				const int8_t* in_q = in_p;
+				const int8_t* f_q  = f_p;
+				for (int fx = fx0; fx < fx1;
+					 ++fx, in_q += in_px_stride, f_q += output_depth) {
+				  acc += (int32_t)(*f_q) * ((int32_t)(*in_q) + input_offset);
+				}
+			  }
+			  if (bias_data) acc += bias_data[in_channel];
+			  acc = MultiplyByQuantizedMultiplier(acc, output_multiplier[in_channel],
+												  output_shift[in_channel]);
+			  acc += output_offset;
+			  acc = std::max(acc, output_activation_min);
+			  acc = std::min(acc, output_activation_max);
+			  out_px[in_channel] = static_cast<int8_t>(acc);
+			}
+		  } else {
+			for (int in_channel = 0; in_channel < input_depth; ++in_channel) {
+			  const int8_t* in_ch = in_base + in_channel;
+			  const int8_t* f_ch  = f_base + in_channel * depth_multiplier;
+			  const int oc_ch = in_channel * depth_multiplier;
+			  int m = 0;
+
+			  for (; m + 4 <= depth_multiplier; m += 4) {
+				int32_t a0 = 0, a1 = 0, a2 = 0, a3 = 0;
+				const int8_t* in_p  = in_ch;
+				const int8_t* f_row = f_ch + m;
+				for (int fy = fy0; fy < fy1;
+					 ++fy, in_p += in_rw_stride, f_row += f_row_stride) {
+				  const int8_t* in_q  = in_p;
+				  const int8_t* f_tap = f_row;
+				  for (int fx = fx0; fx < fx1;
+					   ++fx, in_q += in_px_stride, f_tap += output_depth) {
+					const int32_t b = (int32_t)(*in_q) + input_offset;
+					a0 += (int32_t)f_tap[0] * b;
+					a1 += (int32_t)f_tap[1] * b;
+					a2 += (int32_t)f_tap[2] * b;
+					a3 += (int32_t)f_tap[3] * b;
+				  }
+				}
+				DW_EMIT(oc_ch + m + 0, a0);
+				DW_EMIT(oc_ch + m + 1, a1);
+				DW_EMIT(oc_ch + m + 2, a2);
+				DW_EMIT(oc_ch + m + 3, a3);
+			  }
+
+			  for (; m + 2 <= depth_multiplier; m += 2) {
+				int32_t a0 = 0, a1 = 0;
+				const int8_t* in_p  = in_ch;
+				const int8_t* f_row = f_ch + m;
+				for (int fy = fy0; fy < fy1;
+					 ++fy, in_p += in_rw_stride, f_row += f_row_stride) {
+				  const int8_t* in_q  = in_p;
+				  const int8_t* f_tap = f_row;
+				  for (int fx = fx0; fx < fx1;
+					   ++fx, in_q += in_px_stride, f_tap += output_depth) {
+					const int32_t b = (int32_t)(*in_q) + input_offset;
+					a0 += (int32_t)f_tap[0] * b;
+					a1 += (int32_t)f_tap[1] * b;
+				  }
+				}
+				DW_EMIT(oc_ch + m + 0, a0);
+				DW_EMIT(oc_ch + m + 1, a1);
+			  }
+
+			  for (; m < depth_multiplier; ++m) {
+				int32_t acc = 0;
+				const int8_t* in_p = in_ch;
+				const int8_t* f_p  = f_ch + m;
+				for (int fy = fy0; fy < fy1;
+					 ++fy, in_p += in_rw_stride, f_p += f_row_stride) {
+				  const int8_t* in_q = in_p;
+				  const int8_t* f_q  = f_p;
+				  for (int fx = fx0; fx < fx1;
+					   ++fx, in_q += in_px_stride, f_q += output_depth) {
+					acc += (int32_t)(*f_q) * ((int32_t)(*in_q) + input_offset);
+				  }
+				}
+				DW_EMIT(oc_ch + m, acc);
+			  }
+			}
+		  }
+		}
+	  }
+	}
+	return;
+  }
+#undef DW_EMIT
 
   for (int batch = 0; batch < batches; ++batch) {
 	for (int out_y = 0; out_y < output_height; ++out_y) {
@@ -128,7 +264,6 @@ static inline void DepthwiseConvPerChannel(
 	}
   }
 }
-
 static inline void DepthwiseConvPerChannel(
     const DepthwiseParams& params, const int32_t* output_multiplier,
     const int32_t* output_shift, const RuntimeShape& input_shape,
@@ -146,12 +281,10 @@ static inline void DepthwiseConvPerChannel(
   const int depth_multiplier = params.depth_multiplier;
   const int32_t output_activation_min = params.quantized_activation_min;
   const int32_t output_activation_max = params.quantized_activation_max;
-
   // Check dimensions of the tensors.
   TFLITE_DCHECK_EQ(input_shape.DimensionsCount(), 4);
   TFLITE_DCHECK_EQ(filter_shape.DimensionsCount(), 4);
   TFLITE_DCHECK_EQ(output_shape.DimensionsCount(), 4);
-
   TFLITE_DCHECK_LE(output_activation_min, output_activation_max);
   const int batches = MatchingDim(input_shape, 0, output_shape, 0);
   const int output_depth = MatchingDim(filter_shape, 3, output_shape, 3);
@@ -164,7 +297,6 @@ static inline void DepthwiseConvPerChannel(
   const int output_width = output_shape.Dims(2);
   TFLITE_DCHECK_EQ(output_depth, input_depth * depth_multiplier);
   TFLITE_DCHECK_EQ(bias_shape.FlatSize(), output_depth);
-
   for (int batch = 0; batch < batches; ++batch) {
     for (int out_y = 0; out_y < output_height; ++out_y) {
       for (int out_x = 0; out_x < output_width; ++out_x) {
@@ -214,7 +346,6 @@ static inline void DepthwiseConvPerChannel(
     }
   }
 }
-
 static inline void DepthwiseConvHybridPerChannel(
     const DepthwiseParams& params, float* scaling_factors_ptr,
     const RuntimeShape& input_shape, const int8_t* input_data,
@@ -235,7 +366,6 @@ static inline void DepthwiseConvHybridPerChannel(
   TFLITE_DCHECK_EQ(input_shape.DimensionsCount(), 4);
   TFLITE_DCHECK_EQ(filter_shape.DimensionsCount(), 4);
   TFLITE_DCHECK_EQ(output_shape.DimensionsCount(), 4);
-
   const int batches = MatchingDim(input_shape, 0, output_shape, 0);
   const int output_depth = MatchingDim(filter_shape, 3, output_shape, 3);
   const int input_height = input_shape.Dims(1);
@@ -248,7 +378,6 @@ static inline void DepthwiseConvHybridPerChannel(
   const int bias_depth = bias_shape.FlatSize();
   TFLITE_DCHECK_EQ(output_depth, input_depth * depth_multiplier);
   TFLITE_DCHECK_EQ(bias_depth, output_depth);
-
   for (int batch = 0; batch < batches; ++batch) {
     for (int out_y = 0; out_y < output_height; ++out_y) {
       for (int out_x = 0; out_x < output_width; ++out_x) {
@@ -292,8 +421,6 @@ static inline void DepthwiseConvHybridPerChannel(
     }
   }
 }
-
 }  // namespace reference_integer_ops
 }  // namespace tflite
-
 #endif  // TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_INTEGER_OPS_DEPTHWISE_CONV_SW_H_

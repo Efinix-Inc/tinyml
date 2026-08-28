@@ -1,11 +1,8 @@
 /* Copyright 2017 The TensorFlow Authors. All Rights Reserved.
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,7 +11,6 @@ limitations under the License.
 ==============================================================================*/
 #ifndef TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_MAXIMUM_MINIMUM_H_
 #define TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_MAXIMUM_MINIMUM_H_
-
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "tensorflow/lite/kernels/internal/types.h"
 #include "platform/tinyml/ops/maxmin.h"
@@ -22,6 +18,7 @@ namespace tflite {
 namespace reference_ops {
 
 template <bool Max, typename T, typename Op, int N = 5>
+__attribute__((noinline))
 void MaximumMinimumBroadcastSlow(const RuntimeShape& unextended_input1_shape,
                                  const T* input1_data,
                                  const RuntimeShape& unextended_input2_shape,
@@ -38,13 +35,14 @@ void MaximumMinimumBroadcastSlow(const RuntimeShape& unextended_input1_shape,
 				return;
 		}
 		for (int i = 0; i < flat_size; ++i) {
-			output_data[i] = op(input1_data[i], input2_data[i]);
+			const T x = input1_data[i];
+			const T y = input2_data[i];
+			output_data[i] = Max ? (x > y ? x : y) : (x < y ? x : y);
 		}
   } else {
     TFLITE_DCHECK_LE(unextended_input1_shape.DimensionsCount(), N);
     TFLITE_DCHECK_LE(unextended_input2_shape.DimensionsCount(), N);
     TFLITE_DCHECK_LE(unextended_output_shape.DimensionsCount(), N);
-
     NdArrayDesc<N> desc1;
     NdArrayDesc<N> desc2;
     NdArrayDesc<N> output_desc;
@@ -52,7 +50,6 @@ void MaximumMinimumBroadcastSlow(const RuntimeShape& unextended_input1_shape,
         unextended_input1_shape, unextended_input2_shape, &desc1, &desc2);
     CopyDimsToDesc(RuntimeShape::ExtendedShape(N, unextended_output_shape),
                    &output_desc);
-
     auto maxmin_func = [&](int indexes[N]) {
       output_data[SubscriptToIndex(output_desc, indexes)] =
           op(input1_data[SubscriptToIndex(desc1, indexes)],
@@ -63,5 +60,4 @@ void MaximumMinimumBroadcastSlow(const RuntimeShape& unextended_input1_shape,
 }
 }  // namespace reference_ops
 }  // namespace tflite
-
 #endif  // TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_MAXIMUM_MINIMUM_H_
