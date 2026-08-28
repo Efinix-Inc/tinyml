@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="edge_vision_soc" device_def="Ti375C529" version="2025.2.288.3.8" db_version="20261006" last_change_date="Tue Mar 10 09:45:00 2026" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="edge_vision_soc" device_def="Ti375C529" version="2026.1.132" db_version="20261009" last_change_date="Thu Aug 27 23:00:34 2026" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="2A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="2A_MODE_SEL"/>
@@ -225,13 +225,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="sample_hdmi" number="0" out_divider="124" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -268,13 +268,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="sample" number="0" out_divider="27" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -311,13 +311,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="io_memFbClk" number="0" out_divider="46" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -358,13 +358,13 @@
             <efxpt:gen_pin>
                 <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
+                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_IN" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_DATA_OUT" is_bus="false"/>
                 <efxpt:pin name="" type_name="CFG_SEL" is_bus="false"/>
                 <efxpt:pin name="" type_name="USER_SSC_EN" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="true"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="true"/>
-                <efxpt:pin name="" type_name="CFG_CLK" is_bus="false" is_clk="true" is_clk_invert="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="io_sysFbClk" number="0" out_divider="40" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name="">
                 <efxpt:gen_pin/>
@@ -671,7 +671,7 @@
     </efxpt:ddr_info>
     <efxpt:mipi_dphy_info>
         <efxpt:mipi_dphy name="cam_ck" block_def="GPIOT_PN_11" ops_type="rx">
-            <efxpt:rx_info mode="clock lane" is_reversible="false" delay="0" delay_mode="static" is_fifo="false" conn_type="gclk" clkmux_buf_name="">
+            <efxpt:rx_info mode="clock lane" is_reversible="false" delay="0" delay_mode="static" is_fifo="false" conn_type="gclk" clkmux_buf_name="" dly_clock_name="">
                 <efxpt:gen_pin>
                     <efxpt:pin name="cam_ck_HS_IN" type_name="HS_IN" is_bus="true"/>
                     <efxpt:pin name="cam_ck_LP_P_IN" type_name="LP_P_IN" is_bus="false"/>
@@ -693,7 +693,7 @@
             </efxpt:rx_info>
         </efxpt:mipi_dphy>
         <efxpt:mipi_dphy name="cam_d0" block_def="GPIOT_PN_10" ops_type="rx">
-            <efxpt:rx_info mode="data lane" is_reversible="false" delay="5" delay_mode="static" is_fifo="true" conn_type="gclk" clkmux_buf_name="">
+            <efxpt:rx_info mode="data lane" is_reversible="false" delay="5" delay_mode="static" is_fifo="true" conn_type="gclk" clkmux_buf_name="" dly_clock_name="">
                 <efxpt:gen_pin>
                     <efxpt:pin name="cam_d0_HS_IN" type_name="HS_IN" is_bus="true"/>
                     <efxpt:pin name="cam_d0_LP_P_IN" type_name="LP_P_IN" is_bus="false"/>
@@ -715,7 +715,7 @@
             </efxpt:rx_info>
         </efxpt:mipi_dphy>
         <efxpt:mipi_dphy name="cam_d1" block_def="GPIOT_PN_09" ops_type="rx">
-            <efxpt:rx_info mode="data lane" is_reversible="false" delay="5" delay_mode="static" is_fifo="true" conn_type="gclk" clkmux_buf_name="">
+            <efxpt:rx_info mode="data lane" is_reversible="false" delay="5" delay_mode="static" is_fifo="true" conn_type="gclk" clkmux_buf_name="" dly_clock_name="">
                 <efxpt:gen_pin>
                     <efxpt:pin name="cam_d1_HS_IN" type_name="HS_IN" is_bus="true"/>
                     <efxpt:pin name="cam_d1_LP_P_IN" type_name="LP_P_IN" is_bus="false"/>

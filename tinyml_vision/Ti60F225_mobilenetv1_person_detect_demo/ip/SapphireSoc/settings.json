@@ -3,13 +3,13 @@
         "-o",
         "SapphireSoc",
         "--base_path",
-        "/projects/SSE/izzat/regression_2025/ww53_finalregression/tinyml_hello_world/Ti60F225_tinyml_hello_world/ip",
+        "ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "3.3.0"
+            "version": "3.4.0"
         }
     ],
     "conf": {
@@ -168,16 +168,11 @@
     },
     "output": {
         "external_script_generator": [],
-        "external_source_source": [
-            "SapphireSoc/SapphireSoc_tmpl.vhd",
-            "SapphireSoc/SapphireSoc_tmpl.v",
-            "SapphireSoc/SapphireSoc.v",
-            "SapphireSoc/SapphireSoc_define.vh"
-        ],
+        "external_source_source": [],
         "external_script_script": [],
         "external_script_embedded_sw": []
     },
     "ooc_synthesis": {},
-    "sw_version": "2025.2.288.3.8",
-    "generated_date": "2025-12-20T02:45:17.812138+00:00"
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
 }

@@ -1,11 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright 2024 Efinix.Inc. All Rights Reserved.
-// You may obtain a copy of the license at
-//    https://www.efinixinc.com/software-license.html
-///////////////////////////////////////////////////////////////////////////////////
-
-// Define the picam version. Picam V2 will be the default if PICAM_VERSION is not defined.
-#define PICAM_VERSION 3
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -18,11 +14,9 @@
 #include "print.h"
 #include "clint.h"
 #include "common.h"
-#if PICAM_VERSION == 3
+#include "platform/vision/camera.h"
 #include "PiCamV3Driver.h"
-#else
 #include "PiCamDriver.h"
-#endif
 #include "apb3_cam.h"
 #include "i2c.h"
 #include "userDef.h"
@@ -246,7 +240,7 @@ void trigger_next_cam_dma() {
 }
 
 
-void main() {
+int main() {
 
    //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
    u32 hartId = csr_read(mhartid);
@@ -259,7 +253,7 @@ void main() {
    /************************************************************SETUP PICAM************************************************************/
    u32 rdata;
 
-   MicroPrintf("Camera Setting...");
+   MicroPrintf("Camera Setting...\r\n");
 
    //Assert camera reset
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
@@ -268,23 +262,13 @@ void main() {
    bsp_uDelay(1000*10); //10ms delay
 
    //Camera I2C configuration
-   mipi_i2c_init();
-#if PICAM_VERSION == 3
-   PiCamV3_Init();
+   cam0_init(I2C_CTRL_CAM0);
    
-   //SET camera pre-processing RGB gain value
-   Set_RGBGain(1,5,3,7);
-#else
-   PiCam_init();
-
-   //SET camera pre-processing RGB gain value
-   Set_RGBGain(1,5,3,4);
-#endif
-
    //Indicate camera configuration done
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000003);
-   MicroPrintf("Done\n\r");
 
+   bsp_printf("Camera Init...Done\r\n");
+   
    /*************************************************************SETUP DMA*************************************************************/
 
    MicroPrintf("DMA Setting...");
@@ -361,10 +345,6 @@ void main() {
    uint64_t timerCmp0, timerCmp1, timerDiff_0_1;
    uint64_t timerCmp2, timerCmp3, timerDiff_2_3;
    u32 ms;
-
-#if PICAM_VERSION == 3
-   PiCamV3_StartStreaming();
-#endif
 
    while(1) {
 

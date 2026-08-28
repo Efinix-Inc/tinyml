@@ -1,9 +1,7 @@
-/*
- * intc.h
- *
- *  Created on: 2022年4月2日
- *      Author: jefferyl
- */
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 #ifndef SRC_INTC_H_
 #define SRC_INTC_H_

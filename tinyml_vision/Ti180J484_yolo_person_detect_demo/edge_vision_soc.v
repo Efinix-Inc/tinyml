@@ -1,24 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2022 github-efx
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 // To enable RiscV soft tap connection (for debugger).
 //`define SOFT_TAP 1
@@ -588,6 +571,9 @@ assign w_sysclk_arstn   = ~w_sysclk_arst;
 assign i_arstn = (w_sysclk_arstn & (!mipi_rstn)) ;
 assign o_cam_rstn = i_arstn;
 
+assign ddr_inst_ARADDR_1[32] = 1'b0;
+assign ddr_inst_AWADDR_1[32] = 1'b0;
+
 /////////////
 //ddr4 config
 /////////////
@@ -613,12 +599,10 @@ common_ti180_ddr_config (
     
     //DDR AXI 1 Read Address Channel
     .ddr_inst_ARST_1            (ddr_inst_ARST_1),
-    .ddr_inst_ARADDR_1          (ddr_inst_ARADDR_1),
     .ddr_inst_ARID_1            (ddr_inst_ARID_1),
     .ddr_inst_ARAPCMD_1         (ddr_inst_ARAPCMD_1),
     
     //DDR AXI 1 Wrtie Address Channel
-    .ddr_inst_AWADDR_1          (ddr_inst_AWADDR_1),
     .ddr_inst_AWID_1            (ddr_inst_AWID_1),
     .ddr_inst_AWAPCMD_1         (ddr_inst_AWAPCMD_1),
     .ddr_inst_AWALLSTRB_1       (ddr_inst_AWALLSTRB_1),

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="tinyml_soc" device_def="Ti60F225" version="2025.2.288.3.8" db_version="20252999" last_change_date="Tue Mar 10 09:30:59 2026" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="tinyml_soc" device_def="Ti60F225" version="2026.1.132" db_version="20261009" last_change_date="Mon Jun 15 11:31:12 2026" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A" iostd="1.8 V LVCMOS" is_dyn_voltage="false" mode_sel_name="1A_MODE_SEL"/>
@@ -22,8 +22,8 @@
             <efxpt:seu name="seu" block_def="CONFIG_SEU0" mode="auto" ena_detect="false" wait_interval="0">
                 <efxpt:gen_pin>
                     <efxpt:pin name="seu_START" type_name="START" is_bus="false"/>
-                    <efxpt:pin name="seu_RST" type_name="RST" is_bus="false"/>
                     <efxpt:pin name="seu_INJECT_ERROR" type_name="INJECT_ERROR" is_bus="false"/>
+                    <efxpt:pin name="seu_RST" type_name="RST" is_bus="false"/>
                     <efxpt:pin name="seu_CONFIG" type_name="CONFIG" is_bus="false"/>
                     <efxpt:pin name="seu_ERROR" type_name="ERROR" is_bus="false"/>
                     <efxpt:pin name="seu_DONE" type_name="DONE" is_bus="false"/>
@@ -33,50 +33,50 @@
         <efxpt:clkmux_info>
             <efxpt:clkmux name="CLKMUX_B" block_def="CLKMUX_B" is_mux_bot0_dyn="false" is_mux_bot7_dyn="false">
                 <efxpt:gen_pin>
-                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
-                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="ROUTE0" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE1" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE2" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE3" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_OUT_0" is_bus="false"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_SEL_0" is_bus="true"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
                 </efxpt:gen_pin>
             </efxpt:clkmux>
             <efxpt:clkmux name="CLKMUX_L" block_def="CLKMUX_L" is_mux_bot0_dyn="false" is_mux_bot7_dyn="false">
                 <efxpt:gen_pin>
-                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
-                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="ROUTE0" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE1" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE2" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE3" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_OUT_0" is_bus="false"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_SEL_0" is_bus="true"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
                 </efxpt:gen_pin>
             </efxpt:clkmux>
             <efxpt:clkmux name="CLKMUX_R" block_def="CLKMUX_R" is_mux_bot0_dyn="false" is_mux_bot7_dyn="false">
                 <efxpt:gen_pin>
-                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
-                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="ROUTE0" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE1" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE2" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE3" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_OUT_0" is_bus="false"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_SEL_0" is_bus="true"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
                 </efxpt:gen_pin>
             </efxpt:clkmux>
             <efxpt:clkmux name="CLKMUX_T" block_def="CLKMUX_T" is_mux_bot0_dyn="false" is_mux_bot7_dyn="false">
                 <efxpt:gen_pin>
-                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
-                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="ROUTE0" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE1" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE2" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="ROUTE3" is_bus="false" is_clk="true" is_clk_invert="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_OUT_0" is_bus="false"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_OUT_7" is_bus="false"/>
                     <efxpt:pin name="" type_name="DYN_MUX_SEL_0" is_bus="true"/>
+                    <efxpt:pin name="" type_name="DYN_MUX_SEL_7" is_bus="true"/>
                 </efxpt:gen_pin>
             </efxpt:clkmux>
         </efxpt:clkmux_info>
@@ -247,42 +247,28 @@
         <efxpt:pll name="pll_inst1" pll_def="PLL_TL0" ref_clock_name="" ref_clock_freq="25.0000" multiplier="1" pre_divider="1" post_divider="2" reset_name="o_pll_rstn" locked_name="i_pll_locked" is_ipfrz="false" is_bypass_lock="true">
             <efxpt:adv_prop ref_clock_mode="external" ref_clock1_name="" ext_ref_clock_id="2" clksel_name="" feedback_clock_name="i_fb_clk" feedback_mode="core"/>
             <efxpt:gen_pin>
-                <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
-                <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="" type_name="SHIFT_SEL" is_bus="false"/>
+                <efxpt:pin name="" type_name="SHIFT_ENA" is_bus="false"/>
+                <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="108" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="9" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_peripheralClk" number="2" out_divider="27" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
+            <efxpt:comp_output_clock name="i_fb_clk" number="0" out_divider="108" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
+            <efxpt:comp_output_clock name="i_systemClk" number="1" out_divider="9" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
+            <efxpt:comp_output_clock name="i_peripheralClk" number="2" out_divider="27" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
             <efxpt:comp_prop/>
         </efxpt:pll>
         <efxpt:pll name="pll_inst2" pll_def="PLL_BL0" ref_clock_name="i_fb_clk" ref_clock_freq="25.0000" multiplier="1" pre_divider="1" post_divider="4" reset_name="o_hbramClk_pll_rstn" locked_name="i_hbramClk_pll_locked" is_ipfrz="false" is_bypass_lock="true">
             <efxpt:adv_prop ref_clock_mode="core" ref_clock1_name="" ext_ref_clock_id="2" clksel_name="" feedback_clock_name="i_hbramClk_fb" feedback_mode="core"/>
             <efxpt:gen_pin>
-                <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
-                <efxpt:pin name="o_hbc_cal_SHIFT_ENA" type_name="SHIFT_ENA" is_bus="false"/>
                 <efxpt:pin name="o_hbc_cal_SHIFT" type_name="SHIFT" is_bus="false"/>
                 <efxpt:pin name="o_hbc_cal_SHIFT_SEL" type_name="SHIFT_SEL" is_bus="false"/>
+                <efxpt:pin name="o_hbc_cal_SHIFT_ENA" type_name="SHIFT_ENA" is_bus="false"/>
+                <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
             </efxpt:gen_pin>
-            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="32" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="4" is_dyn_phase="false" phase_setting="2" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="4" is_dyn_phase="true" phase_setting="0" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
-            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="4" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk">
-                <efxpt:gen_pin/>
-            </efxpt:comp_output_clock>
+            <efxpt:comp_output_clock name="i_hbramClk_fb" number="0" out_divider="32" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
+            <efxpt:comp_output_clock name="i_hbramClk90" number="1" out_divider="4" is_dyn_phase="false" phase_setting="2" is_inverted="false" conn_type="gclk"/>
+            <efxpt:comp_output_clock name="i_hbramClk_cal" number="2" out_divider="4" is_dyn_phase="true" phase_setting="0" is_inverted="false" conn_type="gclk"/>
+            <efxpt:comp_output_clock name="i_hbramClk" number="3" out_divider="4" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
             <efxpt:comp_prop/>
         </efxpt:pll>
     </efxpt:pll_info>

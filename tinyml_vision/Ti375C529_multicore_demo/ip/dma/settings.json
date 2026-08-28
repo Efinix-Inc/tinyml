@@ -3,13 +3,13 @@
         "-o",
         "dma",
         "--base_path",
-        "/projects/SSE/mfaiz/validation/tinyml_multicore/28jan2025/Ti375C529_demo_multicore/ip",
+        "ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "bridges_and_adaptors",
             "name": "efx_dma",
-            "version": "6.4"
+            "version": "6.4.2"
         }
     ],
     "conf": {
@@ -112,27 +112,11 @@
     },
     "output": {
         "external_script_generator": [],
-        "external_source_source": [
-            "dma/dma.v",
-            "dma/dma_define.vh",
-            "dma/dma_tmpl.v",
-            "dma/dma_tmpl.vhd"
-        ],
+        "external_source_source": [],
         "external_script_script": [],
-        "external_testbench_testbench": [
-            "dma/Testbench/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
-            "dma/Testbench/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
-            "dma/Testbench/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
-            "dma/Testbench/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
-            "dma/Testbench/MEM.TXT",
-            "dma/Testbench/modelsim.do",
-            "dma/Testbench/prj.f",
-            "dma/Testbench/sim_modules.v",
-            "dma/Testbench/tb_soc.v",
-            "dma/Testbench/dma.v",
-            "dma/Testbench/dma_define.vh"
-        ]
+        "external_testbench_testbench": []
     },
-    "sw_version": "2024.2.294",
-    "generated_date": "2025-01-28T05:11:42.413625+00:00"
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
 }

@@ -25,7 +25,7 @@ namespace reference_integer_ops {
 
 // Fixed-point per-channel-quantization convolution reference kernel.
 
-static inline void ConvPerChannel(
+static inline __attribute__((noinline)) void ConvPerChannel(
 	const ConvParams& params, const int32_t* output_multiplier,
 	const int32_t* output_shift, const RuntimeShape& input_shape,
 	const int8_t* input_data, const RuntimeShape& filter_shape,

@@ -13,11 +13,11 @@ CFLAGS += ${CFLAGS_ARGS}
 CFLAGS += ${HEADERS}
 
 LDFLAGS += -L${STANDALONE}/common
-LDFLAGS += -specs=nosys.specs -lgcc -nostartfiles -ffreestanding -Wl,-Bstatic,-T,$(LDSCRIPT),-Map,$(OBJDIR)/$(PROJ_NAME).map,--print-memory-usage
+LDFLAGS += -specs=nosys.specs -nostartfiles -Wl,--no-warn-rwx-segments,-Bstatic,-T,$(LDSCRIPT),-Map,$(OBJDIR)/$(PROJ_NAME).map,--print-memory-usage  -lgcc
 DOT:= .
 COLON:=:
 
-RISCV_CXX := riscv-none-embed-g++
+RISCV_CXX := riscv-none-elf-g++
 CXXFLAGS += $(CFLAGS) ${HEADERS}
 
 TARGET := $(OBJDIR)/out

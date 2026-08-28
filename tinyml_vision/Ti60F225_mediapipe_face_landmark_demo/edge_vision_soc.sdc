@@ -4,10 +4,10 @@
 # WARNING: Any manual changes made to this file will be lost when generating constraints.
 
 # Efinity Interface Designer SDC
-# Version: 2025.2.288.3.8
-# Date: 2026-03-10 09:32
+# Version: 2026.1.132
+# Date: 2026-06-15 10:44
 
-# Copyright (C) 2013 - 2025 Efinix Inc. All rights reserved.
+# Copyright (C) 2013 - 2026 Efinix Inc. All rights reserved.
 
 # Device: Ti60F225
 # Project: edge_vision_soc

@@ -1,3 +1,8 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
+
 module common_ti180_ddr_config (
     // Clk
     input   i_sys_clk,
@@ -27,12 +32,10 @@ module common_ti180_ddr_config (
     
     //DDR AXI 1 Read Address Channel
     output  ddr_inst_ARST_1,
-    output	[32:0] ddr_inst_ARADDR_1,   //Read address. It gives the address of the first transfer in a burst transaction.
     output	[5:0] ddr_inst_ARID_1,      //Address ID. This signal identifies the group of address signals.
     output	ddr_inst_ARAPCMD_1,         //Read auto-precharge.
     
     //DDR AXI 1 Wrtie Address Channel
-    output  [32:0] ddr_inst_AWADDR_1,       //Write address. It gives the address of the first transfer in a burst transaction.
     output  [5:0] ddr_inst_AWID_1,          //Address ID. This signal identifies the group of address signals.
     output  ddr_inst_AWAPCMD_1,             //Write auto-precharge.
     output  ddr_inst_AWALLSTRB_1,           //Write all strobes asserted.
@@ -79,9 +82,6 @@ assign dma_awid = 8'hE1;
 
 assign ddr_inst_ARID_1 = {dma_arid[7:6], dma_arid[3:0]};
 assign ddr_inst_AWID_1 = {dma_awid[7:6], dma_awid[3:0]};
-
-assign ddr_inst_ARADDR_1[32] = 1'b0;
-assign ddr_inst_AWADDR_1[32] = 1'b0;
 
 assign ddr_inst_AWAPCMD_1 = 1'b0;
 assign ddr_inst_ARAPCMD_1 = 1'b0;

@@ -130,19 +130,19 @@ u32 UartGetDec(void)
 		}
 }
 
-void mipi_i2c_init(){
-    //I2C init
-    I2c_Config i2c_mipi;
-    i2c_mipi.samplingClockDivider = 3;
-    i2c_mipi.timeout = I2C_CTRL_HZ/1000;
-    i2c_mipi.tsuDat  = I2C_CTRL_HZ/2000000;
+void mipi_i2c_init(u32 i2cCtrl)
+{
+	// I2C init
+	I2c_Config i2c_mipi;
+	i2c_mipi.samplingClockDivider = 3;
+	i2c_mipi.timeout = I2C_CTRL_HZ / 1000;
+	i2c_mipi.tsuDat = I2C_CTRL_HZ / 2000000;
 
-    i2c_mipi.tLow  = I2C_CTRL_HZ/800000;
-    i2c_mipi.tHigh = I2C_CTRL_HZ/800000;
-    i2c_mipi.tBuf  = I2C_CTRL_HZ/400000;
+	i2c_mipi.tLow = I2C_CTRL_HZ / 800000;
+	i2c_mipi.tHigh = I2C_CTRL_HZ / 800000;
+	i2c_mipi.tBuf = I2C_CTRL_HZ / 400000;
 
-    i2c_applyConfig(I2C_CTRL_MIPI, &i2c_mipi);
-
+	i2c_applyConfig(i2cCtrl, &i2c_mipi);
 }
 
 /*

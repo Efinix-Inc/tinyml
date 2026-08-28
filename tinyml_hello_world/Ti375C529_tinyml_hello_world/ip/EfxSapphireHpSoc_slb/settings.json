@@ -3,13 +3,13 @@
         "-o",
         "EfxSapphireHpSoc_slb",
         "--base_path",
-        "/projects/SSE/izzat/regression_2025/ww53_finalregression/tinyml_hello_world/Ti375C529_tinyml_hello_world/ip",
+        "ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_hard_soc",
-            "version": "1.22.0"
+            "version": "1.23.0"
         }
     ],
     "conf": {
@@ -123,17 +123,12 @@
     },
     "output": {
         "external_script_Peripheral_Generator": [],
-        "external_source_source": [
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.vhd",
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb.v",
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_tmpl.v",
-            "EfxSapphireHpSoc_slb/EfxSapphireHpSoc_slb_define.vh"
-        ],
+        "external_source_source": [],
         "external_script_PT_Configuration": [],
         "external_script_Peripheral_Post_Script": [],
         "external_script_Embedded_SW": []
     },
     "ooc_synthesis": {},
-    "sw_version": "2025.2.288.3.8",
-    "generated_date": "2025-12-20T02:42:56.565640+00:00"
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
 }

@@ -3,13 +3,13 @@
         "-o",
         "dsi_tx_display",
         "--base_path",
-        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
+        "ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_dsi_tx",
-            "version": "5.12"
+            "version": "5.15"
         }
     ],
     "conf": {
@@ -49,54 +49,14 @@
         "MIPI_DSI_TX_DEBUG": "1'b0"
     },
     "output": {
-        "external_source_source": [
-            "dsi_tx_display/dsi_tx_display.sv",
-            "dsi_tx_display/dsi_tx_display_define.svh",
-            "dsi_tx_display/dsi_tx_display_tmpl.sv",
-            "dsi_tx_display/dsi_tx_display_tmpl.vhd"
-        ],
-        "external_testbench_modelsim": [
-            "dsi_tx_display/Testbench/modelsim/dsi_tx_display.sv"
-        ],
-        "external_testbench_testbench": [
-            "dsi_tx_display/Testbench/data_pack.v",
-            "dsi_tx_display/Testbench/dual_clock_fifo.v",
-            "dsi_tx_display/Testbench/panel_config.v",
-            "dsi_tx_display/Testbench/shift_reg.v",
-            "dsi_tx_display/Testbench/simple_dual_port_ram.v",
-            "dsi_tx_display/Testbench/true_dual_port_ram.v",
-            "dsi_tx_display/Testbench/vga_gen.v",
-            "dsi_tx_display/Testbench/dsi_hs_cmd_tb.mem",
-            "dsi_tx_display/Testbench/dsi_tb.mem",
-            "dsi_tx_display/Testbench/TI60F225_MIPI_dsi_tb.v",
-            "dsi_tx_display/Testbench/modelsim.do",
-            "dsi_tx_display/Testbench/dsi_tx_display.sv",
-            "dsi_tx_display/Testbench/dsi_tx_display_define.svh"
-        ],
-        "external_example_example": [
-            "dsi_tx_display/Ti60F225_devkit/ti60f225_demo.peri.xml",
-            "dsi_tx_display/Ti60F225_devkit/ti60f225_demo.xml",
-            "dsi_tx_display/Ti60F225_devkit/data_pack.v",
-            "dsi_tx_display/Ti60F225_devkit/dual_clock_fifo.v",
-            "dsi_tx_display/Ti60F225_devkit/panel_config.v",
-            "dsi_tx_display/Ti60F225_devkit/reset.v",
-            "dsi_tx_display/Ti60F225_devkit/shift_reg.v",
-            "dsi_tx_display/Ti60F225_devkit/simple_dual_port_ram.v",
-            "dsi_tx_display/Ti60F225_devkit/TI60F225_MIPI_dsi.v",
-            "dsi_tx_display/Ti60F225_devkit/true_dual_port_ram.v",
-            "dsi_tx_display/Ti60F225_devkit/vga_gen.v",
-            "dsi_tx_display/Ti60F225_devkit/Panel_1080p_reg.mem",
-            "dsi_tx_display/Ti60F225_devkit/ti60f225_demo.sdc",
-            "dsi_tx_display/Ti60F225_devkit/dsi_tx_display.sv",
-            "dsi_tx_display/Ti60F225_devkit/dsi_tx_display_define.svh"
-        ],
-        "external_testbench_ncsim": [
-            "dsi_tx_display/Testbench/ncsim/dsi_tx_display.sv"
-        ],
-        "external_testbench_synopsys": [
-            "dsi_tx_display/Testbench/synopsys/dsi_tx_display.sv"
-        ]
+        "external_source_source": [],
+        "external_testbench_modelsim": [],
+        "external_testbench_testbench": [],
+        "external_example_example": [],
+        "external_testbench_ncsim": [],
+        "external_testbench_synopsys": []
     },
-    "sw_version": "2024.2.294",
-    "generated_date": "2024-12-23T01:52:33.963035+00:00"
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
 }
