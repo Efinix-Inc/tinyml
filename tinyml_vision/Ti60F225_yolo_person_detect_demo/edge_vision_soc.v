@@ -1,25 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2022 github-efx
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-///////////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 module edge_vision_soc #(
    parameter RGB2GRAYSCALE          = "DISABLE",
@@ -29,9 +11,9 @@ module edge_vision_soc #(
    parameter MIPI_FRAME_WIDTH      = 1920,  
    parameter MIPI_FRAME_HEIGHT     = 1080,
    //Actual frame resolution used for subsequent processing (after cropping/scaling).
-   parameter FRAME_WIDTH           = 540, //Multiple of 2 - To match with 2PPC pixel data.
-   parameter FRAME_HEIGHT          = 540,  //Multiple of 2 - To preserve bayer format prior to raw2rgb conversion.
-      parameter AXI_DATA_WIDTH  	      = 128, // AXI Width  connected to SOC, TinyML Accelerator, and DMA
+   parameter FRAME_WIDTH           = 540, // Multiple of 2 - To match with 2PPC pixel data.
+   parameter FRAME_HEIGHT          = 540, // Multiple of 2 - To preserve bayer format prior to raw2rgb conversion.
+   parameter AXI_DATA_WIDTH  	     = 128, // AXI Width  connected to SOC, TinyML Accelerator, and DMA
    parameter MIPI_PCLK_CLK_RATE    = 100000000
 )(
    input    wire           i_arstn,
@@ -1024,8 +1006,18 @@ dsi_tx_display u_dsi_tx_display (
 // APB3 for camera & display
 wire hw_accel_dma_init_done;
 
-assign debug_cam_display_fifo_status = {22'd0,debug_dma_hw_accel_out_fifo_overflow,debug_dma_hw_accel_out_fifo_underflow,debug_dma_hw_accel_in_fifo_overflow,debug_dma_hw_accel_in_fifo_underflow, debug_cam_pixel_remap_fifo_underflow, debug_cam_pixel_remap_fifo_overflow, debug_cam_dma_fifo_underflow, debug_cam_dma_fifo_overflow, 
-                                        debug_display_dma_fifo_underflow, debug_display_dma_fifo_overflow};
+assign debug_cam_display_fifo_status = {
+   22'd0,
+   debug_dma_hw_accel_out_fifo_overflow,
+   debug_dma_hw_accel_out_fifo_underflow,
+   debug_dma_hw_accel_in_fifo_overflow,
+   debug_dma_hw_accel_in_fifo_underflow,
+   debug_cam_pixel_remap_fifo_underflow, 
+   debug_cam_pixel_remap_fifo_overflow, 
+   debug_cam_dma_fifo_underflow, 
+   debug_cam_dma_fifo_overflow, 
+   debug_display_dma_fifo_underflow, 
+   debug_display_dma_fifo_overflow};
 
 //Shared for both camera and display
 common_apb3 #(
