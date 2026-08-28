@@ -1,9 +1,7 @@
-/*
- * override_accel.h
- *
- *  Created on: 10 Mar 2025
- *      Author: mfaiz
- */
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
  #ifndef SRC_MODEL_ACCEL_SETTINGS_H_
  #define SRC_MODEL_ACCEL_SETTINGS_H_

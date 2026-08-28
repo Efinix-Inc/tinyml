@@ -1,9 +1,7 @@
-/*
- * PiCamDriver.h
- *
- *  Created on: 14 May 2020
- *      Author: root
- */
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/evsoc/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 #ifndef SRC_PICAMV3DRIVER_H_
 #define SRC_PICAMV3DRIVER_H_
@@ -499,30 +497,30 @@ static const struct imx708_reg link_453Mhz_regs[] = {
 extern "C" {
 #endif
 
-void PiCam_WriteRegData(u16 reg,u8 data);
-u8 PiCam_ReadRegData(u16 reg);
-void PiCam_init(void);
-void PiCam_Output_activePixelX(u16 XStart,u16 XEnd);
-void PiCam_Output_activePixelY(u16 YStart,u16 YEnd);
-void PiCam_TestPattern(u8 Enable,u8 mode,u16 X,u16 Y);
-void PiCamV3_Init(void);
-void PiCamV3_SetPdafGain(void);
-void PiCamV3_StartStreaming(void);
-void PiCamV3_StopStreaming(void);
-void PiCamV3_ConfigCommon(void);
-void PiCamV3_ConfigFormat(u8 mode);
-void PiCamV3_ConfigLinkFreq(void);
-void PiCamV3_ConfigQuadBayerRemosaicAdjustment(void);
-void PiCamV3_SetTestPattern(void);
-void PiCam_AFWriteRegData(u16 reg,u8 data);
-u8 PiCam_AFReadRegData(u16 reg);
-void PiCamV3_SetExposure(u16 val);
-u32 PiCamV3_GetFrameRate();
-void PiCamV3_SetAnalogueGain(u16 val);
-void PiCamV3_SetDigitalGain(u16 val);
-void PiCamV3_SetFocusStep(u32 focus_step);
-void PiCamV3_OnActuator();
-void PiCamV3_OffActuator();
+void PiCamV3_WriteRegData(u32 i2c_addr, u16 reg,u8 data);
+u8 PiCamV3_ReadRegData(u32 i2c_addr, u16 reg);
+void PiCamV3_init(u32 i2c_addr);
+void PiCamV3_Output_activePixelX(u16 XStart,u16 XEnd);
+void PiCamV3_Output_activePixelY(u16 YStart,u16 YEnd);
+void PiCamV3_TestPattern(u8 Enable,u8 mode,u16 X,u16 Y);
+void PiCamV3_Init(u32 i2c_addr);
+void PiCamV3_SetPdafGain(u32 i2c_addr);
+void PiCamV3_StartStreaming(u32 i2c_addr);
+void PiCamV3_StopStreaming(u32 i2c_addr);
+void PiCamV3_ConfigCommon(u32 i2c_addr);
+void PiCamV3_ConfigFormat(u32 i2c_addr, u8 mode);
+void PiCamV3_ConfigLinkFreq(u32 i2c_addr);
+void PiCamV3_ConfigQuadBayerRemosaicAdjustment(u32 i2c_addr);
+void PiCamV3_SetTestPattern(u32 i2c_addr);
+void PiCam_AFWriteRegData(u32 i2c_addr, u16 reg,u8 data);
+u8 PiCam_AFReadRegData(u32 i2c_addr, u16 reg);
+void PiCamV3_SetExposure(u32 i2c_addr, u16 val);
+u32 PiCamV3_GetFrameRate(u32 i2c_addr);
+void PiCamV3_SetAnalogueGain(u32 i2c_addr, u16 val);
+void PiCamV3_SetDigitalGain(u32 i2c_addr, u16 val);
+void PiCamV3_SetFocusStep(u32 i2c_addr, u32 focus_step);
+void PiCamV3_OnActuator(u32 i2c_addr);
+void PiCamV3_OffActuator(u32 i2c_addr);
 
 #if __cplusplus
 }

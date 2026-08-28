@@ -35,7 +35,7 @@ u32 number_pow(u32 base ,u32 pow);
 unsigned char UartGetChar(void);
 u32 UartGetDec(void);
 
-void mipi_i2c_init(void);
+void mipi_i2c_init(u32 i2cCtrl);
 void hdmi_i2c_init(void);
 #if __cplusplus
 }

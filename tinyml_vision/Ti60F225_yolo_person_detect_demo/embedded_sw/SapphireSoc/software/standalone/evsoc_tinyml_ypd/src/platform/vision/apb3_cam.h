@@ -38,11 +38,18 @@ u32 example_register_read(u16 reg)
 	return rdata;
 }
 
-void Set_RGBGain(u8 ena, u8 R, u8 G, u8 B)
+void Set_RGBGain(int camId, u8 ena, u8 R, u8 G, u8 B)
 {
-	u32 data = ((B & 0x7)<<12)|((G & 0x7)<<8)|((R & 0x7)<<4)|(ena&0x1);
+	u32 data = ((B & 0x7) << 12) | ((G & 0x7) << 8) | ((R & 0x7) << 4) | (ena & 0x1);
 
-	EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG0_OFFSET, data);
+#ifdef DUAL_CAM
+	u32 offset = (camId == 0) ? EXAMPLE_APB3_SLV_REG1_OFFSET
+							  : EXAMPLE_APB3_SLV_REG5_OFFSET;
+#else
+	u32 offset = EXAMPLE_APB3_SLV_REG0_OFFSET; // single cam, camId ignored
+#endif
+
+	EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, offset, data);
 	bsp_uDelay(DELAY_BUSY);
 }
 
