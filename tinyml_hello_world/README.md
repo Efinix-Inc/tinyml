@@ -83,7 +83,7 @@ Bring up TinyML Hello World design on Efinix development kit by following listed
    - Refer to *Set Up the Hardware* section in [EVSoC User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=UG-EVSOC) for targeted development kit.
    - For TinyML Hello World design, the connections to camera and mini-DSI panel are not required.
 2. Using Efinity® IDE
-   - Pre-compiled bitstream .hex (for Programmer SPI active mode) and .bit (for Programmer JTAG mode) files are provided in Efinity project(s) in *tinyml_hello_world* directory. User may skip Efinity project compilation by using the provided bitstream.
+   - Pre-compiled bitstream .hex (for Programmer SPI active mode) and .bit (for Programmer JTAG mode) files are provided in TinyML release notes under *tinyml_hello_world* in Bitstream.zip file. User may skip Efinity project compilation by using the provided bitstream.
    - To compile TinyML Hello World design,
       - Open Efinity project (*tinyml_hello_world/<proj_directory>/tinyml_soc.xml*).
       - Generate all included IPs in the IP list.
@@ -102,5 +102,5 @@ Refer to [Frequently Asked Questions](../docs/faq.md) for general questions and 
 <br />
 
 Software Tools Version:
-- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.294.4.15
-- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2024.2.0.1
+- [Efinity® IDE](https://www.efinixinc.com/support/efinity.php) v2026.1.132
+- [Efinity® RISC-V Embedded Software IDE](https://www.efinixinc.com/support/efinity.php) v2026.1.0.7
