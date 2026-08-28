@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
+
+#ifndef MAXMIN_H
+#define MAXMIN_H
+#include "ops_api.h"
+#include "intc.h"
+#include "platform/tinyml/accel_settings.h"
+template<typename T, bool Max>
+OP_STATUS_T maxmin_drv(
+		const T *data1,
+		const T *data2,
+		T *output_data,
+		const int32_t flat_size
+		);
+#endif // MAXMIN_H
