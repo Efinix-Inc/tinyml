@@ -3,13 +3,13 @@
         "-o",
         "hw_accel_dma_out_fifo",
         "--base_path",
-        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_vision/Ti60F225_yolo_person_detect_demo/ip",
+        "ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "7.2"
+            "version": "8.1"
         }
     ],
     "conf": {
@@ -35,13 +35,9 @@
         "UNDERFLOW_PROTECT": "1"
     },
     "output": {
-        "external_source_source": [
-            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo.v",
-            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_define.vh",
-            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.vhd",
-            "hw_accel_dma_out_fifo/hw_accel_dma_out_fifo_tmpl.v"
-        ]
+        "external_source_source": []
     },
-    "sw_version": "2024.2.294",
-    "generated_date": "2024-12-23T01:53:01.240508+00:00"
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
 }

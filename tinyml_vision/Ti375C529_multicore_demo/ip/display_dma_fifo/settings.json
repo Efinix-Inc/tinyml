@@ -3,13 +3,13 @@
         "-o",
         "display_dma_fifo",
         "--base_path",
-        "/projects/SSE/kwcheah/efx_tinyml_int/tinyml/tinyml_vision/Ti375C529_mediapipe_face_landmark_demo/ip",
+        "ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory",
             "name": "efx_fifo_top",
-            "version": "7.2"
+            "version": "8.1"
         }
     ],
     "conf": {
@@ -35,13 +35,9 @@
         "UNDERFLOW_PROTECT": "1"
     },
     "output": {
-        "external_source_source": [
-            "display_dma_fifo/display_dma_fifo.v",
-            "display_dma_fifo/display_dma_fifo_define.vh",
-            "display_dma_fifo/display_dma_fifo_tmpl.vhd",
-            "display_dma_fifo/display_dma_fifo_tmpl.v"
-        ]
+        "external_source_source": []
     },
-    "sw_version": "2024.2.294",
-    "generated_date": "2024-12-23T01:49:20.475784+00:00"
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132",
+    "external_path_option": "RELATIVE_PATH"
 }
