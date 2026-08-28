@@ -1,25 +1,7 @@
-////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2022 github-efx
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 module display_hdmi_yuv # (
     parameter   FRAME_WIDTH     = 1920,
@@ -144,17 +126,19 @@ always @(posedge iHdmiClk) begin
     end else begin
         // Latch partial empty
         if (wvDisplayDmaFifoCount > DISP_FIFO_DEPTH/2) rDmaFifoLatchPartialEmpty <= 1'b1;
+        else if (wvDisplayDmaFifoCount == 0) rDmaFifoLatchPartialEmpty <= 1'b0; // reset at the end of the frame, which is indicated by fifo empty
         else rDmaFifoLatchPartialEmpty <= rDmaFifoLatchPartialEmpty;
-        
         //Latch Valid Start
         if (rDmaFifoLatchPartialEmpty && (~wVgaGenVs)) rLatchStartFrame <= 1'b1;
+        else if (!rDmaFifoLatchPartialEmpty) rLatchStartFrame <= 1'b0; // reset if fifo is not latched as partial empty, which means dma is not ready yet
+        // else if (wvDisplayDataLastReg) rLatchStartFrame <= 1'b0; // reset at the end of the frame, which is indicated by wvDisplayDataLastReg (registered version of wvDisplayDataLast)
         else rLatchStartFrame <= rLatchStartFrame;
         // do it twice to remove lagging from rDmaFifoLatchPartialEmpty <--> wVgaGenVs condition
         if (rLatchStartFrame && (~wVgaGenVs)) rLatchStartFrame_d1 <= 1'b1;
+        else if (!rLatchStartFrame) rLatchStartFrame_d1 <= 1'b0; // reset if rLatchStartFrame is reset
         else rLatchStartFrame_d1 <= rLatchStartFrame_d1;
     end
 end
-
 
 // Condition to read DMA Fifo (AND condition)
 // 1: VgaGen

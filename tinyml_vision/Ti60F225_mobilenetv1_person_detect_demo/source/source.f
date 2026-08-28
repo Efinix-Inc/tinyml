@@ -36,6 +36,6 @@ hw_accel/hw_accel_pack_rgb_gray.v
 hw_accel/hw_accel_rgb2gray.v
 hw_accel/hw_accel_stream.v
 hw_accel/hw_accel_wrapper.v
+tinyml/tinyml_accelerator.v
 tinyml/tinyml_accelerator_channels.v
 tinyml/tinyml_top.v
-tinyml/tinyml_accelerator.v
