@@ -1,8 +1,8 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright 2024 Efinix.Inc. All Rights Reserved.
-// You may obtain a copy of the license at
-//    https://www.efinixinc.com/software-license.html
-///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
+
 #include <stdlib.h>
 #include <stdint.h>
 #include "riscv.h"
@@ -265,7 +265,7 @@ void smpInitWrapper(u32 a, u32 b, u32 c) {
 
 
 
-void main() {
+int main() {
 	bsp_init();
 	bsp_printf("***Starting Multicore Hello World*** \r\n");
 	smp_unlock(smpInitWrapper);

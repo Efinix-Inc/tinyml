@@ -1,11 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright 2024 Efinix.Inc. All Rights Reserved.
-// You may obtain a copy of the license at
-//    https://www.efinixinc.com/software-license.html
-///////////////////////////////////////////////////////////////////////////////////
-
-// Define the picam version. Picam V2 will be the default if PICAM_VERSION is not defined.
-#define PICAM_VERSION 3
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -18,11 +14,9 @@
 //#include "print.h"
 #include "clint.h"
 #include "common.h"
-#if PICAM_VERSION == 3
+#include "platform/vision/camera.h"
 #include "PiCamV3Driver.h"
-#else
 #include "PiCamDriver.h"
-#endif
 #include "apb3_cam.h"
 #include "i2c.h"
 #include "userDef.h"
@@ -511,7 +505,7 @@ void init_dummy(void) {
 void init_vision() {
 	/************************************************************SETUP PICAM************************************************************/
 
-	MicroPrintf("Camera Setting...");
+	MicroPrintf("Camera Setting...\r\n");
 
 	// Reset mipi
 //	EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0);//de-assert reset
@@ -525,20 +519,9 @@ void init_vision() {
 	framebuf_clearall();
 
 	//Camera I2C configuration
-	mipi_i2c_init();
-#if PICAM_VERSION == 3
-	PiCamV3_Init();
+	cam0_init(I2C_CTRL_CAM0);
 
-	//SET camera pre-processing RGB gain value
-	Set_RGBGain(1,5,3,7);
-#else
-	PiCam_init();
-
-	//SET camera pre-processing RGB gain value
-	Set_RGBGain(1,5,3,4);
-#endif
-
-	MicroPrintf("Done\n\r");
+	bsp_printf("Camera Init...Done\r\n");
 
 	/*************************************************************SETUP DMA*************************************************************/
 
@@ -969,10 +952,6 @@ extern "C" void mainSmp(){
 		init_vision();
 		soc_write_buffer_flush();
 
-#if PICAM_VERSION == 3
-		PiCamV3_StartStreaming();
-#endif
-
 		MicroPrintf("Done Initialization ... \n\r");
 
 
@@ -1202,7 +1181,7 @@ void smpInitWrapper(u32 a, u32 b, u32 c) {
 }
 
 
-void main() {
+int main() {
 	bsp_init();
 	bsp_printf("***Starting SMP Demo*** \r\n");
 	smp_unlock(smpInitWrapper);

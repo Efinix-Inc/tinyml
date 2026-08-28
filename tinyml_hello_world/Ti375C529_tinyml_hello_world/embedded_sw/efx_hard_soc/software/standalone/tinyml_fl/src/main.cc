@@ -1,8 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright 2024 Efinix.Inc. All Rights Reserved.
-// You may obtain a copy of the license at
-//    https://www.efinixinc.com/software-license.html
-///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -175,7 +174,7 @@ void landmark_output(int enable_printing) {
 
 }
 
-extern "C" void main() {
+extern "C" int main() {
 
 	//Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
 	u32 hartId = csr_read(mhartid);

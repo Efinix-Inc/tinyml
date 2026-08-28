@@ -1,11 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////
-// Copyright 2024 Efinix.Inc. All Rights Reserved.
-// You may obtain a copy of the license at
-//    https://www.efinixinc.com/software-license.html
-///////////////////////////////////////////////////////////////////////////////////
-
-// Define the picam version. Picam V2 will be the default if PICAM_VERSION is not defined.
-#define PICAM_VERSION 3
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2013-2026 Efinix Inc. All rights reserved.
+// See https://github.com/Efinix-Inc/tinyml/blob/main/LICENSE.txt for details.
+////////////////////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -18,11 +14,9 @@
 #include "print.h"
 #include "clint.h"
 #include "common.h"
-#if PICAM_VERSION == 3
+#include "platform/vision/camera.h"
 #include "PiCamV3Driver.h"
-#else
 #include "PiCamDriver.h"
-#endif
 #include "apb3_cam.h"
 #include "i2c.h"
 #include "userDef.h"
@@ -327,7 +321,7 @@ void init_bbox(void)
 void init() {
    /************************************************************SETUP PICAM************************************************************/
 
-   MicroPrintf("Camera Setting...");
+   MicroPrintf("Camera Setting...\r\n");
 
    //Assert camera reset
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000000);
@@ -336,22 +330,12 @@ void init() {
    bsp_uDelay(1000*10); //10ms delay
 
    //Camera I2C configuration
-   mipi_i2c_init();
-#if PICAM_VERSION == 3
-   PiCamV3_Init();
-   
-   //SET camera pre-processing RGB gain value
-   Set_RGBGain(1,5,3,7);
-#else
-   PiCam_init();
-
-   //SET camera pre-processing RGB gain value
-   Set_RGBGain(1,5,3,4);
-#endif
+   cam0_init(I2C_CTRL_CAM0);
 
    //Indicate camera configuration done
    EXAMPLE_APB3_REGW(EXAMPLE_APB3_SLV, EXAMPLE_APB3_SLV_REG1_OFFSET, 0x00000003);
-   MicroPrintf("Done\n\r");
+
+   bsp_printf("Camera Init...Done\r\n");
 
    /*************************************************************SETUP DMA*************************************************************/
 
@@ -457,7 +441,7 @@ void draw_boxes(box* boxes,int total_boxes){
    bbox_overlay_updated=1;
 }
 
-void main() {
+int main() {
 
    //Allocate dynamic memory using arena allocator. Refer to model/arena.h for usage.
    u32 hartId = csr_read(mhartid);
@@ -477,9 +461,6 @@ void main() {
    uint64_t timerCmpTotal0, timerCmpTotal1, timerDiffTotal;
    u32 ms;
    bbox_overlay_updated = 0;
-#if PICAM_VERSION == 3
-   PiCamV3_StartStreaming();
-#endif
 
    while(1) {
 
